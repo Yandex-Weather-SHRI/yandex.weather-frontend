@@ -5,6 +5,8 @@ const merge = require('webpack-merge')
 const { config, DIST } = require('./shared.config')
 
 
+const MOCK = resolve(__dirname, '..', 'mock')
+
 module.exports = merge(config, {
   devtool: 'source-map',
   profile: false,
@@ -27,7 +29,7 @@ module.exports = merge(config, {
   ],
 
   devServer: {
-    contentBase: DIST,
+    contentBase: [DIST, MOCK],
     port: process.env.DEV_PORT || 4800,
     host: process.env.DEV_HOST || '0.0.0.0',
     hot: true,
