@@ -5,7 +5,7 @@ import infoAddon, { setDefaults } from '@storybook/addon-info'
 
 setOptions({
   name: 'Яндекс.Погода',
-  url: 'https://github.com/yarastqt/yandex.weather',
+  url: 'https://github.com/Yandex-Weather-SHRI/yandex.weather-frontend',
 })
 
 setDefaults({
