@@ -2,9 +2,14 @@
   "name": "yandex.weather",
   "version": "0.1.0",
   "scripts": {
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^3.2.6",
+    "@storybook/addon-info": "^3.2.6",
+    "@storybook/addon-options": "^3.2.6",
+    "@storybook/react": "^3.2.6",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
