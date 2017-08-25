@@ -28,6 +28,9 @@ const config = {
       SOURCES,
     ],
     extensions: ['.js', '.json', '.svg'],
+    alias: {
+      i: resolve(__dirname, '..', 'public', 'i'),
+    },
   },
 
   module: {
