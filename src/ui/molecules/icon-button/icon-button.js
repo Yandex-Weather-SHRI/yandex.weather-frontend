@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { Icon } from '../../atoms'
+import { Icon } from 'ui/atoms'
 
 
 const IconButtonWrapper = styled.button`
