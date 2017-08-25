@@ -5,15 +5,16 @@ import styled from 'styled-components'
 import { Icon } from '../../atoms'
 
 
-const IconButtonWrapper = styled.a`
+const IconButtonWrapper = styled.button`
   &,
-  &:link,
-  &:visited,
   &:hover,
-  &:active {
-    text-decoration: none;
-    color: initial;
+  &:active,
+  &:focus {
     cursor: pointer;
+    border: 0;
+    background: 0;
+    outline: 0;
+    padding: 0;
   }
 `
 
