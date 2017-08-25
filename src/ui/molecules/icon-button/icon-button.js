@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { Icon } from '../atoms'
+import { Icon } from '../../atoms'
 
 
 const IconButtonWrapper = styled.a`
@@ -13,6 +13,7 @@ const IconButtonWrapper = styled.a`
   &:active {
     text-decoration: none;
     color: initial;
+    cursor: pointer;
   }
 `
 
