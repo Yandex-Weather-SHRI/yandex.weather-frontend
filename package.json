@@ -2,6 +2,8 @@
   "name": "yandex.weather",
   "version": "0.1.0",
   "scripts": {
+    "test": "npm run test:lint",
+    "test:lint": "eslint src",
     "dev": "webpack-dev-server",
     "storybook": "start-storybook -p 9001 -c .storybook"
   },
