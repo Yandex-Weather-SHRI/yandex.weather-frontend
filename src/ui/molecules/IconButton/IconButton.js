@@ -53,4 +53,4 @@ IconButton.defaultProps = {
   children: null,
 }
 
-export default IconButton
+export { IconButton }
