@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 
-const Avatar = styled.img`
+export const Avatar = styled.img`
   width: 32px;
   height: 32px;
   display: block;
@@ -12,5 +12,3 @@ const Avatar = styled.img`
 Avatar.propTypes = {
   src: PropTypes.string.isRequired,
 }
-
-export default Avatar
