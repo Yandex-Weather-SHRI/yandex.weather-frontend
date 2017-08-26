@@ -2,8 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
-import * as icons from 'ui/atoms/Icon/icons'
-
 
 export const IconWrapper = styled.i`
   display: flex;
@@ -26,7 +24,7 @@ export const IconWrapper = styled.i`
 `
 
 export const Icon = ({ name, ...props }) => {
-  const Svg = icons[name] || null
+  const Svg = require(`./icons/${name}.svg`).default // eslint-disable-line
 
   return (
     <IconWrapper {...props}>
@@ -36,7 +34,7 @@ export const Icon = ({ name, ...props }) => {
 }
 
 Icon.propTypes = {
-  name: PropTypes.oneOf(Object.keys(icons)).isRequired,
+  name: PropTypes.string.isRequired,
   fill: PropTypes.string,
   stroke: PropTypes.string,
   size: PropTypes.number,
