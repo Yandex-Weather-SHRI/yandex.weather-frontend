@@ -28,8 +28,6 @@ const Wrapper = styled.span`
 
 const Text = styled.span`
   font-size: 1.4rem;
-  font-family: sans-serif;
-  padding: 5px;
 `
 
 const IconButton = ({ icon, onClick, children, fill, stroke, ...props }) => (
