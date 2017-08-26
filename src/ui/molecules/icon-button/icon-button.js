@@ -18,9 +18,9 @@ const IconButtonWrapper = styled.button`
   }
 `
 
-const IconButton = ({ iconName, onClick }) => (
+const IconButton = ({ iconName, onClick, ...props }) => (
   <IconButtonWrapper onClick={onClick}>
-    <Icon name={iconName} />
+    <Icon name={iconName} {...props} />
   </IconButtonWrapper>
 )
 
