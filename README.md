@@ -22,6 +22,10 @@
  - `ComponentName.test.js` - юнит тест (optional)
  - `index.js`  - `export { default } from './ComponentName'`
 
+#### Redux
+
+Для создания экшенов используется `redux-act`
+
 ### Соглашения по неймингу для синхронизации в YouTrack
 
 Название **ветки** - по номеру таска в YouTrack. Например, `WF-21`

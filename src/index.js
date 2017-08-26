@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { AppContainer } from 'react-hot-loader'
 import { ThemeProvider } from 'styled-components'
 
-import configureStore from './store'
+import configureStore from 'redux/createReduxStore'
 
 
 const theme = {}

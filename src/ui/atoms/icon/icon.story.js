@@ -4,7 +4,6 @@ import { withInfo } from '@storybook/addon-info'
 
 import Icon from './icon'
 
-
 storiesOf('atoms/icon', module)
   .add('icons',
     withInfo()(() => (
