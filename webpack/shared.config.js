@@ -52,7 +52,7 @@ const config = {
         },
       },
       {
-        test: /\.jpe?g$/,
+        test: /\.(jpe?g|png)$/,
         use: {
           loader: 'file-loader',
           query: {
