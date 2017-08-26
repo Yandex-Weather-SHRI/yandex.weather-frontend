@@ -8,7 +8,7 @@ import { Icon as IconBase } from '../Icon/Icon'
 const Container = styled.div`
   display: flex;
   align-items: center;
-  
+
   & + & {
     margin-left: 16px;
   }
@@ -20,7 +20,7 @@ const Icon = styled(IconBase)`
 `
 const Text = styled.span`
   font-weight: 500;
-  font-size: 12px
+  font-size: 12px;
 `
 
 export const IconWithText = ({ iconName, text }) =>
