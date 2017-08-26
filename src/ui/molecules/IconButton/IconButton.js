@@ -32,17 +32,17 @@ const Text = styled.span`
   padding: 5px;
 `
 
-const IconButton = ({ iconName, onClick, children, fill, stroke, ...props }) => (
+const IconButton = ({ icon, onClick, children, fill, stroke, ...props }) => (
   <IconButtonWrapper onClick={onClick} {...props}>
     <Wrapper>
-      <Icon name={iconName} fill={fill} stroke={stroke} />
+      <Icon name={icon} fill={fill} stroke={stroke} />
       {children && <Text>{children}</Text>}
     </Wrapper>
   </IconButtonWrapper>
 )
 
 IconButton.propTypes = {
-  iconName: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
   fill: PropTypes.string,
