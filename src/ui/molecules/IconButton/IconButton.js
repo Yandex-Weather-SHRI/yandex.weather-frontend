@@ -41,7 +41,7 @@ const IconButton = ({ icon, onClick, children, fill, stroke, ...props }) => (
 
 IconButton.propTypes = {
   icon: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   children: PropTypes.node,
   fill: PropTypes.string,
   stroke: PropTypes.string,
@@ -50,6 +50,7 @@ IconButton.propTypes = {
 IconButton.defaultProps = {
   fill: null,
   stroke: null,
+  onClick: null,
   children: null,
 }
 

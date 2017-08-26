@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { AppContainer } from 'react-hot-loader'
 import { ThemeProvider } from 'styled-components'
-import { WeatherBlock } from 'ui/organisms/WeatherBlock/WeatherBlock'
+
 import createReduxStore from 'redux/createReduxStore'
+import { HomePage } from 'ui/pages'
 
 import './styles/global'
 
@@ -18,7 +19,7 @@ function render() {
     <AppContainer>
       <Provider store={store}>
         <ThemeProvider theme={theme}>
-          <WeatherBlock />
+          <HomePage />
         </ThemeProvider>
       </Provider>
     </AppContainer>
