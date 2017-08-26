@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 import { IconButton } from 'ui/molecules'
 import { Icon } from 'ui/atoms'
@@ -57,24 +58,30 @@ const ConditionsRow = styled.div`
   align-items: center;
 `
 
-const WeatherBlock = (...props) => (
+export const WeatherBlock = ({ locationText, weatherIcon, temperature, condition, feel }) => (
   <div>
     <LocationRow>
-      <IconButton fill="#fff" stroke="#fff" icon="geolocation" onClick={() => console.log('i`m here!')} />
-      <LocationText>Погода в Москве</LocationText>
-      <IconButton fill="transparent" stroke="#fff" icon="star" onClick={() => console.log('i`m here!')} />
+      <IconButton fill="#fff" stroke="#fff" icon="geolocation" onClick={() => null} />
+      <LocationText>{locationText}</LocationText>
+      <IconButton fill="transparent" stroke="#fff" icon="star" onClick={() => null} />
     </LocationRow>
     <TemperatureBlock>
       <TemperatureRow>
-        <WeatherIcon name="bkn_d" />
-        <span>+18°</span>
+        <WeatherIcon name={weatherIcon} />
+        <span>{temperature}°</span>
       </TemperatureRow>
       <ConditionsRow>
-        <span>Облачно с прояснениями</span>
-        <span>Ощущается как +14°</span>
+        <span>{condition}</span>
+        <span>{feel}</span>
       </ConditionsRow>
     </TemperatureBlock>
   </div>
 )
 
-export default WeatherBlock
+WeatherBlock.propTypes = {
+  locationText: PropTypes.string.isRequired,
+  weatherIcon: PropTypes.string.isRequired,
+  temperature: PropTypes.string.isRequired,
+  condition: PropTypes.string.isRequired,
+  feel: PropTypes.string.isRequired,
+}
