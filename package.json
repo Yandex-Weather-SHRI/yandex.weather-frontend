@@ -7,7 +7,7 @@
     "lint:css": "stylelint 'src/**/*.js'",
     "dev": "webpack-dev-server",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "prepush": "npm lint"
+    "prepush": "npm run lint"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.6",
