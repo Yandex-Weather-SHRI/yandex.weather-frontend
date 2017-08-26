@@ -43,6 +43,15 @@ const config = {
         ],
       },
       {
+        test: /\.ttf$/,
+        use: {
+          loader: 'file-loader',
+          query: {
+            name: 'fonts/[name]-[hash:10].[ext]',
+          },
+        },
+      },
+      {
         test: /\.jpe?g$/,
         use: {
           loader: 'file-loader',
