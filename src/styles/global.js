@@ -5,8 +5,8 @@ import { fonts } from './fonts'
 
 export const globalStyles = css`
   *,
-  *::before,
-  *::after {
+  *:before,
+  *:after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
