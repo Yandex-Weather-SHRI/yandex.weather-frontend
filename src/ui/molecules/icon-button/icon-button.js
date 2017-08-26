@@ -6,21 +6,38 @@ import { Icon } from 'ui/atoms'
 
 
 const IconButtonWrapper = styled.button`
-  &,
-  &:hover,
-  &:active,
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 4px;
+  margin: 0;
+  font: inherit;
+
   &:focus {
-    cursor: pointer;
-    border: 0;
-    background: 0;
     outline: 0;
-    padding: 0;
   }
 `
+const Wrapper = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`
 
-const IconButton = ({ iconName, onClick, ...props }) => (
+const Text = styled.span`
+  font-size: 1.4rem;
+  font-family: sans-serif;
+  padding: 5px;
+`
+
+const IconButton = ({ iconName, onClick, children, ...props }) => (
   <IconButtonWrapper onClick={onClick}>
-    <Icon name={iconName} {...props} />
+    <Wrapper>
+      <Icon name={iconName} {...props} />
+      <Text>{children}</Text>
+    </Wrapper>  
   </IconButtonWrapper>
 )
 
