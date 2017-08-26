@@ -5,6 +5,7 @@ import { AppContainer } from 'react-hot-loader'
 import { ThemeProvider } from 'styled-components'
 
 import createReduxStore from 'redux/createReduxStore'
+import './styles/global'
 
 
 const theme = {}
