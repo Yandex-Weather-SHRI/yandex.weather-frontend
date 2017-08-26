@@ -4,11 +4,11 @@ import { Provider } from 'react-redux'
 import { AppContainer } from 'react-hot-loader'
 import { ThemeProvider } from 'styled-components'
 
-import configureStore from 'redux/createReduxStore'
+import createReduxStore from 'redux/createReduxStore'
 
 
 const theme = {}
-const store = configureStore()
+const store = createReduxStore()
 const entry = document.getElementById('react-root')
 
 function render() {
