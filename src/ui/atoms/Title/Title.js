@@ -5,7 +5,6 @@ import styled from 'styled-components'
 
 const TitleWrapper = styled.h1`
   display: block;
-  font-family: Helvetica, Arial, sans-serif;
   padding: 26px 22px 10px 8px;
   font-size: 18px;
   &:first-letter {
