@@ -14,7 +14,7 @@ storiesOf('molecules/SliderCard', module)
           <SliderCard buttonText="Товарища нет" iconName="location_arrow">
             На <strong>вкус</strong> и цвет
           </SliderCard>
-        </div>  
+        </div>
         <SliderCard buttonText="Купить сало" bg="linear-gradient(to bottom, #9cddff, #4baffd 52%, #498ffa);" color="#fff" borderColor="#fff">
           <strong>Наше сало самое недорогое, а ещё неплохо согревает!</strong>
         </SliderCard>
