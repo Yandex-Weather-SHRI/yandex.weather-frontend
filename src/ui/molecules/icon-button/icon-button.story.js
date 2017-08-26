@@ -22,3 +22,10 @@ storiesOf('molecules/icon-button', module)
       </div>
     ))
   )
+  .add('icon-button-with-text',
+    withInfo()(() => (
+      <div>
+        <IconButton iconName="search" onClick={action('Search button with text clicked!')}>Поиск</IconButton>
+      </div>
+    ))
+  )
