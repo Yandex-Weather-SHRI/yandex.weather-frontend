@@ -19,9 +19,9 @@
 Компоненты именуем с большой буквы. Используем camelCase.
 
 - `ComponentName`
- - `ComponentName.js` - компонент с именовым экспортом
- - `ComponentName.story.js` - дока
- - `ComponentName.test.js` - юнит тест на компонент.
+  - `ComponentName.js` - компонент с именовым экспортом
+  - `ComponentName.story.js` - дока
+  - `ComponentName.test.js` - юнит тест на компонент.
 
 ### Соглашения по неймингу для синхронизации в YouTrack
 
