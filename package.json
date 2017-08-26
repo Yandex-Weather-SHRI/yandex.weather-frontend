@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "scripts": {
     "lint": "npm run lint:js && npm run lint:css",
-    "lint:js": "eslint src; exit 0",
-    "lint:js-fix": "eslint src --fix; exit 0",
-    "lint:css": "stylelint 'src/**/*.js'; exit 0",
+    "lint:js": "eslint src",
+    "lint:js-fix": "eslint src --fix",
+    "lint:css": "stylelint 'src/**/*.js'",
     "dev": "webpack-dev-server",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "prepush": "npm run lint"
+    "prepush": "npm run lint",
+    "test" : "npm run lint"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.6",
