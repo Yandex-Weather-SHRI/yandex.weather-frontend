@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
-import * as icons from 'icons'
+import * as icons from 'ui/atoms/Icon/icons'
 
 
-const IconWrapper = styled.i`
+export const IconWrapper = styled.i`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,7 +25,7 @@ const IconWrapper = styled.i`
   }
 `
 
-const Icon = ({ name, ...props }) => {
+export const Icon = ({ name, ...props }) => {
   const Svg = icons[name] || null
 
   return (
@@ -47,5 +47,3 @@ Icon.defaultProps = {
   stroke: '',
   size: 24,
 }
-
-export default Icon
