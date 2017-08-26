@@ -36,7 +36,9 @@ const IconButton = ({ iconName, onClick, children, ...props }) => (
   <IconButtonWrapper onClick={onClick}>
     <Wrapper>
       <Icon name={iconName} {...props} />
-      <Text>{children}</Text>
+      {children && (
+        <Text>{children}</Text>
+      )}
     </Wrapper>  
   </IconButtonWrapper>
 )
