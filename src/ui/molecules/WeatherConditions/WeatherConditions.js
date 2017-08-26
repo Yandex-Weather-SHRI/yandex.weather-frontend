@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import { IconWithText } from 'ui/atoms/IconWithText/IconWithText'
 
+
 const Container = styled.div`
   display: flex;
   justify-content: center;

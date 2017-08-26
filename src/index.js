@@ -9,6 +9,7 @@ import { WeatherConditions } from 'ui/molecules/WeatherConditions/WeatherConditi
 
 import './styles/global'
 
+
 const theme = {}
 const store = createReduxStore()
 const entry = document.getElementById('react-root')
