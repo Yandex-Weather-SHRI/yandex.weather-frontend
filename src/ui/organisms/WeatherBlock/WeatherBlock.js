@@ -58,7 +58,7 @@ const ConditionsRow = styled.div`
 `
 
 const WeatherBlock = (...props) => (
-  <div style={{ backgroundColor: '#2798ED' }}>
+  <div>
     <LocationRow>
       <IconButton fill="#fff" stroke="#fff" icon="geolocation" onClick={() => console.log('i`m here!')} />
       <LocationText>Погода в Москве</LocationText>
