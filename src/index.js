@@ -3,6 +3,12 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { AppContainer } from 'react-hot-loader'
 import { ThemeProvider } from 'styled-components'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom'
 
 import createReduxStore from 'redux/createReduxStore'
 import { HomePage } from 'ui/pages'
@@ -19,7 +25,12 @@ function render() {
     <AppContainer>
       <Provider store={store}>
         <ThemeProvider theme={theme}>
-          <HomePage />
+          <Router>
+            <Switch>
+              <Route exact path="/" component={HomePage} />
+              <Route render={() => <Redirect to="/" />} />
+            </Switch>
+          </Router>
         </ThemeProvider>
       </Provider>
     </AppContainer>
