@@ -13,7 +13,7 @@ const TitleWrapper = styled.h1`
   }
 `
 
-const Title = ({ children }) => (
+export const Title = ({ children }) => (
   <TitleWrapper>
     {children}
   </TitleWrapper>
@@ -22,5 +22,3 @@ const Title = ({ children }) => (
 Title.propTypes = {
   children: PropTypes.string.isRequired,
 }
-
-export default Title
