@@ -8,6 +8,8 @@ import { IconWithText } from 'ui/atoms/IconWithText/IconWithText'
 const Container = styled.div`
   display: flex;
   justify-content: center;
+  padding: 0 16px;
+  height: 48px;
 `
 
 export const WeatherConditions = ({ humidity, pressure, waterTemp, wind }) => {
