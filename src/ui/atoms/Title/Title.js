@@ -8,11 +8,7 @@ const TitleWrapper = styled.h1`
   padding: 26px 22px 10px 8px;
   font-size: 18px;
 
-<<<<<<< HEAD
-  &::first-letter {
-=======
   &:first-letter {
->>>>>>> master
     text-transform: uppercase;
   }
 `
