@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import LogoSvg from 'i/logo.svg'
+
+import LogoSvg from '../Icon/icons/logo.svg'
 
 
 const Container = styled.div`
@@ -13,10 +14,8 @@ const Container = styled.div`
   }
 `
 
-const Logo = () => (
+export const Logo = () => (
   <Container>
     <LogoSvg />
   </Container>
 )
-
-export default Logo

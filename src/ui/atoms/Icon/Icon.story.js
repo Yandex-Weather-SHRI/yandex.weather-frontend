@@ -2,10 +2,10 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { withInfo } from '@storybook/addon-info'
 
-import Icon from './icon'
+import { Icon } from './Icon'
 
 
-storiesOf('atoms/icon', module)
+storiesOf('atoms/Icon', module)
   .add('icons',
     withInfo()(() => (
       <div>
@@ -16,7 +16,7 @@ storiesOf('atoms/icon', module)
       </div>
     ))
   )
-  .add('icon with stroke',
+  .add('Icon with stroke',
     withInfo()(() =>
       <Icon name="star" fill="#ffcc2f" stroke="#ffcc2f" />
     )
