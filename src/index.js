@@ -11,7 +11,8 @@ import {
 } from 'react-router-dom'
 
 import createReduxStore from 'redux/createReduxStore'
-import { HomePage } from 'ui/pages'
+import { routeNames } from 'utils/routeNames'
+import { HomePage, TokenPage } from 'ui/pages'
 
 import './styles/global'
 
@@ -20,24 +21,22 @@ const theme = {}
 const store = createReduxStore()
 const entry = document.getElementById('react-root')
 
-function render() {
-  ReactDOM.render((
-    <AppContainer>
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <Router>
-            <Switch>
-              <Route exact path="/" component={HomePage} />
-              <Route render={() => <Redirect to="/" />} />
-            </Switch>
-          </Router>
-        </ThemeProvider>
-      </Provider>
-    </AppContainer>
-  ), entry)
-}
-
-render()
+// todo scenario: user has token in local storage
+ReactDOM.render((
+  <AppContainer>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <Router>
+          <Switch>
+            <Route exact path={routeNames.index} component={HomePage} />
+            <Route path={routeNames.token} component={TokenPage} />
+            <Route render={() => <Redirect to="/" />} />
+          </Switch>
+        </Router>
+      </ThemeProvider>
+    </Provider>
+  </AppContainer>
+), entry)
 
 if (module.hot) {
   // TODO: add hot reload
