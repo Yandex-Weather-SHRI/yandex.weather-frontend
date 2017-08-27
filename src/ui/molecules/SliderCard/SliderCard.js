@@ -56,9 +56,9 @@ export const SliderCard = ({
   iconName,
   borderColor,
 }) => (
-  <CardWrapper bg={bg} color={color}>
+  <CardWrapper {...{ bg, color }}>
     <CardCaption>{children}</CardCaption>
-    <CardButton color={color} borderColor={borderColor}>
+    <CardButton {...{ color, borderColor }}>
       <CardButtonWrapper>
         {iconName && <CardButtonIcon name={iconName} />}
         <span>{buttonText}</span>
