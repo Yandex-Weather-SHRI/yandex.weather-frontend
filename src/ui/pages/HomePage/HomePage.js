@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { WeatherBackground } from 'ui/organisms'
-import { WeatherConditions } from 'ui/molecules'
+import { WeatherBackground, WeatherBlock } from 'ui/organisms'
+import { WeatherConditions, NavigationBar } from 'ui/molecules'
 
 
 const Container = styled.div`
@@ -12,7 +12,16 @@ const Container = styled.div`
 
 export const HomePage = () => (
   <Container>
-    <WeatherBackground condition="good" />
+    <WeatherBackground condition="good">
+      <NavigationBar />
+      <WeatherBlock
+        locationText="Погода в Москве"
+        weatherIcon="bkn_d"
+        temperature="+18"
+        condition="Облачно с прояснениями"
+        feel="Ощущается как +16°"
+      />
+    </WeatherBackground>
     <WeatherConditions
       wind="10 м/с, СЗ"
       humidity="60%"
