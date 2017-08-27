@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import { setToken, fetchAndSetUserInfo } from 'redux/user/actions'
-import { getHashParam } from 'utils/location';
+import { getHashParam } from 'utils/location'
 
 
 const Container = styled.div`

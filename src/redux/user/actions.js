@@ -1,6 +1,8 @@
 import { createAction } from 'redux-act'
 
 
+const O_AUTH_TOKEN_KEY = 'ouath_token'
+
 export const setTokenPure = createAction('user.setTokenPure')
 export const setUserInfo = createAction('user.setUserInfo')
 
@@ -15,7 +17,10 @@ export function requestLogin(nextRoute) {
   window.location.href = PASSPORT_URL
 }
 
-const O_AUTH_TOKEN_KEY = 'ouath_token'
+export function requestLogout() {
+  window.localStorage.removeItem(O_AUTH_TOKEN_KEY)
+  window.location.reload()
+}
 
 export function setToken(token) {
   return (dispatch) => {
@@ -31,7 +36,6 @@ export function fetchAndSetUserInfo() {
       throw new Error(`Attempted to get user data with falsy token=${token} in app state.`)
     }
 
-    // todo передавать в заголовке
     return fetch(`https://login.yandex.ru/info?oauth_token=${token}`)
       .then(response => response.json())
       .then((json) => {
@@ -43,7 +47,6 @@ export function fetchAndSetUserInfo() {
   }
 }
 
-// todo
 export function checkAuth() {
   return (dispatch) => {
     const token = window.localStorage.getItem(O_AUTH_TOKEN_KEY)

@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { Logo, Avatar } from 'ui/atoms'
 import { IconButton } from 'ui/molecules'
 import { routeNames } from 'utils/routeNames'
-import { requestLogin } from 'redux/user/actions'
+import { requestLogin, requestLogout } from 'redux/user/actions'
 
 
 const Container = styled.div`
@@ -34,7 +34,7 @@ const PureNavigationBar = ({ avatarUrl }) => (
     <Actions>
       <NavIconButton icon="search" stroke="#fff" />
       {avatarUrl
-        ? <Avatar src={avatarUrl} style={{ marginLeft: 12 }} />
+        ? <Avatar src={avatarUrl} style={{ marginLeft: 12 }} onClick={() => requestLogout()} /> // todo designer
         : <NavIconButton icon="login" onClick={() => requestLogin(routeNames.index)} fill="#fff" />
       }
     </Actions>

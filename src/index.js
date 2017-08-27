@@ -20,11 +20,10 @@ import './styles/global'
 
 const theme = {}
 const store = createReduxStore()
-store.dispatch(checkAuth()) // very temp solution
+store.dispatch(checkAuth()) // temp solution
 
 const entry = document.getElementById('react-root')
 
-// todo scenario: user has token in local storage
 ReactDOM.render((
   <AppContainer>
     <Provider store={store}>
