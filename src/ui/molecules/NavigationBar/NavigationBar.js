@@ -27,7 +27,7 @@ export const NavigationBar = () => (
     <Logo />
     <Actions>
       <NavIconButton icon="search" stroke="#fff" />
-      <NavIconButton icon="exit" fill="#fff" />
+      <NavIconButton icon="login" fill="#fff" />
     </Actions>
   </Container>
 )
