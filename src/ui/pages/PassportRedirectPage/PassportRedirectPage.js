@@ -1,5 +1,5 @@
 import React from 'react'
-import { Loader } from 'ui/atoms/Loader/Logo'
+import { Loader } from 'ui/atoms/Loader/Loader'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'

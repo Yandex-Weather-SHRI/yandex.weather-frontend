@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-// todo попросить дизайнера
-
+/* stylelint-disable */
+// todo designer
 export const Loader = styled.div`
   width: 40px;
   height: 40px;
