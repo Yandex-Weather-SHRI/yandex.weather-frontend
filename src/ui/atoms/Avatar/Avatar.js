@@ -4,8 +4,9 @@ import styled from 'styled-components'
 
 
 export const Avatar = styled.img`
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
   display: block;
 `
 

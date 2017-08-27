@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { Logo } from 'ui/atoms'
+import { Logo, Avatar } from 'ui/atoms'
 import { IconButton } from 'ui/molecules'
 import { routeNames } from 'utils/routeNames'
 import { requestLogin } from 'redux/user/actions'
@@ -17,6 +17,8 @@ const Container = styled.div`
 `
 
 const Actions = styled.div`
+  display: flex;
+  align-items: center;
   margin-left: auto;
 `
 
@@ -26,26 +28,26 @@ const NavIconButton = styled(IconButton)`
   }
 `
 
-const PureNavigationBar = () => (
+const PureNavigationBar = ({ avatarUrl }) => (
   <Container>
     <Logo />
     <Actions>
       <NavIconButton icon="search" stroke="#fff" />
-      <NavIconButton icon="login" onClick={() => requestLogin(routeNames.index)} fill="#fff" />
+      {avatarUrl
+        ? <Avatar src={avatarUrl} style={{ marginLeft: 12 }} />
+        : <NavIconButton icon="login" onClick={() => requestLogin(routeNames.index)} fill="#fff" />
+      }
     </Actions>
   </Container>
 )
 
 PureNavigationBar.propTypes = {
-  auth: PropTypes.object,
+  avatarUrl: PropTypes.string.isRequired,
 }
 
 function mapStateToProps(state) {
   return {
-    auth: {
-      authenticated: false,
-      avatar: '',
-    },
+    avatarUrl: state.user.avatarUrl,
   }
 }
 

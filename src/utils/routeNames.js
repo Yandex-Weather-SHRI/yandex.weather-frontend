@@ -1,4 +1,4 @@
 export const routeNames = {
   index: '/',
-  token: '/token',
+  passportRedirect: '/token',
 }

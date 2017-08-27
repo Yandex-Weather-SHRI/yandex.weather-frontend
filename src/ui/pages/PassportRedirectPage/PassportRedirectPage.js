@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-import { setToken, getUserInfo } from 'redux/user/actions'
+import { setToken, fetchAndSetUserInfo } from 'redux/user/actions'
 import { getHashParam } from 'utils/location';
 
 
@@ -23,10 +23,8 @@ class Page extends React.Component {
     const { dispatch, history } = this.props
 
     dispatch(setToken(token))
-    dispatch(getUserInfo())
-      .then(() => {
-        history.replace(nextRoute)
-      })
+    dispatch(fetchAndSetUserInfo())
+      .then(() => history.replace(nextRoute))
   }
 
   render() {
@@ -45,4 +43,4 @@ Page.propTypes = {
   }).isRequired,
 }
 
-export const TokenPage = connect()(withRouter(Page))
+export const PassportRedirectPage = connect()(withRouter(Page))

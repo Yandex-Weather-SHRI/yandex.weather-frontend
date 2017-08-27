@@ -11,14 +11,17 @@ import {
 } from 'react-router-dom'
 
 import createReduxStore from 'redux/createReduxStore'
+import { checkAuth } from 'redux/user/actions'
 import { routeNames } from 'utils/routeNames'
-import { HomePage, TokenPage } from 'ui/pages'
+import { HomePage, PassportRedirectPage } from 'ui/pages'
 
 import './styles/global'
 
 
 const theme = {}
 const store = createReduxStore()
+store.dispatch(checkAuth()) // very temp solution
+
 const entry = document.getElementById('react-root')
 
 // todo scenario: user has token in local storage
@@ -29,7 +32,7 @@ ReactDOM.render((
         <Router>
           <Switch>
             <Route exact path={routeNames.index} component={HomePage} />
-            <Route path={routeNames.token} component={TokenPage} />
+            <Route path={routeNames.passportRedirect} component={PassportRedirectPage} />
             <Route render={() => <Redirect to="/" />} />
           </Switch>
         </Router>
