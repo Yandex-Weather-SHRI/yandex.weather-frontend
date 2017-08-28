@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Children } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Swiper from 'react-id-swiper'
@@ -22,10 +22,18 @@ const Container = styled.div`
   }
 `
 
+const Slide = styled.div`
+  height: auto;
+  display: flex;
+`
+
 export const Slider = ({ children }) => (
   <Container>
     <Swiper {...settings}>
-      {children}
+      {/* eslint-disable react/no-array-index-key */}
+      {Children.toArray(children).map((item, idx) => (
+        <Slide key={idx}>{item}</Slide>
+      ))}
     </Swiper>
   </Container>
 )
