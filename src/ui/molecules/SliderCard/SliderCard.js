@@ -8,6 +8,7 @@ import { Icon } from 'ui/atoms'
 const CardWrapper = styled.div`
   width: 100%;
   min-height: 108px;
+  height: auto;
   padding: 28px 18px;
   background: ${props => props.bg};
   color: ${props => props.color};
