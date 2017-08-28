@@ -1,18 +1,17 @@
 import { createAction } from 'redux-act'
 
 
-const O_AUTH_TOKEN_KEY = 'ouath_token'
+const O_AUTH_TOKEN_KEY = 'oauth_token'
 
 export const setTokenPure = createAction('user.setTokenPure')
 export const setUserInfo = createAction('user.setUserInfo')
 
 // todo move api to class and extra thunk argument
-
 export function requestLogin(nextRoute) {
-  const PASSPORT_URL = 'https://oauth.yandex.ru/authorize'
+  const PASSPORT_URL = encodeURI('https://oauth.yandex.ru/authorize'
     + '?response_type=token'
     + '&client_id=6ba9f5cc976344da85e5865f3bbd397f' // todo process.ENV?
-    + `&state=${nextRoute}`
+    + `&state=${nextRoute}`)
 
   window.location.href = PASSPORT_URL
 }
