@@ -21,6 +21,7 @@ const CardWrapper = styled.div`
 
 const CardCaption = styled.p`
   font-size: 1.4rem;
+  text-align: center;
 `
 
 const CardButton = styled.button`
@@ -31,6 +32,12 @@ const CardButton = styled.button`
   font: inherit;
   font-size: 1.2rem;
   margin-top: 14px;
+  height: 32px;
+  user-select: none;
+
+  &:focus {
+    outline: 0;
+  }
 `
 
 const CardButtonWrapper = styled.span`

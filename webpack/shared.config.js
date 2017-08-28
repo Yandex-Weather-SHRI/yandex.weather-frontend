@@ -2,6 +2,7 @@ const { resolve } = require('path')
 const { DefinePlugin } = require('webpack')
 const HtmlPlugin = require('html-webpack-plugin')
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const Package = require('../package.json')
 
 
@@ -41,6 +42,13 @@ const config = {
         use: [
           'babel-loader',
         ],
+      },
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader',
+        })
       },
       {
         test: /\.ttf$/,
@@ -96,6 +104,7 @@ const config = {
     new HtmlWebpackHarddiskPlugin({
       outputPath: DIST,
     }),
+    new ExtractTextPlugin('css/vendor.css'),
   ],
 }
 
