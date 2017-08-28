@@ -9,18 +9,17 @@ const CardWrapper = styled.div`
   width: 100%;
   min-height: 108px;
   height: auto;
-  padding: 28px 18px;
+  padding: 16px;
   background: ${props => props.bg};
   color: ${props => props.color};
-  border-radius: 7px;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08);
+  align-items: center;
 `
 
 const CardCaption = styled.p`
-  margin: 0;
-  text-align: center;
   font-size: 1.4rem;
 `
 
@@ -31,22 +30,20 @@ const CardButton = styled.button`
   background: transparent;
   font: inherit;
   font-size: 1.2rem;
-  margin: 0 auto;
   margin-top: 14px;
 `
 
 const CardButtonWrapper = styled.span`
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 7px 32px;
+  padding: 0 32px;
+  height: 100%;
 `
 
 const CardButtonIcon = styled(Icon) `
-  width: auto;
-  height: auto;
-  margin-left: -5px;
-  margin-right: 5px;
+  margin-left: -4px;
+  margin-right: 4px;
 `
 
 export const SliderCard = ({
@@ -54,17 +51,19 @@ export const SliderCard = ({
   color,
   children,
   buttonText,
-  iconName,
+  icon,
   borderColor,
 }) => (
   <CardWrapper {...{ bg, color }}>
     <CardCaption>{children}</CardCaption>
-    <CardButton {...{ color, borderColor }}>
-      <CardButtonWrapper>
-        {iconName && <CardButtonIcon name={iconName} />}
-        <span>{buttonText}</span>
-      </CardButtonWrapper>
-    </CardButton>
+    {buttonText && (
+      <CardButton {...{ color, borderColor }}>
+        <CardButtonWrapper>
+          {icon && <CardButtonIcon name={icon} size={12} />}
+          <span>{buttonText}</span>
+        </CardButtonWrapper>
+      </CardButton>
+    )}
   </CardWrapper>
 )
 
@@ -72,14 +71,15 @@ SliderCard.propTypes = {
   bg: PropTypes.string,
   color: PropTypes.string,
   children: PropTypes.string.isRequired,
-  buttonText: PropTypes.string.isRequired,
-  iconName: PropTypes.string,
+  buttonText: PropTypes.string,
+  icon: PropTypes.string,
   borderColor: PropTypes.string,
 }
 
 SliderCard.defaultProps = {
   bg: '#fff',
   color: 'rgba(0, 0, 0, 0.87)',
-  iconName: null,
+  icon: null,
   borderColor: '#e8e7e6',
+  buttonText: null,
 }
