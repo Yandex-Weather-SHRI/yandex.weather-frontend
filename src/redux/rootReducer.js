@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 
-import { sessionReducer as session } from './session/reducer'
+import { userReducer as user } from './user/reducer'
 
 
 const rootReducer = combineReducers({
-  session,
+  user,
 })
 
 export default rootReducer

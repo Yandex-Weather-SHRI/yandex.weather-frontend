@@ -32,6 +32,7 @@
       "allowObject": false
     }],
     "import/namespace": 0,
-    "react/jsx-wrap-multilines": 0
+    "react/jsx-wrap-multilines": 0,
+    "max-len": ["error", 120]
   }
 }

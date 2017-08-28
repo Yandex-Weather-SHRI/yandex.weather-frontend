@@ -35,7 +35,7 @@ export const WeatherConditions = ({ humidity, pressure, waterTemp, wind }) => {
   return (
     <Container>
       {icons.map(icon =>
-        <IconWithText {...icon} />
+        <IconWithText {...icon} key={icon.iconName} />
       )}
     </Container>
   )
@@ -44,7 +44,7 @@ export const WeatherConditions = ({ humidity, pressure, waterTemp, wind }) => {
 
 WeatherConditions.propTypes = {
   humidity: PropTypes.string.isRequired,
-  pressure: PropTypes.string.isRequired,
+  pressure: PropTypes.node.isRequired,
   waterTemp: PropTypes.string.isRequired,
   wind: PropTypes.string.isRequired,
 }
