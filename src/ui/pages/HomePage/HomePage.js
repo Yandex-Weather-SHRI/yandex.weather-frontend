@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 import { WeatherBackground, WeatherBlock, Slider } from 'ui/organisms'
 import { WeatherConditions, NavigationBar, SliderCard } from 'ui/molecules'
-import { fetchWeather } from 'redux/mainInfo/actions'
+import { fetchWeather } from 'redux/forecast/actions'
 
 
 const Container = styled.div`

@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
 
 import { userReducer as user } from './user/reducer'
-import { mainInfoReducer as mainInfo } from './mainInfo/reducer'
+import { forecastReducer as forecast } from './forecast/reducer'
 
 
 const rootReducer = combineReducers({
   user,
-  mainInfo,
+  forecast,
 })
 
 export default rootReducer
