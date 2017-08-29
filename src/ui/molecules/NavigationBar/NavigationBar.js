@@ -35,7 +35,7 @@ const PureNavigationBar = ({ avatarUrl }) => (
       <NavIconButton icon="search" stroke="#fff" />
       {avatarUrl
         ? <Avatar src={avatarUrl} style={{ marginLeft: 12 }} onClick={() => requestLogout()} /> // todo designer
-        : <NavIconButton icon="login" onClick={() => requestLogin(routeNames.index)} fill="#fff" />
+        : <NavIconButton icon="login" onClick={() => requestLogin({ nextRoute: routeNames.index })} fill="#fff" />
       }
     </Actions>
   </Container>

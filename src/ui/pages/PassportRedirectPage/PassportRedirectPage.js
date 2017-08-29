@@ -19,7 +19,7 @@ const Container = styled.div`
 class Page extends React.Component {
   componentDidMount() {
     const token = getHashParam('access_token')
-    const nextRoute = decodeURIComponent(getHashParam('state'))
+    const { nextRoute } = JSON.parse(decodeURIComponent(getHashParam('state')));
     const { dispatch, history } = this.props
 
     dispatch(setToken(token))
