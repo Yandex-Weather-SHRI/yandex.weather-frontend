@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
 
 import { IconWithText } from 'ui/atoms/IconWithText/IconWithText'
 
@@ -12,23 +13,23 @@ const Container = styled.div`
   height: 48px;
 `
 
-export const WeatherConditions = ({ humidity, pressure, waterTemp, wind }) => {
+const PureWeatherConditions = ({ humidity, pressure, waterTemp, wind }) => {
   const icons = [
     {
       iconName: 'weather-conditions/wind',
-      text: wind,
+      text: `${wind} м/с, СЗ`,
     },
     {
       iconName: 'weather-conditions/humidity',
-      text: humidity,
+      text: `${humidity}%`,
     },
     {
       iconName: 'weather-conditions/pressure',
-      text: pressure,
+      text: (<span>{pressure} <span style={{ fontSize: 10 }}>мм рт. ст.</span></span>),
     },
     {
       iconName: 'weather-conditions/waterTemp',
-      text: waterTemp,
+      text: `${waterTemp}°`,
     },
   ]
 
@@ -42,9 +43,20 @@ export const WeatherConditions = ({ humidity, pressure, waterTemp, wind }) => {
 }
 
 
-WeatherConditions.propTypes = {
-  humidity: PropTypes.string.isRequired,
-  pressure: PropTypes.node.isRequired,
-  waterTemp: PropTypes.string.isRequired,
-  wind: PropTypes.string.isRequired,
+PureWeatherConditions.propTypes = {
+  humidity: PropTypes.number.isRequired,
+  pressure: PropTypes.number.isRequired,
+  waterTemp: PropTypes.number.isRequired,
+  wind: PropTypes.number.isRequired,
 }
+
+function mapStateToProps(state) {
+  return {
+    humidity: state.mainInfo.fact.humidity,
+    pressure: state.mainInfo.fact.pressure_mm,
+    waterTemp: state.mainInfo.fact.soil_temp,
+    wind: state.mainInfo.fact.wind_speed,
+  }
+}
+
+export const WeatherConditions = connect(mapStateToProps)(PureWeatherConditions)
