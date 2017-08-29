@@ -3,7 +3,7 @@ import { createReducer } from 'redux-act'
 import * as actions from './actions'
 
 
-const defaultMainInfoState = {
+const defaultForecastState = {
   fetching: false,
   fact: {
     condition: '',
@@ -22,7 +22,7 @@ const defaultMainInfoState = {
   },
 }
 
-export const mainInfoReducer = createReducer({
+export const forecastReducer = createReducer({
   [actions.weatherGetRequest](state) {
     return {
       ...state,
@@ -37,4 +37,4 @@ export const mainInfoReducer = createReducer({
       fetching: false,
     }
   },
-}, defaultMainInfoState)
+}, defaultForecastState)

@@ -11,10 +11,11 @@ import {
   HomePage,
   SettingsPage,
   OnBoardingPage,
-  SuggestionsPage,
+  FeedsPage,
   PassportRedirectPage,
 } from 'ui/pages'
 import { routeNames } from 'utils/routeNames'
+import { withAuthentication } from 'hocs/withAuthentication'
 
 
 const Container = styled.div`
@@ -29,11 +30,27 @@ export const Application = () => (
   <Container>
     <Router>
       <Switch>
-        <Route exact path={routeNames.index} component={HomePage} />
-        <Route path={routeNames.onboarding} component={OnBoardingPage} />
-        <Route path={routeNames.suggestions} component={SuggestionsPage} />
-        <Route path={routeNames.settings} component={SettingsPage} />
-        <Route path={routeNames.passportRedirect} component={PassportRedirectPage} />
+        <Route
+          exact
+          path={routeNames.index}
+          component={HomePage}
+        />
+        <Route
+          path={routeNames.onboarding}
+          component={OnBoardingPage}
+        />
+        <Route
+          path={routeNames.feeds}
+          component={withAuthentication(FeedsPage)}
+        />
+        <Route
+          path={routeNames.settings}
+          component={withAuthentication(SettingsPage)}
+        />
+        <Route
+          path={routeNames.passportRedirect}
+          component={PassportRedirectPage}
+        />
         <Route render={() => <Redirect to="/" />} />
       </Switch>
     </Router>

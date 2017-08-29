@@ -93,12 +93,12 @@ PureWeatherBlock.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    locality: state.mainInfo.geo_object.locality.name,
-    weatherIcon: state.mainInfo.fact.condition,
-    temperature: state.mainInfo.fact.temp,
-    condition: state.mainInfo.fact.condition,
-    feel: state.mainInfo.fact.feels_like,
-    fetching: state.mainInfo.fetching,
+    locality: state.forecast.geo_object.locality.name,
+    weatherIcon: state.forecast.fact.condition,
+    temperature: state.forecast.fact.temp,
+    condition: state.forecast.fact.condition,
+    feel: state.forecast.fact.feels_like,
+    fetching: state.forecast.fetching,
   }
 }
 

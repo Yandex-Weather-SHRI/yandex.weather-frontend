@@ -52,10 +52,10 @@ PureWeatherConditions.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    humidity: state.mainInfo.fact.humidity,
-    pressure: state.mainInfo.fact.pressure_mm,
-    waterTemp: state.mainInfo.fact.soil_temp,
-    wind: state.mainInfo.fact.wind_speed,
+    humidity: state.forecast.fact.humidity,
+    pressure: state.forecast.fact.pressure_mm,
+    waterTemp: state.forecast.fact.soil_temp,
+    wind: state.forecast.fact.wind_speed,
   }
 }
 
