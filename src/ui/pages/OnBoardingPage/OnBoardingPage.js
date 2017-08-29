@@ -1,11 +1,12 @@
 import React from 'react'
 import { requestLogin } from 'redux/user/actions'
+import { defaultCategories } from 'redux/user/reducer'
 
 
-export function submitOnboarding(login, settings) {
+export const handleSubmitOnboarding = () => {
   requestLogin({
-    login,
-    settings,
+    login: 'testLogin',
+    categories: defaultCategories,
   })
 }
 
@@ -15,6 +16,6 @@ export const OnBoardingPage = () => (
     <input type="checkbox" value="setting1" />
     <input type="checkbox" value="setting2" />
     <input type="checkbox" value="setting3" />
-    <button onClick={submitOnboarding}>Save settings</button>
+    <button onClick={handleSubmitOnboarding}>Save settings</button>
   </div>
 )

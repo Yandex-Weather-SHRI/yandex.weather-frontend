@@ -1,3 +1,6 @@
+import { API_URL } from 'constants/api'
+
+
 function getHeaders() {
   return {
     Accept: 'application/json',
@@ -6,7 +9,7 @@ function getHeaders() {
 }
 
 function createRequest(url, options) {
-  const endpoint = process.env.API_URL + url
+  const endpoint = API_URL + url
   const headers = getHeaders()
 
   return new Promise(async (resolve, reject) => {

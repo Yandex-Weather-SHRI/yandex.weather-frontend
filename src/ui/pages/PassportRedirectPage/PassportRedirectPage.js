@@ -19,14 +19,14 @@ const Container = styled.div`
 class Page extends React.Component {
   componentDidMount() {
     const token = getHashParam('access_token')
-    const { nextRoute, settings } = JSON.parse(decodeURIComponent(getHashParam('state')))
+    const { nextRoute, categories } = JSON.parse(decodeURIComponent(getHashParam('state')))
     const { dispatch, history } = this.props
 
     dispatch(setToken(token))
     dispatch(fetchAndSetUserInfo())
       .then(() => {
-        if (settings) {
-          dispatch(createOrUpdateUserWithCategorySettings(settings))
+        if (categories) {
+          dispatch(createOrUpdateUserWithCategorySettings(categories))
         }
         history.replace(nextRoute)
       })

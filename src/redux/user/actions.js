@@ -9,28 +9,6 @@ export const setTokenPure = createAction('user.setTokenPure')
 export const setUserInfo = createAction('user.setUserInfo')
 export const setUserSettings = createAction('user.setUserSettings')
 
-export const defaultCategories = [ // todo когда не нжуно будет мокать
-  {
-    name: 'allergy',
-    enabled: false,
-  },
-  {
-    name: 'heart',
-    enabled: false,
-  },
-  {
-    name: 'joint',
-    enabled: false,
-  },
-  {
-    name: 'asthma',
-    enabled: false,
-  },
-  {
-    name: 'skin',
-    enabled: false,
-  },
-]
 
 // todo move api to class and extra thunk argument
 export function requestLogin(nextState) {
@@ -72,9 +50,7 @@ export function fetchAndSetUserInfo() {
   }
 }
 
-const mockCategories = defaultCategories.map(cat => ({ ...cat, enabled: true }))
-
-export function createOrUpdateUserWithCategorySettings(categories = mockCategories) {
+export function createOrUpdateUserWithCategorySettings(categories) {
   return async (dispatch, getState) => {
     const { user: { login } } = getState()
     if (!login) {
@@ -83,9 +59,10 @@ export function createOrUpdateUserWithCategorySettings(categories = mockCategori
 
     try {
       const responseCategories = await request.post(
-        `${API_URL}/settings/categories`,
+        '/settings/categories',
         { items: categories, login }
       )
+      console.log(responseCategories)
       dispatch(setUserSettings({
         settings: responseCategories,
       }))
