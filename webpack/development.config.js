@@ -12,7 +12,7 @@ module.exports = merge(config, {
   profile: false,
 
   entry: {
-    weather: ['react-hot-loader/patch', 'index'],
+    weather: ['babel-polyfill', 'react-hot-loader/patch', 'index'],
   },
 
   output: {

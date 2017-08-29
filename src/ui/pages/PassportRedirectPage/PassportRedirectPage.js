@@ -1,10 +1,10 @@
 import React from 'react'
-import { Loader } from 'ui/atoms/Loader/Loader'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
+import { Loader } from 'ui/atoms/Loader/Loader'
 import { setToken, fetchAndSetUserInfo } from 'redux/user/actions'
 import { getHashParam } from 'utils/location'
 

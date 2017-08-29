@@ -1,9 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
 import { IconButton } from 'ui/molecules'
 import { Icon } from 'ui/atoms'
+import { getNumberWithSign } from 'utils/weatherAdapters'
 
 
 const LocationRow = styled.div`
@@ -58,30 +60,46 @@ const ConditionsRow = styled.div`
   align-items: center;
 `
 
-export const WeatherBlock = ({ locationText, weatherIcon, temperature, condition, feel }) => (
+const PureWeatherBlock = ({ locality, weatherIcon, temperature, condition, feel, fetching }) => (
   <div>
     <LocationRow>
       <IconButton fill="#fff" stroke="#fff" icon="geolocation" onClick={() => null} />
-      <LocationText>{locationText}</LocationText>
+      <LocationText>{locality}</LocationText>
       <IconButton fill="transparent" stroke="#fff" icon="star" onClick={() => null} />
     </LocationRow>
-    <TemperatureBlock>
-      <TemperatureRow>
-        <WeatherIcon name={weatherIcon} />
-        <span>{temperature}°</span>
-      </TemperatureRow>
-      <ConditionsRow>
-        <span>{condition}</span>
-        <span>{feel}</span>
-      </ConditionsRow>
-    </TemperatureBlock>
+    {!fetching && (
+      <TemperatureBlock>
+        <TemperatureRow>
+          <WeatherIcon name={weatherIcon} />
+          <span>{getNumberWithSign(temperature)}°</span>
+        </TemperatureRow>
+        <ConditionsRow>
+          <span>{condition}</span>
+          <span>Ощущается как {getNumberWithSign(feel)}°</span>
+        </ConditionsRow>
+      </TemperatureBlock>
+    )}
   </div>
 )
 
-WeatherBlock.propTypes = {
-  locationText: PropTypes.string.isRequired,
+PureWeatherBlock.propTypes = {
+  locality: PropTypes.string.isRequired,
   weatherIcon: PropTypes.string.isRequired,
-  temperature: PropTypes.string.isRequired,
+  temperature: PropTypes.number.isRequired,
   condition: PropTypes.string.isRequired,
-  feel: PropTypes.string.isRequired,
+  feel: PropTypes.number.isRequired,
+  fetching: PropTypes.bool.isRequired,
 }
+
+function mapStateToProps(state) {
+  return {
+    locality: state.mainInfo.geo_object.locality.name,
+    weatherIcon: state.mainInfo.fact.condition,
+    temperature: state.mainInfo.fact.temp,
+    condition: state.mainInfo.fact.condition,
+    feel: state.mainInfo.fact.feels_like,
+    fetching: state.mainInfo.fetching,
+  }
+}
+
+export const WeatherBlock = connect(mapStateToProps)(PureWeatherBlock)

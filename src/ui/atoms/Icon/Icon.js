@@ -24,7 +24,13 @@ export const IconWrapper = styled.i`
 `
 
 export const Icon = ({ name, ...props }) => {
-  const Svg = require(`./icons/${name}.svg`).default // eslint-disable-line
+  let Svg
+  try {
+    Svg = require(`./icons/${name}.svg`).default // eslint-disable-line
+  }
+  catch (error) {
+    return null
+  }
 
   return (
     <IconWrapper {...props}>
