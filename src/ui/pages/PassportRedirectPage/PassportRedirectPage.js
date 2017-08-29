@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import { Loader } from 'ui/atoms/Loader/Loader'
-import { setToken, fetchAndSetUserInfo } from 'redux/user/actions'
+import { setToken, fetchAndSetUserInfo, createOrUpdateUserWithCategorySettings } from 'redux/user/actions'
 import { getHashParam } from 'utils/location'
 
 
@@ -19,12 +19,17 @@ const Container = styled.div`
 class Page extends React.Component {
   componentDidMount() {
     const token = getHashParam('access_token')
-    const { nextRoute } = JSON.parse(decodeURIComponent(getHashParam('state')));
+    const { nextRoute, settings } = JSON.parse(decodeURIComponent(getHashParam('state')))
     const { dispatch, history } = this.props
 
     dispatch(setToken(token))
     dispatch(fetchAndSetUserInfo())
-      .then(() => history.replace(nextRoute))
+      .then(() => {
+        if (settings) {
+          dispatch(createOrUpdateUserWithCategorySettings(settings))
+        }
+        history.replace(nextRoute)
+      })
   }
 
   render() {
