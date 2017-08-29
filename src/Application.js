@@ -15,6 +15,7 @@ import {
   PassportRedirectPage,
 } from 'ui/pages'
 import { routeNames } from 'utils/routeNames'
+import { withAuthentication } from 'hocs/withAuthentication'
 
 
 const Container = styled.div`
@@ -40,11 +41,11 @@ export const Application = () => (
         />
         <Route
           path={routeNames.feeds}
-          component={FeedsPage}
+          component={withAuthentication(FeedsPage)}
         />
         <Route
           path={routeNames.settings}
-          component={SettingsPage}
+          component={withAuthentication(SettingsPage)}
         />
         <Route
           path={routeNames.passportRedirect}
