@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import { WeatherBackground, WeatherBlock, Slider } from 'ui/organisms'
 import { WeatherConditions, NavigationBar, SliderCard } from 'ui/molecules'
 import { fetchWeather } from 'redux/forecast/actions'
+import { routeNames } from 'utils/routeNames'
 
 
 const Container = styled.div`
@@ -31,11 +32,13 @@ class Page extends React.Component {
         <WeatherConditions />
         <Slider>
           <SliderCard
+            linkTo={routeNames.index}
             bg="linear-gradient(to bottom,#366ca7,#4077b2)"
             color="#fff"
             buttonText="Показать на карте"
           >В центре дождь в ближайшие два часа не прекратится</SliderCard>
           <SliderCard
+            linkTo={routeNames.onboarding}
             bg="linear-gradient(to bottom, #9cddff, #4baffd 52%, #498ffa)"
             color="#fff"
             buttonText="Другие советы"

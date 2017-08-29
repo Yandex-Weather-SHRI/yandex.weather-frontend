@@ -1,7 +1,6 @@
 import { createAction } from 'redux-act'
 import { request } from 'utils/fetchHelper'
 import { API_URL } from 'constants/api'
-import { defaultCategories } from './reducer'
 
 
 const O_AUTH_TOKEN_KEY = 'oauth_token'
@@ -10,12 +9,35 @@ export const setTokenPure = createAction('user.setTokenPure')
 export const setUserInfo = createAction('user.setUserInfo')
 export const setUserSettings = createAction('user.setUserSettings')
 
+export const defaultCategories = [ // todo когда не нжуно будет мокать
+  {
+    name: 'allergy',
+    enabled: false,
+  },
+  {
+    name: 'heart',
+    enabled: false,
+  },
+  {
+    name: 'joint',
+    enabled: false,
+  },
+  {
+    name: 'asthma',
+    enabled: false,
+  },
+  {
+    name: 'skin',
+    enabled: false,
+  },
+]
+
 // todo move api to class and extra thunk argument
 export function requestLogin(nextState) {
   const PASSPORT_URL = encodeURI('https://oauth.yandex.ru/authorize'
     + '?response_type=token'
     + '&client_id=6ba9f5cc976344da85e5865f3bbd397f' // todo process.ENV?
-    + `&state=${nextState}`)
+    + `&state=${JSON.stringify(nextState)}`)
 
   window.location.href = PASSPORT_URL
 }

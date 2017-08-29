@@ -15,6 +15,6 @@ export const OnBoardingPage = () => (
     <input type="checkbox" value="setting1" />
     <input type="checkbox" value="setting2" />
     <input type="checkbox" value="setting3" />
-    <button onClick={submitOnboarding} />
+    <button onClick={submitOnboarding}>Save settings</button>
   </div>
 )

@@ -3,9 +3,10 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 import { Icon } from 'ui/atoms'
+import { Link } from 'react-router-dom'
 
 
-const CardWrapper = styled.div`
+const CardWrapper = styled(Link)`
   width: 100%;
   min-height: 108px;
   height: auto;
@@ -17,6 +18,7 @@ const CardWrapper = styled.div`
   flex-direction: column;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08);
   align-items: center;
+  text-decoration: none;
 `
 
 const CardCaption = styled.p`
@@ -60,8 +62,9 @@ export const SliderCard = ({
   buttonText,
   icon,
   borderColor,
+  linkTo,
 }) => (
-  <CardWrapper {...{ bg, color }}>
+  <CardWrapper {...{ bg, color, to: linkTo }}>
     <CardCaption>{children}</CardCaption>
     {buttonText && (
       <CardButton {...{ color, borderColor }}>
@@ -75,6 +78,7 @@ export const SliderCard = ({
 )
 
 SliderCard.propTypes = {
+  linkTo: PropTypes.string.isRequired,
   bg: PropTypes.string,
   color: PropTypes.string,
   children: PropTypes.string.isRequired,
