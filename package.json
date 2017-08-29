@@ -49,6 +49,7 @@
     "stylelint-processor-styled-components": "^0.3.0",
     "webpack": "^3.5.5",
     "webpack-dev-server": "^2.7.1",
+    "webpack-dotenv-plugin": "^2.0.2",
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {

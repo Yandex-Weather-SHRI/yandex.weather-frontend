@@ -1,5 +1,6 @@
 const { resolve } = require('path')
 const { DefinePlugin } = require('webpack')
+const DotenvPlugin = require('webpack-dotenv-plugin')
 const HtmlPlugin = require('html-webpack-plugin')
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -87,6 +88,10 @@ const config = {
   },
 
   plugins: [
+    new DotenvPlugin({
+      sample: resolve(__dirname, '..','.env'),
+      path: resolve(__dirname, '..', '.env'),
+    }),
     new DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
