@@ -1,7 +1,7 @@
 import { createAction } from 'redux-act'
 import { request } from 'utils/fetchHelper'
-import { defaultCategories } from './reducer'
 import { API_URL } from 'constants/api'
+import { defaultCategories } from './reducer'
 
 
 const O_AUTH_TOKEN_KEY = 'oauth_token'
