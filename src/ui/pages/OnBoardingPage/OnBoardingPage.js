@@ -9,7 +9,7 @@ export function submitOnboarding(login, settings) {
   })
 }
 
-const OnBoardingPage = () => (
+export const OnBoardingPage = () => (
   <div>
     <h1>OnBoardingPage</h1>
     <input type="checkbox" value="setting1" />
