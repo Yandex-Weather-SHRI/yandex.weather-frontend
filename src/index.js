@@ -32,5 +32,5 @@ function render() {
 render()
 
 if (module.hot) {
-  module.hot.accept('./application', render)
+  module.hot.accept('./Application', render)
 }
