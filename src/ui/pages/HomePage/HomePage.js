@@ -7,9 +7,6 @@ import { WeatherConditions, NavigationBar, SliderCard } from 'ui/molecules'
 
 const Container = styled.div`
   background-color: #f5f3f2;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
 `
 
 export const HomePage = () => (

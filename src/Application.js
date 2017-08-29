@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import {
   BrowserRouter as Router,
   Route,
@@ -6,16 +7,35 @@ import {
   Redirect,
 } from 'react-router-dom'
 
-import { HomePage, PassportRedirectPage } from 'ui/pages'
+import {
+  HomePage,
+  SettingsPage,
+  OnBoardingPage,
+  SuggestionsPage,
+  PassportRedirectPage,
+} from 'ui/pages'
 import { routeNames } from 'utils/routeNames'
 
 
+const Container = styled.div`
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  display: flex;
+  -webkit-overflow-scrolling: touch;
+`
+
 export const Application = () => (
-  <Router>
-    <Switch>
-      <Route exact path={routeNames.index} component={HomePage} />
-      <Route path={routeNames.passportRedirect} component={PassportRedirectPage} />
-      <Route render={() => <Redirect to="/" />} />
-    </Switch>
-  </Router>
+  <Container>
+    <Router>
+      <Switch>
+        <Route exact path={routeNames.index} component={HomePage} />
+        <Route path={routeNames.onboarding} component={OnBoardingPage} />
+        <Route path={routeNames.suggestions} component={SuggestionsPage} />
+        <Route path={routeNames.settings} component={SettingsPage} />
+        <Route path={routeNames.passportRedirect} component={PassportRedirectPage} />
+        <Route render={() => <Redirect to="/" />} />
+      </Switch>
+    </Router>
+  </Container>
 )

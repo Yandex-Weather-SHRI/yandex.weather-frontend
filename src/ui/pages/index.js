@@ -1,2 +1,5 @@
 export { HomePage } from './HomePage/HomePage'
 export { PassportRedirectPage } from './PassportRedirectPage/PassportRedirectPage'
+export { SettingsPage } from './SettingsPage/SettingsPage'
+export { OnBoardingPage } from './OnBoardingPage/OnBoardingPage'
+export { SuggestionsPage } from './SuggestionsPage/SuggestionsPage'
