@@ -5,7 +5,7 @@ let BoldFont
 let RegularFont
 let MediumFont
 
-/* eslint-disable global-require */
+/* eslint-disable global-require, import/no-unresolved */
 try {
   RegularFont = require('assets/fonts/YandexSansRegular.ttf')
   MediumFont = require('assets/fonts/YandexSansMedium.ttf')
