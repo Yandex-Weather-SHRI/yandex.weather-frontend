@@ -1,6 +1,5 @@
 import { createAction } from 'redux-act'
 import { request } from 'utils/fetchHelper'
-import { API_URL } from 'constants/api'
 
 
 const O_AUTH_TOKEN_KEY = 'oauth_token'
@@ -59,7 +58,7 @@ export function createOrUpdateUserWithCategorySettings(categories) {
 
     try {
       const responseCategories = await request.post(
-        '/settings/categories',
+        '/v1/settings/categories',
         { items: categories, login }
       )
       console.log(responseCategories)
@@ -67,7 +66,7 @@ export function createOrUpdateUserWithCategorySettings(categories) {
         settings: responseCategories,
       }))
     }
-    catch (e) {
+    catch (err) {
       // todo
     }
   }
@@ -81,7 +80,7 @@ export function getCategoriesSettings() {
     }
     try {
       const responseCategories = await request.get(
-        `${API_URL}/settings/categories`,
+        '/v1/settings/categories',
         { login }
       )
       dispatch(setUserSettings({

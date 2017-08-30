@@ -1,12 +1,14 @@
 import React from 'react'
 import { requestLogin } from 'redux/user/actions'
 import { defaultCategories } from 'redux/user/reducer'
+import { routeNames } from 'utils/routeNames'
 
 
 export const handleSubmitOnboarding = () => {
   requestLogin({
     login: 'testLogin',
     categories: defaultCategories,
+    nextRoute: routeNames.feeds,
   })
 }
 
