@@ -24,7 +24,7 @@ export function withAuthentication(WrappedComponent) {
 
     checkAuthentication(props) {
       if (!props.user.oAuthToken) {
-        this.props.requestLogin(props.location.pathname)
+        this.props.requestLogin({ nextRoute: props.location.pathname })
       }
     }
 

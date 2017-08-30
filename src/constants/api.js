@@ -1,2 +1,3 @@
-// TODO: temp solution
-export const API_URL = 'API_URL = https://weather-forecast-api.herokuapp.com'
+export const API_URL = process.env.NODE_ENV === 'production'
+  ? 'https://weather-forecast-api.herokuapp.com'
+  : 'http://localhost:3100'

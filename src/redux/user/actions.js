@@ -1,17 +1,20 @@
 import { createAction } from 'redux-act'
+import { request } from 'utils/fetchHelper'
 
 
 const O_AUTH_TOKEN_KEY = 'oauth_token'
 
 export const setTokenPure = createAction('user.setTokenPure')
 export const setUserInfo = createAction('user.setUserInfo')
+export const setUserSettings = createAction('user.setUserSettings')
+
 
 // todo move api to class and extra thunk argument
-export function requestLogin(nextRoute) {
+export function requestLogin(nextState) {
   const PASSPORT_URL = encodeURI('https://oauth.yandex.ru/authorize'
     + '?response_type=token'
     + '&client_id=6ba9f5cc976344da85e5865f3bbd397f' // todo process.ENV?
-    + `&state=${nextRoute}`)
+    + `&state=${JSON.stringify(nextState)}`)
 
   window.location.href = PASSPORT_URL
 }
@@ -45,6 +48,53 @@ export function fetchAndSetUserInfo() {
       })
   }
 }
+
+export function createOrUpdateUserWithCategorySettings(categories) {
+  return async (dispatch, getState) => {
+    const { user: { login } } = getState()
+    if (!login) {
+      throw new Error(`Attempted to update user setting with falsy token=${login} in app state.`)
+    }
+
+    try {
+      const responseCategories = await request.post(
+        '/v1/settings/categories',
+        { items: categories, login }
+      )
+      console.log(responseCategories)
+      dispatch(setUserSettings({
+        settings: responseCategories,
+      }))
+    }
+    catch (err) {
+      // todo
+    }
+  }
+}
+
+export function getCategoriesSettings() {
+  return async (dispatch, getState) => {
+    const { user: { login } } = getState()
+    if (!login) {
+      throw new Error(`Attempted to update user setting with falsy token=${login} in app state.`)
+    }
+    try {
+      const responseCategories = await request.get(
+        '/v1/settings/categories',
+        { login }
+      )
+      dispatch(setUserSettings({
+        settings: responseCategories,
+      }))
+      return Promise.resolve()
+    }
+    catch (e) {
+      // todo
+      return Promise.reject()
+    }
+  }
+}
+
 
 export function checkAuth() {
   return (dispatch) => {
