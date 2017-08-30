@@ -1,25 +1,38 @@
 import { css } from 'styled-components'
 
-import HelveticaRegular from 'assets/fonts/HelveticaRegular.ttf'
-import HelveticaMedium from 'assets/fonts/HelveticaMedium.ttf'
-import HelveticaBold from 'assets/fonts/HelveticaBold.ttf'
 
+let BoldFont
+let RegularFont
+let MediumFont
+
+/* eslint-disable global-require, import/no-unresolved */
+try {
+  RegularFont = require('assets/fonts/YandexSansRegular.ttf')
+  MediumFont = require('assets/fonts/YandexSansMedium.ttf')
+  BoldFont = require('assets/fonts/YandexSansBold.ttf')
+}
+catch (e) {
+  RegularFont = require('assets/fonts/HelveticaRegular.ttf')
+  MediumFont = require('assets/fonts/HelveticaMedium.ttf')
+  BoldFont = require('assets/fonts/HelveticaBold.ttf')
+}
+/* eslint-enable global-require */
 
 export const fonts = css`
   @font-face {
-    font-family: Helvetica;
-    src: url('${HelveticaRegular}') format('truetype');
+    font-family: WeatherFont;
+    src: url('${RegularFont}') format('truetype');
   }
 
   @font-face {
-    font-family: Helvetica;
-    src: url('${HelveticaMedium}') format('truetype');
+    font-family: WeatherFont;
+    src: url('${MediumFont}') format('truetype');
     font-weight: 500;
   }
 
   @font-face {
-    font-family: Helvetica;
-    src: url('${HelveticaBold}') format('truetype');
+    font-family: WeatherFont;
+    src: url('${BoldFont}') format('truetype');
     font-weight: 700;
   }
 `

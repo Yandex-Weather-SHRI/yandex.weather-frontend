@@ -15,7 +15,7 @@ export const globalStyles = css`
 
   html,
   body {
-    font: 10px/1.6 Helvetica, Arial, sans-serif;
+    font: 10px/1.6 WeatherFont, Arial, sans-serif;
   }
 
   body {
