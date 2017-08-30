@@ -2,11 +2,14 @@
   "name": "yandex.weather",
   "version": "0.1.0",
   "scripts": {
+    "start": "npm run build:prod",
     "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "eslint src",
     "lint:js-fix": "eslint src --fix",
     "lint:css": "stylelint \"src/**/*.js\"",
     "dev": "webpack-dev-server",
+    "build": "webpack",
+    "build:prod": "NODE_ENV=production npm run build -- -p",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "prepush": "npm run lint",
     "test": "npm run lint"
