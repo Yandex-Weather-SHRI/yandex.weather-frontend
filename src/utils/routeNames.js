@@ -2,6 +2,6 @@ export const routeNames = {
   index: '/',
   passportRedirect: '/token',
   onboarding: '/onboarding',
-  feeds: '/feeds',
+  feed: '/feed',
   settings: '/settings',
 }
