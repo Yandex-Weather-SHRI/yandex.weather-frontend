@@ -5,7 +5,6 @@ import { AppContainer } from 'react-hot-loader'
 import { ThemeProvider } from 'styled-components'
 
 import createReduxStore from 'redux/createReduxStore'
-// import { checkAuth } from 'redux/user/actions'
 
 import { Application } from './Application'
 import './styles/global'
@@ -13,7 +12,6 @@ import './styles/global'
 
 const theme = {}
 const store = createReduxStore()
-// store.dispatch(checkAuth()) // temp solution
 
 const entry = document.getElementById('react-root')
 
