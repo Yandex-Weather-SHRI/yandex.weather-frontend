@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
 import {
   BrowserRouter as Router,
@@ -11,11 +13,12 @@ import {
   HomePage,
   SettingsPage,
   OnBoardingPage,
-  FeedsPage,
+  FeedPage,
   PassportRedirectPage,
 } from 'ui/pages'
 import { routeNames } from 'utils/routeNames'
 import { withAuthentication } from 'hocs/withAuthentication'
+import { checkAuth } from 'redux/user/actions'
 
 
 const Container = styled.div`
@@ -26,33 +29,64 @@ const Container = styled.div`
   -webkit-overflow-scrolling: touch;
 `
 
-export const Application = () => (
-  <Container>
-    <Router>
-      <Switch>
-        <Route
-          exact
-          path={routeNames.index}
-          component={HomePage}
-        />
-        <Route
-          path={routeNames.onboarding}
-          component={OnBoardingPage}
-        />
-        <Route
-          path={routeNames.feeds}
-          component={withAuthentication(FeedsPage)}
-        />
-        <Route
-          path={routeNames.settings}
-          component={withAuthentication(SettingsPage)}
-        />
-        <Route
-          path={routeNames.passportRedirect}
-          component={PassportRedirectPage}
-        />
-        <Route render={() => <Redirect to="/" />} />
-      </Switch>
-    </Router>
-  </Container>
-)
+class ApplicationContainer extends Component {
+  static propTypes = {
+    checkAuth: PropTypes.func.isRequired,
+  }
+
+  state = {
+    loading: true,
+  }
+
+  componentDidMount() {
+    this.props.checkAuth().then(() => {
+      this.setState({ loading: false })
+    })
+  }
+
+  render() {
+    if (this.state.loading) {
+      return null
+    }
+
+    return (
+      <Container>
+        <Router>
+          <Switch>
+            <Route
+              exact
+              path={routeNames.index}
+              component={HomePage}
+            />
+            <Route
+              path={routeNames.onboarding}
+              component={OnBoardingPage}
+            />
+            <Route
+              path={routeNames.feed}
+              component={withAuthentication(FeedPage)}
+            />
+            <Route
+              path={routeNames.settings}
+              component={withAuthentication(SettingsPage)}
+            />
+            <Route
+              path={routeNames.passportRedirect}
+              component={PassportRedirectPage}
+            />
+            <Route render={() => <Redirect to="/" />} />
+          </Switch>
+        </Router>
+      </Container>
+    )
+  }
+}
+
+const mapDispatchToProps = {
+  checkAuth,
+}
+
+export const Application = connect(
+  null,
+  mapDispatchToProps
+)(ApplicationContainer)
