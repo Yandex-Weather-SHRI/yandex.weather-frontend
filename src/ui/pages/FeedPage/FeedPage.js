@@ -8,19 +8,21 @@ import { FeedCard } from 'ui/organisms/FeedCard/FeedCard'
 import { getFeedByFilters } from 'redux/feed/selectors'
 import { setFeedFilter } from 'redux/filters/actions'
 import { FeedFiltersList } from 'ui/organisms'
+import { categoryGroup } from 'constants/categoryGroup'
+import { categories, meteoaddictedCategory } from 'constants/categories'
 
 const MOCK_CARDS = [
   {
-    categoryGroupName: 'Метеозависимость',
-    categoryName: 'Сердце',
+    categoryGroup: categoryGroup.meteoaddicted,
+    category: meteoaddictedCategory.heart,
     text: 'Людям с заболеваниями сердца желательно уменьшить физическую активность',
     onShareClick: () => console.log('share!'),
     onOptionsClick: () => console.log('options!'),
     id: 1,
   },
   {
-    categoryGroupName: 'Метеозависимость',
-    categoryName: 'Астма',
+    categoryGroup: categoryGroup.meteoaddicted,
+    category: categories.asthma,
     text: 'Для людей с заболеванием астмы рекомендуем выбрать спокойную деятельность',
     onShareClick: () => console.log('share!'),
     onOptionsClick: () => console.log('options!'),
@@ -28,8 +30,8 @@ const MOCK_CARDS = [
   },
 ]
 
-const Container = styled.div`
-  padding: 16px 8px 0;
+const CardsContainer = styled.div`
+  padding: 0 8px;
   flex: 1;
 `
 
@@ -58,13 +60,15 @@ class FeedPageContainer extends Component {
     const { feed, filters } = this.props
 
     return (
-      <Container>
+      <div>
         <FeedFiltersList
           list={filters}
           setFeedFilter={this.setFeedFilter}
         />
-        {MOCK_CARDS.map(card => <FeedCard {...card} key={card.id} />)}
-      </Container>
+        <CardsContainer>
+          {MOCK_CARDS.map(card => <FeedCard {...card} key={card.id} />)}
+        </CardsContainer>
+      </div>
     )
   }
 }

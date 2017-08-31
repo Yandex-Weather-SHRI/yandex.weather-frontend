@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
 
-import { categoryGroupCategories } from 'constants/filters'
+import { categoryGroupCategories } from 'constants/categoryGroup'
 
 
 export const getFeedByFilters = createSelector(

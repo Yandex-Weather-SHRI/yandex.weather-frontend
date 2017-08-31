@@ -2,15 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { IconButton } from 'ui/molecules/IconButton/IconButton'
+import { categoryGroupDisplayNames, categoryGroups, categoryGroup as categoryGroupDict } from 'constants/categoryGroup'
+import { categories, categoriesDisplayNames } from 'constants/categories'
 
-// const gradientByGroupName = {
-//   [categoryGroupName.meteoaddcited]: 'linear-gradient(170deg, #30cfd0, #330867)',
-// }
+const DEFAULT_CARD_GRADIENT = 'linear-gradient(170deg, #30cfd0, #330867)'
+
+const cardGradient = {
+  [categoryGroupDict.meteoaddicted]: DEFAULT_CARD_GRADIENT,
+}
 
 const Container = styled.div`
   padding: 18px 16px 29px;
   border-radius: 4px;
-  background-image: linear-gradient(170deg, #30cfd0, #330867);
+  background-image: ${({ categoryGroup }) => cardGradient[categoryGroup]};
   box-shadow: 0 2px 10px 0 rgba(50, 71, 136, 0.12), 0 2px 17px 0 rgba(49, 135, 170, 0.42);
   color: #fff;
 
@@ -50,11 +54,11 @@ const Text = styled.div`
   line-height: 1.2;
 `
 
-export const FeedCard = ({ categoryGroupName, categoryName, text, onShareClick, onOptionsClick }) =>
-  <Container>
+export const FeedCard = ({ categoryGroup, category, text, onShareClick, onOptionsClick }) =>
+  <Container {...{ categoryGroup }}>
     <Header>
       <CategoryGroupName>
-        {categoryGroupName}
+        {categoryGroupDisplayNames[categoryGroup] || 'Совет'}
       </CategoryGroupName>
       <HeaderButtons>
         <IconButton icon="share" style={{ marginRight: 16 }} onClick={onShareClick} />
@@ -62,7 +66,7 @@ export const FeedCard = ({ categoryGroupName, categoryName, text, onShareClick, 
       </HeaderButtons>
     </Header>
     <CategoryName>
-      {categoryName}
+      {categoriesDisplayNames[category]}
     </CategoryName>
     <Text>
       {text}
@@ -70,8 +74,8 @@ export const FeedCard = ({ categoryGroupName, categoryName, text, onShareClick, 
   </Container>
 
 FeedCard.propTypes = {
-  categoryGroupName: PropTypes.string.isRequired,
-  categoryName: PropTypes.string.isRequired,
+  categoryGroup: PropTypes.oneOf(categoryGroups).isRequired,
+  category: PropTypes.oneOf(categories).isRequired,
   text: PropTypes.string.isRequired,
   onShareClick: PropTypes.func.isRequired,
   onOptionsClick: PropTypes.func.isRequired,

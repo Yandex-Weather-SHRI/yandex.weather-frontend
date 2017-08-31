@@ -1,6 +1,6 @@
 import { css } from 'styled-components'
 
-import { categoryGroup } from 'constants/filters'
+import { categoryGroup } from 'constants/categoryGroup'
 
 
 export function getFeedFilterStyle({ name }) {
