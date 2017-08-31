@@ -1,10 +1,7 @@
 const { resolve } = require('path')
 const { DefinePlugin } = require('webpack')
-const DotenvPlugin = require('webpack-dotenv-plugin')
-const HtmlPlugin = require('html-webpack-plugin')
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const Package = require('../package.json')
 
 
 const SOURCES = resolve(__dirname, '..', 'src')
@@ -56,7 +53,7 @@ const config = {
         use: {
           loader: 'file-loader',
           query: {
-            name: 'fonts/[name]-[hash:10].[ext]',
+            name: 'assets/fonts/[name].[hash:10].[ext]',
           },
         },
       },
@@ -65,7 +62,7 @@ const config = {
         use: {
           loader: 'file-loader',
           query: {
-            name: 'images/[name]-[hash:10].[ext]',
+            name: 'assets/images/[name].[hash:10].[ext]',
           },
         },
       },
@@ -88,28 +85,14 @@ const config = {
   },
 
   plugins: [
-    new DotenvPlugin({
-      sample: resolve(__dirname, '..','.env'),
-      path: resolve(__dirname, '..', '.env'),
-    }),
     new DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),
-    new HtmlPlugin({
-      title: 'Яндекс.Погода',
-      template: resolve(SOURCES, 'index.html'),
-      version: Package.version,
-      alwaysWriteToDisk: true,
-      minify: {
-        removeScriptTypeAttributes: true,
-      },
-    }),
     new HtmlWebpackHarddiskPlugin({
       outputPath: DIST,
     }),
-    new ExtractTextPlugin('css/vendor.css'),
   ],
 }
 
