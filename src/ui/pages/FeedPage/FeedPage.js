@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { getFeed } from 'redux/feed/actions'
+import { AppBar } from 'ui/organisms/AppBar/AppBar'
+import { IconButton } from 'ui/molecules/IconButton/IconButton'
 
 
 class FeedPageContainer extends Component {
@@ -24,7 +26,16 @@ class FeedPageContainer extends Component {
     const { list } = this.props
 
     return (
-      <div>
+      <div style={{ width: '100%' }}>
+        <AppBar
+          title="Советы"
+          elementLeft={
+            <IconButton icon="search" size="24" />
+          }
+          elementRight={
+            <IconButton icon="star" size="24" />
+          }
+        />
         FeedsPage
         {list.map(item => (
           <div key={item.id}>
