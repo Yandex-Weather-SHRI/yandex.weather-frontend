@@ -35,13 +35,14 @@ const filtersDefaultState = [
 
 function setFeedFilterReducer(state, { name, active }) {
   return state.map((filter) => {
-    if (name === 'all' && filter.name !== 'all') {
+    if (name === categoryGroup.all && filter.name !== categoryGroup.all) {
       return { ...filter, active: false }
     }
-    else if (name !== 'all' && filter.name === 'all') {
-      return { ...filter, active: false }
+    else if (name !== categoryGroup.all && filter.name === categoryGroup.all) {
+      const list = state.filter(f => f.name !== name && f.active)
+      return { ...filter, active: list.length === 0 }
     }
-    else if (name === 'all') {
+    else if (name === categoryGroup.all) {
       return { ...filter, active: true }
     }
     else if (filter.name === name) {
