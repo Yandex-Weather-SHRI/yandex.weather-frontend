@@ -30,6 +30,7 @@ const MOCK_CARDS = [
 
 const Container = styled.div`
   padding: 16px 8px 0;
+  flex: 1;
 `
 
 class FeedPageContainer extends Component {

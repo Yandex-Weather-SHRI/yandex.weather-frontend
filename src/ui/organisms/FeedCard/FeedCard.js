@@ -3,6 +3,10 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { IconButton } from 'ui/molecules/IconButton/IconButton'
 
+// const gradientByGroupName = {
+//   [categoryGroupName.meteoaddcited]: 'linear-gradient(170deg, #30cfd0, #330867)',
+// }
+
 const Container = styled.div`
   padding: 18px 16px 29px;
   border-radius: 4px;
@@ -11,7 +15,7 @@ const Container = styled.div`
   color: #fff;
 
   & + & {
-    margin-top: 16px;
+    margin-top: 1.6rem;
   }
 `
 
@@ -27,7 +31,7 @@ const HeaderButtons = styled.div`
 `
 
 const CategoryGroupName = styled.div`
-  font-size: 10px;
+  font-size: 1rem;
   font-weight: bold;
   letter-spacing: 0.7px;
   text-transform: uppercase;
