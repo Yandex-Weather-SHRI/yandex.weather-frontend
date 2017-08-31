@@ -22,7 +22,7 @@ const MOCK_CARDS = [
   },
   {
     categoryGroup: categoryGroup.meteoaddicted,
-    category: categories.asthma,
+    category: meteoaddictedCategory.asthma,
     text: 'Для людей с заболеванием астмы рекомендуем выбрать спокойную деятельность',
     onShareClick: () => console.log('share!'),
     onOptionsClick: () => console.log('options!'),
