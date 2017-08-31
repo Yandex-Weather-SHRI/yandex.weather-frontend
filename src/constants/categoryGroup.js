@@ -1,3 +1,13 @@
+import { meteoaddictedCategories } from './categories'
+
+export const categoryGroups = [
+  'all',
+  'meteoaddicted',
+  'allergy',
+  'motorists',
+  'ultraviolet',
+]
+
 export const categoryGroup = {
   all: 'all',
   meteoaddicted: 'meteoaddicted',
@@ -8,7 +18,12 @@ export const categoryGroup = {
 
 export const categoryGroupCategories = {
   [categoryGroup.all]: ['all'],
-  [categoryGroup.meteoaddicted]: ['heart', 'joint', 'asthma', 'skin'],
+  [categoryGroup.meteoaddicted]: [
+    meteoaddictedCategories.asthma,
+    meteoaddictedCategories.heart,
+    meteoaddictedCategories.joint,
+    meteoaddictedCategories.skin,
+  ],
   [categoryGroup.allergy]: [],
   [categoryGroup.motorists]: [],
   [categoryGroup.ultraviolet]: [],

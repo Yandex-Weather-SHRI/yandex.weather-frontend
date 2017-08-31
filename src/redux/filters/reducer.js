@@ -1,6 +1,6 @@
 import { createReducer } from 'redux-act'
 
-import { categoryGroup, categoryGroupDisplayNames } from 'constants/filters'
+import { categoryGroup, categoryGroupDisplayNames } from 'constants/categoryGroup'
 
 import { setFeedFilter } from './actions'
 
