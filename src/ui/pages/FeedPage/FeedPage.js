@@ -5,6 +5,9 @@ import styled from 'styled-components'
 
 import { getFeed } from 'redux/feed/actions'
 import { FeedCard } from 'ui/organisms/FeedCard/FeedCard'
+import { getFeedByFilters } from 'redux/feed/selectors'
+import { setFeedFilter } from 'redux/filters/actions'
+import { FeedFiltersList } from 'ui/organisms'
 
 const MOCK_CARDS = [
   {
@@ -31,29 +34,34 @@ const Container = styled.div`
 
 class FeedPageContainer extends Component {
   static propTypes = {
-    list: PropTypes.arrayOf(
+    feed: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         text: PropTypes.string.isRequired,
       })
     ).isRequired,
+    filters: PropTypes.arrayOf(PropTypes.shape()).isRequired,
     getFeed: PropTypes.func.isRequired,
+    setFeedFilter: PropTypes.func.isRequired,
   }
 
   componentDidMount() {
     this.props.getFeed()
   }
 
+  setFeedFilter = (name, active) => () => {
+    this.props.setFeedFilter({ name, active })
+  }
+
   render() {
-    const { list } = this.props
+    const { feed, filters } = this.props
 
     return (
       <Container>
-        {list.map(item => (
-          <div key={item.id}>
-            {item.text}
-          </div>
-        ))}
+        <FeedFiltersList
+          list={filters}
+          setFeedFilter={this.setFeedFilter}
+        />
         {MOCK_CARDS.map(card => <FeedCard {...card} key={card.id} />)}
       </Container>
     )
@@ -62,12 +70,14 @@ class FeedPageContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-    list: state.feed.list,
+    feed: getFeedByFilters(state),
+    filters: state.filters,
   }
 }
 
 const mapDispatchToProps = {
   getFeed,
+  setFeedFilter,
 }
 
 export const FeedPage = connect(
