@@ -2,7 +2,8 @@
   "name": "yandex.weather",
   "version": "0.1.0",
   "scripts": {
-    "start": "npm run build:prod",
+    "start": "babel-node server/server.js --presets es2015",
+    "postinstall": "npm run build:prod",
     "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "eslint src",
     "lint:js-fix": "eslint src --fix",
