@@ -8,8 +8,8 @@ const Container = styled.div`
   border-radius: 4px;
   background-image: linear-gradient(170deg, #30cfd0, #330867);
   box-shadow: 0 2px 10px 0 rgba(50, 71, 136, 0.12), 0 2px 17px 0 rgba(49, 135, 170, 0.42);
-  color: white;
-  
+  color: #fff;
+
   & + & {
     margin-top: 16px;
   }
@@ -36,7 +36,7 @@ const CategoryGroupName = styled.div`
 const CategoryName = styled.div`
   font-size: 26px;
   font-weight: bold;
-  letter-spacing: 1.1px; 
+  letter-spacing: 1.1px;
   margin-bottom: 16px;
 `
 
