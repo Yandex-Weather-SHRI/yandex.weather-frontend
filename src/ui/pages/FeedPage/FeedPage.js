@@ -3,30 +3,42 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { getFeed } from 'redux/feed/actions'
+import { getFeedByFilters } from 'redux/feed/selectors'
+import { setFeedFilter } from 'redux/filters/actions'
+import { FeedFiltersList } from 'ui/organisms'
 
 
 class FeedPageContainer extends Component {
   static propTypes = {
-    list: PropTypes.arrayOf(
+    feed: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         text: PropTypes.string.isRequired,
       })
     ).isRequired,
+    filters: PropTypes.arrayOf(PropTypes.shape()).isRequired,
     getFeed: PropTypes.func.isRequired,
+    setFeedFilter: PropTypes.func.isRequired,
   }
 
   componentDidMount() {
     this.props.getFeed()
   }
 
+  setFeedFilter = (name, active) => () => {
+    this.props.setFeedFilter({ name, active })
+  }
+
   render() {
-    const { list } = this.props
+    const { feed, filters } = this.props
 
     return (
       <div>
-        FeedsPage
-        {list.map(item => (
+        <FeedFiltersList
+          list={filters}
+          setFeedFilter={this.setFeedFilter}
+        />
+        {feed.map(item => (
           <div key={item.id}>
             {item.text}
           </div>
@@ -38,12 +50,14 @@ class FeedPageContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-    list: state.feed.list,
+    feed: getFeedByFilters(state),
+    filters: state.filters,
   }
 }
 
 const mapDispatchToProps = {
   getFeed,
+  setFeedFilter,
 }
 
 export const FeedPage = connect(
