@@ -16,8 +16,8 @@ const Wrapper = styled.div`
   -webkit-overflow-scrolling: touch;
   padding: 16px 8px;
 
-  &::-webkit-scrollbar { 
-    display: none; 
+  &::-webkit-scrollbar {
+    display: none;
   }
 
   &:after {
