@@ -33,19 +33,44 @@ const filtersDefaultState = [
   },
 ]
 
+function isSelectedCurrentFilter(filter, name) {
+  return filter.name === name
+}
+
+function isSelectedFilterAll(name, group) {
+  return name === group.all
+}
+
+function isCurrentFilterAll(filter, group) {
+  return filter.name === group.all
+}
+
+function getCurrentActiveFilters(filterList, name) {
+  return filterList.filter(filter =>
+    !isSelectedCurrentFilter(filter, name) && filter.active
+  )
+}
+
 function setFeedFilterReducer(state, { name, active }) {
   return state.map((filter) => {
-    if (name === categoryGroup.all && filter.name !== categoryGroup.all) {
+    if (
+      !isCurrentFilterAll(filter, categoryGroup)
+      && isSelectedFilterAll(name, categoryGroup)
+    ) {
       return { ...filter, active: false }
     }
-    else if (name !== categoryGroup.all && filter.name === categoryGroup.all) {
-      const list = state.filter(f => f.name !== name && f.active)
-      return { ...filter, active: list.length === 0 }
+    else if (
+      !isSelectedFilterAll(name, categoryGroup)
+      && isCurrentFilterAll(filter, categoryGroup)
+    ) {
+      const activeFilters = getCurrentActiveFilters(state, name)
+      const isActiveAll = activeFilters.length === 0
+      return { ...filter, active: isActiveAll }
     }
-    else if (name === categoryGroup.all) {
+    else if (isSelectedFilterAll(name, categoryGroup)) {
       return { ...filter, active: true }
     }
-    else if (filter.name === name) {
+    else if (isSelectedCurrentFilter(filter, name)) {
       return { ...filter, active }
     }
     return filter
