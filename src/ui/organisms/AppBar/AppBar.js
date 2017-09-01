@@ -12,7 +12,7 @@ const Container = styled.div`
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.08);
 `
 
-const Wrapper = styled.div`
+const ElementWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,15 +27,15 @@ const Title = styled.span`
 
 export const AppBar = ({ title, elementLeft, elementRight }) => (
   <Container>
-    <Wrapper>
+    <ElementWrapper>
       {elementLeft}
-    </Wrapper>
+    </ElementWrapper>
     <Title>
       {title}
     </Title>
-    <Wrapper>
+    <ElementWrapper>
       {elementRight}
-    </Wrapper>
+    </ElementWrapper>
   </Container>
 )
 
