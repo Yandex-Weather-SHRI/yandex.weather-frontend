@@ -1,6 +1,7 @@
 import { createAction } from 'redux-act'
-import { request } from 'utils/fetchHelper'
 
+import { request } from 'utils/fetchHelper'
+import { CLIENT_ID } from 'constants/passport'
 
 const O_AUTH_TOKEN_KEY = 'oauth_token'
 
@@ -13,7 +14,7 @@ export const setUserSettings = createAction('user.setUserSettings')
 export function requestLogin(nextState) {
   const PASSPORT_URL = encodeURI('https://oauth.yandex.ru/authorize'
     + '?response_type=token'
-    + '&client_id=6ba9f5cc976344da85e5865f3bbd397f' // todo process.ENV?
+    + `&client_id=${CLIENT_ID}`
     + `&state=${JSON.stringify(nextState)}`)
 
   window.location.href = PASSPORT_URL
