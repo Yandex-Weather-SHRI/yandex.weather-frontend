@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 
 export const RoundedButton = styled.button`
-  display: flex;
+  display: inline-flex;
   align-items: center;
   height: 36px;
   border-radius: 18px;
