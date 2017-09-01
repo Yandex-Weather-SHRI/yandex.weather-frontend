@@ -14,4 +14,8 @@ export const RoundedButton = styled.button`
   margin-right: 8px;
   transition: opacity 150ms ease-in-out;
   border: none;
+
+  &:focus {
+    outline: 0;
+  }
 `
