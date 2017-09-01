@@ -1,8 +1,10 @@
 const { resolve } = require('path')
 const { HotModuleReplacementPlugin } = require('webpack')
+const HtmlPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const merge = require('webpack-merge')
 
-const { config, DIST } = require('./shared.config')
+const { config, SOURCES, DIST } = require('./shared.config')
 
 
 const MOCK = resolve(__dirname, '..', 'mock')
@@ -26,6 +28,15 @@ module.exports = merge(config, {
 
   plugins: [
     new HotModuleReplacementPlugin(),
+    new HtmlPlugin({
+      title: 'Яндекс.Погода',
+      template: resolve(SOURCES, 'index.html'),
+      alwaysWriteToDisk: true,
+      minify: {
+        removeScriptTypeAttributes: true,
+      },
+    }),
+    new ExtractTextPlugin('assets/css/vendor.css'),
   ],
 
   devServer: {
