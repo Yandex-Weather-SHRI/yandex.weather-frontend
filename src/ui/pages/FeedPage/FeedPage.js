@@ -10,8 +10,8 @@ import { getFeedByFilters } from 'redux/feed/selectors'
 import { setFeedFilter } from 'redux/filters/actions'
 import { categoryGroup } from 'constants/categoryGroup'
 import { categories, meteoaddictedCategory } from 'constants/categories'
-import { Link } from 'react-router-dom';
-import { routeNames } from 'utils/routeNames';
+import { Link } from 'react-router-dom'
+import { routeNames } from 'utils/routeNames'
 
 const MOCK_CARDS = [
   {
