@@ -1,9 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { IconButton } from 'ui/molecules/IconButton/IconButton'
-import { categoryGroupDisplayNames, categoryGroups, categoryGroup as categoryGroupDict } from 'constants/categoryGroup'
+
+import { IconButton } from 'ui/molecules'
+import {
+  categoryGroupDisplayNames,
+  categoryGroups,
+  categoryGroup as categoryGroupDict,
+} from 'constants/categoryGroup'
 import { categories, categoriesDisplayNames } from 'constants/categories'
+
 
 const DEFAULT_CARD_GRADIENT = 'linear-gradient(170deg, #30cfd0, #330867)'
 
@@ -12,26 +18,36 @@ const cardGradient = {
 }
 
 const Container = styled.div`
-  padding: 18px 16px 29px;
   border-radius: 4px;
   background-image: ${({ categoryGroup }) => cardGradient[categoryGroup]};
   box-shadow: 0 2px 10px 0 rgba(50, 71, 136, 0.12), 0 2px 17px 0 rgba(49, 135, 170, 0.42);
   color: #fff;
 
   & + & {
-    margin-top: 1.6rem;
+    margin-top: 16px;
   }
 `
 
 const Header = styled.div`
-  margin-bottom: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 16px;
+  height: 48px;
+`
+
+const Content = styled.div`
+  padding: 8px 16px 20px;
 `
 
 const HeaderButtons = styled.div`
   display: flex;
+`
+
+const HeaderButton = styled(IconButton)`
+  & + & {
+    margin-left: 16px;
+  }
 `
 
 const CategoryGroupName = styled.div`
@@ -42,7 +58,7 @@ const CategoryGroupName = styled.div`
 `
 
 const CategoryName = styled.div`
-  font-size: 26px;
+  font-size: 2.6rem;
   font-weight: bold;
   letter-spacing: 1.1px;
   margin-bottom: 16px;
@@ -61,16 +77,18 @@ export const FeedCard = ({ categoryGroup, category, text, onShareClick, onOption
         {categoryGroupDisplayNames[categoryGroup] || 'Совет'}
       </CategoryGroupName>
       <HeaderButtons>
-        <IconButton icon="share" style={{ marginRight: 16 }} onClick={onShareClick} />
-        <IconButton icon="more" onClick={onOptionsClick} />
+        <HeaderButton icon="share" onClick={onShareClick} />
+        <HeaderButton icon="more" onClick={onOptionsClick} />
       </HeaderButtons>
     </Header>
-    <CategoryName>
-      {categoriesDisplayNames[category]}
-    </CategoryName>
-    <Text>
-      {text}
-    </Text>
+    <Content>
+      <CategoryName>
+        {categoriesDisplayNames[category]}
+      </CategoryName>
+      <Text>
+        {text}
+      </Text>
+    </Content>
   </Container>
 
 FeedCard.propTypes = {
