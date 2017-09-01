@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { FeedCard } from 'ui/organisms'
+import { TabBar } from 'ui/molecules'
 import { categoryGroup as categoryGroupDict } from 'constants/categoryGroup'
 
 
@@ -11,6 +12,17 @@ const DEFAULT_CARD_GRADIENT = 'linear-gradient(170deg, #30cfd0, #330867)'
 const cardGradient = {
   [categoryGroupDict.meteoaddicted]: DEFAULT_CARD_GRADIENT,
 }
+
+const mockTabs = [
+  {
+    id: 0,
+    title: 'Сегодня',
+  },
+  {
+    id: 1,
+    title: 'ПН',
+  },
+]
 
 const Container = styled.div`
   background-image: ${({ categoryGroup }) => cardGradient[categoryGroup]};
@@ -49,10 +61,11 @@ export class FeedCardContainer extends Component {
       <Container categoryGroup={card.categoryGroup}>
         <FeedCard {...card} />
         {cardsList.length > 1 && (
-          <div>
-            <button onClick={this.onChangeCard(0)}>Сегодня</button>
-            <button onClick={this.onChangeCard(1)}>пн</button>
-          </div>
+          <TabBar
+            tabs={mockTabs}
+            onTabSelect={this.onChangeCard}
+            currentTab={currentCard}
+          />
         )}
       </Container>
     )
