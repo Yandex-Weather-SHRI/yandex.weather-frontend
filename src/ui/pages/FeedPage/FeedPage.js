@@ -4,10 +4,10 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 
 import { getFeed } from 'redux/feed/actions'
-import { FeedCard } from 'ui/organisms/FeedCard/FeedCard'
+import { AppBar, FeedFiltersList, FeedCard } from 'ui/organisms'
+import { IconButton } from 'ui/molecules'
 import { getFeedByFilters } from 'redux/feed/selectors'
 import { setFeedFilter } from 'redux/filters/actions'
-import { FeedFiltersList } from 'ui/organisms'
 import { categoryGroup } from 'constants/categoryGroup'
 import { categories, meteoaddictedCategory } from 'constants/categories'
 
@@ -60,7 +60,16 @@ class FeedPageContainer extends Component {
     const { feed, filters } = this.props
 
     return (
-      <div>
+      <div style={{ width: '100%' }}>
+        <AppBar
+          title="Советы"
+          elementLeft={
+            <IconButton icon="search" size="24" />
+          }
+          elementRight={
+            <IconButton icon="star" size="24" />
+          }
+        />
         <FeedFiltersList
           list={filters}
           setFeedFilter={this.setFeedFilter}
