@@ -23,6 +23,7 @@ const ElementWrapper = styled.div`
 const Title = styled.span`
   font-size: 1.6rem;
   text-align: center;
+  font-weight: 500;
 `
 
 export const AppBar = ({ title, elementLeft, elementRight }) => (
