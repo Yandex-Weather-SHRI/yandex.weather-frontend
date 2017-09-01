@@ -55,7 +55,7 @@ export const TabBar = ({ tabs, currentTab, onTabSelect }) => (
     <Wrapper>
       {tabs.map(({ id, title }) => (
         <TabButton
-          onClick={() => onTabSelect(id)}
+          onClick={onTabSelect(id)}
           active={id === currentTab}
           key={id}
         >
@@ -69,7 +69,10 @@ export const TabBar = ({ tabs, currentTab, onTabSelect }) => (
 TabBar.propTypes = {
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+      ]).isRequired,
       title: PropTypes.string.isRequired,
     })
   ).isRequired,
