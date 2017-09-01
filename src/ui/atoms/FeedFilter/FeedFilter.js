@@ -10,7 +10,8 @@ export const FeedFilter = styled.div`
   border-radius: 18px;
   padding: 0 16px;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 700;
+  letter-spacing: 0.7px;
   user-select: none;
   text-transform: uppercase;
   margin-right: 8px;
