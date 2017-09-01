@@ -7,7 +7,7 @@ import { RoundedButton } from 'ui/atoms'
 
 const Container = styled.div`
   height: 56px;
-  background-color: rgba(0, 0, 0, 0.27);
+  background-color: rgba(0, 0, 0, 0.07);
   overflow: hidden;
 `
 
@@ -29,12 +29,12 @@ const Wrapper = styled.div`
   }
 `
 
-const Button = RoundedButton.extend`
+const TabButton = RoundedButton.extend`
   height: 36px;
   background: none;
   border-radius: 100px;
   border: solid 1px rgba(255, 255, 255, 0.5);
-  color: white;
+  color: #fff;
   font-size: 1.2rem;
   font-weight: 500;
   letter-spacing: 0.6px;
@@ -54,13 +54,13 @@ export const TabBar = ({ tabs, currentTab, onTabSelect }) => (
   <Container>
     <Wrapper>
       {tabs.map(({ id, title }) => (
-        <Button
+        <TabButton
           onClick={() => onTabSelect(id)}
           active={id === currentTab}
           key={id}
         >
           {title}
-        </Button>
+        </TabButton>
       ))}
     </Wrapper>
   </Container>
