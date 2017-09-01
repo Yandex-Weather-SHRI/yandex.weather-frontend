@@ -4,12 +4,11 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 
 import { getFeed } from 'redux/feed/actions'
-import { AppBar } from 'ui/organisms'
+import { AppBar, FeedFiltersList } from 'ui/organisms'
 import { IconButton } from 'ui/molecules'
 import { FeedCard } from 'ui/organisms/FeedCard/FeedCard'
 import { getFeedByFilters } from 'redux/feed/selectors'
 import { setFeedFilter } from 'redux/filters/actions'
-import { FeedFiltersList } from 'ui/organisms'
 import { categoryGroup } from 'constants/categoryGroup'
 import { categories, meteoaddictedCategory } from 'constants/categories'
 
