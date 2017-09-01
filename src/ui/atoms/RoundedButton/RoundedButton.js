@@ -11,7 +11,6 @@ export const RoundedButton = styled.button`
   font-weight: 500;
   user-select: none;
   text-transform: uppercase;
-  margin-right: 8px;
   transition: opacity 150ms ease-in-out;
   border: none;
 
