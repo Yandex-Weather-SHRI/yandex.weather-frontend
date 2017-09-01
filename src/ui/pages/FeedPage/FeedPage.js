@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { getFeed } from 'redux/feed/actions'
-import { AppBar } from 'ui/organisms/AppBar/AppBar'
-import { IconButton } from 'ui/molecules/IconButton/IconButton'
+import { AppBar } from 'ui/organisms'
+import { IconButton } from 'ui/molecules'
 
 
 class FeedPageContainer extends Component {
