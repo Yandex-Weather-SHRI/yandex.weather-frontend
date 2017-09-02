@@ -10,6 +10,7 @@ import { getFeedByFilters } from 'redux/feed/selectors'
 import { setFeedFilter } from 'redux/filters/actions'
 import { categoryGroup } from 'constants/categoryGroup'
 import { categories, meteoaddictedCategory } from 'constants/categories'
+import { RootModal } from '../../organisms/RootModal/RootModal';
 
 const MOCK_CARDS = [
   {

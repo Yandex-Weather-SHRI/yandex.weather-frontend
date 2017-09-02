@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+        <linearGradient id="c" x1="-12.286%" x2="14.826%" y1="-69.053%" y2="213.35%">
+            <stop offset="0%" stop-color="#30CFD0"/>
+            <stop offset="100%" stop-color="#330867"/>
+        </linearGradient>
+        <rect id="a" width="344" height="190" rx="4"/>
+        <filter id="b" width="121.2%" height="138.4%" x="-10.6%" y="-17.1%" filterUnits="objectBoundingBox">
+            <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="5"/>
+            <feColorMatrix in="shadowBlurOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0.196078431 0 0 0 0 0.278431373 0 0 0 0 0.533333333 0 0 0 0.121574955 0"/>
+            <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter2"/>
+            <feGaussianBlur in="shadowOffsetOuter2" result="shadowBlurOuter2" stdDeviation="8.5"/>
+            <feColorMatrix in="shadowBlurOuter2" result="shadowMatrixOuter2" values="0 0 0 0 0.192156863 0 0 0 0 0.529411765 0 0 0 0 0.666666667 0 0 0 0.417742301 0"/>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"/>
+                <feMergeNode in="shadowMatrixOuter2"/>
+            </feMerge>
+        </filter>
+        <linearGradient id="g" x1="50%" x2="50%" y1="0%" y2="100%">
+            <stop offset="0%" stop-color="#FFF" stop-opacity=".8"/>
+            <stop offset="4.905%" stop-color="#FFF" stop-opacity=".4"/>
+            <stop offset="20%" stop-color="#FFF" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#FFF" stop-opacity="0"/>
+        </linearGradient>
+        <rect id="f" width="280" height="178" rx="4"/>
+        <filter id="e" width="122.9%" height="136%" x="-11.4%" y="-13.5%" filterUnits="objectBoundingBox">
+            <feOffset dy="8" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="4"/>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"/>
+            <feColorMatrix in="shadowBlurOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.116366621 0"/>
+            <feOffset in="SourceAlpha" result="shadowOffsetOuter2"/>
+            <feGaussianBlur in="shadowOffsetOuter2" result="shadowBlurOuter2" stdDeviation="8"/>
+            <feComposite in="shadowBlurOuter2" in2="SourceAlpha" operator="out" result="shadowBlurOuter2"/>
+            <feColorMatrix in="shadowBlurOuter2" result="shadowMatrixOuter2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.199303668 0"/>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"/>
+                <feMergeNode in="shadowMatrixOuter2"/>
+            </feMerge>
+        </filter>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g transform="translate(-55 -115)">
+            <mask id="d" fill="#fff">
+                <use xlink:href="#a"/>
+            </mask>
+            <use fill="#000" filter="url(#b)" xlink:href="#a"/>
+            <use fill="url(#c)" xlink:href="#a"/>
+            <text fill="#FFF" font-family="YandexSansText-Regular, Yandex Sans Text" font-size="16" letter-spacing=".2" mask="url(#d)">
+                <tspan x="16" y="119">Людям с заболеваниями сердца </tspan> <tspan x="16" y="138">желательно уменьшить физическую </tspan> <tspan x="16" y="157">активност</tspan> <tspan x="94.552" y="157">ь</tspan>
+            </text>
+        </g>
+        <path fill="#FFF" d="M-64-255h360v640H-64z" opacity=".5"/>
+        <g transform="translate(-24 -24)">
+            <use fill="#000" filter="url(#e)" xlink:href="#f"/>
+            <use fill="#FFF" xlink:href="#f"/>
+            <rect width="279" height="177" x=".5" y=".5" stroke="url(#g)" rx="4"/>
+        </g>
+        <path fill="#000" fill-rule="nonzero" d="M3.207 11.793a1 1 0 1 0-1.414 1.414l6 6a1 1 0 0 0 1.414 0l13-13a1 1 0 1 0-1.414-1.414L8.5 17.086l-5.293-5.293z"/>
+    </g>
+</svg>

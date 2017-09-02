@@ -19,6 +19,7 @@ import {
 import { routeNames } from 'utils/routeNames'
 import { withAuthentication } from 'hocs/withAuthentication'
 import { checkAuth } from 'redux/user/actions'
+import { RootModal } from 'ui/organisms/RootModal/RootModal';
 
 
 const Container = styled.div`
@@ -77,6 +78,7 @@ class ApplicationContainer extends Component {
             <Route render={() => <Redirect to="/" />} />
           </Switch>
         </Router>
+        <RootModal />
       </Container>
     )
   }

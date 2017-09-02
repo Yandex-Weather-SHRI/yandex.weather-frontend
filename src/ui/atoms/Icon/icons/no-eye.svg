@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+        <linearGradient id="c" x1="-12.286%" x2="14.826%" y1="-69.053%" y2="213.35%">
+            <stop offset="0%" stop-color="#30CFD0"/>
+            <stop offset="100%" stop-color="#330867"/>
+        </linearGradient>
+        <rect id="a" width="344" height="190" rx="4"/>
+        <filter id="b" width="121.2%" height="138.4%" x="-10.6%" y="-17.1%" filterUnits="objectBoundingBox">
+            <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="5"/>
+            <feColorMatrix in="shadowBlurOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0.196078431 0 0 0 0 0.278431373 0 0 0 0 0.533333333 0 0 0 0.121574955 0"/>
+            <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter2"/>
+            <feGaussianBlur in="shadowOffsetOuter2" result="shadowBlurOuter2" stdDeviation="8.5"/>
+            <feColorMatrix in="shadowBlurOuter2" result="shadowMatrixOuter2" values="0 0 0 0 0.192156863 0 0 0 0 0.529411765 0 0 0 0 0.666666667 0 0 0 0.417742301 0"/>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"/>
+                <feMergeNode in="shadowMatrixOuter2"/>
+            </feMerge>
+        </filter>
+        <linearGradient id="g" x1="50%" x2="50%" y1="0%" y2="100%">
+            <stop offset="0%" stop-color="#FFF" stop-opacity=".8"/>
+            <stop offset="4.905%" stop-color="#FFF" stop-opacity=".4"/>
+            <stop offset="20%" stop-color="#FFF" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#FFF" stop-opacity="0"/>
+        </linearGradient>
+        <rect id="f" width="280" height="178" rx="4"/>
+        <filter id="e" width="122.9%" height="136%" x="-11.4%" y="-13.5%" filterUnits="objectBoundingBox">
+            <feOffset dy="8" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="4"/>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"/>
+            <feColorMatrix in="shadowBlurOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.116366621 0"/>
+            <feOffset in="SourceAlpha" result="shadowOffsetOuter2"/>
+            <feGaussianBlur in="shadowOffsetOuter2" result="shadowBlurOuter2" stdDeviation="8"/>
+            <feComposite in="shadowBlurOuter2" in2="SourceAlpha" operator="out" result="shadowBlurOuter2"/>
+            <feColorMatrix in="shadowBlurOuter2" result="shadowMatrixOuter2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.199303668 0"/>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"/>
+                <feMergeNode in="shadowMatrixOuter2"/>
+            </feMerge>
+        </filter>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g transform="translate(-55 -8)">
+            <mask id="d" fill="#fff">
+                <use xlink:href="#a"/>
+            </mask>
+            <use fill="#000" filter="url(#b)" xlink:href="#a"/>
+            <use fill="url(#c)" xlink:href="#a"/>
+            <g mask="url(#d)">
+                <path d="M4 0h336a4 4 0 0 1 4 4v44H0V4a4 4 0 0 1 4-4z"/>
+                <text fill="#FFF" font-family="YandexSansText-Bold, Yandex Sans Text" font-size="10" font-weight="bold" letter-spacing=".7">
+                    <tspan x="16" y="27">Метеозависимость</tspan>
+                </text>
+            </g>
+        </g>
+        <path fill="#FFF" d="M-64-354h360v640H-64z" opacity=".5"/>
+        <g transform="translate(-24 -123)">
+            <use fill="#000" filter="url(#e)" xlink:href="#f"/>
+            <use fill="#FFF" xlink:href="#f"/>
+            <rect width="279" height="177" x=".5" y=".5" stroke="url(#g)" rx="4"/>
+        </g>
+        <path fill="#000" fill-opacity=".87" d="M4.93 20.485a1 1 0 1 1-1.414-1.414l1.406-1.407c-.289-.21-.569-.432-.84-.666C2.244 15.415 1 13.414 1 12c0-1.414 1.242-3.415 3.078-4.998C6.248 5.132 9 4 12 4c1.903 0 3.705.454 5.323 1.263l1.748-1.748a1 1 0 1 1 1.414 1.414L19.08 6.333c.29.21.57.431.84.665C21.76 8.58 23 10.581 23 12c0 1.418-1.243 3.42-3.082 5.002C17.748 18.871 14.996 20 12 20c-1.9 0-3.702-.455-5.32-1.266l-1.75 1.75zM12 18c2.491 0 4.789-.943 6.613-2.514C20.054 14.246 21 12.724 21 12c0-.725-.944-2.247-2.384-3.487a10.87 10.87 0 0 0-.97-.745l-2.938 2.939a3 3 0 0 1-4.001 4.001l-2.52 2.519A9.803 9.803 0 0 0 12 18zm-2.708-4.707a3 3 0 0 1 4.001-4.001l2.522-2.521A9.831 9.831 0 0 0 12 6c-2.494 0-4.792.945-6.616 2.517C3.945 9.757 3 11.28 3 12c0 .719.947 2.242 2.387 3.483.31.267.634.516.97.745l2.935-2.935z"/>
+    </g>
+</svg>
