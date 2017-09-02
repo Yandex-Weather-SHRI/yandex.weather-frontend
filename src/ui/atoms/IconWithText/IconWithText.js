@@ -29,8 +29,19 @@ const Text = styled.span`
   ${({ textStyles }) => textStyles}
 `
 
-export const IconWithText = ({ iconName, text, itemOffsetTop, itemOffsetLeft, iconOffset, textStyles }) =>
-  <Container {...{ itemOffsetTop, itemOffsetLeft }}>
+export const IconWithText = (
+  {
+    iconName,
+    text,
+    itemOffsetTop,
+    itemOffsetLeft,
+    iconOffset,
+    textStyles,
+    onClick,
+    className,
+  }
+) =>
+  <Container {...{ itemOffsetTop, itemOffsetLeft, onClick, className }}>
     <Icon name={iconName} iconOffset={iconOffset} />
     <Text {...{ textStyles }}>{text}</Text>
   </Container>
@@ -42,6 +53,8 @@ IconWithText.propTypes = {
   itemOffsetLeft: PropTypes.string,
   iconOffset: PropTypes.string,
   textStyles: PropTypes.string,
+  className: PropTypes.string,
+  onClick: PropTypes.func,
 }
 
 IconWithText.defaultProps = {
@@ -49,4 +62,6 @@ IconWithText.defaultProps = {
   itemOffsetLeft: '',
   iconOffset: '',
   textStyles: '',
+  className: '',
+  onClick: () => {},
 }

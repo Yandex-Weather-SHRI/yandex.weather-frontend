@@ -11,6 +11,8 @@ import { setFeedFilter } from 'redux/filters/actions'
 import { categoryGroup } from 'constants/categoryGroup'
 import { categories, meteoaddictedCategory } from 'constants/categories'
 import { RootModal } from '../../organisms/RootModal/RootModal';
+import { modals } from '../../../constants/modals';
+import { openModal } from '../../../redux/modal/actions';
 
 const MOCK_CARDS = [
   {
@@ -76,7 +78,13 @@ class FeedPageContainer extends Component {
           setFeedFilter={this.setFeedFilter}
         />
         <CardsContainer>
-          {MOCK_CARDS.map(card => <FeedCard {...card} key={card.id} />)}
+          {MOCK_CARDS.map(card =>
+            <FeedCard
+              {...card}
+              onOptionsClick={() => this.props.openModal(modals.cardOptions, { cardId: card.id })}
+              key={card.id}
+            />
+          )}
         </CardsContainer>
       </div>
     )
@@ -93,6 +101,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   getFeed,
   setFeedFilter,
+  openModal,
 }
 
 export const FeedPage = connect(

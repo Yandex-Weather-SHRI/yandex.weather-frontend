@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { connect } from 'react-redux';
+import { closeModal } from '../../../redux/modal/actions'
 
 export const Container = styled.div`
   border-radius: 4px;
@@ -16,7 +18,7 @@ export const Container = styled.div`
   border-image-slice: 1;
 `
 
-export class SimpleModal extends React.Component {
+class SimpleModalInner extends React.Component {
 
   componentDidMount() {
     window.document.addEventListener('click', this.handleDocumentClick)
@@ -44,7 +46,10 @@ export class SimpleModal extends React.Component {
   }
 }
 
-SimpleModal.propTypes = {
+SimpleModalInner.propTypes = {
   closeModal: PropTypes.func.isRequired,
 }
+
+export const SimpleModal = connect(null, { closeModal })(SimpleModalInner)
+
 
