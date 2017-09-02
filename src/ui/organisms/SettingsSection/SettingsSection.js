@@ -9,6 +9,11 @@ import {
 } from 'constants/categoryGroup'
 
 
+const SectionWrapper = styled.section`
+  margin-top: 8px;
+  background-color: #f7f7f7;
+`
+
 const SectionHeadingWrapper = styled.div`
   width: 100%;
   padding: 12px 16px;
@@ -16,16 +21,13 @@ const SectionHeadingWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   margin-top: 8px;
+  background-color: #fff;
 `
 
 const SectionHeadingText = styled.h1`
   font-size: 1.6rem;
   font-weight: 500;
   margin-left: 16px;
-`
-
-const SectionChildrenWrapper = styled.div`
-  background-color: #f7f7f7;
 `
 
 const SectionHeading = ({ icon, text }) => (
@@ -38,9 +40,9 @@ const SectionHeading = ({ icon, text }) => (
 export const SettingsSection = ({ category, children }) => (
   <section>
     <SectionHeading icon={`categories/${categoryGroup[category]}`} text={categoryNames[category]} />
-    <SectionChildrenWrapper>
+    <div>
       {children}
-    </SectionChildrenWrapper>
+    </div>
   </section>
 )
 
