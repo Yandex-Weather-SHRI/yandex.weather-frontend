@@ -15,7 +15,6 @@ const SimpleModal = styled(BaseSimpleModal)`
   flex-direction: column;
 `
 
-
 const IconWithText = styled(IconWithTextBase)`
   cursor: pointer;
 `
