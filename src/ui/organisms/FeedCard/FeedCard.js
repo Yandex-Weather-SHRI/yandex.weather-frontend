@@ -75,31 +75,36 @@ const Text = styled.div`
   line-height: 1.2;
 `
 
-export const FeedCard = ({ categoryGroup, category, text, onShareClick, onOptionsClick }) =>
-  <Container {...{ categoryGroup }}>
-    <CategoryPicture
-      name={`categories/${category}`}
-      size={160}
-    />
-    <Header>
-      <CategoryGroupName>
-        {categoryGroupDisplayNames[categoryGroup] || 'Совет'}
-      </CategoryGroupName>
-      <HeaderButtons>
-        <HeaderButton icon="share" onClick={onShareClick} />
-        <HeaderButton icon="more" onClick={onOptionsClick} />
-      </HeaderButtons>
-    </Header>
-    <Content>
-      <CategoryName>
-        {categoriesDisplayNames[category]}
-      </CategoryName>
-      <Text>
-        {text}
-      </Text>
-      {feedMetaComponents[category] && feedMetaComponents[category]()}
-    </Content>
-  </Container>
+export const FeedCard = ({ categoryGroup, category, text, onShareClick, onOptionsClick }) => {
+  const FeedMeta = feedMetaComponents[category]
+
+  return (
+    <Container {...{ categoryGroup }}>
+      <CategoryPicture
+        name={`categories/${category}`}
+        size={160}
+      />
+      <Header>
+        <CategoryGroupName>
+          {categoryGroupDisplayNames[categoryGroup] || 'Совет'}
+        </CategoryGroupName>
+        <HeaderButtons>
+          <HeaderButton icon="share" onClick={onShareClick} />
+          <HeaderButton icon="more" onClick={onOptionsClick} />
+        </HeaderButtons>
+      </Header>
+      <Content>
+        <CategoryName>
+          {categoriesDisplayNames[category]}
+        </CategoryName>
+        <Text>
+          {text}
+        </Text>
+        {FeedMeta && <FeedMeta />}
+      </Content>
+    </Container>
+  )
+}
 
 FeedCard.propTypes = {
   categoryGroup: PropTypes.oneOf(categoryGroups).isRequired,
