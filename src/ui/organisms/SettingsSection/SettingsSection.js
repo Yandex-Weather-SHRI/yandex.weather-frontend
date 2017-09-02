@@ -9,12 +9,12 @@ import {
 } from 'constants/categoryGroup'
 
 
-const SectionWrapper = styled.section`
+const Container = styled.section`
   margin-top: 8px;
   background-color: #f7f7f7;
 `
 
-const SectionHeadingWrapper = styled.div`
+const Heading = styled.div`
   width: 100%;
   padding: 12px 16px;
   display: flex;
@@ -23,13 +23,13 @@ const SectionHeadingWrapper = styled.div`
   background-color: #fff;
 `
 
-const SectionHeadingText = styled.h1`
+const Title = styled.h1`
   font-size: 1.6rem;
   font-weight: 500;
   margin-left: 16px;
 `
 
-const SectionScroll = styled(ScrollContainer) `
+const Content = styled(ScrollContainer) `
   padding: 24px 16px;
 
   &:after {
@@ -40,15 +40,15 @@ const SectionScroll = styled(ScrollContainer) `
 `
 
 export const SettingsSection = ({ group, children }) => (
-  <SectionWrapper>
-    <SectionHeadingWrapper>
+  <Container>
+    <Heading>
       <Icon name={`categories/${categoryGroup[group]}`} size={24} />
-      <SectionHeadingText>{categoryNames[group]}</SectionHeadingText>
-    </SectionHeadingWrapper>
-    <SectionScroll>
+      <Title>{categoryNames[group]}</Title>
+    </Heading>
+    <Content>
       {children}
-    </SectionScroll>
-  </SectionWrapper>
+    </Content>
+  </Container>
 )
 
 SettingsSection.propTypes = {
