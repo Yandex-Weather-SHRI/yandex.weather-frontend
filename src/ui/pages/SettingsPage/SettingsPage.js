@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom'
 import { AppBar, SettingsSection } from 'ui/organisms'
 import { IconButton, SettingsCard } from 'ui/molecules'
 import { routeNames } from 'utils/routeNames'
-import { categoryGroups } from 'constants/categoryGroup'
+import { categoryGroups, categoryGroupCategories } from 'constants/categoryGroup'
+import { categoriesDisplayNames, categoriesAdvicesCount } from 'constants/categories'
 
 
 export const SettingsPage = () => (
@@ -19,10 +20,24 @@ export const SettingsPage = () => (
     />
     {categoryGroups.map(group => (
       group !== 'all' && (
-        <SettingsSection {...{ group }}>
-          {// TODO: сделать map для всех категорий групп
+        <SettingsSection key={group} {...{ group }}>
+          {
+            categoryGroupCategories[group].map((cat) => {
+              let isChecked = false
+              const handleClick = () => {
+                isChecked = !isChecked
+              }
+              return (
+                <SettingsCard
+                  group={group}
+                  catName={categoriesDisplayNames[cat]}
+                  catAdvices={categoriesAdvicesCount[cat]}
+                  onClick={handleClick}
+                  key={cat}
+                />
+              )
+            })
           }
-          <SettingsCard group={group} catName='Сердце' catAdvices='3 совета' onClick={() => null} />
         </SettingsSection>
       )
     ))}

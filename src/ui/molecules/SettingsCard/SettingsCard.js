@@ -13,8 +13,9 @@ const SettingsCardWrapper = styled.div`
   justify-content: space-between;
   padding: 12px;
   border-radius: 4px;
-  width: 144px;
+  min-width: 144px;
   height: 112px;
+  margin-right: 8px;
 `
 
 const SettingsCardName = styled.h2`
@@ -51,7 +52,7 @@ export const SettingsCard = ({ group, catName, catAdvices, onClick, checked }) =
   <SettingsCardWrapper name={group} onClick={onClick}>
     <SettingsCardTop>
       <Line />
-      <Icon name={`settings_${checked}`} size="24" />
+      <Icon name={`settings_${checked}`} size={24} />
     </SettingsCardTop>
     <SettingsCardContent>
       <SettingsCardName>{catName}</SettingsCardName>
