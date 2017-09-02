@@ -48,18 +48,16 @@ class SettingsPageContainer extends Component {
         {categoryGroups.map(group => (
           group !== 'all' && (
             <SettingsSection key={group} {...{ group }}>
-              {
-                categoryGroupCategories[group].map(category => (
-                  <SettingsCard
-                    group={group}
-                    catName={categoriesDisplayNames[category]}
-                    catAdvices={categoriesAdvicesCount[category]}
-                    checked={settings[category].enabled}
-                    onClick={this.handleToggleSettingsItem(settings[category])}
-                    key={category}
-                  />
-                ))
-              }
+              {categoryGroupCategories[group].map(category => (
+                <SettingsCard
+                  group={group}
+                  catName={categoriesDisplayNames[category]}
+                  catAdvices={categoriesAdvicesCount[category]}
+                  checked={settings[category].enabled}
+                  onClick={this.handleToggleSettingsItem(settings[category])}
+                  key={category}
+                />
+              ))}
             </SettingsSection>
           )
         ))}
