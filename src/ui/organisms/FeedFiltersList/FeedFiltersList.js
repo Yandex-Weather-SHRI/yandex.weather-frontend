@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { FeedFilter } from 'ui/atoms'
+import { FeedFilter, ScrollContainer } from 'ui/atoms'
 
 
 const Container = styled.div`
@@ -10,19 +10,13 @@ const Container = styled.div`
   width: 100vw;
 `
 
-const Wrapper = styled.div`
-  display: flex;
-  overflow-x: scroll;
-  -webkit-overflow-scrolling: touch;
+const Wrapper = ScrollContainer.extend`
   padding: 16px 8px;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
 
   &:after {
     content: '';
     flex: 0 0 8px;
+    height: 16px;
   }
 `
 
