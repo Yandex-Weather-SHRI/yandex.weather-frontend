@@ -14,8 +14,6 @@ import { healthCategory } from 'constants/categories'
 import { routeNames } from 'utils/routeNames'
 import { openModal } from 'redux/modal/actions'
 
-import { openModal } from '../../../redux/modal/actions'
-
 
 const MOCK_CARDS = [
   [
@@ -41,7 +39,6 @@ const MOCK_CARDS = [
       categoryGroup: categoryGroup.health,
       category: healthCategory.asthma,
       text: 'Большая влажность и сильный ветер. Для людей, болеющих астмой, рекомендуем выбрать спокойную деятельность',
-      text: 'Людям с заболеваниями суставов желательно уменьшить на них физическую нагрузку',
       onShareClick: () => console.log('share!'),
       onOptionsClick: () => console.log('options!'),
       id: 2,
