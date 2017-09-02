@@ -17,7 +17,7 @@ export const categoryGroupCategories = {
     healthCategory.joint,
     healthCategory.skin,
     healthCategory.allergy,
-    healthCategory.ultraviolet,
+    // healthCategory.ultraviolet,
   ],
   [categoryGroup.motorists]: [],
   [categoryGroup.ultraviolet]: [],
