@@ -80,7 +80,6 @@ export function getCategoriesSettings() {
       throw new Error(`Attempted to update user setting with falsy token=${login} in app state.`)
     }
     try {
-      console.log(login)
       const categories = await request.get(`/v1/settings/categories?login=${login}`)
       dispatch(setUserSettings({
         settings: { categories },
