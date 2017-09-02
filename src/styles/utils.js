@@ -3,7 +3,7 @@ import { css } from 'styled-components'
 import { categoryGroup } from 'constants/categoryGroup'
 
 
-export function getFeedFilterStyle({ name }) {
+export function getCategoryGroupStyle({ name }) {
   switch (name) {
     case categoryGroup.allergy:
       return css`
