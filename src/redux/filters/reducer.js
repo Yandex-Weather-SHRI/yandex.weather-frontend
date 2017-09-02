@@ -12,23 +12,13 @@ const filtersDefaultState = [
     active: true,
   },
   {
-    name: categoryGroup.allergy,
-    title: categoryGroupDisplayNames[categoryGroup.allergy],
-    active: false,
-  },
-  {
-    name: categoryGroup.meteoaddicted,
-    title: categoryGroupDisplayNames[categoryGroup.meteoaddicted],
+    name: categoryGroup.health,
+    title: categoryGroupDisplayNames[categoryGroup.health],
     active: false,
   },
   {
     name: categoryGroup.motorists,
     title: categoryGroupDisplayNames[categoryGroup.motorists],
-    active: false,
-  },
-  {
-    name: categoryGroup.ultraviolet,
-    title: categoryGroupDisplayNames[categoryGroup.ultraviolet],
     active: false,
   },
 ]

@@ -9,24 +9,26 @@ import { IconButton } from 'ui/molecules'
 import { getFeedByFilters } from 'redux/feed/selectors'
 import { setFeedFilter } from 'redux/filters/actions'
 import { categoryGroup } from 'constants/categoryGroup'
-import { categories, meteoaddictedCategory } from 'constants/categories'
+import { healthCategory } from 'constants/categories'
 import { Link } from 'react-router-dom'
 import { routeNames } from 'utils/routeNames'
+
+import { openModal } from '../../../redux/modal/actions'
 
 
 const MOCK_CARDS = [
   [
     {
-      categoryGroup: categoryGroup.meteoaddicted,
-      category: meteoaddictedCategory.heart,
+      categoryGroup: categoryGroup.health,
+      category: healthCategory.heart,
       text: 'Людям с заболеваниями сердца желательно уменьшить физическую активность',
       onShareClick: () => console.log('share!'),
       onOptionsClick: () => console.log('options!'),
       id: 1,
     },
     {
-      categoryGroup: categoryGroup.meteoaddicted,
-      category: meteoaddictedCategory.joint,
+      categoryGroup: categoryGroup.health,
+      category: healthCategory.joint,
       text: 'lorem',
       onShareClick: () => console.log('share!'),
       onOptionsClick: () => console.log('options!'),
@@ -35,8 +37,8 @@ const MOCK_CARDS = [
   ],
   [
     {
-      categoryGroup: categoryGroup.meteoaddicted,
-      category: meteoaddictedCategory.asthma,
+      categoryGroup: categoryGroup.health,
+      category: healthCategory.asthma,
       text: 'Для людей с заболеванием астмы рекомендуем выбрать спокойную деятельность',
       onShareClick: () => console.log('share!'),
       onOptionsClick: () => console.log('options!'),
@@ -113,6 +115,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   getFeed,
   setFeedFilter,
+  openModal,
 }
 
 export const FeedPage = connect(

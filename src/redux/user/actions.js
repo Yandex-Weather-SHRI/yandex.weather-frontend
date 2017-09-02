@@ -3,6 +3,7 @@ import { createAction } from 'redux-act'
 import { request } from 'utils/fetchHelper'
 import { CLIENT_ID } from 'constants/passport'
 
+
 const O_AUTH_TOKEN_KEY = 'oauth_token'
 
 export const setTokenPure = createAction('user.setTokenPure')
