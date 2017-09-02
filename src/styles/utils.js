@@ -15,8 +15,10 @@ export function getFeedFilterStyle({ name }) {
     case categoryGroup.meteoaddicted:
       return css`
         color: rgba(255, 255, 255, 0.87);
-        background-image: linear-gradient(158deg, #30cfd0, #330867);
-        box-shadow: 0 2px 10px 0 rgba(50, 71, 136, 0.12), 0 2px 17px 0 rgba(49, 135, 170, 0.42);
+        background-image: linear-gradient(to bottom, #309bb4, #32689a);
+        box-shadow:
+          0 2px 6px 0 rgba(50, 71, 136, 0.12),
+          0 2px 16px 0 rgba(49, 135, 170, 0.42);
       `
 
     case categoryGroup.motorists:
