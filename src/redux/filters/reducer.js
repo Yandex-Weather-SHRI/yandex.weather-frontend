@@ -17,8 +17,8 @@ const filtersDefaultState = [
     active: false,
   },
   {
-    name: categoryGroup.meteoaddicted,
-    title: categoryGroupDisplayNames[categoryGroup.meteoaddicted],
+    name: categoryGroup.health,
+    title: categoryGroupDisplayNames[categoryGroup.health],
     active: false,
   },
   {

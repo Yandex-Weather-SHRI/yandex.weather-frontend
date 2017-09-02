@@ -10,7 +10,7 @@ import { categoryGroup as categoryGroupDict } from 'constants/categoryGroup'
 const DEFAULT_CARD_GRADIENT = 'linear-gradient(170deg, #30cfd0, #330867)'
 
 const cardGradient = {
-  [categoryGroupDict.meteoaddicted]: DEFAULT_CARD_GRADIENT,
+  [categoryGroupDict.health]: DEFAULT_CARD_GRADIENT,
 }
 
 const mockTabs = [
