@@ -14,12 +14,7 @@ import { getNormalizedSettings } from 'redux/user/selectors'
 
 class SettingsPageContainer extends Component {
   static propTypes = {
-    settings: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        enabled: PropTypes.bool.isRequired,
-      })
-    ).isRequired,
+    settings: PropTypes.shape().isRequired,
     getCategoriesSettings: PropTypes.func.isRequired,
     updateOneUserSetting: PropTypes.func.isRequired,
   }
