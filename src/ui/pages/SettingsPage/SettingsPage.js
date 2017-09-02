@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { AppBar } from 'ui/organisms'
+import { AppBar, SettingsSection } from 'ui/organisms'
 import { IconButton } from 'ui/molecules'
 import { routeNames } from 'utils/routeNames'
+import { categoryGroups } from 'constants/categoryGroup'
 
 
 export const SettingsPage = () => (
@@ -16,5 +17,13 @@ export const SettingsPage = () => (
         </Link>
       }
     />
+    {categoryGroups.map((group) => {
+      if (group === 'all') return null
+      return (
+        <SettingsSection category={group}>
+          some content here
+        </SettingsSection>
+      )
+    })}
   </div>
 )
