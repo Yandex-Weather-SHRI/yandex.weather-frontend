@@ -8,7 +8,6 @@ import { getCategoryGroupStyle } from 'styles/utils'
 
 const SettingsCardWrapper = styled.div`
   ${getCategoryGroupStyle}
-  
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -26,7 +25,7 @@ const SettingsCardName = styled.h2`
 
 const SettingsCardAdvices = styled.p`
   font-weight: 500;
-  color: rgba(255, 255, 255, .7);
+  color: rgba(255, 255, 255, 0.7);
 `
 
 const SettingsCardContent = styled.div`
@@ -43,7 +42,7 @@ const SettingsCardTop = styled.div`
 const Line = styled.div`
   width: 56px;
   height: 2px;
-  background-color: rgba(255, 255, 255, .3);
+  background-color: rgba(255, 255, 255, 0.3);
   border-radius: 8px;
 `
 
