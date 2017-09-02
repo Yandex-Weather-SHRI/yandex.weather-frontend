@@ -14,8 +14,8 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(255,255,255,0.5);
-  transition: opacity .3s ease;
+  background-color: rgba(255, 255, 255, 0.5);
+  transition: opacity 0.3s ease;
   ${({ hidden }) => hidden
     ? 'opacity: 0; pointer-events: none'
     : ''

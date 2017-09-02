@@ -10,7 +10,7 @@ const Container = styled.div`
   align-items: center;
 
   & + & {
-  ${props => props.itemOffsetLeft
+    ${props => props.itemOffsetLeft
     ? `margin-left: ${props.itemOffsetLeft};`
     : `margin-top: ${props.itemOffsetTop};`
 }
