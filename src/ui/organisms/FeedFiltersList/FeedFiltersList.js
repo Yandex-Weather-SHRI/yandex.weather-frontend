@@ -16,7 +16,7 @@ const Wrapper = ScrollContainer.extend`
   &:after {
     content: '';
     flex: 0 0 8px;
-    height: 16px;
+    height: 8px;
   }
 `
 
