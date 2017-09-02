@@ -71,5 +71,5 @@ SettingsCard.propTypes = {
 
 SettingsCard.defaultProps = {
   checked: false,
-  catAdvices: '1 совет'
+  catAdvices: '1 совет',
 }
