@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { SimpleModal as BaseSimpleModal } from './base/SimpleModal'
 import { IconWithText as IconWithTextBase } from '../atoms/IconWithText/IconWithText'
 import { closeModal } from '../../redux/modal/actions'
+import { ModalMessage } from '../atoms/ModalMessage/ModalMessage'
 
 
 const SimpleModal = styled(BaseSimpleModal)`
@@ -53,23 +54,6 @@ class CardOptionsModalInner extends React.Component {
     showThanksBlock: false,
   }
 
-  render() {
-    return (
-      <SimpleModal>
-        {OPTIONS.map(option =>
-          <IconWithText
-            {...option}
-            onClick={() => this.handleOptionClick(option)}
-            key={option.id}
-            itemOffsetTop="22px"
-            iconOffset="16px"
-            textStyles="font-size: 16px; font-weight: 400; line-height: 1.2;"
-          />
-        )}
-      </SimpleModal>
-    )
-  }
-
   handleOptionClick = (option) => {
     console.log(option.text, this.props.meta) // todo backend
 
@@ -78,6 +62,29 @@ class CardOptionsModalInner extends React.Component {
       return
     }
     this.props.closeModal()
+  }
+
+  render() {
+    return (
+      <SimpleModal>
+        {this.state.showThanksBlock
+          ? <ModalMessage
+            title="Спасибо"
+            text="Ваш отзыв передан в Яндекс. Благодаря им мы делаем советы лучше"
+          />
+          : OPTIONS.map(option =>
+            <IconWithText
+              {...option}
+              onClick={() => this.handleOptionClick(option)}
+              key={option.id}
+              itemOffsetTop="22px"
+              iconOffset="16px"
+              textStyles="font-size: 16px; font-weight: 400; line-height: 1.2;"
+            />
+          )
+        }
+      </SimpleModal>
+    )
   }
 }
 

@@ -9,6 +9,7 @@ const Container = styled.div`
 const Title = styled.div`
   font-size: 20px;
   font-weight: 500;
+  margin-bottom: 16px;
 `
 const Text = styled.div`
   font-size: 16px;

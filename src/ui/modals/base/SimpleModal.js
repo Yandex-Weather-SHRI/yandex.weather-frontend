@@ -24,7 +24,7 @@ export const Container = styled.div`
 
 class SimpleModalInner extends React.Component {
   componentDidMount() {
-    window.document.addEventListener('click', this.handleDocumentClick)
+    window.document.addEventListener('click', this.handleDocumentClick, true)
   }
 
   componentWillUnmount() {
@@ -32,6 +32,9 @@ class SimpleModalInner extends React.Component {
   }
 
   handleDocumentClick = (e) => {
+    if (!this.containerEl) {
+      return
+    }
     const clickOutsideModal = !this.containerEl.contains(e.target)
     if (clickOutsideModal) {
       this.props.closeModal()
