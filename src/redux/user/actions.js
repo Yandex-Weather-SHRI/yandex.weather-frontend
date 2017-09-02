@@ -64,7 +64,7 @@ export function createOrUpdateUserWithCategorySettings(categories) {
       )
       console.log(responseCategories)
       dispatch(setUserSettings({
-        settings: responseCategories,
+        settings: { categories: responseCategories },
       }))
     }
     catch (err) {
@@ -80,12 +80,10 @@ export function getCategoriesSettings() {
       throw new Error(`Attempted to update user setting with falsy token=${login} in app state.`)
     }
     try {
-      const responseCategories = await request.get(
-        '/v1/settings/categories',
-        { login }
-      )
+      console.log(login)
+      const categories = await request.get(`/v1/settings/categories?login=${login}`)
       dispatch(setUserSettings({
-        settings: responseCategories,
+        settings: { categories },
       }))
       return Promise.resolve()
     }
@@ -93,6 +91,14 @@ export function getCategoriesSettings() {
       // todo
       return Promise.reject()
     }
+  }
+}
+
+export function updateOneUserSetting(name, enabled) {
+  return (dispatch, getState) => {
+    const { user: { settings: { categories } } } = getState()
+    const updatedCategories = categories.map(item => item.name === name ? { ...item, enabled } : item)
+    dispatch(createOrUpdateUserWithCategorySettings(updatedCategories))
   }
 }
 
