@@ -1,11 +1,11 @@
 import { css } from 'styled-components'
 
 import { RoundedButton } from 'ui/atoms'
-import { getFeedFilterStyle } from 'styles/utils'
+import { getCategoryGroupStyle } from 'styles/utils'
 
 
 export const FeedFilter = RoundedButton.extend`
-  ${getFeedFilterStyle}
+  ${getCategoryGroupStyle}
   margin-right: 8px;
 
   &:last-of-type {

@@ -1,39 +1,30 @@
-import { meteoaddictedCategories } from './categories'
+import { healthCategory } from './categories'
 
-
-export const categoryGroups = [
-  'all',
-  'meteoaddicted',
-  'allergy',
-  'motorists',
-  'ultraviolet',
-]
 
 export const categoryGroup = {
   all: 'all',
-  meteoaddicted: 'meteoaddicted',
-  allergy: 'allergy',
+  health: 'health',
   motorists: 'motorists',
-  ultraviolet: 'ultraviolet',
 }
+
+export const categoryGroups = Object.keys(categoryGroup)
 
 export const categoryGroupCategories = {
   [categoryGroup.all]: ['all'],
-  [categoryGroup.meteoaddicted]: [
-    meteoaddictedCategories.asthma,
-    meteoaddictedCategories.heart,
-    meteoaddictedCategories.joint,
-    meteoaddictedCategories.skin,
+  [categoryGroup.health]: [
+    healthCategory.asthma,
+    healthCategory.heart,
+    healthCategory.joint,
+    healthCategory.skin,
+    healthCategory.allergy,
+    healthCategory.ultraviolet,
   ],
-  [categoryGroup.allergy]: [],
   [categoryGroup.motorists]: [],
   [categoryGroup.ultraviolet]: [],
 }
 
 export const categoryGroupDisplayNames = {
   [categoryGroup.all]: 'Все',
-  [categoryGroup.meteoaddicted]: 'Метеозависимость',
-  [categoryGroup.allergy]: 'Аллергия',
+  [categoryGroup.health]: 'Здоровье',
   [categoryGroup.motorists]: 'Автомобилисты',
-  [categoryGroup.ultraviolet]: 'Ультрафиолет',
 }
