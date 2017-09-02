@@ -5,15 +5,15 @@ import styled from 'styled-components'
 import { Icon } from 'ui/atoms'
 import { IconButton } from 'ui/molecules'
 import { categoryGroupDisplayNames, categoryGroups } from 'constants/categoryGroup'
-import { meteoaddictedCategory, categories, categoriesDisplayNames } from 'constants/categories'
+import { healthCategory, categories, categoriesDisplayNames } from 'constants/categories'
 
 import { FeedCardMetaHeart, FeedCardMetaAsthma, FeedCardMetaJoint } from './metas'
 
 
 const feedMetaComponents = {
-  [meteoaddictedCategory.heart]: FeedCardMetaHeart,
-  [meteoaddictedCategory.joint]: FeedCardMetaJoint,
-  [meteoaddictedCategory.asthma]: FeedCardMetaAsthma,
+  [healthCategory.heart]: FeedCardMetaHeart,
+  [healthCategory.joint]: FeedCardMetaJoint,
+  [healthCategory.asthma]: FeedCardMetaAsthma,
 }
 
 const Container = styled.div`

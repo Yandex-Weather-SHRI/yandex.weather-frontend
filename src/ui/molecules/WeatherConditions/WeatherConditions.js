@@ -36,7 +36,7 @@ const PureWeatherConditions = ({ humidity, pressure, waterTemp, wind }) => {
   return (
     <Container>
       {icons.map(icon =>
-        <IconWithText {...icon} key={icon.iconName} />
+        <IconWithText {...icon} key={icon.iconName} itemOffsetLeft="16px" iconOffset="4px" />
       )}
     </Container>
   )

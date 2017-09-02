@@ -11,7 +11,7 @@ export const handleSubmitOnboarding = () => {
   requestLogin({
     login: 'testLogin',
     categories: defaultCategories,
-    nextRoute: routeNames.feeds,
+    nextRoute: routeNames.feed,
   })
 }
 
