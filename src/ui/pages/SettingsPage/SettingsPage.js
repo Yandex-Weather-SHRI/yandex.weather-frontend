@@ -22,21 +22,15 @@ export const SettingsPage = () => (
       group !== 'all' && (
         <SettingsSection key={group} {...{ group }}>
           {
-            categoryGroupCategories[group].map((cat) => {
-              let isChecked = false
-              const handleClick = () => {
-                isChecked = !isChecked
-              }
-              return (
-                <SettingsCard
-                  group={group}
-                  catName={categoriesDisplayNames[cat]}
-                  catAdvices={categoriesAdvicesCount[cat]}
-                  onClick={handleClick}
-                  key={cat}
-                />
-              )
-            })
+            categoryGroupCategories[group].map(cat => (
+              <SettingsCard
+                group={group}
+                catName={categoriesDisplayNames[cat]}
+                catAdvices={categoriesAdvicesCount[cat]}
+                onClick={console.log}
+                key={cat}
+              />
+            ))
           }
         </SettingsSection>
       )

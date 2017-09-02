@@ -16,6 +16,7 @@ const SettingsCardWrapper = styled.div`
   min-width: 144px;
   height: 112px;
   margin-right: 8px;
+  user-select: none;
 `
 
 const SettingsCardName = styled.h2`

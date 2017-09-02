@@ -39,6 +39,12 @@ const SectionHeading = ({ icon, text }) => (
 
 const SectionScroll = styled(ScrollContainer) `
   padding: 24px 16px;
+
+  &:after {
+    content: '';
+    flex: 0 0 8px;
+    height: 8px;
+  }
 `
 
 export const SettingsSection = ({ group, children }) => (
