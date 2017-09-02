@@ -5,6 +5,9 @@ import styled from 'styled-components'
 import { FeedCard } from 'ui/organisms'
 import { TabBar } from 'ui/molecules'
 import { categoryGroup as categoryGroupDict } from 'constants/categoryGroup'
+import { connect } from 'react-redux'
+import { openModal } from '../../../redux/modal/actions'
+import { modals } from '../../../constants/modals'
 
 
 const DEFAULT_CARD_GRADIENT = 'linear-gradient(170deg, #30cfd0, #330867)'
@@ -37,7 +40,7 @@ const Container = styled.div`
   }
 `
 
-export class FeedCardContainer extends Component {
+export class FeedCardContainerInner extends Component {
   static propTypes = {
     cardsList: PropTypes.arrayOf(
       PropTypes.shape()
@@ -59,7 +62,10 @@ export class FeedCardContainer extends Component {
 
     return (
       <Container categoryGroup={card.categoryGroup}>
-        <FeedCard {...card} />
+        <FeedCard
+          {...card}
+          onOptionsClick={() => this.props.openModal(modals.cardOptions, { cardId: card.id })}
+        />
         {cardsList.length > 1 && (
           <TabBar
             tabs={mockTabs}
@@ -71,3 +77,10 @@ export class FeedCardContainer extends Component {
     )
   }
 }
+
+
+FeedCardContainerInner.propTypes = {
+  openModal: PropTypes.func.isRequired,
+}
+
+export const FeedCardContainer = connect(null, { openModal })(FeedCardContainerInner)
