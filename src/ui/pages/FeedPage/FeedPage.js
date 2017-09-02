@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 
 import { getFeed } from 'redux/feed/actions'
-import { AppBar, FeedFiltersList, FeedCard } from 'ui/organisms'
+import { AppBar, FeedFiltersList, FeedCardContainer } from 'ui/organisms'
 import { IconButton } from 'ui/molecules'
 import { getFeedByFilters } from 'redux/feed/selectors'
 import { setFeedFilter } from 'redux/filters/actions'
@@ -13,24 +13,39 @@ import { categories, meteoaddictedCategory } from 'constants/categories'
 import { RootModal } from '../../organisms/RootModal/RootModal';
 import { modals } from '../../../constants/modals';
 import { openModal } from '../../../redux/modal/actions';
+import { Link } from 'react-router-dom'
+import { routeNames } from 'utils/routeNames'
+
 
 const MOCK_CARDS = [
-  {
-    categoryGroup: categoryGroup.meteoaddicted,
-    category: meteoaddictedCategory.heart,
-    text: 'Людям с заболеваниями сердца желательно уменьшить физическую активность',
-    onShareClick: () => console.log('share!'),
-    onOptionsClick: () => console.log('options!'),
-    id: 1,
-  },
-  {
-    categoryGroup: categoryGroup.meteoaddicted,
-    category: meteoaddictedCategory.asthma,
-    text: 'Для людей с заболеванием астмы рекомендуем выбрать спокойную деятельность',
-    onShareClick: () => console.log('share!'),
-    onOptionsClick: () => console.log('options!'),
-    id: 2,
-  },
+  [
+    {
+      categoryGroup: categoryGroup.meteoaddicted,
+      category: meteoaddictedCategory.heart,
+      text: 'Людям с заболеваниями сердца желательно уменьшить физическую активность',
+      onShareClick: () => console.log('share!'),
+      onOptionsClick: () => console.log('options!'),
+      id: 1,
+    },
+    {
+      categoryGroup: categoryGroup.meteoaddicted,
+      category: meteoaddictedCategory.joint,
+      text: 'lorem',
+      onShareClick: () => console.log('share!'),
+      onOptionsClick: () => console.log('options!'),
+      id: 2,
+    },
+  ],
+  [
+    {
+      categoryGroup: categoryGroup.meteoaddicted,
+      category: meteoaddictedCategory.asthma,
+      text: 'Для людей с заболеванием астмы рекомендуем выбрать спокойную деятельность',
+      onShareClick: () => console.log('share!'),
+      onOptionsClick: () => console.log('options!'),
+      id: 2,
+    },
+  ],
 ]
 
 const CardsContainer = styled.div`
@@ -67,10 +82,14 @@ class FeedPageContainer extends Component {
         <AppBar
           title="Советы"
           elementLeft={
-            <IconButton icon="search" size="24" />
+            <Link to={routeNames.index}>
+              <IconButton icon="arrow-left" size="24" />
+            </Link>
           }
           elementRight={
-            <IconButton icon="star" size="24" />
+            <Link to={routeNames.settings}>
+              <IconButton icon="settings" size="24" />
+            </Link>
           }
         />
         <FeedFiltersList
@@ -78,13 +97,9 @@ class FeedPageContainer extends Component {
           setFeedFilter={this.setFeedFilter}
         />
         <CardsContainer>
-          {MOCK_CARDS.map(card =>
-            <FeedCard
-              {...card}
-              onOptionsClick={() => this.props.openModal(modals.cardOptions, { cardId: card.id })}
-              key={card.id}
-            />
-          )}
+          {MOCK_CARDS.map((cardsList, key) => (
+            <FeedCardContainer {...{ cardsList, key }} />
+          ))}
         </CardsContainer>
       </div>
     )
