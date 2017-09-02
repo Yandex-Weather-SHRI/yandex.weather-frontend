@@ -1,12 +1,5 @@
 import { meteoaddictedCategories } from './categories'
 
-export const categoryGroups = [
-  'all',
-  'meteoaddicted',
-  'allergy',
-  'motorists',
-  'ultraviolet',
-]
 
 export const categoryGroup = {
   all: 'all',
@@ -15,6 +8,8 @@ export const categoryGroup = {
   motorists: 'motorists',
   ultraviolet: 'ultraviolet',
 }
+
+export const categoryGroups = Object.keys(categoryGroup)
 
 export const categoryGroupCategories = {
   [categoryGroup.all]: ['all'],
