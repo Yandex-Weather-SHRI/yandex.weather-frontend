@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-import { Icon } from 'ui/atoms'
+import { Icon, ScrollContainer } from 'ui/atoms'
 import {
   categoryGroup,
   categoryGroupDisplayNames as categoryNames,
@@ -37,17 +37,23 @@ const SectionHeading = ({ icon, text }) => (
   </SectionHeadingWrapper>
 )
 
-export const SettingsSection = ({ category, children }) => (
-  <section>
-    <SectionHeading icon={`categories/${categoryGroup[category]}`} text={categoryNames[category]} />
+const SectionScroll = styled(ScrollContainer) `
+  padding: 24px 16px;
+`
+
+export const SettingsSection = ({ group, children }) => (
+  <SectionWrapper>
+    <SectionHeading icon={`categories/${categoryGroup[group]}`} text={categoryNames[group]} />
     <div>
-      {children}
+      <SectionScroll>
+        {children}
+      </SectionScroll>
     </div>
-  </section>
+  </SectionWrapper>
 )
 
 SettingsSection.propTypes = {
-  category: PropTypes.string.isRequired,
+  group: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 }
 

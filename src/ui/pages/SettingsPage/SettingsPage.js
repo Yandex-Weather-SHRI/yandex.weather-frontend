@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { AppBar, SettingsSection } from 'ui/organisms'
-import { IconButton } from 'ui/molecules'
+import { IconButton, SettingsCard } from 'ui/molecules'
 import { routeNames } from 'utils/routeNames'
 import { categoryGroups } from 'constants/categoryGroup'
 
@@ -17,13 +17,14 @@ export const SettingsPage = () => (
         </Link>
       }
     />
-    {categoryGroups.map((group) => {
-      if (group === 'all') return null
-      return (
-        <SettingsSection category={group}>
-          some content here
+    {categoryGroups.map(group => (
+      group !== 'all' && (
+        <SettingsSection {...{ group }}>
+          {// TODO: сделать map для всех категорий групп
+          }
+          <SettingsCard group={group} catName='Сердце' catAdvices='3 совета' onClick={() => null} />
         </SettingsSection>
       )
-    })}
+    ))}
   </div>
 )
