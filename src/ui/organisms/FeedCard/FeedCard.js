@@ -2,13 +2,35 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
+import { Icon } from 'ui/atoms'
 import { IconButton } from 'ui/molecules'
 import { categoryGroupDisplayNames, categoryGroups } from 'constants/categoryGroup'
-import { categories, categoriesDisplayNames } from 'constants/categories'
+import { meteoaddictedCategory, categories, categoriesDisplayNames } from 'constants/categories'
 
+import { FeedCardMetaHeart, FeedCardMetaAsthma, FeedCardMetaJoint } from './metas'
+
+
+const feedMetaComponents = {
+  [meteoaddictedCategory.heart]: FeedCardMetaHeart,
+  [meteoaddictedCategory.joint]: FeedCardMetaJoint,
+  [meteoaddictedCategory.asthma]: FeedCardMetaAsthma,
+}
 
 const Container = styled.div`
   color: #fff;
+  position: relative;
+  z-index: 1;
+  min-height: 218px;
+`
+
+const CategoryPicture = styled(Icon)`
+  content: '';
+  position: absolute;
+  z-index: -1;
+  right: 0;
+  top: 56px;
+  bottom: 0;
+  margin: auto;
 `
 
 const Header = styled.div`
@@ -55,6 +77,10 @@ const Text = styled.div`
 
 export const FeedCard = ({ categoryGroup, category, text, onShareClick, onOptionsClick }) =>
   <Container {...{ categoryGroup }}>
+    <CategoryPicture
+      name={`categories/${category}`}
+      size={160}
+    />
     <Header>
       <CategoryGroupName>
         {categoryGroupDisplayNames[categoryGroup] || 'Совет'}
@@ -71,6 +97,7 @@ export const FeedCard = ({ categoryGroup, category, text, onShareClick, onOption
       <Text>
         {text}
       </Text>
+      {feedMetaComponents[category] && feedMetaComponents[category]()}
     </Content>
   </Container>
 
