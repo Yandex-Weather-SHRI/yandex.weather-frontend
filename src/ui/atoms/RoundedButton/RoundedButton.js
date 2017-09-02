@@ -13,4 +13,8 @@ export const RoundedButton = styled.button`
   text-transform: uppercase;
   transition: opacity 150ms ease-in-out;
   border: none;
+
+  &:focus {
+    outline: 0;
+  }
 `

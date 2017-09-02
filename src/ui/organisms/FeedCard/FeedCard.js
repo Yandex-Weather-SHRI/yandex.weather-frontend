@@ -3,29 +3,12 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { IconButton } from 'ui/molecules'
-import {
-  categoryGroupDisplayNames,
-  categoryGroups,
-  categoryGroup as categoryGroupDict,
-} from 'constants/categoryGroup'
+import { categoryGroupDisplayNames, categoryGroups } from 'constants/categoryGroup'
 import { categories, categoriesDisplayNames } from 'constants/categories'
 
 
-const DEFAULT_CARD_GRADIENT = 'linear-gradient(170deg, #30cfd0, #330867)'
-
-const cardGradient = {
-  [categoryGroupDict.meteoaddicted]: DEFAULT_CARD_GRADIENT,
-}
-
 const Container = styled.div`
-  border-radius: 4px;
-  background-image: ${({ categoryGroup }) => cardGradient[categoryGroup]};
-  box-shadow: 0 2px 10px 0 rgba(50, 71, 136, 0.12), 0 2px 17px 0 rgba(49, 135, 170, 0.42);
   color: #fff;
-
-  & + & {
-    margin-top: 16px;
-  }
 `
 
 const Header = styled.div`
