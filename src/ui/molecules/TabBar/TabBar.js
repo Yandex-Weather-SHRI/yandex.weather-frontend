@@ -25,7 +25,8 @@ const Wrapper = styled.div`
 
   &:after {
     content: '';
-    flex: 0 0 10px;
+    flex: 0 0 28px;
+    height: 28px;
   }
 `
 
