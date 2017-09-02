@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 
-import { RoundedButton } from 'ui/atoms'
+import { RoundedButton, ScrollContainer } from 'ui/atoms'
 
 
 const Container = styled.div`
@@ -11,17 +11,8 @@ const Container = styled.div`
   overflow: hidden;
 `
 
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  height: 100%;
+const Wrapper = ScrollContainer.extend`
   padding: 0 28px;
-  overflow-x: scroll;
-  -webkit-overflow-scrolling: touch;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
 
   &:after {
     content: '';
