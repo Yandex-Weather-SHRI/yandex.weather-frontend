@@ -17,7 +17,7 @@ export const handleSubmitOnboarding = () => {
 
 export const Component = ({ isAuthenticated }) => (
   <div>
-    {isAuthenticated && <Redirect to={routeNames.feeds} />}
+    {isAuthenticated && <Redirect to={routeNames.feed} />}
     <h1>OnBoardingPage</h1>
     <input type="checkbox" value="setting1" />
     <input type="checkbox" value="setting2" />
@@ -31,7 +31,7 @@ Component.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.user.oAuthToken,
+  isAuthenticated: Boolean(state.user.oAuthToken),
 })
 
 export const OnBoardingPage = connect(mapStateToProps)(Component)
