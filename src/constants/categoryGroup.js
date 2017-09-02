@@ -1,5 +1,6 @@
 import { meteoaddictedCategories } from './categories'
 
+
 export const categoryGroups = [
   'all',
   'meteoaddicted',
