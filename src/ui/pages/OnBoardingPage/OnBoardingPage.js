@@ -7,7 +7,7 @@ import { Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 
-export const handleSubmitOnboarding = () => {
+const handleSubmitOnboarding = () => {
   requestLogin({
     login: 'testLogin',
     categories: defaultCategories,
