@@ -7,7 +7,7 @@ import { TabBar } from 'ui/molecules'
 import { categoryGroup as categoryGroupDict } from 'constants/categoryGroup'
 import { connect } from 'react-redux'
 import { openModal } from '../../../redux/modal/actions'
-import { modals } from '../../../constants/modals';
+import { modals } from '../../../constants/modals'
 
 
 const DEFAULT_CARD_GRADIENT = 'linear-gradient(170deg, #30cfd0, #330867)'

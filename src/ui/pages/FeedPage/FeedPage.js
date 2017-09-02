@@ -9,12 +9,11 @@ import { IconButton } from 'ui/molecules'
 import { getFeedByFilters } from 'redux/feed/selectors'
 import { setFeedFilter } from 'redux/filters/actions'
 import { categoryGroup } from 'constants/categoryGroup'
-import { categories, meteoaddictedCategory } from 'constants/categories'
-import { RootModal } from '../../organisms/RootModal/RootModal';
-import { modals } from '../../../constants/modals';
-import { openModal } from '../../../redux/modal/actions';
+import { meteoaddictedCategory } from 'constants/categories'
 import { Link } from 'react-router-dom'
 import { routeNames } from 'utils/routeNames'
+
+import { openModal } from '../../../redux/modal/actions'
 
 
 const MOCK_CARDS = [

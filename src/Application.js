@@ -19,7 +19,7 @@ import {
 import { routeNames } from 'utils/routeNames'
 import { withAuthentication } from 'hocs/withAuthentication'
 import { checkAuth } from 'redux/user/actions'
-import { RootModal } from 'ui/organisms/RootModal/RootModal';
+import { RootModal } from 'ui/organisms/RootModal/RootModal'
 
 
 const Container = styled.div`

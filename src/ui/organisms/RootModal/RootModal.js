@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { CardOptionsModal } from '../../modals/CardOptionsModal'
 import { modalNames, modals } from '../../../constants/modals'
 
+
 const Container = styled.div`
   position: absolute;
   min-height: 100vh;
@@ -14,26 +15,25 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   background-color: rgba(255,255,255,0.5);
+  transition: opacity .3s ease;
+  ${({ hidden }) => hidden
+    ? 'opacity: 0; pointer-events: none'
+    : ''
+}
 `
 
 const modalComponents = {
   [modals.cardOptions]: CardOptionsModal,
 }
 
-// todo animation
-class RootModalInner extends React.Component {
-  render() {
-    const { isModalOpened, openedModal, meta } = this.props
-    const ConcreteModal = modalComponents[openedModal]
-    if (!isModalOpened || !ConcreteModal) {
-      return null
-    }
-    return (
-      <Container>
-        <ConcreteModal {...{ meta }} />
-      </Container>
-    )
-  }
+const RootModalInner = (props) => {
+  const { isModalOpened, openedModal, meta } = props
+  const ConcreteModal = modalComponents[openedModal]
+  return (
+    <Container hidden={!isModalOpened}>
+      {ConcreteModal && <ConcreteModal {...{ meta }} />}
+    </Container>
+  )
 }
 
 RootModalInner.propTypes = {

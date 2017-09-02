@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 import { closeModal } from '../../../redux/modal/actions'
+
 
 export const Container = styled.div`
   border-radius: 4px;
@@ -19,7 +20,6 @@ export const Container = styled.div`
 `
 
 class SimpleModalInner extends React.Component {
-
   componentDidMount() {
     window.document.addEventListener('click', this.handleDocumentClick)
   }
@@ -51,5 +51,4 @@ SimpleModalInner.propTypes = {
 }
 
 export const SimpleModal = connect(null, { closeModal })(SimpleModalInner)
-
 
