@@ -9,52 +9,9 @@ import { PageContent, PageLoader, AppBar, FeedFiltersList, FeedCardContainer } f
 import { IconButton } from 'ui/molecules'
 import { getFeedByFilters } from 'redux/feed/selectors'
 import { setFeedFilter } from 'redux/filters/actions'
-import { categoryGroup } from 'constants/categoryGroup'
-import { healthCategory } from 'constants/categories'
 import { routeNames } from 'utils/routeNames'
 import { openModal } from 'redux/modal/actions'
 
-
-const MOCK_CARDS = [
-  [
-    {
-      categoryGroup: categoryGroup.health,
-      category: healthCategory.heart,
-      text: 'Людям с заболеваниями сердца желательно уменьшить физическую активность',
-      onShareClick: () => console.log('share!'),
-      onOptionsClick: () => console.log('options!'),
-      id: 1,
-    },
-    {
-      categoryGroup: categoryGroup.health,
-      category: healthCategory.joint,
-      text: 'Людям с заболеваниями суставов желательно уменьшить на них физическую нагрузку',
-      onShareClick: () => console.log('share!'),
-      onOptionsClick: () => console.log('options!'),
-      id: 2,
-    },
-  ],
-  [
-    {
-      categoryGroup: categoryGroup.health,
-      category: healthCategory.asthma,
-      text: 'Большая влажность и сильный ветер. Для людей, болеющих астмой, рекомендуем выбрать спокойную деятельность',
-      onShareClick: () => console.log('share!'),
-      onOptionsClick: () => console.log('options!'),
-      id: 2,
-    },
-  ],
-  [
-    {
-      categoryGroup: categoryGroup.health,
-      category: healthCategory.joint,
-      text: 'Людям с заболеваниями суставов желательно уменьшить на них физическую нагрузку',
-      onShareClick: () => console.log('share!'),
-      onOptionsClick: () => console.log('options!'),
-      id: 2,
-    },
-  ],
-]
 
 const CardsContainer = styled.div`
   padding: 0 8px;
@@ -65,11 +22,13 @@ const CardsContainer = styled.div`
 class FeedPageContainer extends Component {
   static propTypes = {
     fetching: PropTypes.bool.isRequired,
-    feed: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        text: PropTypes.string.isRequired,
-      })
+    feedList: PropTypes.arrayOf(
+      PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.number.isRequired,
+          text: PropTypes.string.isRequired,
+        })
+      )
     ).isRequired,
     filters: PropTypes.arrayOf(PropTypes.shape()).isRequired,
     getFeed: PropTypes.func.isRequired,
@@ -85,7 +44,7 @@ class FeedPageContainer extends Component {
   }
 
   render() {
-    const { fetching, feed, filters } = this.props
+    const { fetching, feedList, filters } = this.props
 
     return (
       <PageContent>
@@ -111,7 +70,7 @@ class FeedPageContainer extends Component {
               setFeedFilter={this.setFeedFilter}
             />
             <CardsContainer>
-              {MOCK_CARDS.map((cardsList, key) => (
+              {feedList.map((cardsList, key) => (
                 <FeedCardContainer {...{ cardsList, key }} />
               ))}
             </CardsContainer>
@@ -125,7 +84,7 @@ class FeedPageContainer extends Component {
 function mapStateToProps(state) {
   return {
     fetching: state.feed.fetching,
-    feed: getFeedByFilters(state),
+    feedList: getFeedByFilters(state),
     filters: state.filters,
   }
 }

@@ -1,20 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
 
 import { FeedCard } from 'ui/organisms'
 import { TabBar } from 'ui/molecules'
-import { categoryGroup as categoryGroupDict } from 'constants/categoryGroup'
-import { connect } from 'react-redux'
+import { getCategoryGroupStyle } from 'styles/utils'
 import { openModal } from '../../../redux/modal/actions'
 import { modals } from '../../../constants/modals'
 
-
-const DEFAULT_CARD_GRADIENT = 'linear-gradient(to bottom, #309bb4, #32689a)'
-
-const cardGradient = {
-  [categoryGroupDict.health]: DEFAULT_CARD_GRADIENT,
-}
 
 const mockTabs = [
   {
@@ -28,15 +22,13 @@ const mockTabs = [
 ]
 
 const Container = styled.div`
-  background-image: ${({ categoryGroup }) => cardGradient[categoryGroup]};
+  ${p => getCategoryGroupStyle({ name: p.categoryGroup })}
   border-radius: 4px;
-  box-shadow:
-    0 2px 6px 0 rgba(50, 71, 136, 0.12),
-    0 2px 16px 0 rgba(49, 135, 170, 0.42);
   overflow: hidden;
+  margin-bottom: 16px;
 
-  & + & {
-    margin-top: 16px;
+  &:last-of-type {
+    margin-bottom: 0;
   }
 `
 
