@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { CardOptionsModal } from '../../modals/CardOptionsModal'
 import { modalNames, modals } from '../../../constants/modals'
-import { ShareCardModal } from '../../modals/ShareCardModal';
+import { ShareCardModal } from '../../modals/ShareCardModal'
 
 
 const Container = styled.div`

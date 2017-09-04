@@ -5,8 +5,9 @@ import styled from 'styled-components'
 import { ShareButtons, generateShareIcon } from 'react-share'
 
 import { SimpleModal as BaseSimpleModal } from './base/SimpleModal'
-import { ModalMessage } from '../atoms/ModalMessage/ModalMessage';
-import { categoryGroupDisplayNames } from '../../constants/categoryGroup';
+import { ModalMessage } from '../atoms/ModalMessage/ModalMessage'
+import { categoryGroupDisplayNames } from '../../constants/categoryGroup'
+
 
 const {
   TwitterShareButton,
@@ -16,14 +17,17 @@ const {
 
 const SOCIAL_BUTTONS = [
   {
+    id: 'twitter',
     component: TwitterShareButton,
     icon: generateShareIcon('twitter'),
   },
   {
+    id: 'vk',
     component: VKShareButton,
     icon: generateShareIcon('vk'),
   },
   {
+    id: 'telegram',
     component: TelegramShareButton,
     icon: generateShareIcon('telegram'),
   },
@@ -46,31 +50,31 @@ const getShareTitle = (text, categoryGroup) =>
   `${text.slice(0, 50)}...\
  больше полезных советов в категории ${categoryGroupDisplayNames[categoryGroup]} на Яндекс.Погоде`
 
-export class ShareCardModal extends React.Component {
-  render() {
-    const { card } = this.props.meta
+export const ShareCardModal = (props) => {
+  const { card } = props.meta
 
-    const buttons = SOCIAL_BUTTONS.map(button =>
-      <button.component
-        url={SHARE_URL}
-        title={getShareTitle(card.text, card.categoryGroup)}
-        description={card.text}
-      >
-        <button.icon {...COMMON_ICON_PROPS} />
-      </button.component>
-    )
+  const buttons = SOCIAL_BUTTONS.map(button =>
+    <button.component
+      key={button.id}
+      url={SHARE_URL}
+      title={getShareTitle(card.text, card.categoryGroup)}
+      description={card.text}
+    >
+      <button.icon {...COMMON_ICON_PROPS} />
+    </button.component>
+  )
 
-    return (
-      <SimpleModal>
-        <ModalMessage
-          title="Поделиться"
-          content={buttons}
-          contentStyle="justify-content: center;"
-        />
-      </SimpleModal>
-    )
-  }
+  return (
+    <SimpleModal>
+      <ModalMessage
+        title="Поделиться"
+        content={buttons}
+        contentStyle="justify-content: center;"
+      />
+    </SimpleModal>
+  )
 }
+
 
 ShareCardModal.propTypes = {
   meta: PropTypes.shape({ card: {
