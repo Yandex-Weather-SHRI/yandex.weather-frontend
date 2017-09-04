@@ -8,8 +8,9 @@ const O_AUTH_TOKEN_KEY = 'oauth_token'
 
 export const setTokenPure = createAction('user.setTokenPure')
 export const setUserInfo = createAction('user.setUserInfo')
-export const setUserSettings = createAction('user.setUserSettings')
 
+export const getCategoriesSettingsRequest = createAction('get.categories.settings.request')
+export const getCategoriesSettingsSuccess = createAction('get.categories.settings.success')
 
 // todo move api to class and extra thunk argument
 export function requestLogin(nextState) {
@@ -57,16 +58,9 @@ export function createOrUpdateUserWithCategorySettings(categories) {
     if (!login) {
       throw new Error(`Attempted to update user setting with falsy token=${login} in app state.`)
     }
-
     try {
-      const responseCategories = await request.post(
-        '/v1/settings/categories',
-        { items: categories, login }
-      )
-      console.log(responseCategories)
-      dispatch(setUserSettings({
-        settings: { categories: responseCategories },
-      }))
+      const responseCategories = await request.post('/v1/settings/categories', { items: categories, login })
+      dispatch(getCategoriesSettingsSuccess(responseCategories))
     }
     catch (err) {
       // todo
@@ -76,21 +70,26 @@ export function createOrUpdateUserWithCategorySettings(categories) {
 
 export function getCategoriesSettings() {
   return async (dispatch, getState) => {
-    const { user: { login } } = getState()
-    if (!login) {
-      throw new Error(`Attempted to update user setting with falsy token=${login} in app state.`)
+    const { user: { login, settings } } = getState()
+
+    if (!settings.categories.length) {
+      dispatch(getCategoriesSettingsRequest())
+
+      if (!login) {
+        throw new Error(`Attempted to update user setting with falsy token=${login} in app state.`)
+      }
+      try {
+        const categories = await request.get(`/v1/settings/categories?login=${login}`)
+        dispatch(getCategoriesSettingsSuccess(categories))
+        return Promise.resolve()
+      }
+      catch (e) {
+        // todo
+        return Promise.reject()
+      }
     }
-    try {
-      const categories = await request.get(`/v1/settings/categories?login=${login}`)
-      dispatch(setUserSettings({
-        settings: { categories },
-      }))
-      return Promise.resolve()
-    }
-    catch (e) {
-      // todo
-      return Promise.reject()
-    }
+
+    return Promise.resolve()
   }
 }
 
