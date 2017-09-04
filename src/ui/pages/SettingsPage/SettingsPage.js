@@ -31,6 +31,15 @@ class SettingsPageContainer extends Component {
     const { settings } = this.props
 
     return (
+        <div style={{ width: '100%' }}>
+    <AppBar
+      title="Настройки"
+      elementLeft={
+        <Link to={routeNames.feed}>
+          <IconButton icon="arrow-left" size="24" />
+        </Link>
+      }
+    />
       <div style={{ width: '100%' }}>
         <AppBar
           title="Настройки"
@@ -46,8 +55,10 @@ class SettingsPageContainer extends Component {
               {categoryGroupCategories[group].map(category => (
                 <SettingsCard
                   group={group}
-                  catName={categoriesDisplayNames[category]}
-                  catAdvices={categoriesAdvicesCount[category]}
+                  category={{
+                    name: categoriesDisplayNames[cat],
+                    advices: categoriesAdvicesCount[cat],
+                  }}
                   checked={settings[category].enabled}
                   onClick={this.handleToggleSettingsItem(settings[category])}
                   key={category}
