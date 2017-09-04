@@ -23,7 +23,6 @@ const SettingsCardName = styled.h2`
   font-size: 1.6rem;
   font-weight: 700;
   margin-bottom: 8px;
-  line-height: 1;
 `
 
 const SettingsCardAdvices = styled.p`
