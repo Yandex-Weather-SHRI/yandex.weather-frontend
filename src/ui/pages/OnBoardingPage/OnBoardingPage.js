@@ -1,6 +1,5 @@
 import React from 'react'
 import { requestLogin } from 'redux/user/actions'
-import { defaultCategories } from 'redux/user/reducer'
 import { routeNames } from 'utils/routeNames'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
@@ -10,7 +9,7 @@ import PropTypes from 'prop-types'
 const handleSubmitOnboarding = () => {
   requestLogin({
     login: 'testLogin',
-    categories: defaultCategories,
+    categories: [],
     nextRoute: routeNames.feed,
   })
 }
