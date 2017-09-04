@@ -16,6 +16,7 @@ import {
   FeedPage,
   PassportRedirectPage,
 } from 'ui/pages'
+import { PageLoader } from 'ui/organisms'
 import { routeNames } from 'utils/routeNames'
 import { withAuthentication } from 'hocs/withAuthentication'
 import { checkAuth } from 'redux/user/actions'
@@ -24,10 +25,8 @@ import { RootModal } from 'ui/organisms/RootModal/RootModal'
 
 const Container = styled.div`
   min-height: 100vh;
-  width: 100%;
-  overflow-x: hidden;
   display: flex;
-  -webkit-overflow-scrolling: touch;
+  flex-direction: column;
 `
 
 class ApplicationContainer extends Component {
@@ -46,8 +45,14 @@ class ApplicationContainer extends Component {
   }
 
   render() {
-    if (this.state.loading) {
-      return null
+    const { loading } = this.state
+
+    if (loading) {
+      return (
+        <Container>
+          <PageLoader />
+        </Container>
+      )
     }
 
     return (
