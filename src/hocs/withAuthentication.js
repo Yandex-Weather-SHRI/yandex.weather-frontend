@@ -11,7 +11,6 @@ export function withAuthentication(WrappedComponent) {
       user: PropTypes.shape({
         oAuthToken: PropTypes.string,
       }).isRequired,
-      requestLogin: PropTypes.func.isRequired,
     }
 
     componentDidMount() {
@@ -22,9 +21,10 @@ export function withAuthentication(WrappedComponent) {
       this.checkAuthentication(nextProps)
     }
 
+    /* eslint-disable class-methods-use-this */
     checkAuthentication(props) {
       if (!props.user.oAuthToken) {
-        this.props.requestLogin({ nextRoute: props.location.pathname })
+        requestLogin({ nextRoute: props.location.pathname })
       }
     }
 
@@ -45,12 +45,5 @@ export function withAuthentication(WrappedComponent) {
     }
   }
 
-  const mapDispatchToProps = {
-    requestLogin,
-  }
-
-  return connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(AuthenticationContainer)
+  return connect(mapStateToProps)(AuthenticationContainer)
 }
