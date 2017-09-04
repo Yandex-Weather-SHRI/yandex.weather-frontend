@@ -9,21 +9,22 @@ import {
 } from 'constants/categoryGroup'
 
 
-const Container = styled.section`
+const Container = styled.div`
   margin-top: 8px;
   background-color: #f7f7f7;
 `
 
 const Heading = styled.div`
   width: 100%;
-  padding: 12px 16px;
+  padding: 0 16px;
+  height: 48px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   background-color: #fff;
 `
 
-const Title = styled.h1`
+const Title = styled.div`
   font-size: 1.6rem;
   font-weight: 500;
   margin-left: 16px;
@@ -34,8 +35,8 @@ const Content = styled(ScrollContainer) `
 
   &:after {
     content: '';
-    flex: 0 0 8px;
-    height: 8px;
+    flex: 0 0 16px;
+    height: 16px;
   }
 `
 
