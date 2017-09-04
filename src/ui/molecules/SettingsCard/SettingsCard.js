@@ -49,23 +49,25 @@ const Line = styled.div`
 `
 
 
-export const SettingsCard = ({ group, catName, catAdvices, onClick, checked }) => (
+export const SettingsCard = ({ group, category, onClick, checked }) => (
   <SettingsCardWrapper name={group} onClick={onClick}>
     <SettingsCardTop>
       <Line />
       <Icon name={`settings_${checked}`} size={24} />
     </SettingsCardTop>
     <SettingsCardContent>
-      <SettingsCardName>{catName}</SettingsCardName>
-      <SettingsCardAdvices>{catAdvices}</SettingsCardAdvices>
+      <SettingsCardName>{category.name}</SettingsCardName>
+      <SettingsCardAdvices>{category.advices}</SettingsCardAdvices>
     </SettingsCardContent>
   </SettingsCardWrapper>
 )
 
 SettingsCard.propTypes = {
   group: PropTypes.string.isRequired,
-  catName: PropTypes.string.isRequired,
-  catAdvices: PropTypes.string,
+  category: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    advices: PropTypes.string.isRequired,
+  }).isRequired,
   onClick: PropTypes.func.isRequired,
   checked: PropTypes.bool,
 }

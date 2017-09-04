@@ -25,8 +25,10 @@ export const SettingsPage = () => (
             categoryGroupCategories[group].map(cat => (
               <SettingsCard
                 group={group}
-                catName={categoriesDisplayNames[cat]}
-                catAdvices={categoriesAdvicesCount[cat]}
+                category={{
+                  name: categoriesDisplayNames[cat],
+                  advices: categoriesAdvicesCount[cat],
+                }}
                 onClick={console.log}
                 key={cat}
               />
