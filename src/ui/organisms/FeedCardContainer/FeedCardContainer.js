@@ -65,6 +65,7 @@ export class FeedCardContainerInner extends Component {
         <FeedCard
           {...card}
           onOptionsClick={() => this.props.openModal(modals.cardOptions, { card })}
+          onShareClick={() => this.props.openModal(modals.shareCard, { card })}
         />
         {cardsList.length > 1 && (
           <TabBar

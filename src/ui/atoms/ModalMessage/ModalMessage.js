@@ -5,29 +5,39 @@ import styled from 'styled-components'
 
 const Container = styled.div`
   color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 `
 const Title = styled.div`
   font-size: 20px;
   font-weight: 500;
   margin-bottom: 16px;
 `
-const Text = styled.div`
+const Content = styled.div`
   font-size: 16px;
   font-weight: 400;
+  display: flex;
+  ${props => props.contentStyle}
 `
 
-export const ModalMessage = ({ title, text }) => (
+export const ModalMessage = ({ title, content, contentStyle }) => (
   <Container>
     <Title>
       {title}
     </Title>
-    <Text>
-      {text}
-    </Text>
+    <Content {...{ contentStyle }}>
+      {content}
+    </Content>
   </Container>
 )
 
 ModalMessage.propTypes = {
   title: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
+  content: PropTypes.node.isRequired,
+  contentStyle: PropTypes.string,
+}
+
+ModalMessage.defaultProps = {
+  contentStyle: '',
 }
