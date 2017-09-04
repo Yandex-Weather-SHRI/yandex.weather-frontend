@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-import { Loader } from 'ui/atoms/Loader/Loader'
+import { PageLoader } from 'ui/organisms'
 import { setToken, fetchAndSetUserInfo, createOrUpdateUserWithCategorySettings } from 'redux/user/actions'
 import { getHashParam } from 'utils/location'
 
@@ -35,7 +35,7 @@ class Page extends React.Component {
   render() {
     return (
       <Container>
-        <Loader />
+        <PageLoader />
       </Container>
     )
   }

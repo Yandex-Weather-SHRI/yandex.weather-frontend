@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 import { getFeed } from 'redux/feed/actions'
-import { AppBar, FeedFiltersList, FeedCardContainer } from 'ui/organisms'
+import { PageContent, PageLoader, AppBar, FeedFiltersList, FeedCardContainer } from 'ui/organisms'
 import { IconButton } from 'ui/molecules'
 import { getFeedByFilters } from 'redux/feed/selectors'
 import { setFeedFilter } from 'redux/filters/actions'
@@ -64,6 +64,7 @@ const CardsContainer = styled.div`
 
 class FeedPageContainer extends Component {
   static propTypes = {
+    fetching: PropTypes.bool.isRequired,
     feed: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
@@ -84,10 +85,10 @@ class FeedPageContainer extends Component {
   }
 
   render() {
-    const { feed, filters } = this.props
+    const { fetching, feed, filters } = this.props
 
     return (
-      <div style={{ width: '100%' }}>
+      <PageContent>
         <AppBar
           title="Советы"
           elementLeft={
@@ -101,22 +102,29 @@ class FeedPageContainer extends Component {
             </Link>
           }
         />
-        <FeedFiltersList
-          list={filters}
-          setFeedFilter={this.setFeedFilter}
-        />
-        <CardsContainer>
-          {MOCK_CARDS.map((cardsList, key) => (
-            <FeedCardContainer {...{ cardsList, key }} />
-          ))}
-        </CardsContainer>
-      </div>
+        {fetching ? (
+          <PageLoader />
+        ) : (
+          <div>
+            <FeedFiltersList
+              list={filters}
+              setFeedFilter={this.setFeedFilter}
+            />
+            <CardsContainer>
+              {MOCK_CARDS.map((cardsList, key) => (
+                <FeedCardContainer {...{ cardsList, key }} />
+              ))}
+            </CardsContainer>
+          </div>
+        )}
+      </PageContent>
     )
   }
 }
 
 function mapStateToProps(state) {
   return {
+    fetching: state.feed.fetching,
     feed: getFeedByFilters(state),
     filters: state.filters,
   }

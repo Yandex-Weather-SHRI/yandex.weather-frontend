@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { AppBar, SettingsSection } from 'ui/organisms'
+import { PageContent, PageLoader, AppBar, SettingsSection } from 'ui/organisms'
 import { IconButton, SettingsCard } from 'ui/molecules'
 import { routeNames } from 'utils/routeNames'
 import { categoryGroups, categoryGroupCategories } from 'constants/categoryGroup'
@@ -14,6 +14,7 @@ import { getNormalizedSettings } from 'redux/user/selectors'
 
 class SettingsPageContainer extends Component {
   static propTypes = {
+    fetching: PropTypes.bool.isRequired,
     settings: PropTypes.shape().isRequired,
     getCategoriesSettings: PropTypes.func.isRequired,
     updateOneUserSetting: PropTypes.func.isRequired,
@@ -28,10 +29,10 @@ class SettingsPageContainer extends Component {
   }
 
   render() {
-    const { settings } = this.props
+    const { settings, fetching } = this.props
 
     return (
-      <div style={{ width: '100%' }}>
+      <PageContent>
         <AppBar
           title="Настройки"
           elementLeft={
@@ -40,7 +41,9 @@ class SettingsPageContainer extends Component {
             </Link>
           }
         />
-        {categoryGroups.map(group => (
+        {fetching ? (
+          <PageLoader />
+        ) : categoryGroups.map(group => (
           group !== 'all' && (
             <SettingsSection key={group} {...{ group }}>
               {categoryGroupCategories[group].map(category => (
@@ -56,13 +59,14 @@ class SettingsPageContainer extends Component {
             </SettingsSection>
           )
         ))}
-      </div>
+      </PageContent>
     )
   }
 }
 
 function mapStateToProps(state) {
   return {
+    fetching: state.user.fetching,
     settings: getNormalizedSettings(state),
   }
 }
