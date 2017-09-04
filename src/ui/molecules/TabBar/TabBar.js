@@ -22,19 +22,17 @@ const Wrapper = ScrollContainer.extend`
 `
 
 const TabButton = RoundedButton.extend`
-  height: 36px;
-  background: none;
-  border-radius: 100px;
+  background: transparent;
+  border-radius: 18px;
   border: solid 1px rgba(255, 255, 255, 0.5);
   color: #fff;
   font-size: 1.2rem;
   font-weight: 500;
-  letter-spacing: 0.6px;
   margin-right: 24px;
   
   ${p => !p.active && css`
     opacity: 0.3;
-    border: none;
+    border-color: transparent;
   `}
   
   &:last-of-type{
