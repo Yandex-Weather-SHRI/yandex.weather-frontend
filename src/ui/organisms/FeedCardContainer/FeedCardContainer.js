@@ -10,7 +10,7 @@ import { openModal } from '../../../redux/modal/actions'
 import { modals } from '../../../constants/modals'
 
 
-const DEFAULT_CARD_GRADIENT = 'linear-gradient(170deg, #30cfd0, #330867)'
+const DEFAULT_CARD_GRADIENT = 'linear-gradient(to bottom, #309bb4, #32689a)'
 
 const cardGradient = {
   [categoryGroupDict.health]: DEFAULT_CARD_GRADIENT,
@@ -31,8 +31,8 @@ const Container = styled.div`
   background-image: ${({ categoryGroup }) => cardGradient[categoryGroup]};
   border-radius: 4px;
   box-shadow:
-    0 2px 10px 0 rgba(50, 71, 136, 0.12),
-    0 2px 17px 0 rgba(49, 135, 170, 0.42);
+    0 2px 6px 0 rgba(50, 71, 136, 0.12),
+    0 2px 16px 0 rgba(49, 135, 170, 0.42);
   overflow: hidden;
 
   & + & {

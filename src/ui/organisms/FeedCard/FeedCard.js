@@ -2,13 +2,35 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
+import { Icon } from 'ui/atoms'
 import { IconButton } from 'ui/molecules'
 import { categoryGroupDisplayNames, categoryGroups } from 'constants/categoryGroup'
-import { categories, categoriesDisplayNames } from 'constants/categories'
+import { healthCategory, categories, categoriesDisplayNames } from 'constants/categories'
 
+import { FeedCardMetaHeart, FeedCardMetaAsthma, FeedCardMetaJoint } from './metas'
+
+
+const feedMetaComponents = {
+  [healthCategory.heart]: FeedCardMetaHeart,
+  [healthCategory.joint]: FeedCardMetaJoint,
+  [healthCategory.asthma]: FeedCardMetaAsthma,
+}
 
 const Container = styled.div`
   color: #fff;
+  position: relative;
+  z-index: 1;
+  min-height: 218px;
+`
+
+const CategoryPicture = styled(Icon)`
+  content: '';
+  position: absolute;
+  z-index: -1;
+  right: 0;
+  top: 56px;
+  bottom: 0;
+  margin: auto;
 `
 
 const Header = styled.div`
@@ -53,26 +75,36 @@ const Text = styled.div`
   line-height: 1.2;
 `
 
-export const FeedCard = ({ categoryGroup, category, text, onShareClick, onOptionsClick }) =>
-  <Container {...{ categoryGroup }}>
-    <Header>
-      <CategoryGroupName>
-        {categoryGroupDisplayNames[categoryGroup] || 'Совет'}
-      </CategoryGroupName>
-      <HeaderButtons>
-        <HeaderButton icon="share" onClick={onShareClick} />
-        <HeaderButton icon="more" onClick={onOptionsClick} />
-      </HeaderButtons>
-    </Header>
-    <Content>
-      <CategoryName>
-        {categoriesDisplayNames[category]}
-      </CategoryName>
-      <Text>
-        {text}
-      </Text>
-    </Content>
-  </Container>
+export const FeedCard = ({ categoryGroup, category, text, onShareClick, onOptionsClick }) => {
+  const FeedMeta = feedMetaComponents[category]
+
+  return (
+    <Container {...{ categoryGroup }}>
+      <CategoryPicture
+        name={`categories/${category}`}
+        size={160}
+      />
+      <Header>
+        <CategoryGroupName>
+          {categoryGroupDisplayNames[categoryGroup] || 'Совет'}
+        </CategoryGroupName>
+        <HeaderButtons>
+          <HeaderButton icon="share" onClick={onShareClick} />
+          <HeaderButton icon="more" onClick={onOptionsClick} />
+        </HeaderButtons>
+      </Header>
+      <Content>
+        <CategoryName>
+          {categoriesDisplayNames[category]}
+        </CategoryName>
+        <Text>
+          {text}
+        </Text>
+        {FeedMeta && <FeedMeta />}
+      </Content>
+    </Container>
+  )
+}
 
 FeedCard.propTypes = {
   categoryGroup: PropTypes.oneOf(categoryGroups).isRequired,
