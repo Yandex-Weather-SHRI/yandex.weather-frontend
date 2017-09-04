@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 import { getFeed } from 'redux/feed/actions'
 import { AppBar, FeedFiltersList, FeedCardContainer } from 'ui/organisms'
@@ -10,10 +11,8 @@ import { getFeedByFilters } from 'redux/feed/selectors'
 import { setFeedFilter } from 'redux/filters/actions'
 import { categoryGroup } from 'constants/categoryGroup'
 import { healthCategory } from 'constants/categories'
-import { Link } from 'react-router-dom'
 import { routeNames } from 'utils/routeNames'
-
-import { openModal } from '../../../redux/modal/actions'
+import { openModal } from 'redux/modal/actions'
 
 
 const MOCK_CARDS = [
@@ -29,7 +28,7 @@ const MOCK_CARDS = [
     {
       categoryGroup: categoryGroup.health,
       category: healthCategory.joint,
-      text: 'lorem',
+      text: 'Людям с заболеваниями суставов желательно уменьшить на них физическую нагрузку',
       onShareClick: () => console.log('share!'),
       onOptionsClick: () => console.log('options!'),
       id: 2,
@@ -39,7 +38,17 @@ const MOCK_CARDS = [
     {
       categoryGroup: categoryGroup.health,
       category: healthCategory.asthma,
-      text: 'Для людей с заболеванием астмы рекомендуем выбрать спокойную деятельность',
+      text: 'Большая влажность и сильный ветер. Для людей, болеющих астмой, рекомендуем выбрать спокойную деятельность',
+      onShareClick: () => console.log('share!'),
+      onOptionsClick: () => console.log('options!'),
+      id: 2,
+    },
+  ],
+  [
+    {
+      categoryGroup: categoryGroup.health,
+      category: healthCategory.joint,
+      text: 'Людям с заболеваниями суставов желательно уменьшить на них физическую нагрузку',
       onShareClick: () => console.log('share!'),
       onOptionsClick: () => console.log('options!'),
       id: 2,
@@ -50,6 +59,7 @@ const MOCK_CARDS = [
 const CardsContainer = styled.div`
   padding: 0 8px;
   flex: 1;
+  margin-bottom: 16px;
 `
 
 class FeedPageContainer extends Component {
