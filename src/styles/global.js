@@ -26,6 +26,12 @@ export const globalStyles = css`
     -moz-osx-font-smoothing: grayscale;
     text-size-adjust: 100%;
   }
+
+  .SocialMediaShareButton {
+    & + & {
+      margin-left: 20px;
+    }
+  }
 `
 
 // eslint-disable-next-line

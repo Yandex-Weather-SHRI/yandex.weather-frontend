@@ -7,6 +7,8 @@ import { SimpleModal as BaseSimpleModal } from './base/SimpleModal'
 import { IconWithText as IconWithTextBase } from '../atoms/IconWithText/IconWithText'
 import { closeModal } from '../../redux/modal/actions'
 import { ModalMessage } from '../atoms/ModalMessage/ModalMessage'
+import { updateOneUserSetting } from '../../redux/user/actions'
+import { getFeed } from '../../redux/feed/actions'
 
 
 const SimpleModal = styled(BaseSimpleModal)`
@@ -55,12 +57,17 @@ class CardOptionsModalInner extends React.Component {
   }
 
   handleOptionClick = (option) => {
-    console.log(option.text, this.props.meta) // todo backend
-
     if (optionsWithThankPage.includes(option.id)) {
       this.setState({ showThanksBlock: true })
       return
     }
+
+    if (option.id === optionIds.dismiss) {
+      const { meta: { card: { category } } } = this.props
+      this.props.updateOneUserSetting(category, false)
+        .then(this.props.getFeed)
+    }
+
     this.props.closeModal()
   }
 
@@ -70,7 +77,7 @@ class CardOptionsModalInner extends React.Component {
         {this.state.showThanksBlock
           ? <ModalMessage
             title="Спасибо"
-            text="Ваш отзыв передан в Яндекс. Благодаря им мы делаем советы лучше"
+            content="Ваш отзыв передан в Яндекс. Благодаря им мы делаем советы лучше"
           />
           : OPTIONS.map(option =>
             <IconWithText
@@ -93,4 +100,8 @@ CardOptionsModalInner.propTypes = {
   closeModal: PropTypes.func.isRequired,
 }
 
-export const CardOptionsModal = connect(null, { closeModal })(CardOptionsModalInner)
+export const CardOptionsModal = connect(null, {
+  closeModal,
+  updateOneUserSetting,
+  getFeed,
+})(CardOptionsModalInner)

@@ -9,7 +9,7 @@ import { IconWithText } from 'ui/atoms/IconWithText/IconWithText'
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  padding: 0 16px;
+  padding: 0 8px;
   height: 48px;
 `
 
@@ -36,7 +36,7 @@ const PureWeatherConditions = ({ humidity, pressure, waterTemp, wind }) => {
   return (
     <Container>
       {icons.map(icon =>
-        <IconWithText {...icon} key={icon.iconName} itemOffsetLeft="16px" iconOffset="4px" />
+        <IconWithText {...icon} key={icon.iconName} itemOffsetLeft="10px" iconOffset="4px" />
       )}
     </Container>
   )

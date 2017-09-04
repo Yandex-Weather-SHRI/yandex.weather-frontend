@@ -4,10 +4,11 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { CardOptionsModal } from '../../modals/CardOptionsModal'
 import { modalNames, modals } from '../../../constants/modals'
+import { ShareCardModal } from '../../modals/ShareCardModal'
 
 
 const Container = styled.div`
-  position: absolute;
+  position: fixed;
   min-height: 100vh;
   width: 100%;
   overflow-x: hidden;
@@ -16,6 +17,7 @@ const Container = styled.div`
   justify-content: center;
   background-color: rgba(255, 255, 255, 0.5);
   transition: opacity 0.3s ease;
+  z-index: 10;
   ${({ hidden }) => hidden
     ? 'opacity: 0; pointer-events: none'
     : ''
@@ -24,16 +26,36 @@ const Container = styled.div`
 
 const modalComponents = {
   [modals.cardOptions]: CardOptionsModal,
+  [modals.shareCard]: ShareCardModal,
 }
 
-const RootModalInner = (props) => {
-  const { isModalOpened, openedModal, meta } = props
-  const ConcreteModal = modalComponents[openedModal]
-  return (
-    <Container hidden={!isModalOpened}>
-      {ConcreteModal && <ConcreteModal {...{ meta }} />}
-    </Container>
-  )
+class RootModalInner extends React.Component {
+  componentWillReceiveProps(nextProps) {
+    this.handleCloseOpen(nextProps)
+  }
+
+  handleCloseOpen(nextProps) {
+    const willOpen = !this.props.isModalOpened && nextProps.isModalOpened
+    const willClose = this.props.isModalOpened && !nextProps.isModalOpened
+    if (willOpen) {
+      window.document.body.style.overflow = 'hidden'
+      return
+    }
+
+    if (willClose) {
+      window.document.body.style.overflow = 'auto'
+    }
+  }
+
+  render() {
+    const { isModalOpened, openedModal, meta } = this.props
+    const ConcreteModal = modalComponents[openedModal]
+    return (
+      <Container hidden={!isModalOpened}>
+        {ConcreteModal && <ConcreteModal {...{ meta }} />}
+      </Container>
+    )
+  }
 }
 
 RootModalInner.propTypes = {

@@ -47,8 +47,6 @@ export class FeedCardContainerInner extends Component {
     this.setState({ currentCard })
   }
 
-  onShareClick = () => {}
-
   render() {
     const { currentCard } = this.state
     const { cardsList } = this.props
@@ -58,8 +56,8 @@ export class FeedCardContainerInner extends Component {
       <Container categoryGroup={card.categoryGroup}>
         <FeedCard
           {...card}
-          onShareClick={this.onShareClick}
-          onOptionsClick={() => this.props.openModal(modals.cardOptions, { cardId: card.id })}
+          onOptionsClick={() => this.props.openModal(modals.cardOptions, { card })}
+          onShareClick={() => this.props.openModal(modals.shareCard, { card })}
         />
         {cardsList.length > 1 && (
           <TabBar
