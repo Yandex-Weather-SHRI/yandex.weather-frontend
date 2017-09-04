@@ -19,7 +19,11 @@ class HomePageContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchWeather()
+    const { fetched } = this.props
+
+    if (!fetched) {
+      this.props.fetchWeather()
+    }
   }
 
   render() {
@@ -60,6 +64,7 @@ class HomePageContainer extends Component {
 function mapStateToProps(state) {
   return {
     fetching: state.forecast.fetching,
+    fetched: state.forecast.fetched,
   }
 }
 

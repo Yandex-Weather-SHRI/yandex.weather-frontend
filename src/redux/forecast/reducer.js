@@ -5,6 +5,7 @@ import * as actions from './actions'
 
 const defaultForecastState = {
   fetching: false,
+  fetched: false,
   fact: {
     condition: '',
     icon: '',
@@ -27,6 +28,7 @@ export const forecastReducer = createReducer({
     return {
       ...state,
       fetching: true,
+      fetched: false,
     }
   },
 
@@ -35,6 +37,7 @@ export const forecastReducer = createReducer({
       ...state,
       ...payload,
       fetching: false,
+      fetched: true,
     }
   },
 }, defaultForecastState)
