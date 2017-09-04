@@ -1,20 +1,20 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { WeatherBackground, WeatherBlock, Slider } from 'ui/organisms'
+import { PageContent, PageLoader, WeatherBackground, WeatherBlock, Slider } from 'ui/organisms'
 import { WeatherConditions, NavigationBar, SliderCard } from 'ui/molecules'
 import { fetchWeather } from 'redux/forecast/actions'
 import { routeNames } from 'utils/routeNames'
 
 
-const Container = styled.div`
+const Container = PageContent.extend`
   background-color: #f5f3f2;
 `
 
-class Page extends React.Component {
+class HomePageContainer extends Component {
   static propTypes = {
+    fetching: PropTypes.bool.isRequired,
     fetchWeather: PropTypes.func.isRequired,
   }
 
@@ -23,6 +23,14 @@ class Page extends React.Component {
   }
 
   render() {
+    const { fetching } = this.props
+
+    if (fetching) {
+      return (
+        <PageLoader />
+      )
+    }
+
     return (
       <Container>
         <WeatherBackground condition="good">
@@ -49,8 +57,17 @@ class Page extends React.Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    fetching: state.forecast.fetching,
+  }
+}
+
 const mapDispatchToProps = {
   fetchWeather,
 }
 
-export const HomePage = connect(null, mapDispatchToProps)(Page)
+export const HomePage = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomePageContainer)

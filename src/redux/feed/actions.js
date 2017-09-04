@@ -9,15 +9,18 @@ export const feedGetFailure = createAction('feed.get.failure')
 
 export function getFeed() {
   return async (dispatch, getState) => {
-    dispatch(feedGetRequest())
+    const { feed, user } = getState()
 
-    try {
-      const state = getState()
-      const list = await request.get(`/v1/alerts?login=${state.user.login}`)
-      dispatch(feedGetSuccess(list))
-    }
-    catch (error) {
-      dispatch(feedGetFailure(error))
+    if (feed.list.length === 0) {
+      dispatch(feedGetRequest())
+
+      try {
+        const list = await request.get(`/v1/alerts?login=${user.login}`)
+        dispatch(feedGetSuccess(list))
+      }
+      catch (error) {
+        dispatch(feedGetFailure(error))
+      }
     }
   }
 }

@@ -16,6 +16,7 @@ const settings = {
 
 const Container = styled.div`
   padding: 0 26px;
+  overflow: hidden;
 
   .swiper-container {
     overflow: visible;
