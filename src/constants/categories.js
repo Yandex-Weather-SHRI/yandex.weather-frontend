@@ -5,7 +5,7 @@ export const healthCategory = {
   asthma: 'asthma',
   skin: 'skin',
   allergy: 'allergy',
-  ultraviolet: 'ultraviolet',
+  // ultraviolet: 'ultraviolet',
 }
 
 export const motoristCategory = {
