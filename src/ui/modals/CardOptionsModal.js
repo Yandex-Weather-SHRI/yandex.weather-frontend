@@ -7,8 +7,8 @@ import { SimpleModal as BaseSimpleModal } from './base/SimpleModal'
 import { IconWithText as IconWithTextBase } from '../atoms/IconWithText/IconWithText'
 import { closeModal } from '../../redux/modal/actions'
 import { ModalMessage } from '../atoms/ModalMessage/ModalMessage'
-import { updateOneUserSetting } from '../../redux/user/actions';
-import { getFeed } from '../../redux/feed/actions';
+import { updateOneUserSetting } from '../../redux/user/actions'
+import { getFeed } from '../../redux/feed/actions'
 
 
 const SimpleModal = styled(BaseSimpleModal)`
