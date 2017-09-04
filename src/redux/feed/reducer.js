@@ -1,3 +1,4 @@
+import R from 'ramda'
 import { createReducer } from 'redux-act'
 
 import { feedGetRequest, feedGetSuccess } from './actions'
@@ -10,16 +11,13 @@ const feedDefaultState = {
 
 export const feedReducer = createReducer({
   [feedGetRequest](state) {
-    return {
-      ...state,
-      fetching: true,
-    }
+    return R.assoc('fetching', true)(state)
   },
 
   [feedGetSuccess](state, list) {
-    return {
-      list,
-      fetching: false,
-    }
+    return R.compose(
+      R.assoc('fetching', false),
+      R.assoc('list', list)
+    )(state)
   },
 }, feedDefaultState)
