@@ -70,7 +70,7 @@ class CardOptionsModalInner extends React.Component {
         {this.state.showThanksBlock
           ? <ModalMessage
             title="Спасибо"
-            text="Ваш отзыв передан в Яндекс. Благодаря им мы делаем советы лучше"
+            content="Ваш отзыв передан в Яндекс. Благодаря им мы делаем советы лучше"
           />
           : OPTIONS.map(option =>
             <IconWithText
