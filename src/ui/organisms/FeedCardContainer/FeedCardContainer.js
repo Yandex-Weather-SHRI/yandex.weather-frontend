@@ -64,7 +64,7 @@ export class FeedCardContainerInner extends Component {
       <Container categoryGroup={card.categoryGroup}>
         <FeedCard
           {...card}
-          onOptionsClick={() => this.props.openModal(modals.cardOptions, { cardId: card.id })}
+          onOptionsClick={() => this.props.openModal(modals.cardOptions, { card })}
         />
         {cardsList.length > 1 && (
           <TabBar

@@ -97,7 +97,7 @@ export function updateOneUserSetting(name, enabled) {
   return (dispatch, getState) => {
     const { user: { settings: { categories } } } = getState()
     const updatedCategories = categories.map(item => item.name === name ? { ...item, enabled } : item)
-    dispatch(createOrUpdateUserWithCategorySettings(updatedCategories))
+    return dispatch(createOrUpdateUserWithCategorySettings(updatedCategories))
   }
 }
 
