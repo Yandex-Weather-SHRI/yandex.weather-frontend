@@ -60,25 +60,23 @@ const ConditionsRow = styled.div`
   align-items: center;
 `
 
-const PureWeatherBlock = ({ locality, weatherIcon, temperature, condition, feel, fetching }) => (
+const PureWeatherBlock = ({ locality, weatherIcon, temperature, condition, feel }) => (
   <div>
     <LocationRow>
       <IconButton fill="#fff" stroke="#fff" icon="geolocation" onClick={() => null} />
       <LocationText>{locality}</LocationText>
       <IconButton fill="transparent" stroke="#fff" icon="star" onClick={() => null} />
     </LocationRow>
-    {!fetching && (
-      <TemperatureBlock>
-        <TemperatureRow>
-          <WeatherIcon name={weatherIcon} />
-          <span>{getNumberWithSign(temperature)}°</span>
-        </TemperatureRow>
-        <ConditionsRow>
-          <span>{condition}</span>
-          <span>Ощущается как {getNumberWithSign(feel)}°</span>
-        </ConditionsRow>
-      </TemperatureBlock>
-    )}
+    <TemperatureBlock>
+      <TemperatureRow>
+        <WeatherIcon name={weatherIcon} />
+        <span>{getNumberWithSign(temperature)}°</span>
+      </TemperatureRow>
+      <ConditionsRow>
+        <span>{condition}</span>
+        <span>Ощущается как {getNumberWithSign(feel)}°</span>
+      </ConditionsRow>
+    </TemperatureBlock>
   </div>
 )
 
@@ -88,7 +86,6 @@ PureWeatherBlock.propTypes = {
   temperature: PropTypes.number.isRequired,
   condition: PropTypes.string.isRequired,
   feel: PropTypes.number.isRequired,
-  fetching: PropTypes.bool.isRequired,
 }
 
 function mapStateToProps(state) {
@@ -98,7 +95,6 @@ function mapStateToProps(state) {
     temperature: state.forecast.fact.temp,
     condition: state.forecast.fact.condition,
     feel: state.forecast.fact.feels_like,
-    fetching: state.forecast.fetching,
   }
 }
 
