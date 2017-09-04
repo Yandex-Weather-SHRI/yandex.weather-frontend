@@ -1,51 +1,52 @@
 import React from 'react'
-import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-import { PageLoader } from 'ui/organisms'
+import { PageLoader, PageContent } from 'ui/organisms'
 import { setToken, fetchAndSetUserInfo, createOrUpdateUserWithCategorySettings } from 'redux/user/actions'
 import { getHashParam } from 'utils/location'
 
 
-const Container = styled.div`
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
+class PassportRedirectPageContainer extends React.Component {
+  static propTypes = {
+    setToken: PropTypes.func.isRequired,
+    fetchAndSetUserInfo: PropTypes.func.isRequired,
+    createOrUpdateUserWithCategorySettings: PropTypes.func.isRequired,
+    history: PropTypes.shape({
+      replace: PropTypes.func,
+    }).isRequired,
+  }
 
-class Page extends React.Component {
   componentDidMount() {
     const token = getHashParam('access_token')
     const { nextRoute, categories } = JSON.parse(decodeURIComponent(getHashParam('state')))
-    const { dispatch, history } = this.props
 
-    dispatch(setToken(token))
-    dispatch(fetchAndSetUserInfo())
+    this.props.setToken(token)
+    this.props.fetchAndSetUserInfo()
       .then(() => {
         if (categories) {
-          dispatch(createOrUpdateUserWithCategorySettings(categories))
+          this.props.createOrUpdateUserWithCategorySettings(categories)
         }
-        history.replace(nextRoute)
+        this.props.history.replace(nextRoute)
       })
   }
 
   render() {
     return (
-      <Container>
+      <PageContent>
         <PageLoader />
-      </Container>
+      </PageContent>
     )
   }
 }
 
-Page.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  history: PropTypes.shape({
-    replace: PropTypes.func,
-  }).isRequired,
+const mapDispatchToProps = {
+  setToken,
+  fetchAndSetUserInfo,
+  createOrUpdateUserWithCategorySettings,
 }
 
-export const PassportRedirectPage = connect()(withRouter(Page))
+export const PassportRedirectPage = connect(
+  null,
+  mapDispatchToProps
+)(PassportRedirectPageContainer)
