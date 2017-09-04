@@ -28,7 +28,6 @@ const modalComponents = {
 }
 
 class RootModalInner extends React.Component {
-
   componentWillReceiveProps(nextProps) {
     this.handleCloseOpen(nextProps)
   }
