@@ -1,4 +1,5 @@
 export { IconButton } from './IconButton/IconButton'
+export { IconLink } from './IconButton/IconLink'
 export { NavigationBar } from './NavigationBar/NavigationBar'
 export { WeatherConditions } from './WeatherConditions/WeatherConditions'
 export { SliderCard } from './SliderCard/SliderCard'

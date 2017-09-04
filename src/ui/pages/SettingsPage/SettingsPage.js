@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 import { AppBar, SettingsSection } from 'ui/organisms'
-import { IconButton, SettingsCard } from 'ui/molecules'
+import { IconLink, SettingsCard } from 'ui/molecules'
 import { routeNames } from 'utils/routeNames'
 import { categoryGroups, categoryGroupCategories } from 'constants/categoryGroup'
 import { categoriesDisplayNames, categoriesAdvicesCount } from 'constants/categories'
@@ -13,9 +12,7 @@ export const SettingsPage = () => (
     <AppBar
       title="Настройки"
       elementLeft={
-        <Link to={routeNames.feed}>
-          <IconButton icon="arrow-left" size="24" />
-        </Link>
+        <IconLink icon="arrow-left" size="24" to={routeNames.feed} />
       }
     />
     {categoryGroups.map(group => (

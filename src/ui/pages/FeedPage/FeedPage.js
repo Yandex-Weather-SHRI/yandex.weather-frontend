@@ -5,15 +5,13 @@ import styled from 'styled-components'
 
 import { getFeed } from 'redux/feed/actions'
 import { AppBar, FeedFiltersList, FeedCardContainer } from 'ui/organisms'
-import { IconButton } from 'ui/molecules'
+import { IconLink } from 'ui/molecules'
 import { getFeedByFilters } from 'redux/feed/selectors'
 import { setFeedFilter } from 'redux/filters/actions'
 import { categoryGroup } from 'constants/categoryGroup'
 import { healthCategory } from 'constants/categories'
-import { Link } from 'react-router-dom'
 import { routeNames } from 'utils/routeNames'
-
-import { openModal } from '../../../redux/modal/actions'
+import { openModal } from 'redux/modal/actions'
 
 
 const MOCK_CARDS = [
@@ -81,14 +79,10 @@ class FeedPageContainer extends Component {
         <AppBar
           title="Советы"
           elementLeft={
-            <Link to={routeNames.index}>
-              <IconButton icon="arrow-left" size="24" />
-            </Link>
+            <IconLink to={routeNames.index} icon="arrow-left" size={24} />
           }
           elementRight={
-            <Link to={routeNames.settings}>
-              <IconButton icon="settings" size="24" />
-            </Link>
+            <IconLink to={routeNames.settings} icon="settings" size={24} />
           }
         />
         <FeedFiltersList
