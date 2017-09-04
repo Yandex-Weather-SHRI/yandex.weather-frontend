@@ -1,4 +1,4 @@
-import { healthCategory } from './categories'
+import { healthCategories, motoristCategories } from './categories'
 
 
 export const categoryGroup = {
@@ -12,14 +12,11 @@ export const categoryGroups = Object.keys(categoryGroup)
 export const categoryGroupCategories = {
   [categoryGroup.all]: ['all'],
   [categoryGroup.health]: [
-    healthCategory.asthma,
-    healthCategory.heart,
-    healthCategory.joint,
-    healthCategory.skin,
-    healthCategory.allergy,
-    // healthCategory.ultraviolet,
+    ...healthCategories,
   ],
-  [categoryGroup.motorists]: [],
+  [categoryGroup.motorists]: [
+    ...motoristCategories,
+  ],
   [categoryGroup.ultraviolet]: [],
 }
 
