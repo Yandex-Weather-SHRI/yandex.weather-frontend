@@ -22,12 +22,12 @@ export function borderDecorator(storyFn) {
 }
 
 export const HorizontalFlexContainer = styled.div`
-  display: flex; 
+  display: flex;
   align-items: center;
   flex-wrap: wrap;
   padding: 15px;
-  
+
   & > * {
     margin-right: 10px;
-  }  
+  }
 `
