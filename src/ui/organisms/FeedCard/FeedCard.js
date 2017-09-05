@@ -2,8 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { Icon } from 'ui/atoms'
-import { IconButton } from 'ui/molecules'
+import { IconButton, CardPicture } from 'ui/molecules'
 import { categoryGroupDisplayNames, categoryGroups } from 'constants/categoryGroup'
 import { healthCategory, categories, categoriesDisplayNames } from 'constants/categories'
 
@@ -23,14 +22,8 @@ const Container = styled.div`
   min-height: 218px;
 `
 
-const CategoryPicture = styled(Icon)`
-  content: '';
-  position: absolute;
-  z-index: -1;
-  right: 0;
+const FeedCardPicture = styled(CardPicture)`
   top: 56px;
-  bottom: 0;
-  margin: auto;
 `
 
 const Header = styled.div`
@@ -80,7 +73,7 @@ export const FeedCard = ({ categoryGroup, category, text, onShareClick, onOption
 
   return (
     <Container {...{ categoryGroup }}>
-      <CategoryPicture
+      <FeedCardPicture
         name={`categories/${category}`}
         size={160}
       />
