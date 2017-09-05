@@ -19,11 +19,7 @@ class HomePageContainer extends Component {
   }
 
   componentDidMount() {
-    const { fetched } = this.props
-
-    if (!fetched) {
-      this.props.fetchWeather()
-    }
+    this.props.fetchWeather()
   }
 
   render() {

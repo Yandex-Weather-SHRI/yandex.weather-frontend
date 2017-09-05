@@ -4,7 +4,7 @@ import * as actions from './actions'
 
 
 const defaultForecastState = {
-  fetching: false,
+  fetching: true,
   fetched: false,
   fact: {
     condition: '',
