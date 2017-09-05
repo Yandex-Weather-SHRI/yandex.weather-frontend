@@ -64,9 +64,6 @@ export function fetchAndSetUserInfo() {
           login: json.login,
         }))
       })
-      .then(() => {
-        dispatch(createOrUpdateUserWithCategorySettings([]))
-      })
   }
 }
 
