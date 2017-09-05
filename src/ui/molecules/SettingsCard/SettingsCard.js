@@ -7,7 +7,7 @@ import { getCategoryGroupStyle } from 'styles/utils'
 
 
 const Container = styled.div`
-  ${getCategoryGroupStyle}
+  ${p => getCategoryGroupStyle({ name: p.groupName })}
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
@@ -59,28 +59,28 @@ const statusIcons = {
   false: 'add-circle',
 }
 
-export const SettingsCard = ({ group, catName, catAdvices, onClick, checked }) => (
-  <Container name={group} onClick={onClick}>
+export const SettingsCard = ({ groupName, categoryName, advicesCount, onClick, checked }) => (
+  <Container groupName={groupName} onClick={onClick}>
     <Heading>
       <Line />
       <Icon name={statusIcons[checked]} size={24} />
     </Heading>
     <Content>
-      <Name>{catName}</Name>
-      <Advices>{catAdvices}</Advices>
+      <Name>{categoryName}</Name>
+      <Advices>{advicesCount}</Advices>
     </Content>
   </Container>
 )
 
 SettingsCard.propTypes = {
-  group: PropTypes.string.isRequired,
-  catName: PropTypes.string.isRequired,
-  catAdvices: PropTypes.string,
+  groupName: PropTypes.string.isRequired,
+  categoryName: PropTypes.string.isRequired,
+  advicesCount: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   checked: PropTypes.bool,
 }
 
 SettingsCard.defaultProps = {
   checked: false,
-  catAdvices: '1 совет',
+  advicesCount: '1 совет',
 }

@@ -6,22 +6,16 @@ import { connect } from 'react-redux'
 import { PageContent, PageLoader, AppBar, SettingsSection } from 'ui/organisms'
 import { IconButton, SettingsCard } from 'ui/molecules'
 import { routeNames } from 'utils/routeNames'
-import { categoryGroups, categoryGroupCategories } from 'constants/categoryGroup'
-import { categoriesDisplayNames, categoriesAdvicesCount } from 'constants/categories'
-import { getCategoriesSettings, updateOneUserSetting } from 'redux/user/actions'
+import { updateOneUserSetting } from 'redux/user/actions'
 import { getNormalizedSettings } from 'redux/user/selectors'
 
 
 class SettingsPageContainer extends Component {
   static propTypes = {
+    settingsSchema: PropTypes.shape().isRequired,
     fetching: PropTypes.bool.isRequired,
     settings: PropTypes.shape().isRequired,
-    getCategoriesSettings: PropTypes.func.isRequired,
     updateOneUserSetting: PropTypes.func.isRequired,
-  }
-
-  componentDidMount() {
-    this.props.getCategoriesSettings()
   }
 
   handleToggleSettingsItem = ({ name, enabled }) => () => {
@@ -29,7 +23,7 @@ class SettingsPageContainer extends Component {
   }
 
   render() {
-    const { settings, fetching } = this.props
+    const { settingsSchema, settings, fetching } = this.props
 
     return (
       <PageContent>
@@ -43,21 +37,23 @@ class SettingsPageContainer extends Component {
         />
         {fetching ? (
           <PageLoader />
-        ) : categoryGroups.map(group => (
-          group !== 'all' && (
-            <SettingsSection key={group} {...{ group }}>
-              {categoryGroupCategories[group].map(category => (
-                <SettingsCard
-                  group={group}
-                  catName={categoriesDisplayNames[category]}
-                  catAdvices={categoriesAdvicesCount[category]}
-                  checked={settings[category].enabled}
-                  onClick={this.handleToggleSettingsItem(settings[category])}
-                  key={category}
-                />
-              ))}
-            </SettingsSection>
-          )
+        ) : Object.keys(settingsSchema).map(groupName => (
+          <SettingsSection
+            key={groupName}
+            groupName={groupName}
+            groupTitle={settingsSchema[groupName].title}
+          >
+            {Object.keys(settingsSchema[groupName].categories).map(category => (
+              <SettingsCard
+                key={category}
+                groupName={groupName}
+                checked={settings[category].enabled}
+                categoryName={settingsSchema[groupName].categories[category]}
+                advicesCount="10"
+                onClick={this.handleToggleSettingsItem(settings[category])}
+              />
+            ))}
+          </SettingsSection>
         ))}
       </PageContent>
     )
@@ -67,14 +63,17 @@ class SettingsPageContainer extends Component {
 function mapStateToProps(state) {
   return {
     fetching: state.user.fetching,
+    settingsSchema: state.user.settings.schema,
     settings: getNormalizedSettings(state),
   }
 }
 
 const mapDispatchToProps = {
   updateOneUserSetting,
-  getCategoriesSettings,
 }
 
-export const SettingsPage = connect(mapStateToProps, mapDispatchToProps)(SettingsPageContainer)
+export const SettingsPage = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SettingsPageContainer)
 

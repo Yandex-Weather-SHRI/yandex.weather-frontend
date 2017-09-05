@@ -9,7 +9,7 @@ export const healthCategory = {
 }
 
 export const motoristCategory = {
-  badSight: 'badSight',
+  badVisibility: 'badVisibility',
   washCar: 'washCar',
   ice: 'ice',
 }
@@ -24,7 +24,7 @@ export const categoriesDisplayNames = {
   [healthCategory.skin]: 'Кожа',
   [healthCategory.allergy]: 'Аллергия',
   [healthCategory.ultraviolet]: 'Ультрафиолет',
-  [motoristCategory.badSight]: 'Плохая видимость',
+  [motoristCategory.badVisibility]: 'Плохая видимость',
   [motoristCategory.washCar]: 'Помыть машину',
   [motoristCategory.ice]: 'Гололёд',
 }
@@ -36,7 +36,7 @@ export const categoriesAdvicesCount = {
   [healthCategory.skin]: '3 совета',
   [healthCategory.allergy]: '3 совета',
   [healthCategory.ultraviolet]: '2 совета',
-  [motoristCategory.badSight]: '4 совета',
+  [motoristCategory.badVisibility]: '4 совета',
   [motoristCategory.washCar]: '2 совета',
   [motoristCategory.ice]: '8 советов',
 }
