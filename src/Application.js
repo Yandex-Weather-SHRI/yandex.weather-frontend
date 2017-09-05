@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
+import R from 'ramda'
 import {
   BrowserRouter as Router,
   Route,
@@ -18,7 +19,7 @@ import {
 } from 'ui/pages'
 import { PageLoader } from 'ui/organisms'
 import { routeNames } from 'utils/routeNames'
-import { withAuthentication } from 'hocs/withAuthentication'
+import { withAuthentication, withSettings } from 'hocs'
 import { checkAuth } from 'redux/user/actions'
 import { RootModal } from 'ui/organisms/RootModal/RootModal'
 
@@ -70,11 +71,11 @@ class ApplicationContainer extends Component {
             />
             <Route
               path={routeNames.feed}
-              component={withAuthentication(FeedPage)}
+              component={R.compose(withSettings, withAuthentication)(FeedPage)}
             />
             <Route
               path={routeNames.settings}
-              component={withAuthentication(SettingsPage)}
+              component={R.compose(withSettings, withAuthentication)(SettingsPage)}
             />
             <Route
               path={routeNames.passportRedirect}
