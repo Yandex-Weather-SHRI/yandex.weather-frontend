@@ -28,7 +28,7 @@ const NavIconButton = styled(IconButton)`
   }
 `
 
-const PureNavigationBar = ({ avatarUrl }) => (
+export const PureNavigationBar = ({ avatarUrl }) => (
   <Container>
     <Logo />
     <Actions>
