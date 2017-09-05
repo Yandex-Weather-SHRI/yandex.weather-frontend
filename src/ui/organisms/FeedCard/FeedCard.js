@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { IconButton, CardPicture } from 'ui/molecules'
-import { categoryGroupDisplayNames, categoryGroups } from 'constants/categoryGroup'
-import { healthCategory, categories, categoriesDisplayNames } from 'constants/categories'
+import { healthCategory } from 'constants/categories'
 
 import { FeedCardMetaHeart, FeedCardMetaAsthma, FeedCardMetaJoint } from './metas'
 
@@ -51,7 +50,7 @@ const HeaderButton = styled(IconButton)`
 const CategoryGroupName = styled.div`
   font-size: 1rem;
   font-weight: bold;
-  letter-spacing: 0.7px;
+  letter-spacing: 0.8px;
   text-transform: uppercase;
 `
 
@@ -68,18 +67,25 @@ const Text = styled.div`
   line-height: 1.2;
 `
 
-export const FeedCard = ({ categoryGroup, category, text, onShareClick, onOptionsClick }) => {
+export const FeedCard = ({
+  groupTitle,
+  categoryTitle,
+  category,
+  text,
+  onShareClick,
+  onOptionsClick,
+}) => {
   const FeedMeta = feedMetaComponents[category]
 
   return (
-    <Container {...{ categoryGroup }}>
+    <Container>
       <FeedCardPicture
         name={`categories/${category}`}
         size={160}
       />
       <Header>
         <CategoryGroupName>
-          {categoryGroupDisplayNames[categoryGroup] || 'Совет'}
+          {groupTitle}
         </CategoryGroupName>
         <HeaderButtons>
           <HeaderButton icon="share" onClick={onShareClick} />
@@ -88,7 +94,7 @@ export const FeedCard = ({ categoryGroup, category, text, onShareClick, onOption
       </Header>
       <Content>
         <CategoryName>
-          {categoriesDisplayNames[category]}
+          {categoryTitle}
         </CategoryName>
         <Text>
           {text}
@@ -100,8 +106,9 @@ export const FeedCard = ({ categoryGroup, category, text, onShareClick, onOption
 }
 
 FeedCard.propTypes = {
-  categoryGroup: PropTypes.oneOf(categoryGroups).isRequired,
-  category: PropTypes.oneOf(categories).isRequired,
+  groupTitle: PropTypes.string.isRequired,
+  categoryTitle: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   onShareClick: PropTypes.func.isRequired,
   onOptionsClick: PropTypes.func.isRequired,

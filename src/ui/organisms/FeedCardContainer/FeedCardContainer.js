@@ -37,6 +37,8 @@ export class FeedCardContainerInner extends Component {
     cardsList: PropTypes.arrayOf(
       PropTypes.shape()
     ).isRequired,
+    openModal: PropTypes.func.isRequired,
+    settingsSchema: PropTypes.shape({}).isRequired,
   }
 
   state = {
@@ -47,17 +49,29 @@ export class FeedCardContainerInner extends Component {
     this.setState({ currentCard })
   }
 
+  onOptionsClick = card => () => {
+    this.props.openModal(modals.cardOptions, { card })
+  }
+
+  onShareClick = card => () => {
+    this.props.openModal(modals.shareCard, { card })
+  }
+
   render() {
     const { currentCard } = this.state
-    const { cardsList } = this.props
+    const { cardsList, settingsSchema } = this.props
     const card = cardsList[currentCard]
+    const { categoryGroup, category } = card
+    const { title: groupTitle, categories } = settingsSchema[categoryGroup]
+    const categoryTitle = categories[category]
 
     return (
-      <Container categoryGroup={card.categoryGroup}>
+      <Container {...{ categoryGroup }}>
         <FeedCard
           {...card}
-          onOptionsClick={() => this.props.openModal(modals.cardOptions, { card })}
-          onShareClick={() => this.props.openModal(modals.shareCard, { card })}
+          {...{ groupTitle, categoryTitle }}
+          onOptionsClick={this.onOptionsClick(card)}
+          onShareClick={this.onShareClick(card)}
         />
         {cardsList.length > 1 && (
           <TabBar
@@ -71,9 +85,17 @@ export class FeedCardContainerInner extends Component {
   }
 }
 
-
-FeedCardContainerInner.propTypes = {
-  openModal: PropTypes.func.isRequired,
+function mapStateToProps(state) {
+  return {
+    settingsSchema: state.user.settings.schema,
+  }
 }
 
-export const FeedCardContainer = connect(null, { openModal })(FeedCardContainerInner)
+const mapDispatchToProps = {
+  openModal,
+}
+
+export const FeedCardContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FeedCardContainerInner)
