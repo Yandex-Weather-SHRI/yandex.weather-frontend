@@ -1,25 +1,13 @@
 import { createReducer } from 'redux-act'
 
-import { categoryGroup, categoryGroupDisplayNames } from 'constants/categoryGroup'
-
-import { setFeedFilter } from './actions'
+import { setFeedFilter, getAvailableFiltersSuccess } from './actions'
 
 
 const filtersDefaultState = [
   {
-    name: categoryGroup.all,
-    title: categoryGroupDisplayNames[categoryGroup.all],
+    name: 'all',
+    title: 'Все',
     active: true,
-  },
-  {
-    name: categoryGroup.health,
-    title: categoryGroupDisplayNames[categoryGroup.health],
-    active: false,
-  },
-  {
-    name: categoryGroup.motorists,
-    title: categoryGroupDisplayNames[categoryGroup.motorists],
-    active: false,
   },
 ]
 
@@ -27,12 +15,12 @@ function isSelectedCurrentFilter(filter, name) {
   return filter.name === name
 }
 
-function isSelectedFilterAll(name, group) {
-  return name === group.all
+function isSelectedFilterAll(name) {
+  return name === 'all'
 }
 
-function isCurrentFilterAll(filter, group) {
-  return filter.name === group.all
+function isCurrentFilterAll(filter) {
+  return filter.name === 'all'
 }
 
 function getCurrentActiveFilters(filterList, name) {
@@ -44,20 +32,20 @@ function getCurrentActiveFilters(filterList, name) {
 function setFeedFilterReducer(state, { name, active }) {
   return state.map((filter) => {
     if (
-      !isCurrentFilterAll(filter, categoryGroup)
-      && isSelectedFilterAll(name, categoryGroup)
+      !isCurrentFilterAll(filter)
+      && isSelectedFilterAll(name)
     ) {
       return { ...filter, active: false }
     }
     else if (
-      !isSelectedFilterAll(name, categoryGroup)
-      && isCurrentFilterAll(filter, categoryGroup)
+      !isSelectedFilterAll(name)
+      && isCurrentFilterAll(filter)
     ) {
       const activeFilters = getCurrentActiveFilters(state, name)
       const isActiveAll = activeFilters.length === 0
       return { ...filter, active: isActiveAll }
     }
-    else if (isSelectedFilterAll(name, categoryGroup)) {
+    else if (isSelectedFilterAll(name)) {
       return { ...filter, active: true }
     }
     else if (isSelectedCurrentFilter(filter, name)) {
@@ -68,5 +56,11 @@ function setFeedFilterReducer(state, { name, active }) {
 }
 
 export const filtersReducer = createReducer({
-  [setFeedFilter]: setFeedFilterReducer,
+  [setFeedFilter](state, payload) {
+    return setFeedFilterReducer(state, payload)
+  },
+
+  [getAvailableFiltersSuccess](state, payload) {
+    return [...filtersDefaultState, ...payload]
+  },
 }, filtersDefaultState)
