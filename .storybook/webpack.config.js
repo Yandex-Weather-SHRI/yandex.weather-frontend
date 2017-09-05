@@ -20,6 +20,19 @@ module.exports = (storybookBaseConfig, configType) => {
         },
       },
     ],
+  },
+  {
+    test: /\.css$/,
+    use:'css-loader'
+  },
+  {
+    test: /\.ttf$/,
+    use: {
+      loader: 'file-loader',
+      query: {
+        name: 'assets/fonts/[name].[hash:10].[ext]',
+      },
+    },
   })
 
   return storybookBaseConfig
