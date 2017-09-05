@@ -8,14 +8,12 @@ import { getFeed } from 'redux/feed/actions'
 import { PageContent, PageLoader, AppBar, FeedFiltersList, FeedCardContainer } from 'ui/organisms'
 import { IconButton } from 'ui/molecules'
 import { getFeedByFilters } from 'redux/feed/selectors'
-import { setFeedFilter } from 'redux/filters/actions'
+import { setFeedFilter, getAvailableFilters } from 'redux/filters/actions'
 import { routeNames } from 'utils/routeNames'
-import { openModal } from 'redux/modal/actions'
 
 
-const CardsContainer = styled.div`
+const FeedList = styled.div`
   padding: 0 8px;
-  flex: 1;
   margin-bottom: 16px;
 `
 
@@ -30,12 +28,14 @@ class FeedPageContainer extends Component {
         })
       )
     ).isRequired,
-    filters: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+    filtersList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
     getFeed: PropTypes.func.isRequired,
     setFeedFilter: PropTypes.func.isRequired,
+    getAvailableFilters: PropTypes.func.isRequired,
   }
 
   componentDidMount() {
+    this.props.getAvailableFilters()
     this.props.getFeed()
   }
 
@@ -44,7 +44,7 @@ class FeedPageContainer extends Component {
   }
 
   render() {
-    const { fetching, feedList, filters } = this.props
+    const { fetching, feedList, filtersList } = this.props
 
     return (
       <PageContent>
@@ -61,20 +61,20 @@ class FeedPageContainer extends Component {
             </Link>
           }
         />
+        {feedList.length > 0 && !fetching && (
+          <FeedFiltersList
+            list={filtersList}
+            setFeedFilter={this.setFeedFilter}
+          />
+        )}
         {fetching ? (
           <PageLoader />
         ) : (
-          <div>
-            <FeedFiltersList
-              list={filters}
-              setFeedFilter={this.setFeedFilter}
-            />
-            <CardsContainer>
-              {feedList.map((cardsList, key) => (
-                <FeedCardContainer {...{ cardsList, key }} />
-              ))}
-            </CardsContainer>
-          </div>
+          <FeedList>
+            {feedList.map((cardsList, key) => (
+              <FeedCardContainer {...{ cardsList, key }} />
+            ))}
+          </FeedList>
         )}
       </PageContent>
     )
@@ -85,14 +85,14 @@ function mapStateToProps(state) {
   return {
     fetching: state.feed.fetching,
     feedList: getFeedByFilters(state),
-    filters: state.filters,
+    filtersList: state.filters,
   }
 }
 
 const mapDispatchToProps = {
   getFeed,
   setFeedFilter,
-  openModal,
+  getAvailableFilters,
 }
 
 export const FeedPage = connect(
