@@ -15,12 +15,12 @@ const StyledButton = styled(RoundedButton) `
   height: 48px;
   position: relative;
   margin: 1px;
-  
+
   & > span {
     margin-left: 8px;
   }
-  
-  &::after {
+
+  &:after {
     content: '';
     position: absolute;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04);

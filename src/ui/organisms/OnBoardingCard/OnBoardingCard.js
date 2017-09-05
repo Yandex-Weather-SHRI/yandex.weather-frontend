@@ -24,7 +24,7 @@ const Underlay = styled.div`
   margin-right: auto;
   margin-top: -233px;
   transform: translateY(233px);
-  opacity: 0.8
+  opacity: 0.8;
 `
 
 export const OnBoardingCard = ({ card }) => (
