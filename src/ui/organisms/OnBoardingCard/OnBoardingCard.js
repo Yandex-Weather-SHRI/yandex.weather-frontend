@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 import { FeedCard } from 'ui/organisms'
 import { getCategoryGroupStyle } from 'styles/utils'
@@ -30,8 +31,12 @@ const Underlay = styled.div`
 export const OnBoardingCard = ({ card }) => (
   <div>
     <Container card={card}>
-      <FeedCard {...card} onShareClick={() => null} onOptionsClick={() => null} />
+      <FeedCard {...card} />
     </Container>
     <Underlay categoryName={card.categoryGroup} />
   </div>
 )
+
+OnBoardingCard.propTypes = {
+  card: PropTypes.shape(FeedCard.propTypes).isRequired,
+}
