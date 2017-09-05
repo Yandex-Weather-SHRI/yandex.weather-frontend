@@ -48,8 +48,9 @@ class SettingsPageContainer extends Component {
                 key={category}
                 groupName={groupName}
                 checked={settings[category].enabled}
-                categoryName={settingsSchema[groupName].categories[category]}
-                advicesCount="10"
+                categoryName={category}
+                categoryTitle={settingsSchema[groupName].categories[category]}
+                advicesCount="3 совета"
                 onClick={this.handleToggleSettingsItem(settings[category])}
               />
             ))}
