@@ -1,11 +1,9 @@
 import { css } from 'styled-components'
 
-import { categoryGroup } from 'constants/categoryGroup'
 
-
-export function getCategoryGroupStyle({ name }) {
+export function getCategoryGroupStyle(name) {
   switch (name) {
-    case categoryGroup.health:
+    case 'health':
       return css`
         color: rgba(255, 255, 255, 0.87);
         background-image: linear-gradient(to bottom, #309bb4, #32689a);
@@ -14,7 +12,7 @@ export function getCategoryGroupStyle({ name }) {
           0 2px 16px 0 rgba(49, 135, 170, 0.42);
       `
 
-    case categoryGroup.motorists:
+    case 'motorists':
       return css`
         color: rgba(255, 255, 255, 0.87);
         background-image: linear-gradient(109deg, #9cddff, #4baffd 52%, #498ffa);
@@ -27,6 +25,23 @@ export function getCategoryGroupStyle({ name }) {
         background-color: #fff;
         box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.07), 0 2px 17px 0 rgba(0, 0, 0, 0.01);
         border: solid 1px rgba(0, 0, 0, 0.08);
+      `
+  }
+}
+
+export function getCategoryGradient(name) {
+  switch (name) {
+    case 'health':
+      return css`
+        background-image: linear-gradient(109deg, #9cddff, #4baffd 52%, #498ffa);
+      `
+    case 'motorists':
+      return css`
+        background-image: linear-gradient(109deg, #9cddff, #4baffd 52%, #498ffa);
+      `
+    default:
+      return css`
+        background-color: #fff;
       `
   }
 }
