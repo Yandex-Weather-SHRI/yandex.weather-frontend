@@ -60,7 +60,6 @@ class HomePageContainer extends Component {
 function mapStateToProps(state) {
   return {
     fetching: state.forecast.fetching,
-    fetched: state.forecast.fetched,
   }
 }
 
