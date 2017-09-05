@@ -22,7 +22,7 @@ const mockTabs = [
 ]
 
 const Container = styled.div`
-  ${p => getCategoryGroupStyle({ name: p.categoryGroup })}
+  ${p => getCategoryGroupStyle(p.categoryGroup)}
   border-radius: 4px;
   overflow: hidden;
   margin-bottom: 16px;

@@ -5,7 +5,7 @@ import { getCategoryGroupStyle } from 'styles/utils'
 
 
 export const FeedFilter = RoundedButton.extend`
-  ${getCategoryGroupStyle}
+  ${p => getCategoryGroupStyle(p.name)}
   margin-right: 8px;
 
   &:last-of-type {

@@ -7,7 +7,7 @@ import { getCategoryGroupStyle } from 'styles/utils'
 
 
 const Container = styled.div`
-  ${p => getCategoryGroupStyle({ name: p.groupName })}
+  ${p => getCategoryGroupStyle(p.groupName)}
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;

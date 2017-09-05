@@ -32,16 +32,10 @@ export function getCategoryGroupStyle(name) {
 export function getCategoryGradient(name) {
   switch (name) {
     case 'health':
-      return css`
-        background-image: linear-gradient(109deg, #9cddff, #4baffd 52%, #498ffa);
-      `
+      return 'linear-gradient(to bottom, #309bb4, #32689a)'
     case 'motorists':
-      return css`
-        background-image: linear-gradient(109deg, #9cddff, #4baffd 52%, #498ffa);
-      `
+      return 'linear-gradient(109deg, #9cddff, #4baffd 52%, #498ffa)'
     default:
-      return css`
-        background-color: #fff;
-      `
+      return '#fff'
   }
 }

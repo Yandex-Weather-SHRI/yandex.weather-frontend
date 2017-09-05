@@ -6,14 +6,14 @@ import { getCategoryGroupStyle } from 'styles/utils'
 
 
 const Container = styled.div`
-  ${p => getCategoryGroupStyle({ name: p.card.categoryGroup })}
+  ${p => getCategoryGroupStyle(p.card.categoryGroup)}
   width: 328px;
   margin: 0 auto;
   border-radius: 4px;
 `
 
 const Underlay = styled.div`
-  ${p => getCategoryGroupStyle({ name: p.categoryName })}
+  ${p => getCategoryGroupStyle(p.categoryName)}
   height: 245px;
   position: relative;
   z-index: -1;
@@ -24,6 +24,7 @@ const Underlay = styled.div`
   margin-right: auto;
   margin-top: -233px;
   transform: translateY(233px);
+  opacity: 0.8
 `
 
 export const OnBoardingCard = ({ card }) => (
@@ -32,5 +33,5 @@ export const OnBoardingCard = ({ card }) => (
       <FeedCard {...card} onShareClick={() => null} onOptionsClick={() => null} />
     </Container>
     <Underlay categoryName={card.categoryGroup} />
-  </div>  
+  </div>
 )
