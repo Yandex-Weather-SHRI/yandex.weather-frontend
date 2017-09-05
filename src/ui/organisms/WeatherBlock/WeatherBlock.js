@@ -60,7 +60,7 @@ const ConditionsRow = styled.div`
   align-items: center;
 `
 
-const PureWeatherBlock = ({ locality, weatherIcon, temperature, condition, feel }) => (
+export const PureWeatherBlock = ({ locality, weatherIcon, temperature, condition, feel }) => (
   <div>
     <LocationRow>
       <IconButton fill="#fff" stroke="#fff" icon="geolocation" onClick={() => null} />
