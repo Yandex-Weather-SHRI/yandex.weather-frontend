@@ -71,11 +71,11 @@ class ApplicationContainer extends Component {
             />
             <Route
               path={routeNames.feed}
-              component={R.compose(withSettings, withAuthentication)(FeedPage)}
+              component={R.compose(withAuthentication, withSettings)(FeedPage)}
             />
             <Route
               path={routeNames.settings}
-              component={R.compose(withSettings, withAuthentication)(SettingsPage)}
+              component={R.compose(withAuthentication, withSettings)(SettingsPage)}
             />
             <Route
               path={routeNames.passportRedirect}
