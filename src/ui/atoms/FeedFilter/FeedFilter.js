@@ -7,6 +7,7 @@ import { getCategoryGroupStyle } from 'styles/utils'
 export const FeedFilter = RoundedButton.extend`
   ${getCategoryGroupStyle}
   margin-right: 8px;
+  text-transform: uppercase;
 
   &:last-of-type {
     margin-right: 0;

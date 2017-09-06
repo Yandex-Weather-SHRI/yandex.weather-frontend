@@ -28,6 +28,7 @@ const TabButton = RoundedButton.extend`
   color: #fff;
   font-size: 1.2rem;
   font-weight: 500;
+  text-transform: uppercase;
   margin-right: 24px;
   
   ${p => !p.active && css`
