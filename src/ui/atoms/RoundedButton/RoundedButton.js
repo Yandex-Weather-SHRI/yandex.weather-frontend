@@ -5,7 +5,7 @@ export const RoundedButton = styled.button`
   display: inline-flex;
   align-items: center;
   height: 36px;
-  border-radius: 18px;
+  border-radius: 32px;
   padding: 0 16px;
   font-size: 1rem;
   font-weight: 500;

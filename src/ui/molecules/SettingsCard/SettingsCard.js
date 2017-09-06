@@ -8,7 +8,7 @@ import { getCategoryGroupStyle } from 'styles/utils'
 
 
 const Container = styled.div`
-  ${p => getCategoryGroupStyle({ name: p.groupName })}
+  ${p => getCategoryGroupStyle(p.groupName)}
   position: relative;
   z-index: 1;
   flex: 0 0 auto;
