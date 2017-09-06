@@ -10,6 +10,7 @@ const Container = styled.div`
   ${p => getCategoryGroupStyle({ name: p.categoryGroup })}
   position: relative;
   border-radius: 4px;
+  width: 100%;
 
   &:before {
     content: '';
@@ -30,8 +31,8 @@ export const FeedCardBoard = ({ categoryGroup, ...props }) => (
   <Container {...{ categoryGroup }}>
     <FeedCard
       {...props}
-      onShareClick={null}
-      onOptionsClick={null}
+      onShareClick={() => {}}
+      onOptionsClick={() => {}}
     />
   </Container>
 )
