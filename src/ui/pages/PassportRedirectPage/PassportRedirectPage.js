@@ -24,9 +24,7 @@ class PassportRedirectPageContainer extends React.Component {
     this.props.setToken(token)
     this.props.fetchAndSetUserInfo()
       .then(() => {
-        if (categories) {
-          this.props.createOrUpdateUserWithCategorySettings(categories)
-        }
+        this.props.createOrUpdateUserWithCategorySettings(categories || [])
         this.props.history.replace(nextRoute)
       })
   }
