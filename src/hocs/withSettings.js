@@ -20,9 +20,9 @@ export function withSettings(WrappedComponent) {
     }
 
     render() {
-      const { settings } = this.props
+      const { settings, schema } = this.props
 
-      if (!settings.length) {
+      if (!settings.length || Object.keys(schema).length <= 0) {
         return (
           <PageLoader />
         )
@@ -37,6 +37,7 @@ export function withSettings(WrappedComponent) {
   function mapStateToProps(state) {
     return {
       settings: state.user.settings.categories,
+      schema: state.user.settings.schema,
     }
   }
 

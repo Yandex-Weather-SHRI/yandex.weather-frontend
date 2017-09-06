@@ -29,6 +29,19 @@ export function requestLogout() {
   window.location.reload()
 }
 
+export function createOrUpdateUserWithCategorySettings(categories) {
+  return async (dispatch, getState) => {
+    const { user: { login } } = getState()
+    try {
+      const responseCategories = await request.post('/v1/settings/categories', { items: categories, login })
+      dispatch(getCategoriesSettingsSuccess(responseCategories))
+    }
+    catch (err) {
+      // todo
+    }
+  }
+}
+
 export function setToken(token) {
   return (dispatch) => {
     window.localStorage.setItem(O_AUTH_TOKEN_KEY, token)
@@ -54,24 +67,11 @@ export function fetchAndSetUserInfo() {
   }
 }
 
-export function createOrUpdateUserWithCategorySettings(categories) {
-  return async (dispatch, getState) => {
-    const { user: { login } } = getState()
-    try {
-      const responseCategories = await request.post('/v1/settings/categories', { items: categories, login })
-      dispatch(getCategoriesSettingsSuccess(responseCategories))
-    }
-    catch (err) {
-      // todo
-    }
-  }
-}
-
 export function getCategoriesSettings() {
   return async (dispatch, getState) => {
     const { user: { login, settings } } = getState()
 
-    if (!settings.categories.length) {
+    if (!settings.categories.length || !Object.keys(settings.schema).length) {
       dispatch(getSettingsSchemaRequest())
       dispatch(getCategoriesSettingsRequest())
 

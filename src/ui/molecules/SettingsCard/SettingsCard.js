@@ -3,11 +3,14 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 import { Icon } from 'ui/atoms'
+import { CardPicture } from 'ui/molecules'
 import { getCategoryGroupStyle } from 'styles/utils'
 
 
 const Container = styled.div`
   ${p => getCategoryGroupStyle(p.groupName)}
+  position: relative;
+  z-index: 1;
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
@@ -33,6 +36,8 @@ const Name = styled.div`
 const Advices = styled.div`
   margin-top: 8px;
   font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.1px;
   color: rgba(255, 255, 255, 0.7);
 `
 
@@ -59,14 +64,25 @@ const statusIcons = {
   false: 'add-circle',
 }
 
-export const SettingsCard = ({ groupName, categoryName, advicesCount, onClick, checked }) => (
+export const SettingsCard = ({
+  groupName,
+  categoryName,
+  categoryTitle,
+  advicesCount,
+  onClick,
+  checked,
+}) => (
   <Container groupName={groupName} onClick={onClick}>
+    <CardPicture
+      name={`categories/${categoryName}`}
+      size={80}
+    />
     <Heading>
       <Line />
       <Icon name={statusIcons[checked]} size={24} />
     </Heading>
     <Content>
-      <Name>{categoryName}</Name>
+      <Name>{categoryTitle}</Name>
       <Advices>{advicesCount}</Advices>
     </Content>
   </Container>
@@ -74,6 +90,7 @@ export const SettingsCard = ({ groupName, categoryName, advicesCount, onClick, c
 
 SettingsCard.propTypes = {
   groupName: PropTypes.string.isRequired,
+  categoryTitle: PropTypes.string.isRequired,
   categoryName: PropTypes.string.isRequired,
   advicesCount: PropTypes.string,
   onClick: PropTypes.func.isRequired,
