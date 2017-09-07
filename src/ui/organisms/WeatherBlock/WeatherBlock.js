@@ -12,7 +12,8 @@ const LocationRow = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 16px;
+  margin-top: 4px;
 `
 
 const LocationText = styled.span`
@@ -37,6 +38,7 @@ const TemperatureRow = styled.div`
   line-height: 7.2rem;
   display: flex;
   align-items: center;
+  margin-top: 16px;
 `
 
 const WeatherIcon = styled(Icon) `
@@ -52,7 +54,7 @@ const WeatherIcon = styled(Icon) `
   }
 `
 
-const ConditionsRow = styled.div`
+const Facts = styled.div`
   font-size: 1.4rem;
   line-height: 1.43;
   display: flex;
@@ -60,22 +62,28 @@ const ConditionsRow = styled.div`
   align-items: center;
 `
 
+const Condition = styled.span`
+  &:first-letter {
+    text-transform: uppercase;
+  }
+`
+
 const PureWeatherBlock = ({ locality, weatherIcon, temperature, condition, feel }) => (
   <div>
     <LocationRow>
-      <IconButton fill="#fff" stroke="#fff" icon="geolocation" onClick={() => null} />
+      <IconButton fill="#fff" icon="geolocation" onClick={() => null} />
       <LocationText>{locality}</LocationText>
-      <IconButton fill="transparent" stroke="#fff" icon="star" onClick={() => null} />
+      <IconButton fill="transparent" icon="star" onClick={() => null} />
     </LocationRow>
     <TemperatureBlock>
       <TemperatureRow>
         <WeatherIcon name={weatherIcon} />
         <span>{getNumberWithSign(temperature)}°</span>
       </TemperatureRow>
-      <ConditionsRow>
-        <span>{condition}</span>
+      <Facts>
+        <Condition>{condition}</Condition>
         <span>Ощущается как {getNumberWithSign(feel)}°</span>
-      </ConditionsRow>
+      </Facts>
     </TemperatureBlock>
   </div>
 )
