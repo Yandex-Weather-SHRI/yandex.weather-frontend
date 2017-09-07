@@ -27,10 +27,6 @@ const PureWeatherConditions = ({ humidity, pressure, waterTemp, wind }) => {
       iconName: 'weather-conditions/pressure',
       text: (<span>{pressure} <span style={{ fontSize: 10 }}>мм рт. ст.</span></span>),
     },
-    {
-      iconName: 'weather-conditions/waterTemp',
-      text: `${waterTemp}°`,
-    },
   ]
 
   return (

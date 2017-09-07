@@ -29,7 +29,7 @@ const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 16px;
+  padding: 0 8px 0 16px;
   height: 48px;
 `
 
@@ -43,7 +43,7 @@ const HeaderButtons = styled.div`
 
 const HeaderButton = styled(IconButton)`
   & + & {
-    margin-left: 16px;
+    margin-left: 8px;
   }
 `
 
