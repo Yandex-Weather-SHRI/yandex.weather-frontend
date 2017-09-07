@@ -18,15 +18,21 @@ class PassportRedirectPageContainer extends React.Component {
   }
 
   componentDidMount() {
+    const error = getHashParam('error')
     const token = getHashParam('access_token')
     const { nextRoute, categories } = JSON.parse(decodeURIComponent(getHashParam('state')))
 
-    this.props.setToken(token)
-    this.props.fetchAndSetUserInfo()
-      .then(() => {
-        this.props.createOrUpdateUserWithCategorySettings(categories || [])
-        this.props.history.replace(nextRoute)
-      })
+    if (error || !token) {
+      this.props.history.replace('/')
+    }
+    else {
+      this.props.setToken(token)
+      this.props.fetchAndSetUserInfo()
+        .then(() => {
+          this.props.createOrUpdateUserWithCategorySettings(categories || [])
+          this.props.history.replace(nextRoute)
+        })
+    }
   }
 
   render() {
