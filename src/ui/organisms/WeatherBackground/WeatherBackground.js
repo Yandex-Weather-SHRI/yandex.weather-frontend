@@ -15,7 +15,8 @@ export const WeatherBackground = styled.div`
   min-height: 304px;
   background-image: url(${getWeatherBackground});
   background-repeat: no-repeat;
-  background-position: center;
+  background-position-x: center;
+  background-position-y: bottom;
   background-size: cover;
 `
 
