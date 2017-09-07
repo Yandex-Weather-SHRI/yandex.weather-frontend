@@ -26,7 +26,7 @@ class SettingsPageContainer extends Component {
     const { settingsSchema, settings, fetching } = this.props
 
     return (
-      <PageContent>
+      <PageContent withFixedBar>
         <AppBar
           title="Настройки"
           elementLeft={

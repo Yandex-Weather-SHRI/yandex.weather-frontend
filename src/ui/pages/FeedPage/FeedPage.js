@@ -47,7 +47,7 @@ class FeedPageContainer extends Component {
     const { fetching, feedList, filtersList } = this.props
 
     return (
-      <PageContent>
+      <PageContent withFixedBar>
         <AppBar
           title="Советы"
           elementLeft={
