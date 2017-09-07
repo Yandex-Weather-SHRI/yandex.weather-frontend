@@ -27,7 +27,7 @@ export const PaginationBullets = ({ total, activeIndex }) => (
   </Container>
 )
 
-PaginationBullets.PropTypes = {
+PaginationBullets.propTypes = {
   activeIndex: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
 }

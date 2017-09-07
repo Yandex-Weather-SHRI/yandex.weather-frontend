@@ -12,6 +12,7 @@ export function withSettings(WrappedComponent) {
       settings: PropTypes.arrayOf(
         PropTypes.shape()
       ).isRequired,
+      schema: PropTypes.shape().isRequired,
       getCategoriesSettings: PropTypes.func.isRequired,
     }
 

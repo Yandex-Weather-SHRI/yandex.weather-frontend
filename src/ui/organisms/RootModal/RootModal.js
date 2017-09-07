@@ -2,9 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { CardOptionsModal } from '../../modals/CardOptionsModal'
-import { modalNames, modals } from '../../../constants/modals'
-import { ShareCardModal } from '../../modals/ShareCardModal'
+
+import { modalNames, modals } from 'constants/modals'
+import { CardOptionsModal } from 'ui/modals/CardOptionsModal'
+import { ShareCardModal } from 'ui/modals/ShareCardModal'
 
 
 const Container = styled.div`
@@ -30,6 +31,17 @@ const modalComponents = {
 }
 
 class RootModalInner extends React.Component {
+  static propTypes = {
+    isModalOpened: PropTypes.bool.isRequired,
+    openedModal: PropTypes.oneOf([...modalNames, '']),
+    meta: PropTypes.shape(),
+  }
+
+  static defaultProps = {
+    openedModal: '',
+    meta: {},
+  }
+
   componentWillReceiveProps(nextProps) {
     this.handleCloseOpen(nextProps)
   }
@@ -56,17 +68,6 @@ class RootModalInner extends React.Component {
       </Container>
     )
   }
-}
-
-RootModalInner.propTypes = {
-  isModalOpened: PropTypes.bool.isRequired,
-  openedModal: PropTypes.oneOf([...modalNames, '']),
-  meta: PropTypes.shape(),
-}
-
-RootModalInner.defaultProps = {
-  openedModal: '',
-  meta: {},
 }
 
 function mapStateToProps(state) {

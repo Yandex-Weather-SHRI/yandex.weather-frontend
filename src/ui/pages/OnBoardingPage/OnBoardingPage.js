@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { connect } from 'react-redux'
@@ -79,7 +79,8 @@ const mergeSettings = (defaultSettings, partialSettings) =>
   })
 
 
-class OnBoardingPageContainer extends React.Component {
+/* eslint-disable class-methods-use-this */
+class OnBoardingPageContainer extends Component {
   static propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
     history: PropTypes.shape({
@@ -155,7 +156,7 @@ class OnBoardingPageContainer extends React.Component {
       this.setState({ defaultSettings, onBoardingCards, partialSettings, schema })
     }
     catch (e) {
-      console.log(e)
+      // todo
     }
   }
 
