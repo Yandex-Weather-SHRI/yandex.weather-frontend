@@ -50,20 +50,27 @@ export function setToken(token) {
 }
 
 export function fetchAndSetUserInfo() {
-  return (dispatch, getState) => {
+  return async (dispatch, getState) => {
     const { user: { oAuthToken: token } } = getState()
-    if (!token) {
-      throw new Error(`Attempted to get user data with falsy token=${token} in app state.`)
-    }
 
-    return fetch(`https://login.yandex.ru/info?oauth_token=${token}`)
-      .then(response => response.json())
-      .then((json) => {
+    try {
+      const response = await fetch(`https://login.yandex.ru/info?oauth_token=${token}`)
+
+      if (response.ok) {
+        const { default_avatar_id, login } = await response.json()
+        /* eslint-disable camelcase */
         dispatch(setUserInfo({
-          avatarUrl: `https://avatars.yandex.net/get-yapic/${json.default_avatar_id}/islands-small`,
-          login: json.login,
+          login,
+          avatarUrl: `https://avatars.yandex.net/get-yapic/${default_avatar_id}/islands-small`,
         }))
-      })
+      }
+      else {
+        throw new Error(response.statusText)
+      }
+    }
+    catch (error) {
+      localStorage.removeItem(O_AUTH_TOKEN_KEY)
+    }
   }
 }
 
