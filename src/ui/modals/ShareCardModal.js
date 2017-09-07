@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-
 import { ShareButtons, generateShareIcon } from 'react-share'
 
+import { ModalMessage } from 'ui/atoms/'
+import { categoryGroupDisplayNames } from 'constants/categoryGroup'
+
 import { SimpleModal as BaseSimpleModal } from './base/SimpleModal'
-import { ModalMessage } from '../atoms/ModalMessage/ModalMessage'
-import { categoryGroupDisplayNames } from '../../constants/categoryGroup'
 
 
 const {
@@ -77,8 +77,10 @@ export const ShareCardModal = (props) => {
 
 
 ShareCardModal.propTypes = {
-  meta: PropTypes.shape({ card: {
-    categoryGroup: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-  } }).isRequired,
+  meta: PropTypes.shape({
+    card: {
+      categoryGroup: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+    },
+  }).isRequired,
 }
