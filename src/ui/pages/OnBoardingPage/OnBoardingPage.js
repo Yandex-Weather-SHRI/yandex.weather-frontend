@@ -7,7 +7,7 @@ import { routeNames } from 'utils/routeNames'
 import { request } from 'utils/fetchHelper'
 import { Icon, RoundedButton as Button } from 'ui/atoms'
 import { getCategoryGroupStyle } from 'styles/utils'
-import { PageLoader, FeedCardBoard, PageContent, PaginationBullets } from 'ui/organisms'
+import { PageTitle, PageLoader, FeedCardBoard, PageContent, PaginationBullets } from 'ui/organisms'
 import { requestLogin } from 'redux/user/actions'
 
 
@@ -108,10 +108,15 @@ const mergeSettings = (defaultSettings, partialSettings) =>
 /* eslint-disable class-methods-use-this */
 class OnBoardingPageContainer extends Component {
   static propTypes = {
+    title: PropTypes.string,
     isAuthenticated: PropTypes.bool.isRequired,
     history: PropTypes.shape({
       replace: PropTypes.func.isRequired,
     }).isRequired,
+  }
+
+  static defaultProps = {
+    title: 'Выбор советов',
   }
 
   state = {
@@ -211,12 +216,13 @@ class OnBoardingPageContainer extends Component {
 
   render() {
     const { defaultSettings, currentCardIndex, completed, partialSettings, onBoardingCards } = this.state
+    const { title } = this.props
 
     if (!defaultSettings || !partialSettings) {
       return (
-        <Container>
+        <PageContent>
           <PageLoader />
-        </Container>
+        </PageContent>
       )
     }
 
@@ -225,51 +231,53 @@ class OnBoardingPageContainer extends Component {
     const { groupTitle, categoryTitle } = this.getCurrentTitles()
 
     return (
-      <PageContent>
-        {completed ? (
-          <CenteredContent>
-            <Text>Для того, чтобы сохранить выбранные советы, войдите в аккаунт</Text>
-            <LoginButton onClick={this.handleSubmitOnboarding(defaultSettings, partialSettings)}>
-              Войти
-            </LoginButton>
-          </CenteredContent>
-        ) : (
-          <Content>
-            <RoundedButton onClick={this.handleSubmitOnboarding()}>Пропустить</RoundedButton>
-            <Header>Интересен ли вам совет?</Header>
-            <FeedCardBoard
-              categoryGroup={group}
-              groupTitle={groupTitle}
-              category={name}
-              categoryTitle={categoryTitle}
-              text={currentCard.text}
-            />
-            <PaginationWrapper>
-              <PaginationBullets
-                activeIndex={currentCardIndex}
-                total={partialSettings.length}
+      <PageTitle {...{ title }}>
+        <PageContent>
+          {completed ? (
+            <CenteredContent>
+              <Text>Для того, чтобы сохранить выбранные советы, войдите в аккаунт</Text>
+              <LoginButton onClick={this.handleSubmitOnboarding(defaultSettings, partialSettings)}>
+                Войти
+              </LoginButton>
+            </CenteredContent>
+          ) : (
+            <Content>
+              <RoundedButton onClick={this.handleSubmitOnboarding()}>Пропустить</RoundedButton>
+              <Header>Интересен ли вам совет?</Header>
+              <FeedCardBoard
+                categoryGroup={group}
+                groupTitle={groupTitle}
+                category={name}
+                categoryTitle={categoryTitle}
+                text={currentCard.text}
               />
-            </PaginationWrapper>
-            <ButtonsRow>
-              <RoundedButton
-                categoryGroup={group}
-                inverse
-                onClick={this.onChoiceHandler(false)}
-              >
-                <ButtonIcon name="cancel" size={16} />
-                Нет
-              </RoundedButton>
-              <RoundedButton
-                categoryGroup={group}
-                onClick={this.onChoiceHandler(true)}
-              >
-                <ButtonIcon name="check" fill="#fff" size={16} />
-                Да
-              </RoundedButton>
-            </ButtonsRow>
-          </Content>
-        )}
-      </PageContent>
+              <PaginationWrapper>
+                <PaginationBullets
+                  activeIndex={currentCardIndex}
+                  total={partialSettings.length}
+                />
+              </PaginationWrapper>
+              <ButtonsRow>
+                <RoundedButton
+                  categoryGroup={group}
+                  inverse
+                  onClick={this.onChoiceHandler(false)}
+                >
+                  <ButtonIcon name="cancel" size={16} />
+                  Нет
+                </RoundedButton>
+                <RoundedButton
+                  categoryGroup={group}
+                  onClick={this.onChoiceHandler(true)}
+                >
+                  <ButtonIcon name="check" fill="#fff" size={16} />
+                  Да
+                </RoundedButton>
+              </ButtonsRow>
+            </Content>
+          )}
+        </PageContent>
+      </PageTitle>
     )
   }
 }
