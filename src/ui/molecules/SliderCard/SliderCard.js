@@ -36,6 +36,7 @@ const CardButton = styled.button`
   margin-top: 14px;
   height: 32px;
   user-select: none;
+  font-weight: 500;
 
   &:focus {
     outline: 0;
@@ -81,7 +82,7 @@ SliderCard.propTypes = {
   linkTo: PropTypes.string.isRequired,
   bg: PropTypes.string,
   color: PropTypes.string,
-  children: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
   buttonText: PropTypes.string,
   icon: PropTypes.string,
   borderColor: PropTypes.string,

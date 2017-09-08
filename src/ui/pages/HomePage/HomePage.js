@@ -44,13 +44,17 @@ class HomePageContainer extends Component {
             bg="linear-gradient(to bottom,#366ca7,#4077b2)"
             color="#fff"
             buttonText="Показать на карте"
-          >В центре дождь в ближайшие два часа не прекратится</SliderCard>
+          >
+            В центре дождь в ближайшие два часа не прекратится
+          </SliderCard>
           <SliderCard
             linkTo={routeNames.onboarding}
-            bg="linear-gradient(to bottom, #9cddff, #4baffd 52%, #498ffa)"
-            color="#fff"
-            buttonText="Другие советы"
-          >Сильные магнитные буруи</SliderCard>
+            bg="#fff"
+            buttonText="БОЛЬШЕ СОВЕТОВ"
+          >
+            Будьте осторожны!<br />
+            Сегодня <strong>сильная</strong> геомагнитная буря
+          </SliderCard>
         </Slider>
       </Container>
     )
