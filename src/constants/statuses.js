@@ -9,3 +9,9 @@ export const statusDisplayNames = {
   [statuses.ok]: 'Нормально',
   [statuses.bad]: 'Неблагоприятно',
 }
+
+export const statusWeight = {
+  [statuses.best]: 0,
+  [statuses.ok]: 1,
+  [statuses.bad]: 2,
+}
