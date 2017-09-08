@@ -5,12 +5,23 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 import { getFeed } from 'redux/feed/actions'
-import { PageTitle, PageContent, PageLoader, AppBar, FeedFiltersList, FeedCardContainer } from 'ui/organisms'
+import {
+  PageTitle,
+  PageContent as PageContentBase,
+  PageLoader,
+  AppBar,
+  FeedFiltersList,
+  FeedCardContainer,
+} from 'ui/organisms'
 import { IconButton } from 'ui/molecules'
 import { getFeedByFilters } from 'redux/feed/selectors'
 import { setFeedFilter, getAvailableFilters } from 'redux/filters/actions'
 import { routeNames } from 'utils/routeNames'
 
+
+const PageContent = PageContentBase.extend`
+  background-color: #f7f7f7;
+`
 
 const FeedList = styled.div`
   padding: 0 8px;

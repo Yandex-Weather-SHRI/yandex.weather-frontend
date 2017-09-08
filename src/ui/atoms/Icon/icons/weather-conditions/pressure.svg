@@ -1,10 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
-    <defs>
-        <path id="a" d="M0 0h22v22H0z"/>
-    </defs>
-    <g fill="#000" fill-rule="evenodd" opacity=".3">
-        <path fill-rule="nonzero" d="M16.512 17.932a.688.688 0 0 1-.455.172H6.009a.688.688 0 0 1-.455-.172 8.283 8.283 0 1 1 10.958 0zm1.428-6.212a6.908 6.908 0 1 0-11.664 5.01h9.514a6.886 6.886 0 0 0 2.15-5.01z"/>
-        <circle cx="11" cy="11.688" r="1.833"/>
-        <path fill-rule="nonzero" d="M11.465 12.285l3.069-2.814a.687.687 0 1 0-.93-1.013l-3.069 2.814a.687.687 0 1 0 .93 1.013z"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g fill="none" fill-rule="evenodd" transform="translate(4 5)">
+        <path stroke="#000" stroke-width="2.5" d="M13.064 14.194a8 8 0 1 0-10.253-.105c4.775 0 6.796 0 10.253.105z"/>
+        <circle cx="8" cy="8" r="2" fill="#000"/>
+        <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.994 5.423l-2.959 2.63"/>
     </g>
 </svg>

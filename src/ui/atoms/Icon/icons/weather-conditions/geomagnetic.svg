@@ -6,11 +6,11 @@
         <mask id="b" fill="#fff">
             <use xlink:href="#a"/>
         </mask>
-        <g fill="#FFF" mask="url(#b)" opacity=".5">
-            <g transform="translate(-2 -2)">
-                <circle cx="22.5" cy="13" r="1"/>
-                <path fill-rule="nonzero" d="M14 19.75a5.75 5.75 0 1 1 0-11.5 5.75 5.75 0 0 1 0 11.5zm0-1.5a4.25 4.25 0 1 0 0-8.5 4.25 4.25 0 0 0 0 8.5z"/>
-                <path fill-rule="nonzero" d="M19.592 6.013c-4.41-3.088-10.49-2.016-13.579 2.395-3.088 4.41-2.016 10.49 2.395 13.579 4.41 3.088 10.49 2.016 13.579-2.395a.75.75 0 1 0-1.229-.86 8.25 8.25 0 1 1-2.026-11.49.75.75 0 1 0 .86-1.229z"/>
+        <g mask="url(#b)">
+            <g transform="translate(-1 -1)">
+                <circle cx="22.25" cy="12.25" r="1.25" fill="#000"/>
+                <path stroke="#000" stroke-width="2.5" d="M18.162 5.628a9 9 0 1 0 2.21 12.534"/>
+                <circle cx="13" cy="13" r="4" stroke="#000" stroke-width="2.5"/>
             </g>
         </g>
     </g>

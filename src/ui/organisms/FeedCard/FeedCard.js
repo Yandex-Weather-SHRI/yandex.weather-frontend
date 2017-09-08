@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-import { IconButton, CardPicture } from 'ui/molecules'
+import { IconButton, CardPicture as CardPictureBase } from 'ui/molecules'
 import { healthCategory } from 'constants/categories'
+import { statusDisplayNames } from 'constants/statuses'
+import { getStatusStyles } from 'styles/utils'
 
 import { FeedCardMetaHeart, FeedCardMetaAsthma, FeedCardMetaJoint } from './metas'
 
@@ -21,50 +23,76 @@ const Container = styled.div`
   min-height: 218px;
 `
 
-const FeedCardPicture = styled(CardPicture)`
+const CardPicture = styled(CardPictureBase)`
   top: 56px;
 `
 
 const Header = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 0 8px 0 16px;
   height: 48px;
+`
+
+const Heading = styled.div`
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  ${p => p.textColor && css`
+    color: ${p.textColor};
+  `}
+
+  &:first-child:before {
+    content: none;
+  }
+
+  &:before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #d8d8d8;
+    margin: 0 10px;
+  }
 `
 
 const Content = styled.div`
   padding: 8px 16px 20px;
 `
 
-const HeaderButtons = styled.div`
+const Actions = styled.div`
   display: flex;
+  margin-left: auto;
 `
 
-const HeaderButton = styled(IconButton)`
+const Button = styled(IconButton)`
   & + & {
     margin-left: 8px;
   }
 `
 
-const CategoryGroupName = styled.div`
-  font-size: 1rem;
-  font-weight: bold;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-`
-
-const CategoryName = styled.div`
-  font-size: 2.6rem;
-  font-weight: bold;
-  letter-spacing: 1.1px;
-  margin-bottom: 16px;
-`
-
 const Text = styled.div`
-  font-size: 16px;
-  letter-spacing: 0.2px;
+  font-size: 1.6rem;
+  font-weight: 500;
   line-height: 1.2;
+  letter-spacing: 0.2px;
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 14px;
+`
+
+const Status = styled.span`
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  border-radius: 4px;
+  padding: 0 12px;
+  font-size: 1.2rem;
+  color: #fff;
+  ${p => getStatusStyles(p.status)}
 `
 
 export const FeedCard = ({
@@ -74,32 +102,36 @@ export const FeedCard = ({
   text,
   onShareClick,
   onOptionsClick,
+  status,
 }) => {
-  const FeedMeta = feedMetaComponents[category]
+  const Meta = feedMetaComponents[category]
 
   return (
     <Container>
-      <FeedCardPicture
+      <CardPicture
         name={`categories/${category}`}
         size={160}
       />
       <Header>
-        <CategoryGroupName>
+        <Heading textColor="#000">
           {groupTitle}
-        </CategoryGroupName>
-        <HeaderButtons>
-          <HeaderButton icon="share" onClick={onShareClick} />
-          <HeaderButton icon="more" onClick={onOptionsClick} />
-        </HeaderButtons>
+        </Heading>
+        <Heading textColor="#999">
+          {categoryTitle}
+        </Heading>
+        <Actions>
+          <Button icon="share" onClick={onShareClick} />
+          <Button icon="more" onClick={onOptionsClick} />
+        </Actions>
       </Header>
       <Content>
-        <CategoryName>
-          {categoryTitle}
-        </CategoryName>
         <Text>
           {text}
         </Text>
-        {FeedMeta && <FeedMeta />}
+        <Status {...{ status }}>
+          {statusDisplayNames[status]}
+        </Status>
+        {Meta && <Meta />}
       </Content>
     </Container>
   )
@@ -112,4 +144,5 @@ FeedCard.propTypes = {
   text: PropTypes.string.isRequired,
   onShareClick: PropTypes.func.isRequired,
   onOptionsClick: PropTypes.func.isRequired,
+  status: PropTypes.string.isRequired,
 }
