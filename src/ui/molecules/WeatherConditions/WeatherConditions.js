@@ -13,7 +13,7 @@ const Container = styled.div`
   height: 48px;
 `
 
-const PureWeatherConditions = ({ humidity, pressure, waterTemp, wind }) => {
+const PureWeatherConditions = ({ humidity, pressure, wind }) => {
   const icons = [
     {
       iconName: 'weather-conditions/wind-bad',
@@ -24,7 +24,7 @@ const PureWeatherConditions = ({ humidity, pressure, waterTemp, wind }) => {
       text: `${humidity}%`,
     },
     {
-      iconName: 'weather-conditions/pressure',
+      iconName: 'weather-conditions/pressure-bad',
       text: (<span>{pressure} <span style={{ fontSize: 10 }}>мм рт. ст.</span></span>),
     },
   ]
