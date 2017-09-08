@@ -42,7 +42,6 @@ const PureWeatherConditions = ({ humidity, pressure, wind }) => {
 PureWeatherConditions.propTypes = {
   humidity: PropTypes.number.isRequired,
   pressure: PropTypes.number.isRequired,
-  waterTemp: PropTypes.number.isRequired,
   wind: PropTypes.number.isRequired,
 }
 
