@@ -10,19 +10,10 @@ function getCategoryGroup(category) {
   }, null)
 }
 
-export function alertsAdapter(alerts) {
-  const alertsMap = alerts.reduce((acc, item) => {
-    const [category,,, day] = item.code.split(/_/)
+export function alertsAdapter(alertsList) {
+  return alertsList.map((item) => {
+    const [category, status,, day] = item.code.split(/_/)
     const categoryGroup = getCategoryGroup(category)
-    if (!acc[category]) {
-      acc[category] = []
-    }
-    acc[category][day] = { ...item, category, categoryGroup }
-    return acc
-  }, {})
-
-  return Object.keys(alertsMap).reduce((acc, key) => {
-    acc.push(alertsMap[key].filter(Boolean))
-    return acc
-  }, [])
+    return { ...item, category, categoryGroup, status, day }
+  })
 }
