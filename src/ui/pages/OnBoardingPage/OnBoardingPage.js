@@ -11,9 +11,14 @@ import { PageTitle, PageLoader, FeedCardBoard, PageContent, PaginationBullets } 
 import { requestLogin } from 'redux/user/actions'
 
 
-const Container = PageContent.extend`
+const Content = PageContent.extend`
   align-items: center;
   padding: 16px;
+`
+
+const CenteredContent = Content.extend`
+  justify-content: center;
+  padding: 32px;
 `
 
 const Header = styled.h1`
@@ -22,6 +27,14 @@ const Header = styled.h1`
   text-align: center;
   color: rgba(0, 0, 0, 0.87);
   margin: 32px 0;
+`
+
+const Text = styled.span`
+  margin-bottom: 40px;
+  font-size: 1.8rem;
+  text-align: center;
+  line-height: 1.2;
+  color: rgba(0, 0, 0, 0.87);
 `
 
 const RoundedButton = Button.extend`
@@ -35,7 +48,7 @@ const RoundedButton = Button.extend`
   ${p => getCategoryGroupStyle({ name: p.categoryGroup })}
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04);
   margin-right: 56px;
-  
+
   &:last-of-type {
     margin-right: 0;
   }
@@ -55,6 +68,19 @@ const RoundedButton = Button.extend`
       border-radius: inherit;
     }
   `}
+`
+
+const LoginButton = Button.extend`
+  height: auto;
+  padding: 14px 32px;
+  border-radius: 57px;
+  background-image: linear-gradient(293deg, #ed515f, #ff6f33);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: #ffffff;
 `
 
 const PaginationWrapper = styled.div`
@@ -194,9 +220,9 @@ class OnBoardingPageContainer extends Component {
 
     if (!defaultSettings || !partialSettings) {
       return (
-        <Container>
+        <PageContent>
           <PageLoader />
-        </Container>
+        </PageContent>
       )
     }
 
@@ -206,46 +232,51 @@ class OnBoardingPageContainer extends Component {
 
     return (
       <PageTitle {...{ title }}>
-        <Container>
-          <RoundedButton onClick={this.handleSubmitOnboarding()}>Пропустить</RoundedButton>
-          <Header>Интересен ли вам совет?</Header>
-          <FeedCardBoard
-            categoryGroup={group}
-            groupTitle={groupTitle}
-            category={name}
-            categoryTitle={categoryTitle}
-            text={currentCard.text}
-          />
-          <PaginationWrapper>
-            <PaginationBullets
-              activeIndex={currentCardIndex}
-              total={partialSettings.length}
-            />
-          </PaginationWrapper>
+        <PageContent>
           {completed ? (
-            <RoundedButton onClick={this.handleSubmitOnboarding(defaultSettings, partialSettings)}>
-              Сохранить настройки
-            </RoundedButton>
+            <CenteredContent>
+              <Text>Для того, чтобы сохранить выбранные советы, войдите в аккаунт</Text>
+              <LoginButton onClick={this.handleSubmitOnboarding(defaultSettings, partialSettings)}>
+                Войти
+              </LoginButton>
+            </CenteredContent>
           ) : (
-            <ButtonsRow>
-              <RoundedButton
+            <Content>
+              <RoundedButton onClick={this.handleSubmitOnboarding()}>Пропустить</RoundedButton>
+              <Header>Интересен ли вам совет?</Header>
+              <FeedCardBoard
                 categoryGroup={group}
-                inverse
-                onClick={this.onChoiceHandler(false)}
-              >
-                <ButtonIcon name="cancel" size={16} />
-                Нет
-              </RoundedButton>
-              <RoundedButton
-                categoryGroup={group}
-                onClick={this.onChoiceHandler(true)}
-              >
-                <ButtonIcon name="check" fill="#fff" size={16} />
-                Да
-              </RoundedButton>
-            </ButtonsRow>
+                groupTitle={groupTitle}
+                category={name}
+                categoryTitle={categoryTitle}
+                text={currentCard.text}
+              />
+              <PaginationWrapper>
+                <PaginationBullets
+                  activeIndex={currentCardIndex}
+                  total={partialSettings.length}
+                />
+              </PaginationWrapper>
+              <ButtonsRow>
+                <RoundedButton
+                  categoryGroup={group}
+                  inverse
+                  onClick={this.onChoiceHandler(false)}
+                >
+                  <ButtonIcon name="cancel" size={16} />
+                  Нет
+                </RoundedButton>
+                <RoundedButton
+                  categoryGroup={group}
+                  onClick={this.onChoiceHandler(true)}
+                >
+                  <ButtonIcon name="check" fill="#fff" size={16} />
+                  Да
+                </RoundedButton>
+              </ButtonsRow>
+            </Content>
           )}
-        </Container>
+        </PageContent>
       </PageTitle>
     )
   }
