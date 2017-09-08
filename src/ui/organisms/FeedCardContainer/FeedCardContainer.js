@@ -7,18 +7,24 @@ import { FeedCard } from 'ui/organisms'
 import { TabBar } from 'ui/molecules'
 import { openModal } from 'redux/modal/actions'
 import { modals } from 'constants/modals'
+import { getNameOfNextDay } from '../../../utils/days'
+import { statuses } from '../../../constants/statuses'
 
 
-const mockTabs = [
-  {
-    id: 0,
-    title: 'Сегодня',
-  },
-  {
-    id: 1,
-    title: 'ПН',
-  },
-]
+function getTabs([, tomorrowCard]) {
+  return [
+    {
+      id: 0,
+      title: 'Сегодня',
+      alert: false,
+    },
+    {
+      id: 1,
+      title: getNameOfNextDay(),
+      alert: tomorrowCard.status === statuses.bad,
+    },
+  ]
+}
 
 const Container = styled.div`
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.02) 99%);
@@ -93,7 +99,7 @@ export class FeedCardContainerInner extends Component {
         />
         {cardsList.length > 1 && (
           <TabBar
-            tabs={mockTabs}
+            tabs={getTabs(cardsList)}
             onTabSelect={this.onChangeCard}
             currentTab={currentCard}
           />

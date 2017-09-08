@@ -28,12 +28,31 @@ const TabButton = RoundedButton.extend`
   font-size: 1.2rem;
   text-transform: uppercase;
   margin-right: 24px;
+  position: relative;
   transition:
     background-color 150ms ease-in-out,
     box-shadow 150ms ease-in-out;
 
   ${p => p.active && css`
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.08);
+  `}
+  
+  ${p => p.active && css`
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.08);
+  `}
+  
+  ${p => p.alert && css`
+    &:after {
+      display: inline-block;
+      content: '';
+      width: 4px;
+      height: 4px;
+      background-color: #f05756;
+      border-radius: 50%;
+      position: absolute;
+      top: 9px;
+      right: 18px;
+    }
   `}
 
   &:last-of-type{
@@ -44,10 +63,11 @@ const TabButton = RoundedButton.extend`
 export const TabBar = ({ tabs, currentTab, onTabSelect }) => (
   <Container>
     <Wrapper>
-      {tabs.map(({ id, title }) => (
+      {tabs.map(({ id, title, alert }) => (
         <TabButton
           onClick={onTabSelect(id)}
           active={id === currentTab}
+          alert={alert}
           key={id}
         >
           {title}
@@ -65,6 +85,7 @@ TabBar.propTypes = {
         PropTypes.string,
       ]).isRequired,
       title: PropTypes.string.isRequired,
+      alert: PropTypes.bool.isRequired,
     })
   ).isRequired,
   currentTab: PropTypes.number.isRequired,
