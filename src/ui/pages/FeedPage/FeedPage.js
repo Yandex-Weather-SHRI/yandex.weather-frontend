@@ -1,3 +1,4 @@
+import R from 'ramda'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -14,7 +15,7 @@ import {
   FeedCardContainer,
 } from 'ui/organisms'
 import { IconButton } from 'ui/molecules'
-import { getFeedByFilters } from 'redux/feed/selectors'
+import { getFeedByFilters, getGroupedFeedListByCateogry, sortByStatus } from 'redux/feed/selectors'
 import { setFeedFilter, getAvailableFilters } from 'redux/filters/actions'
 import { routeNames } from 'utils/routeNames'
 
@@ -102,7 +103,11 @@ class FeedPageContainer extends Component {
 function mapStateToProps(state) {
   return {
     fetching: state.feed.fetching,
-    feedList: getFeedByFilters(state),
+    feedList: R.compose(
+      getGroupedFeedListByCateogry,
+      sortByStatus,
+      getFeedByFilters
+    )(state.feed.list, state.filters),
     filtersList: state.filters,
   }
 }
