@@ -1,32 +1,58 @@
 import { createSelector } from 'reselect'
 
 import { categoryGroupCategories } from 'constants/categoryGroup'
+import { statusWeight } from 'constants/statuses'
 
+
+function getActiveFiltersList(filtersList) {
+  return filtersList.reduce((acc, filter) => {
+    if (filter.active) {
+      return acc.concat(categoryGroupCategories[filter.name])
+    }
+    return acc
+  }, [])
+}
 
 export const getFeedByFilters = createSelector(
-  state => state.feed.list,
-  state => state.filters,
+  feedList => feedList,
+  (feedList, filters) => filters,
   (feedList, filters) => {
-    const activeFiltersList = filters.reduce((acc, filter) => {
-      if (filter.active) {
-        return acc.concat(categoryGroupCategories[filter.name])
-      }
-      return acc
-    }, [])
+    const activeFiltersList = getActiveFiltersList(filters)
 
     if (activeFiltersList.includes('all')) {
       return feedList
     }
 
-    return feedList.reduce((acc, item) => {
-      const cardsList = item.filter(({ code }) => {
-        const [category] = code.split(/_/)
-        return activeFiltersList.indexOf(category) >= 0
-      })
-      if (cardsList.length) {
-        acc.push(cardsList)
-      }
-      return acc
-    }, [])
+    return feedList.filter(item =>
+      activeFiltersList.includes(item.category)
+    )
   }
+)
+
+export const getGroupedFeedListByCateogry = createSelector(
+  feedList => feedList,
+  (feedList) => {
+    if (!feedList.length) {
+      return feedList
+    }
+
+    const feedMap = feedList.reduce((acc, item) => {
+      if (!acc[item.category]) {
+        acc[item.category] = []
+      }
+      acc[item.category][item.day] = item
+      return acc
+    }, {})
+
+    return Object.keys(feedMap).reduce((acc, key) => (
+      [...acc, feedMap[key].filter(Boolean)]
+    ), [])
+  }
+)
+
+export const sortByStatus = createSelector(
+  feedList => feedList,
+  feedList => feedList.sort((a, b) =>
+    statusWeight[b.status] - statusWeight[a.status]
+  )
 )
