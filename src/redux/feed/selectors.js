@@ -7,7 +7,7 @@ import { statusWeight } from 'constants/statuses'
 function getActiveFiltersList(filtersList) {
   return filtersList.reduce((acc, filter) => {
     if (filter.active) {
-      return acc.concat(categoryGroupCategories[filter.name])
+      return acc.concat(filter.name)
     }
     return acc
   }, [])
@@ -24,7 +24,7 @@ export const getFeedByFilters = createSelector(
     }
 
     return feedList.filter(item =>
-      activeFiltersList.includes(item.category)
+      activeFiltersList.includes(item.categoryGroup)
     )
   }
 )
