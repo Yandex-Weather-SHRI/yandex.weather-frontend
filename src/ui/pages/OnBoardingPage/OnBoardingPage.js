@@ -14,8 +14,8 @@ import { requestLogin } from 'redux/user/actions'
 
 const Content = PageContent.extend`
   align-items: center;
-  justify-content: space-between;
-  padding: 24px 16px 72px 16px;
+  justify-content: flex-start;
+  padding: 24px 16px 0px 16px;
 `
 
 const CenteredContent = Content.extend`
@@ -28,12 +28,12 @@ const Header = styled.h1`
   font-weight: 500;
   line-height: 1.2;
   text-align: center;
+  margin-bottom: 24px;
   color: rgba(0, 0, 0, 0.87);
 `
 
 const AdviceContainer = styled.div`
   display: flex;
-  margin: auto 0;
   flex-direction: column;
   align-items: center;
 `
