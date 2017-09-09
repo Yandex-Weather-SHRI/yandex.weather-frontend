@@ -15,8 +15,7 @@ import { requestLogin } from 'redux/user/actions'
 const Content = PageContent.extend`
   align-items: center;
   justify-content: space-between;
-  padding: 24px 16px;
-  padding-bottom: 29px;
+  padding: 24px 16px 32px 16px;
 `
 
 const CenteredContent = Content.extend`
