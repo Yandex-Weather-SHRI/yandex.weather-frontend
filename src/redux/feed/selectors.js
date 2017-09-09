@@ -52,6 +52,6 @@ export const getGroupedFeedListByCateogry = createSelector(
 export const sortByStatus = createSelector(
   feedList => feedList,
   feedList => feedList.sort((a, b) =>
-    statusWeight[b.status] - statusWeight[a.status]
+    statusWeight[b[0].status] - statusWeight[a[0].status]
   )
 )
