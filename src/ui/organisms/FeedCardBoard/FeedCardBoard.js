@@ -48,6 +48,7 @@ export const FeedCardBoard = ({ categoryGroup, ...props }) => (
   <Container {...{ categoryGroup }}>
     <FeedCard
       {...props}
+      categoryGroup={categoryGroup}
       onShareClick={() => {}}
       onOptionsClick={() => {}}
     />

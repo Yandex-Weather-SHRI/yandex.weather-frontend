@@ -31,6 +31,9 @@ const Header = styled.div`
   align-items: center;
   padding: 0 8px 0 16px;
   height: 48px;
+  ${p => p.isOnBoarding && css`
+    padding-right: 16px;
+  `}
 `
 
 const Heading = styled.div`
@@ -114,12 +117,14 @@ export const FeedCard = ({
   onShareClick,
   onOptionsClick,
   status,
+  isOnBoarding,
+  categoryGroup,
 }) => {
   const Meta = feedMetaComponents[category]
 
   return (
     <Container>
-      <Header>
+      <Header isOnBoarding={isOnBoarding}>
         <Heading textColor="#000">
           {groupTitle}
         </Heading>
@@ -127,8 +132,13 @@ export const FeedCard = ({
           {categoryTitle}
         </Heading>
         <Actions>
-          <Button icon="share" onClick={onShareClick} />
-          <Button icon="more" onClick={onOptionsClick} />
+          {isOnBoarding
+            ? <Icon name={`categoryGroups/${categoryGroup}`} />
+            : <div>
+              <Button icon="share" onClick={onShareClick} />
+              <Button icon="more" onClick={onOptionsClick} />
+            </div>
+          }
         </Actions>
       </Header>
       <Content>
@@ -163,4 +173,11 @@ FeedCard.propTypes = {
   onShareClick: PropTypes.func.isRequired,
   onOptionsClick: PropTypes.func.isRequired,
   status: PropTypes.string.isRequired,
+  isOnBoarding: PropTypes.bool,
+  categoryGroup: PropTypes.string,
+}
+
+FeedCard.defaultProps = {
+  isOnBoarding: false,
+  categoryGroup: '',
 }
