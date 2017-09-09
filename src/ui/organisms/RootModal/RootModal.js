@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { connect } from 'react-redux'
 
 import { modalNames, modals } from 'constants/modals'
@@ -19,12 +19,12 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   background-color: rgba(255, 255, 255, 0.5);
-  transition: opacity 0.3s ease;
+  transition: opacity 300ms ease;
   z-index: 9000;
-  ${({ hidden }) => hidden
-    ? 'opacity: 0; pointer-events: none'
-    : ''
-}
+  ${p => p.hidden && css`
+    opacity: 0;
+    pointer-events: none;
+  `}
 `
 
 const modalComponents = {
@@ -48,16 +48,22 @@ class RootModalInner extends React.Component {
     this.handleCloseOpen(nextProps)
   }
 
+  /* eslint-disable class-methods-use-this */
+  preventTouchMove(event) {
+    event.preventDefault()
+  }
+  /* eslint-enable class-methods-use-this */
+
   handleCloseOpen(nextProps) {
     const willOpen = !this.props.isModalOpened && nextProps.isModalOpened
     const willClose = this.props.isModalOpened && !nextProps.isModalOpened
     if (willOpen) {
-      window.document.body.style.overflow = 'hidden'
-      return
+      document.body.style.overflow = 'hidden'
+      document.body.addEventListener('touchmove', this.preventTouchMove)
     }
-
-    if (willClose) {
-      window.document.body.style.overflow = 'auto'
+    else if (willClose) {
+      document.body.style.overflow = 'auto'
+      document.body.removeEventListener('touchmove', this.preventTouchMove)
     }
   }
 
@@ -65,7 +71,7 @@ class RootModalInner extends React.Component {
     const { isModalOpened, openedModal, meta } = this.props
     const ConcreteModal = modalComponents[openedModal]
     return (
-      <Container hidden={!isModalOpened}>
+      <Container hidden={!isModalOpened} onClick={() => null}>
         {ConcreteModal && <ConcreteModal {...{ meta }} />}
       </Container>
     )
