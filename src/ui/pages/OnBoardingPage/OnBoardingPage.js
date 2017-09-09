@@ -49,7 +49,6 @@ const SkipButon = styled.button`
   font-size: 1.2rem;
   font-weight: 500;
   letter-spacing: 0.5px;
-  text-align: left;
   color: rgba(0, 0, 0, 0.87);
 `
 
