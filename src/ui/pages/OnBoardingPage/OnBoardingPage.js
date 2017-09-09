@@ -278,6 +278,7 @@ class OnBoardingPageContainer extends Component {
                   categoryTitle={categoryTitle}
                   text={currentCard.text}
                   status={status}
+                  isOnBoarding
                 />
                 <PaginationText>{currentCardIndex + 1} / {partialSettings.length}</PaginationText>
               </AdviceContainer>
