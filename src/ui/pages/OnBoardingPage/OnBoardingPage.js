@@ -47,6 +47,7 @@ const Text = styled.span`
 `
 
 const SkipButon = styled.button`
+  margin-right: 8px;
   font-size: 1.2rem;
   font-weight: 500;
   letter-spacing: 0.5px;
@@ -101,7 +102,11 @@ const RoundedButton = Button.extend`
 `
 
 const ButtonsRow = styled.div`
-  position: fixed;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  right: 0;
   bottom: 29px;
 `
 
