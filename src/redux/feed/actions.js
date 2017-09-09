@@ -11,12 +11,12 @@ export const feedGetFailure = createAction('feed.get.failure')
 
 export function getFeed() {
   return async (dispatch, getState) => {
-    const { user } = getState()
+    const { user: { settings: { schema }, login } } = getState()
     dispatch(feedGetRequest())
 
     try {
-      const list = await request.get(`/v1/alerts?login=${user.login}`)
-      dispatch(feedGetSuccess(alertsAdapter(list)))
+      const list = await request.get(`/v1/alerts?login=${login}`)
+      dispatch(feedGetSuccess(alertsAdapter(list, schema)))
     }
     catch (error) {
       dispatch(feedGetFailure(error))
