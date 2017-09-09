@@ -55,12 +55,15 @@ export class AppBar extends PureComponent {
   }
 
   toggleFixHeader = () => {
-    if (Math.abs(this.lastScrollPosition - window.pageYOffset) > this.scrollDelta) {
+    const scrollTop = window.pageYOffset
+    const appBarHeight = this.appBar.offsetHeight
+
+    if (Math.abs(this.lastScrollPosition - scrollTop) > this.scrollDelta) {
       this.setState({
-        fixed: window.pageYOffset < this.lastScrollPosition,
+        fixed: scrollTop < this.lastScrollPosition || scrollTop <= appBarHeight,
       })
 
-      this.lastScrollPosition = window.pageYOffset
+      this.lastScrollPosition = scrollTop
     }
   }
 
@@ -69,7 +72,7 @@ export class AppBar extends PureComponent {
     const { title, elementLeft, elementRight } = this.props
 
     return (
-      <Container {...{ fixed }}>
+      <Container {...{ fixed }} innerRef={e => this.appBar = e}>
         <ElementWrapper>
           {elementLeft}
         </ElementWrapper>
