@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { ShareButtons, generateShareIcon } from 'react-share'
 
 import { ModalMessage } from 'ui/atoms/'
-import { categoryGroupDisplayNames } from 'constants/categoryGroup'
 
 import { SimpleModal as BaseSimpleModal } from './base/SimpleModal'
 
@@ -46,9 +45,9 @@ const SimpleModal = styled(BaseSimpleModal)`
   display: flex;
 `
 
-const getShareTitle = (text, categoryGroup) =>
+const getShareTitle = text =>
   `${text.slice(0, 50)}...\
- больше полезных советов в категории ${categoryGroupDisplayNames[categoryGroup]} на Яндекс.Погоде`
+ больше полезных советов в категории на Яндекс.Погоде`
 
 export const ShareCardModal = (props) => {
   const { card } = props.meta
@@ -57,7 +56,7 @@ export const ShareCardModal = (props) => {
     <button.component
       key={button.id}
       url={SHARE_URL}
-      title={getShareTitle(card.text, card.categoryGroup)}
+      title={getShareTitle(card.text)}
       description={card.text}
     >
       <button.icon {...COMMON_ICON_PROPS} />
