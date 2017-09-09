@@ -29,7 +29,7 @@ export const getFeedByFilters = createSelector(
   }
 )
 
-export const getGroupedFeedListByCateogry = createSelector(
+export const getGroupedFeedListByCategory = createSelector(
   feedList => feedList,
   (feedList) => {
     if (!feedList.length) {

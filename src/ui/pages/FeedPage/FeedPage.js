@@ -15,7 +15,7 @@ import {
   FeedCardContainer,
 } from 'ui/organisms'
 import { IconButton } from 'ui/molecules'
-import { getFeedByFilters, getGroupedFeedListByCateogry, sortByStatus } from 'redux/feed/selectors'
+import { getFeedByFilters, getGroupedFeedListByCategory, sortByStatus } from 'redux/feed/selectors'
 import { setFeedFilter, getAvailableFilters } from 'redux/filters/actions'
 import { routeNames } from 'utils/routeNames'
 
@@ -104,7 +104,7 @@ function mapStateToProps(state) {
   return {
     fetching: state.feed.fetching,
     feedList: R.compose(
-      getGroupedFeedListByCateogry,
+      getGroupedFeedListByCategory,
       sortByStatus,
       getFeedByFilters
     )(state.feed.list, state.filters),
