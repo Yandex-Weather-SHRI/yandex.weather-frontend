@@ -5,6 +5,7 @@ export const healthCategory = {
   asthma: 'asthma',
   skin: 'skin',
   allergy: 'allergy',
+  head: 'head',
   // ultraviolet: 'ultraviolet',
 }
 
@@ -23,6 +24,7 @@ export const categoriesDisplayNames = {
   [healthCategory.asthma]: 'Астма',
   [healthCategory.skin]: 'Кожа',
   [healthCategory.allergy]: 'Аллергия',
+  [healthCategory.head]: 'Головные боли',
   [healthCategory.ultraviolet]: 'Ультрафиолет',
   [motoristCategory.badVisibility]: 'Плохая видимость',
   [motoristCategory.washCar]: 'Помыть машину',

@@ -73,10 +73,6 @@ export const SettingsCard = ({
   checked,
 }) => (
   <Container groupName={groupName} onClick={onClick}>
-    <CardPicture
-      name={`categories/${categoryName}`}
-      size={80}
-    />
     <Heading>
       <Line />
       <Icon name={statusIcons[checked]} size={24} />

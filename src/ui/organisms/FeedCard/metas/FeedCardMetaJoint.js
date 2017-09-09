@@ -8,13 +8,11 @@ export const FeedCardMetaJoint = () => (
   <FeedCardMeta>
     <FeedCardMetaSection>
       <FeedCardMetaIcon name="weather-conditions/humidity" size={24} />
-      <FeedCardMetaText textSize={2.6}>78</FeedCardMetaText>
-      <FeedCardMetaText textSize={2}>%</FeedCardMetaText>
+      <FeedCardMetaText>78 %</FeedCardMetaText>
     </FeedCardMetaSection>
     <FeedCardMetaSection>
       <FeedCardMetaIcon name="weather-conditions/arrow-up" size={24} />
-      <FeedCardMetaText textSize={2.6}>14°</FeedCardMetaText>
-      <FeedCardMetaText textSize={2}>С</FeedCardMetaText>
+      <FeedCardMetaText>14°С</FeedCardMetaText>
     </FeedCardMetaSection>
   </FeedCardMeta>
 )

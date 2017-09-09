@@ -39,7 +39,7 @@ const Content = styled(ScrollContainer) `
 export const SettingsSection = ({ groupName, groupTitle, children }) => (
   <Container>
     <Heading>
-      <Icon name={`categories/${groupName}`} size={24} />
+      <Icon name={`categoryGroups/${groupName}`} size={24} />
       <Title>{groupTitle}</Title>
     </Heading>
     <Content>
