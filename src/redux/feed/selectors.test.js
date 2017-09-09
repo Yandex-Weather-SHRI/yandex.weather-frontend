@@ -1,5 +1,6 @@
 import { getFeedByFilters, getGroupedFeedListByCategory } from './selectors'
 
+
 const list = [
   {
     categoryGroup: 'health',

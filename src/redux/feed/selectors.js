@@ -1,6 +1,5 @@
 import { createSelector } from 'reselect'
 
-import { categoryGroupCategories } from 'constants/categoryGroup'
 import { statusWeight } from 'constants/statuses'
 
 
