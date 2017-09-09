@@ -141,12 +141,10 @@ export const FeedCard = ({
               {statusDisplayNames[status]}
             </Status>
           </div>
-          <div>
-            <Icon
-              name={`categories/${category}/${status}`}
-              size={100}
-            />
-          </div>
+          <Icon
+            name={`categories/${category}/${status}`}
+            size={100}
+          />
         </Row>
         {Meta && <Meta />}
         <MetaText>
