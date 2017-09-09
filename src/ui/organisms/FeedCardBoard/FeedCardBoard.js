@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { FeedCard } from 'ui/organisms'
-import { getCategoryGroupStyle } from 'styles/utils'
 
 
 const Container = styled.div`
