@@ -1,5 +1,6 @@
 import { healthCategory } from './categories'
 
+
 export const statuses = {
   best: 'best',
   ok: 'ok',

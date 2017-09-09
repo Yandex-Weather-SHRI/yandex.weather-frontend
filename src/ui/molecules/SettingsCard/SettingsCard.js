@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 import { Icon } from 'ui/atoms'
-import { CardPicture } from 'ui/molecules'
 import { getCategoryGroupStyle } from 'styles/utils'
 
 
