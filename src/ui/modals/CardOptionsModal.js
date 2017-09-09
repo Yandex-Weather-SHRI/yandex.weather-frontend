@@ -3,12 +3,13 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
+import { ModalMessage, IconWithText as IconWithTextBase } from 'ui/atoms'
+import { getAvailableFilters } from 'redux/filters/actions'
+import { updateOneUserSetting } from 'redux/user/actions'
+import { closeModal } from 'redux/modal/actions'
+import { getFeed } from 'redux/feed/actions'
+
 import { SimpleModal as BaseSimpleModal } from './base/SimpleModal'
-import { IconWithText as IconWithTextBase } from '../atoms/IconWithText/IconWithText'
-import { closeModal } from '../../redux/modal/actions'
-import { ModalMessage } from '../atoms/ModalMessage/ModalMessage'
-import { updateOneUserSetting } from '../../redux/user/actions'
-import { getFeed } from '../../redux/feed/actions'
 
 
 const SimpleModal = styled(BaseSimpleModal)`
@@ -52,6 +53,14 @@ const optionsWithThankPage = [
 ]
 
 class CardOptionsModalInner extends React.Component {
+  static propTypes = {
+    updateOneUserSetting: PropTypes.func.isRequired,
+    getAvailableFilters: PropTypes.func.isRequired,
+    getFeed: PropTypes.func.isRequired,
+    meta: PropTypes.shape({}).isRequired,
+    closeModal: PropTypes.func.isRequired,
+  }
+
   state = {
     showThanksBlock: false,
   }
@@ -65,7 +74,10 @@ class CardOptionsModalInner extends React.Component {
     if (option.id === optionIds.dismiss) {
       const { meta: { card: { category } } } = this.props
       this.props.updateOneUserSetting(category, false)
-        .then(this.props.getFeed)
+        .then(() => {
+          this.props.getAvailableFilters()
+          this.props.getFeed()
+        })
     }
 
     this.props.closeModal()
@@ -95,13 +107,9 @@ class CardOptionsModalInner extends React.Component {
   }
 }
 
-CardOptionsModalInner.propTypes = {
-  meta: PropTypes.shape({}).isRequired,
-  closeModal: PropTypes.func.isRequired,
-}
-
 export const CardOptionsModal = connect(null, {
   closeModal,
   updateOneUserSetting,
   getFeed,
+  getAvailableFilters,
 })(CardOptionsModalInner)

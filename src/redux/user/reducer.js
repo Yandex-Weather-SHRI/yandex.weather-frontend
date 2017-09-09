@@ -10,6 +10,7 @@ const defaultUsersState = {
   avatarUrl: '',
   login: '',
   settings: {
+    schema: {},
     categories: [],
   },
 }
@@ -22,6 +23,10 @@ export const userReducer = createReducer({
 
   [actions.getCategoriesSettingsRequest](state) {
     return R.assoc('fetching', true)(state)
+  },
+
+  [actions.getSettingsSchemaSuccess](state, schema) {
+    return R.assocPath(['settings', 'schema'], schema)(state)
   },
 
   [actions.getCategoriesSettingsSuccess](state, categories) {

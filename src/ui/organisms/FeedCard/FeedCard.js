@@ -1,19 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-import { Icon } from 'ui/atoms'
 import { IconButton } from 'ui/molecules'
-import { categoryGroupDisplayNames, categoryGroups } from 'constants/categoryGroup'
-import { healthCategory, categories, categoriesDisplayNames } from 'constants/categories'
+import { healthCategory } from 'constants/categories'
+import { statusDisplayNames, getStatusDisplayMessage } from 'constants/statuses'
+import { getStatusStyles } from 'styles/utils'
 
 import { FeedCardMetaHeart, FeedCardMetaAsthma, FeedCardMetaJoint } from './metas'
+import { Icon } from '../../atoms/Icon/Icon'
+import { FeedCardMetaHead } from './metas/FeedCardMetaHead'
 
 
 const feedMetaComponents = {
   [healthCategory.heart]: FeedCardMetaHeart,
   [healthCategory.joint]: FeedCardMetaJoint,
   [healthCategory.asthma]: FeedCardMetaAsthma,
+  [healthCategory.head]: FeedCardMetaHead,
 }
 
 const Container = styled.div`
@@ -23,93 +26,141 @@ const Container = styled.div`
   min-height: 218px;
 `
 
-const CategoryPicture = styled(Icon)`
-  content: '';
-  position: absolute;
-  z-index: -1;
-  right: 0;
-  top: 56px;
-  bottom: 0;
-  margin: auto;
-`
-
 const Header = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 16px;
+  padding: 0 8px 0 16px;
   height: 48px;
+`
+
+const Heading = styled.div`
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  ${p => p.textColor && css`
+    color: ${p.textColor};
+  `}
+
+  &:first-child:before {
+    content: none;
+  }
+
+  &:before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #d8d8d8;
+    margin: 0 10px;
+  }
 `
 
 const Content = styled.div`
   padding: 8px 16px 20px;
 `
 
-const HeaderButtons = styled.div`
+const Actions = styled.div`
   display: flex;
+  margin-left: auto;
 `
 
-const HeaderButton = styled(IconButton)`
+const Button = styled(IconButton)`
   & + & {
-    margin-left: 16px;
+    margin-left: 8px;
   }
 `
 
-const CategoryGroupName = styled.div`
-  font-size: 1rem;
-  font-weight: bold;
-  letter-spacing: 0.7px;
-  text-transform: uppercase;
-`
-
-const CategoryName = styled.div`
-  font-size: 2.6rem;
-  font-weight: bold;
-  letter-spacing: 1.1px;
-  margin-bottom: 16px;
-`
-
 const Text = styled.div`
-  font-size: 16px;
-  letter-spacing: 0.2px;
+  font-size: 1.6rem;
+  font-weight: 500;
   line-height: 1.2;
+  letter-spacing: 0.2px;
+  color: rgba(0, 0, 0, 0.87);
+  margin-bottom: 14px;
 `
 
-export const FeedCard = ({ categoryGroup, category, text, onShareClick, onOptionsClick }) => {
-  const FeedMeta = feedMetaComponents[category]
+const Status = styled.span`
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  border-radius: 4px;
+  padding: 0 12px;
+  font-size: 1.2rem;
+  color: #fff;
+  ${p => getStatusStyles(p.status)}
+`
+
+const Row = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
+const MetaText = styled.div`
+  font-size: 1.2rem;
+  color: rgba(102, 102, 102, 0.7);
+  margin-left: 32px;
+`
+
+export const FeedCard = ({
+  groupTitle,
+  categoryTitle,
+  category,
+  text,
+  onShareClick,
+  onOptionsClick,
+  status,
+}) => {
+  const Meta = feedMetaComponents[category]
 
   return (
-    <Container {...{ categoryGroup }}>
-      <CategoryPicture
-        name={`categories/${category}`}
-        size={160}
-      />
+    <Container>
       <Header>
-        <CategoryGroupName>
-          {categoryGroupDisplayNames[categoryGroup] || 'Совет'}
-        </CategoryGroupName>
-        <HeaderButtons>
-          <HeaderButton icon="share" onClick={onShareClick} />
-          <HeaderButton icon="more" onClick={onOptionsClick} />
-        </HeaderButtons>
+        <Heading textColor="#000">
+          {groupTitle}
+        </Heading>
+        <Heading textColor="#999">
+          {categoryTitle}
+        </Heading>
+        <Actions>
+          <Button icon="share" onClick={onShareClick} />
+          <Button icon="more" onClick={onOptionsClick} />
+        </Actions>
       </Header>
       <Content>
-        <CategoryName>
-          {categoriesDisplayNames[category]}
-        </CategoryName>
-        <Text>
-          {text}
-        </Text>
-        {FeedMeta && <FeedMeta />}
+        <Row>
+          <div>
+            <Text>
+              {text}
+            </Text>
+            <Status {...{ status }}>
+              {statusDisplayNames[status]}
+            </Status>
+          </div>
+          <Icon
+            name={`categories/${category}/${status}`}
+            size={100}
+          />
+        </Row>
+        {Meta && <Meta />}
+        <MetaText>
+          {getStatusDisplayMessage(category, status)}
+        </MetaText>
       </Content>
     </Container>
   )
 }
 
 FeedCard.propTypes = {
-  categoryGroup: PropTypes.oneOf(categoryGroups).isRequired,
-  category: PropTypes.oneOf(categories).isRequired,
+  groupTitle: PropTypes.string.isRequired,
+  categoryTitle: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   onShareClick: PropTypes.func.isRequired,
   onOptionsClick: PropTypes.func.isRequired,
+  status: PropTypes.string.isRequired,
 }

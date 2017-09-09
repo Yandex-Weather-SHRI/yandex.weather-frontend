@@ -11,8 +11,7 @@ export const feedGetFailure = createAction('feed.get.failure')
 
 export function getFeed() {
   return async (dispatch, getState) => {
-    const { feed, user } = getState()
-
+    const { user } = getState()
     dispatch(feedGetRequest())
 
     try {

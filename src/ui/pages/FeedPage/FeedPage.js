@@ -1,3 +1,4 @@
+import R from 'ramda'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -5,22 +6,32 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 import { getFeed } from 'redux/feed/actions'
-import { PageContent, PageLoader, AppBar, FeedFiltersList, FeedCardContainer } from 'ui/organisms'
+import {
+  PageTitle,
+  PageContent as PageContentBase,
+  PageLoader,
+  AppBar,
+  FeedFiltersList,
+  FeedCardContainer,
+} from 'ui/organisms'
 import { IconButton } from 'ui/molecules'
-import { getFeedByFilters } from 'redux/feed/selectors'
-import { setFeedFilter } from 'redux/filters/actions'
+import { getFeedByFilters, getGroupedFeedListByCateogry, sortByStatus } from 'redux/feed/selectors'
+import { setFeedFilter, getAvailableFilters } from 'redux/filters/actions'
 import { routeNames } from 'utils/routeNames'
-import { openModal } from 'redux/modal/actions'
 
 
-const CardsContainer = styled.div`
+const PageContent = PageContentBase.extend`
+  background-color: #f7f7f7;
+`
+
+const FeedList = styled.div`
   padding: 0 8px;
-  flex: 1;
   margin-bottom: 16px;
 `
 
 class FeedPageContainer extends Component {
   static propTypes = {
+    title: PropTypes.string,
     fetching: PropTypes.bool.isRequired,
     feedList: PropTypes.arrayOf(
       PropTypes.arrayOf(
@@ -30,12 +41,18 @@ class FeedPageContainer extends Component {
         })
       )
     ).isRequired,
-    filters: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+    filtersList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
     getFeed: PropTypes.func.isRequired,
     setFeedFilter: PropTypes.func.isRequired,
+    getAvailableFilters: PropTypes.func.isRequired,
+  }
+
+  static defaultProps = {
+    title: 'Советы',
   }
 
   componentDidMount() {
+    this.props.getAvailableFilters()
     this.props.getFeed()
   }
 
@@ -44,39 +61,41 @@ class FeedPageContainer extends Component {
   }
 
   render() {
-    const { fetching, feedList, filters } = this.props
+    const { title, fetching, feedList, filtersList } = this.props
 
     return (
-      <PageContent>
-        <AppBar
-          title="Советы"
-          elementLeft={
-            <Link to={routeNames.index}>
-              <IconButton icon="arrow-left" size="24" />
-            </Link>
-          }
-          elementRight={
-            <Link to={routeNames.settings}>
-              <IconButton icon="settings" size="24" />
-            </Link>
-          }
-        />
-        {fetching ? (
-          <PageLoader />
-        ) : (
-          <div>
+      <PageTitle {...{ title }}>
+        <PageContent withFixedBar>
+          <AppBar
+            {...{ title }}
+            elementLeft={
+              <Link to={routeNames.index}>
+                <IconButton icon="arrow-left" size="24" />
+              </Link>
+            }
+            elementRight={
+              <Link to={routeNames.settings}>
+                <IconButton icon="settings" size="24" />
+              </Link>
+            }
+          />
+          {feedList.length > 0 && !fetching && (
             <FeedFiltersList
-              list={filters}
+              list={filtersList}
               setFeedFilter={this.setFeedFilter}
             />
-            <CardsContainer>
+          )}
+          {fetching ? (
+            <PageLoader />
+          ) : (
+            <FeedList>
               {feedList.map((cardsList, key) => (
                 <FeedCardContainer {...{ cardsList, key }} />
               ))}
-            </CardsContainer>
-          </div>
-        )}
-      </PageContent>
+            </FeedList>
+          )}
+        </PageContent>
+      </PageTitle>
     )
   }
 }
@@ -84,15 +103,19 @@ class FeedPageContainer extends Component {
 function mapStateToProps(state) {
   return {
     fetching: state.feed.fetching,
-    feedList: getFeedByFilters(state),
-    filters: state.filters,
+    feedList: R.compose(
+      getGroupedFeedListByCateogry,
+      sortByStatus,
+      getFeedByFilters
+    )(state.feed.list, state.filters),
+    filtersList: state.filters,
   }
 }
 
 const mapDispatchToProps = {
   getFeed,
   setFeedFilter,
-  openModal,
+  getAvailableFilters,
 }
 
 export const FeedPage = connect(

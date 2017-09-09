@@ -3,10 +3,6 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 import { Icon, ScrollContainer } from 'ui/atoms'
-import {
-  categoryGroup,
-  categoryGroupDisplayNames as categoryNames,
-} from 'constants/categoryGroup'
 
 
 const Container = styled.div`
@@ -40,11 +36,11 @@ const Content = styled(ScrollContainer) `
   }
 `
 
-export const SettingsSection = ({ group, children }) => (
+export const SettingsSection = ({ groupName, groupTitle, children }) => (
   <Container>
     <Heading>
-      <Icon name={`categories/${categoryGroup[group]}`} size={24} />
-      <Title>{categoryNames[group]}</Title>
+      <Icon name={`categoryGroups/${groupName}`} size={24} />
+      <Title>{groupTitle}</Title>
     </Heading>
     <Content>
       {children}
@@ -53,6 +49,7 @@ export const SettingsSection = ({ group, children }) => (
 )
 
 SettingsSection.propTypes = {
-  group: PropTypes.string.isRequired,
+  groupName: PropTypes.string.isRequired,
+  groupTitle: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 }

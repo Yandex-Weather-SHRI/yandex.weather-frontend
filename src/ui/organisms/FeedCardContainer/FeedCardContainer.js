@@ -5,27 +5,50 @@ import { connect } from 'react-redux'
 
 import { FeedCard } from 'ui/organisms'
 import { TabBar } from 'ui/molecules'
-import { getCategoryGroupStyle } from 'styles/utils'
-import { openModal } from '../../../redux/modal/actions'
-import { modals } from '../../../constants/modals'
+import { openModal } from 'redux/modal/actions'
+import { modals } from 'constants/modals'
+import { getNameOfNextDay } from '../../../utils/days'
+import { statuses } from '../../../constants/statuses'
 
 
-const mockTabs = [
-  {
-    id: 0,
-    title: 'Сегодня',
-  },
-  {
-    id: 1,
-    title: 'ПН',
-  },
-]
+function getTabs([, tomorrowCard]) {
+  return [
+    {
+      id: 0,
+      title: 'Сегодня',
+      alert: false,
+    },
+    {
+      id: 1,
+      title: getNameOfNextDay(),
+      alert: tomorrowCard.status === statuses.bad,
+    },
+  ]
+}
 
 const Container = styled.div`
-  ${p => getCategoryGroupStyle({ name: p.categoryGroup })}
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.02) 99%);
+  box-shadow:
+    0 2px 10px 0 rgba(0, 0, 0, 0.06),
+    0 2px 6px 0 rgba(0, 0, 0, 0.03);
   border-radius: 4px;
   overflow: hidden;
+  position: relative;
+  z-index: 1;
   margin-bottom: 16px;
+  padding: 1px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 1px;
+    left: 1px;
+    bottom: 1px;
+    right: 1px;
+    background-color: #fff;
+    border-radius: inherit;
+  }
 
   &:last-of-type {
     margin-bottom: 0;
@@ -37,6 +60,8 @@ export class FeedCardContainerInner extends Component {
     cardsList: PropTypes.arrayOf(
       PropTypes.shape()
     ).isRequired,
+    openModal: PropTypes.func.isRequired,
+    settingsSchema: PropTypes.shape({}).isRequired,
   }
 
   state = {
@@ -47,21 +72,34 @@ export class FeedCardContainerInner extends Component {
     this.setState({ currentCard })
   }
 
+  onOptionsClick = card => () => {
+    this.props.openModal(modals.cardOptions, { card })
+  }
+
+  onShareClick = card => () => {
+    this.props.openModal(modals.shareCard, { card })
+  }
+
   render() {
     const { currentCard } = this.state
-    const { cardsList } = this.props
+    const { cardsList, settingsSchema } = this.props
     const card = cardsList[currentCard]
+    const { categoryGroup, category, code } = card
+    const { title: groupTitle, categories } = settingsSchema[categoryGroup]
+    const categoryTitle = categories[category]
+    const status = code.split(/_/)[1]
 
     return (
-      <Container categoryGroup={card.categoryGroup}>
+      <Container {...{ categoryGroup }}>
         <FeedCard
           {...card}
-          onOptionsClick={() => this.props.openModal(modals.cardOptions, { card })}
-          onShareClick={() => this.props.openModal(modals.shareCard, { card })}
+          {...{ groupTitle, categoryTitle, status }}
+          onOptionsClick={this.onOptionsClick(card)}
+          onShareClick={this.onShareClick(card)}
         />
         {cardsList.length > 1 && (
           <TabBar
-            tabs={mockTabs}
+            tabs={getTabs(cardsList)}
             onTabSelect={this.onChangeCard}
             currentTab={currentCard}
           />
@@ -71,9 +109,17 @@ export class FeedCardContainerInner extends Component {
   }
 }
 
-
-FeedCardContainerInner.propTypes = {
-  openModal: PropTypes.func.isRequired,
+function mapStateToProps(state) {
+  return {
+    settingsSchema: state.user.settings.schema,
+  }
 }
 
-export const FeedCardContainer = connect(null, { openModal })(FeedCardContainerInner)
+const mapDispatchToProps = {
+  openModal,
+}
+
+export const FeedCardContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FeedCardContainerInner)

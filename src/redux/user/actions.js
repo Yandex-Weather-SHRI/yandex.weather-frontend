@@ -9,8 +9,10 @@ const O_AUTH_TOKEN_KEY = 'oauth_token'
 export const setTokenPure = createAction('user.setTokenPure')
 export const setUserInfo = createAction('user.setUserInfo')
 
-export const getCategoriesSettingsRequest = createAction('get.categories.settings.request')
-export const getCategoriesSettingsSuccess = createAction('get.categories.settings.success')
+export const getCategoriesSettingsRequest = createAction('settings.categories.get.request')
+export const getCategoriesSettingsSuccess = createAction('settings.categories.get.success')
+export const getSettingsSchemaRequest = createAction('settings.schema.get.request')
+export const getSettingsSchemaSuccess = createAction('settings.schema.get.success')
 
 // todo move api to class and extra thunk argument
 export function requestLogin(nextState) {
@@ -27,37 +29,9 @@ export function requestLogout() {
   window.location.reload()
 }
 
-export function setToken(token) {
-  return (dispatch) => {
-    window.localStorage.setItem(O_AUTH_TOKEN_KEY, token)
-    dispatch(setTokenPure(token))
-  }
-}
-
-export function fetchAndSetUserInfo() {
-  return (dispatch, getState) => {
-    const { user: { oAuthToken: token } } = getState()
-    if (!token) {
-      throw new Error(`Attempted to get user data with falsy token=${token} in app state.`)
-    }
-
-    return fetch(`https://login.yandex.ru/info?oauth_token=${token}`)
-      .then(response => response.json())
-      .then((json) => {
-        dispatch(setUserInfo({
-          avatarUrl: `https://avatars.yandex.net/get-yapic/${json.default_avatar_id}/islands-small`,
-          login: json.login,
-        }))
-      })
-  }
-}
-
 export function createOrUpdateUserWithCategorySettings(categories) {
   return async (dispatch, getState) => {
     const { user: { login } } = getState()
-    if (!login) {
-      throw new Error(`Attempted to update user setting with falsy token=${login} in app state.`)
-    }
     try {
       const responseCategories = await request.post('/v1/settings/categories', { items: categories, login })
       dispatch(getCategoriesSettingsSuccess(responseCategories))
@@ -68,28 +42,58 @@ export function createOrUpdateUserWithCategorySettings(categories) {
   }
 }
 
+export function setToken(token) {
+  return (dispatch) => {
+    window.localStorage.setItem(O_AUTH_TOKEN_KEY, token)
+    dispatch(setTokenPure(token))
+  }
+}
+
+export function fetchAndSetUserInfo() {
+  return async (dispatch, getState) => {
+    const { user: { oAuthToken: token } } = getState()
+
+    try {
+      const response = await fetch(`https://login.yandex.ru/info?oauth_token=${token}`)
+
+      if (response.ok) {
+        const { default_avatar_id, login } = await response.json()
+        /* eslint-disable camelcase */
+        dispatch(setUserInfo({
+          login,
+          avatarUrl: `https://avatars.yandex.net/get-yapic/${default_avatar_id}/islands-small`,
+        }))
+      }
+      else {
+        throw new Error(response.statusText)
+      }
+    }
+    catch (error) {
+      localStorage.removeItem(O_AUTH_TOKEN_KEY)
+    }
+  }
+}
+
 export function getCategoriesSettings() {
   return async (dispatch, getState) => {
     const { user: { login, settings } } = getState()
 
-    if (!settings.categories.length) {
+    if (!settings.categories.length || !Object.keys(settings.schema).length) {
+      dispatch(getSettingsSchemaRequest())
       dispatch(getCategoriesSettingsRequest())
 
-      if (!login) {
-        throw new Error(`Attempted to update user setting with falsy token=${login} in app state.`)
-      }
       try {
-        const categories = await request.get(`/v1/settings/categories?login=${login}`)
+        const [schema, categories] = await Promise.all([
+          request.get('/v1/settings/schema'),
+          request.get(`/v1/settings/categories?login=${login}`),
+        ])
+        dispatch(getSettingsSchemaSuccess(schema))
         dispatch(getCategoriesSettingsSuccess(categories))
-        return Promise.resolve()
       }
       catch (e) {
         // todo
-        return Promise.reject()
       }
     }
-
-    return Promise.resolve()
   }
 }
 

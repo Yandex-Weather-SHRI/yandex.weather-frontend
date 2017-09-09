@@ -3,25 +3,24 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { PageContent, PageLoader, AppBar, SettingsSection } from 'ui/organisms'
+import { PageTitle, PageContent, PageLoader, AppBar, SettingsSection } from 'ui/organisms'
 import { IconButton, SettingsCard } from 'ui/molecules'
 import { routeNames } from 'utils/routeNames'
-import { categoryGroups, categoryGroupCategories } from 'constants/categoryGroup'
-import { categoriesDisplayNames, categoriesAdvicesCount } from 'constants/categories'
-import { getCategoriesSettings, updateOneUserSetting } from 'redux/user/actions'
+import { updateOneUserSetting } from 'redux/user/actions'
 import { getNormalizedSettings } from 'redux/user/selectors'
 
 
 class SettingsPageContainer extends Component {
   static propTypes = {
+    title: PropTypes.string,
+    settingsSchema: PropTypes.shape().isRequired,
     fetching: PropTypes.bool.isRequired,
     settings: PropTypes.shape().isRequired,
-    getCategoriesSettings: PropTypes.func.isRequired,
     updateOneUserSetting: PropTypes.func.isRequired,
   }
 
-  componentDidMount() {
-    this.props.getCategoriesSettings()
+  static defaultProps = {
+    title: 'Настройки',
   }
 
   handleToggleSettingsItem = ({ name, enabled }) => () => {
@@ -29,37 +28,42 @@ class SettingsPageContainer extends Component {
   }
 
   render() {
-    const { settings, fetching } = this.props
+    const { title, settingsSchema, settings, fetching } = this.props
 
     return (
-      <PageContent>
-        <AppBar
-          title="Настройки"
-          elementLeft={
-            <Link to={routeNames.feed}>
-              <IconButton icon="arrow-left" size="24" />
-            </Link>
-          }
-        />
-        {fetching ? (
-          <PageLoader />
-        ) : categoryGroups.map(group => (
-          group !== 'all' && (
-            <SettingsSection key={group} {...{ group }}>
-              {categoryGroupCategories[group].map(category => (
+      <PageTitle {...{ title }}>
+        <PageContent withFixedBar>
+          <AppBar
+            {...{ title }}
+            elementLeft={
+              <Link to={routeNames.feed}>
+                <IconButton icon="arrow-left" size="24" />
+              </Link>
+            }
+          />
+          {fetching ? (
+            <PageLoader />
+          ) : Object.keys(settingsSchema).map(groupName => (
+            <SettingsSection
+              key={groupName}
+              groupName={groupName}
+              groupTitle={settingsSchema[groupName].title}
+            >
+              {Object.keys(settingsSchema[groupName].categories).map(category => (
                 <SettingsCard
-                  group={group}
-                  catName={categoriesDisplayNames[category]}
-                  catAdvices={categoriesAdvicesCount[category]}
-                  checked={settings[category].enabled}
-                  onClick={this.handleToggleSettingsItem(settings[category])}
                   key={category}
+                  groupName={groupName}
+                  checked={settings[category].enabled}
+                  categoryName={category}
+                  categoryTitle={settingsSchema[groupName].categories[category]}
+                  advicesCount="3 совета"
+                  onClick={this.handleToggleSettingsItem(settings[category])}
                 />
               ))}
             </SettingsSection>
-          )
-        ))}
-      </PageContent>
+          ))}
+        </PageContent>
+      </PageTitle>
     )
   }
 }
@@ -67,14 +71,17 @@ class SettingsPageContainer extends Component {
 function mapStateToProps(state) {
   return {
     fetching: state.user.fetching,
+    settingsSchema: state.user.settings.schema,
     settings: getNormalizedSettings(state),
   }
 }
 
 const mapDispatchToProps = {
   updateOneUserSetting,
-  getCategoriesSettings,
 }
 
-export const SettingsPage = connect(mapStateToProps, mapDispatchToProps)(SettingsPageContainer)
+export const SettingsPage = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SettingsPageContainer)
 

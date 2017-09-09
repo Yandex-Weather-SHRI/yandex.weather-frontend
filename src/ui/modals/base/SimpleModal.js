@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { closeModal } from '../../../redux/modal/actions'
+
+import { closeModal } from 'redux/modal/actions'
 
 
 export const Container = styled.div`
@@ -22,22 +23,28 @@ export const Container = styled.div`
   border-image-slice: 1;
 `
 
-class SimpleModalInner extends React.Component {
+class SimpleModalContainer extends Component {
+  static propTypes = {
+    className: PropTypes.string.isRequired,
+    children: PropTypes.node.isRequired,
+    closeModal: PropTypes.func.isRequired,
+  }
+
   componentDidMount() {
     window.document.addEventListener('click', this.handleDocumentClick, true)
   }
 
   componentWillUnmount() {
-    window.document.removeEventListener('click', this.handleDocumentClick)
+    window.document.removeEventListener('click', this.handleDocumentClick, true)
   }
 
-  handleDocumentClick = (e) => {
-    if (!this.containerEl) {
-      return
-    }
-    const clickOutsideModal = !this.containerEl.contains(e.target)
-    if (clickOutsideModal) {
-      this.props.closeModal()
+  handleDocumentClick = (event) => {
+    if (this.containerEl) {
+      const clickOutsideModal = !this.containerEl.contains(event.target)
+
+      if (clickOutsideModal) {
+        this.props.closeModal()
+      }
     }
   }
 
@@ -52,9 +59,5 @@ class SimpleModalInner extends React.Component {
   }
 }
 
-SimpleModalInner.propTypes = {
-  closeModal: PropTypes.func.isRequired,
-}
-
-export const SimpleModal = connect(null, { closeModal })(SimpleModalInner)
+export const SimpleModal = connect(null, { closeModal })(SimpleModalContainer)
 

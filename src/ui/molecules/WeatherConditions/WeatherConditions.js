@@ -13,23 +13,20 @@ const Container = styled.div`
   height: 48px;
 `
 
+
 export const PureWeatherConditions = ({ humidity, pressure, waterTemp, wind }) => {
   const icons = [
     {
-      iconName: 'weather-conditions/wind-bad',
+      iconName: 'weather-conditions/main-page/wind',
       text: `${wind} м/с, СЗ`,
     },
     {
-      iconName: 'weather-conditions/humidity-bad',
+      iconName: 'weather-conditions/main-page/humidity',
       text: `${humidity}%`,
     },
     {
-      iconName: 'weather-conditions/pressure',
+      iconName: 'weather-conditions/main-page/pressure',
       text: (<span>{pressure} <span style={{ fontSize: 10 }}>мм рт. ст.</span></span>),
-    },
-    {
-      iconName: 'weather-conditions/waterTemp',
-      text: `${waterTemp}°`,
     },
   ]
 
@@ -46,7 +43,6 @@ export const PureWeatherConditions = ({ humidity, pressure, waterTemp, wind }) =
 PureWeatherConditions.propTypes = {
   humidity: PropTypes.number.isRequired,
   pressure: PropTypes.number.isRequired,
-  waterTemp: PropTypes.number.isRequired,
   wind: PropTypes.number.isRequired,
 }
 
@@ -54,7 +50,6 @@ function mapStateToProps(state) {
   return {
     humidity: state.forecast.fact.humidity,
     pressure: state.forecast.fact.pressure_mm,
-    waterTemp: state.forecast.fact.soil_temp,
     wind: state.forecast.fact.wind_speed,
   }
 }

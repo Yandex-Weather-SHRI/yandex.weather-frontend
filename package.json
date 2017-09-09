@@ -60,6 +60,7 @@
     "babel-polyfill": "^6.26.0",
     "ramda": "^0.24.1",
     "react": "^15.6.1",
+    "react-document-title": "^2.0.3",
     "react-dom": "^15.6.1",
     "react-id-swiper": "^1.4.0",
     "react-redux": "^5.0.6",

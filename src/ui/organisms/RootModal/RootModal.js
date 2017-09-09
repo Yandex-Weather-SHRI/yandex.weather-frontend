@@ -1,27 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { connect } from 'react-redux'
-import { CardOptionsModal } from '../../modals/CardOptionsModal'
-import { modalNames, modals } from '../../../constants/modals'
-import { ShareCardModal } from '../../modals/ShareCardModal'
+
+import { modalNames, modals } from 'constants/modals'
+import { CardOptionsModal } from 'ui/modals/CardOptionsModal'
+import { ShareCardModal } from 'ui/modals/ShareCardModal'
 
 
 const Container = styled.div`
   position: fixed;
-  min-height: 100vh;
-  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   overflow-x: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgba(255, 255, 255, 0.5);
-  transition: opacity 0.3s ease;
-  z-index: 10;
-  ${({ hidden }) => hidden
-    ? 'opacity: 0; pointer-events: none'
-    : ''
-}
+  transition: opacity 300ms ease;
+  z-index: 9000;
+  ${p => p.hidden && css`
+    opacity: 0;
+    pointer-events: none;
+  `}
 `
 
 const modalComponents = {
@@ -30,20 +33,37 @@ const modalComponents = {
 }
 
 class RootModalInner extends React.Component {
+  static propTypes = {
+    isModalOpened: PropTypes.bool.isRequired,
+    openedModal: PropTypes.oneOf([...modalNames, '']),
+    meta: PropTypes.shape(),
+  }
+
+  static defaultProps = {
+    openedModal: '',
+    meta: {},
+  }
+
   componentWillReceiveProps(nextProps) {
     this.handleCloseOpen(nextProps)
   }
+
+  /* eslint-disable class-methods-use-this */
+  preventTouchMove(event) {
+    event.preventDefault()
+  }
+  /* eslint-enable class-methods-use-this */
 
   handleCloseOpen(nextProps) {
     const willOpen = !this.props.isModalOpened && nextProps.isModalOpened
     const willClose = this.props.isModalOpened && !nextProps.isModalOpened
     if (willOpen) {
-      window.document.body.style.overflow = 'hidden'
-      return
+      document.body.style.overflow = 'hidden'
+      document.body.addEventListener('touchmove', this.preventTouchMove)
     }
-
-    if (willClose) {
-      window.document.body.style.overflow = 'auto'
+    else if (willClose) {
+      document.body.style.overflow = 'auto'
+      document.body.removeEventListener('touchmove', this.preventTouchMove)
     }
   }
 
@@ -51,22 +71,11 @@ class RootModalInner extends React.Component {
     const { isModalOpened, openedModal, meta } = this.props
     const ConcreteModal = modalComponents[openedModal]
     return (
-      <Container hidden={!isModalOpened}>
+      <Container hidden={!isModalOpened} onClick={() => null}>
         {ConcreteModal && <ConcreteModal {...{ meta }} />}
       </Container>
     )
   }
-}
-
-RootModalInner.propTypes = {
-  isModalOpened: PropTypes.bool.isRequired,
-  openedModal: PropTypes.oneOf([...modalNames, '']),
-  meta: PropTypes.shape(),
-}
-
-RootModalInner.defaultProps = {
-  openedModal: '',
-  meta: {},
 }
 
 function mapStateToProps(state) {
