@@ -104,8 +104,8 @@ function mapStateToProps(state) {
   return {
     fetching: state.feed.fetching,
     feedList: R.compose(
-      getGroupedFeedListByCateogry,
       sortByStatus,
+      getGroupedFeedListByCateogry,
       getFeedByFilters
     )(state.feed.list, state.filters),
     filtersList: state.filters,
