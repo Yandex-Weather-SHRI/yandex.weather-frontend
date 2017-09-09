@@ -130,7 +130,7 @@ export const FeedCard = ({
           <Button icon="share" onClick={onShareClick} />
           <Button icon="more" onClick={onOptionsClick} />
         </Actions>
-      </Header>/
+      </Header>
       <Content>
         <Row>
           <div>
