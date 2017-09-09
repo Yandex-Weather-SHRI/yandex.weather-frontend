@@ -1,19 +1,20 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { connect } from 'react-redux'
 
 import { routeNames } from 'utils/routeNames'
 import { request } from 'utils/fetchHelper'
-import { Icon, RoundedButton as Button } from 'ui/atoms'
-import { getCategoryGroupStyle } from 'styles/utils'
-import { PageTitle, PageLoader, FeedCardBoard, PageContent, PaginationBullets } from 'ui/organisms'
+import { RoundedButton as Button } from 'ui/atoms'
+import { PageTitle, PageLoader, FeedCardBoard, PageContent, AppBar } from 'ui/organisms'
+import { IconButton } from 'ui/molecules'
 import { requestLogin } from 'redux/user/actions'
 
 
 const Content = PageContent.extend`
   align-items: center;
-  padding: 16px;
+  padding: 0 16px;
 `
 
 const CenteredContent = Content.extend`
@@ -22,11 +23,20 @@ const CenteredContent = Content.extend`
 `
 
 const Header = styled.h1`
+  margin-bottom: 21px;
+  margin-top: 24px;
   font-size: 2rem;
   font-weight: 500;
+  line-height: 1.2;
   text-align: center;
   color: rgba(0, 0, 0, 0.87);
-  margin: 32px 0;
+`
+
+const AdviceContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto 0;
 `
 
 const Text = styled.span`
@@ -37,18 +47,38 @@ const Text = styled.span`
   color: rgba(0, 0, 0, 0.87);
 `
 
+const SkipButon = styled.button`
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-align: left;
+  color: rgba(0, 0, 0, 0.87);
+`
+
+const PaginationText = styled.span`
+  margin-top: 22px;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+`
+
 const RoundedButton = Button.extend`
-  min-width: 88px;
+  min-width: 100px;
   height: 48px;
   border-radius: 24px;
   position: relative;
   z-index: 1;
   font-size: 1.4rem;
   font-weight: 100;
-  ${p => getCategoryGroupStyle({ name: p.categoryGroup })}
+  color: #fff;
+  background-image: linear-gradient(296deg, #ed515f, #ff6f33);
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04);
   margin-right: 56px;
-
+  
+  & > span {
+    width: 100%
+  }
+  
   &:last-of-type {
     margin-right: 0;
   }
@@ -70,29 +100,9 @@ const RoundedButton = Button.extend`
   `}
 `
 
-const LoginButton = Button.extend`
-  height: auto;
-  padding: 14px 32px;
-  border-radius: 57px;
-  background-image: linear-gradient(293deg, #ed515f, #ff6f33);
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04);
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  text-align: center;
-  color: #ffffff;
-`
-
-const PaginationWrapper = styled.div`
-  margin-top: 12px;
-`
-
-const ButtonIcon = styled(Icon)`
-  margin-right: 8px;
-`
-
 const ButtonsRow = styled.div`
-  margin-top: 16px;
+  margin-top: auto;
+  margin-bottom: 29px;
 `
 
 const mergeSettings = (defaultSettings, partialSettings) =>
@@ -228,50 +238,55 @@ class OnBoardingPageContainer extends Component {
 
     const { group, name } = partialSettings[currentCardIndex]
     const currentCard = onBoardingCards[name]
+    const status = currentCard.code.split(/_/)[1]
     const { groupTitle, categoryTitle } = this.getCurrentTitles()
 
     return (
       <PageTitle {...{ title }}>
-        <PageContent>
+        <PageContent withFixedBar>
+          <AppBar
+            title=""
+            elementLeft={
+              <Link to={routeNames.index}>
+                <IconButton icon="arrow-left" size="24" />
+              </Link>
+            }
+            elementRight={
+              <SkipButon onClick={this.handleSubmitOnboarding()}>УЖЕ ПРОХОДИЛ</SkipButon>
+            }
+          />
           {completed ? (
             <CenteredContent>
               <Text>Для того, чтобы сохранить выбранные советы, войдите в аккаунт</Text>
-              <LoginButton onClick={this.handleSubmitOnboarding(defaultSettings, partialSettings)}>
-                Войти
-              </LoginButton>
+              <RoundedButton onClick={this.handleSubmitOnboarding(defaultSettings, partialSettings)}>
+                <span>Войти</span>
+              </RoundedButton>
             </CenteredContent>
           ) : (
             <Content>
-              <RoundedButton onClick={this.handleSubmitOnboarding()}>Пропустить</RoundedButton>
-              <Header>Интересен ли вам совет?</Header>
-              <FeedCardBoard
-                categoryGroup={group}
-                groupTitle={groupTitle}
-                category={name}
-                categoryTitle={categoryTitle}
-                text={currentCard.text}
-              />
-              <PaginationWrapper>
-                <PaginationBullets
-                  activeIndex={currentCardIndex}
-                  total={partialSettings.length}
+              <Header>Интересны ли вам такие советы?</Header>
+              <AdviceContainer>
+                <FeedCardBoard
+                  categoryGroup={group}
+                  groupTitle={groupTitle}
+                  category={name}
+                  categoryTitle={categoryTitle}
+                  text={currentCard.text}
+                  status={status}
                 />
-              </PaginationWrapper>
+                <PaginationText>{currentCardIndex + 1} / {partialSettings.length}</PaginationText>
+              </AdviceContainer>
               <ButtonsRow>
                 <RoundedButton
-                  categoryGroup={group}
                   inverse
                   onClick={this.onChoiceHandler(false)}
                 >
-                  <ButtonIcon name="cancel" size={16} />
-                  Нет
+                  <span>Нет</span>
                 </RoundedButton>
                 <RoundedButton
-                  categoryGroup={group}
                   onClick={this.onChoiceHandler(true)}
                 >
-                  <ButtonIcon name="check" fill="#fff" size={16} />
-                  Да
+                  <span>Да</span>
                 </RoundedButton>
               </ButtonsRow>
             </Content>
