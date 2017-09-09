@@ -3,17 +3,19 @@
   "version": "0.1.0",
   "scripts": {
     "start": "babel-node server/server.js --presets es2015",
-    "postinstall": "npm run build:prod",
+    "postinstall": "npm run build:prod",        
     "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "eslint src",
     "lint:js-fix": "eslint src --fix",
     "lint:css": "stylelint \"src/**/*.js\"",
     "dev": "webpack-dev-server",
     "build": "webpack",
-    "build:prod": "NODE_ENV=production npm run build -- -p",
+    "build:prod": "cross-env NODE_ENV=production npm run build -- -p",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "prepush": "npm run lint",
-    "test": "npm run lint"
+    "test": "npm run lint && npm run test:jest",
+    "test:jest": "cross-env NODE_ENV=test NODE_PATH=src jest",
+    "test:jest-watch": "npm run test:jest -- --watch"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.6",
@@ -53,10 +55,13 @@
     "stylelint-processor-styled-components": "^0.3.0",
     "webpack": "^3.5.5",
     "webpack-dev-server": "^2.7.1",
+    "cross-env": "^5.0.5",
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
+    "babel-jest": "^21.0.2",
     "babel-polyfill": "^6.26.0",
+    "jest": "^21.0.2",
     "ramda": "^0.24.1",
     "react": "^15.6.1",
     "react-document-title": "^2.0.3",
