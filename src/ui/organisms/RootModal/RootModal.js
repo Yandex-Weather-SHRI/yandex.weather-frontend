@@ -10,15 +10,17 @@ import { ShareCardModal } from 'ui/modals/ShareCardModal'
 
 const Container = styled.div`
   position: fixed;
-  min-height: 100vh;
-  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   overflow-x: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgba(255, 255, 255, 0.5);
   transition: opacity 0.3s ease;
-  z-index: 10;
+  z-index: 9000;
   ${({ hidden }) => hidden
     ? 'opacity: 0; pointer-events: none'
     : ''
