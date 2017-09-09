@@ -15,7 +15,7 @@ import { requestLogin } from 'redux/user/actions'
 const Content = PageContent.extend`
   align-items: center;
   justify-content: space-between;
-  padding: 24px 16px 32px 16px;
+  padding: 24px 16px 72px 16px;
 `
 
 const CenteredContent = Content.extend`
@@ -33,6 +33,7 @@ const Header = styled.h1`
 
 const AdviceContainer = styled.div`
   display: flex;
+  margin: auto 0;
   flex-direction: column;
   align-items: center;
 `
@@ -50,6 +51,8 @@ const SkipButon = styled.button`
   font-weight: 500;
   letter-spacing: 0.5px;
   color: rgba(0, 0, 0, 0.87);
+  background: none;
+  border: none;
 `
 
 const PaginationText = styled.span`
@@ -95,6 +98,11 @@ const RoundedButton = Button.extend`
       border-radius: inherit;
     }
   `}
+`
+
+const ButtonsRow = styled.div`
+  position: fixed;
+  bottom: 29px;
 `
 
 const mergeSettings = (defaultSettings, partialSettings) =>
@@ -268,7 +276,7 @@ class OnBoardingPageContainer extends Component {
                 />
                 <PaginationText>{currentCardIndex + 1} / {partialSettings.length}</PaginationText>
               </AdviceContainer>
-              <div>
+              <ButtonsRow>
                 <RoundedButton
                   inverse
                   onClick={this.onChoiceHandler(false)}
@@ -280,7 +288,7 @@ class OnBoardingPageContainer extends Component {
                 >
                   <span>Да</span>
                 </RoundedButton>
-              </div>
+              </ButtonsRow>
             </Content>
           )}
         </PageContent>
