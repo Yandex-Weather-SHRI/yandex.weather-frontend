@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 import { Icon } from 'ui/atoms'
-import { CardPicture } from 'ui/molecules'
 import { getCategoryGroupStyle } from 'styles/utils'
 
 
@@ -73,10 +72,6 @@ export const SettingsCard = ({
   checked,
 }) => (
   <Container groupName={groupName} onClick={onClick}>
-    <CardPicture
-      name={`categories/${categoryName}`}
-      size={80}
-    />
     <Heading>
       <Line />
       <Icon name={statusIcons[checked]} size={24} />
