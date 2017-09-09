@@ -26,8 +26,8 @@ const ElementWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
 `
 
 const Title = styled.span`
