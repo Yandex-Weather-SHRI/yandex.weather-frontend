@@ -15,6 +15,7 @@ const Container = styled.div`
   z-index: 1;
   margin-bottom: 16px;
   padding: 1px;
+  width: 100%;
 
   &:after {
     content: '';
