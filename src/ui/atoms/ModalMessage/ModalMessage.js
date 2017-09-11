@@ -8,6 +8,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+  padding: 12px 24px;
 `
 const Title = styled.div`
   font-size: 20px;
