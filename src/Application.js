@@ -17,7 +17,6 @@ import {
   FeedPage,
   PassportRedirectPage,
 } from 'ui/pages'
-import { PageLoader } from 'ui/organisms'
 import { routeNames } from 'utils/routeNames'
 import { withAuthentication, withSettings } from 'hocs'
 import { checkAuth } from 'redux/user/actions'
@@ -49,11 +48,7 @@ class ApplicationContainer extends Component {
     const { loading } = this.state
 
     if (loading) {
-      return (
-        <Container>
-          <PageLoader />
-        </Container>
-      )
+      return null
     }
 
     return (
