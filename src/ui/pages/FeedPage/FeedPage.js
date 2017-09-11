@@ -14,7 +14,7 @@ import {
   FeedFiltersList,
   FeedCardContainer,
 } from 'ui/organisms'
-import { IconButton } from 'ui/molecules'
+import { IconButton, HintCard } from 'ui/molecules'
 import { getFeedByFilters, getGroupedFeedListByCateogry, sortByStatus } from 'redux/feed/selectors'
 import { setFeedFilter, getAvailableFilters } from 'redux/filters/actions'
 import { routeNames } from 'utils/routeNames'
@@ -89,6 +89,13 @@ class FeedPageContainer extends Component {
             />
           )}
           <FeedList>
+            <HintCard
+              title='Хотите больше советов?'
+              text='Вы можете выбрать в настройках другие тематики'
+              buttonText='НАСТРОЙКИ'
+              onCloseClick={() => {}}
+              onButtonClick={() => this.props.history.replace('/settings')}
+            />
             {feedList.map((cardsList, key) => (
               <FeedCardContainer {...{ cardsList, key }} />
             ))}
