@@ -71,7 +71,7 @@ const HeaderWrapper = styled.div`
 
   &:after {
     content: '';
-    background-image: linear-gradient(to right, transparent, #fff);
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), #fff);
     position: absolute;
     right: 0;
     width: 24px;
@@ -86,7 +86,7 @@ const Content = styled.div`
 
 const Actions = styled.div`
   display: flex;
-  margin-left: auto;
+  margin-left: 8px;
   flex: 0 0 auto;
 `
 
