@@ -1,7 +1,7 @@
 import R from 'ramda'
 import { createReducer } from 'redux-act'
 
-import { feedGetRequest, feedGetSuccess } from './actions'
+import { feedGetRequest, feedGetSuccess, removeFeedItem } from './actions'
 
 
 const feedDefaultState = {
@@ -19,5 +19,10 @@ export const feedReducer = createReducer({
       R.assoc('fetching', false),
       R.assoc('list', list)
     )(state)
+  },
+
+  [removeFeedItem](state, hintId) {
+    const list = state.list.filter(item => item.id !== hintId)
+    return R.assoc('list', list)(state)
   },
 }, feedDefaultState)

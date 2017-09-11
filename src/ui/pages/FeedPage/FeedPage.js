@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-import { getFeed } from 'redux/feed/actions'
+import { getFeed, closeHint } from 'redux/feed/actions'
 import {
   PageTitle,
   PageContent as PageContentBase,
@@ -18,6 +18,10 @@ import { IconButton, HintCard } from 'ui/molecules'
 import { getFeedByFilters, getGroupedFeedListByCateogry, sortByStatus } from 'redux/feed/selectors'
 import { setFeedFilter, getAvailableFilters } from 'redux/filters/actions'
 import { routeNames } from 'utils/routeNames'
+import { feedItemType } from '../../../constants/feedItemType'
+import { addHint } from '../../../redux/feed/enhancers'
+import { hints } from '../../../constants/hints'
+import { hintUtil } from '../../../utils/hintUtil'
 
 
 const PageContent = PageContentBase.extend`
@@ -60,8 +64,31 @@ class FeedPageContainer extends Component {
     this.props.setFeedFilter({ name, active })
   }
 
+  renderFeedItem(item) {
+    const type = Array.isArray(item) ? item[0].type : item.type
+
+    switch (type) {
+      case feedItemType.alert:
+        return <FeedCardContainer cardsList={item} />
+
+      case feedItemType.notice:
+        return <HintCard
+          title='Хотите больше советов?'
+          text='Вы можете выбрать в настройках другие тематики'
+          buttonText='НАСТРОЙКИ'
+          onCloseClick={() => this.props.closeHint(hints.moreAlertsFeedHint)}
+          onButtonClick={() => this.props.history.replace('/settings')}
+        />
+
+      default:
+        throw new Error(`Unexpected feedItemType=${type}`)
+    }
+  }
+
   render() {
-    const { title, fetching, feedList, filtersList } = this.props
+    const { title, fetching, filtersList } = this.props
+
+    const feedList = fetching ? [] : this.props.feedList
 
     return (
       <PageTitle {...{ title }}>
@@ -89,16 +116,7 @@ class FeedPageContainer extends Component {
             />
           )}
           <FeedList>
-            <HintCard
-              title='Хотите больше советов?'
-              text='Вы можете выбрать в настройках другие тематики'
-              buttonText='НАСТРОЙКИ'
-              onCloseClick={() => {}}
-              onButtonClick={() => this.props.history.replace('/settings')}
-            />
-            {feedList.map((cardsList, key) => (
-              <FeedCardContainer {...{ cardsList, key }} />
-            ))}
+            {feedList.map(feedListItem => this.renderFeedItem(feedListItem))}
           </FeedList>
         </PageContent>
       </PageTitle>
@@ -110,6 +128,7 @@ function mapStateToProps(state) {
   return {
     fetching: state.feed.fetching,
     feedList: R.compose(
+      addHint,
       sortByStatus,
       getGroupedFeedListByCateogry,
       getFeedByFilters
@@ -122,6 +141,7 @@ const mapDispatchToProps = {
   getFeed,
   setFeedFilter,
   getAvailableFilters,
+  closeHint,
 }
 
 export const FeedPage = connect(
