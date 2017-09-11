@@ -13,7 +13,7 @@ import { SimpleModal as BaseSimpleModal } from './base/SimpleModal'
 
 
 const SimpleModal = styled(BaseSimpleModal)`
-  padding: 24px;
+  padding: 12px 0;
   width: 280px;
   display: flex;
   flex-direction: column;
@@ -21,6 +21,8 @@ const SimpleModal = styled(BaseSimpleModal)`
 
 const IconWithText = styled(IconWithTextBase)`
   cursor: pointer;
+  height: 48px;
+  padding: 0 24px;
 `
 
 const optionIds = {
@@ -37,12 +39,12 @@ const OPTIONS = [
   },
   {
     iconName: 'cancel',
-    text: 'Неправильный совет',
+    text: 'Неактуальный совет',
     id: optionIds.badFeedback,
   },
   {
     iconName: 'no-eye',
-    text: 'Не показывать больше этот совет',
+    text: 'Скрыть этот совет',
     id: optionIds.dismiss,
   },
 ]
@@ -65,7 +67,7 @@ class CardOptionsModalInner extends React.Component {
     showThanksBlock: false,
   }
 
-  handleOptionClick = (option) => {
+  handleOptionClick = option => () => {
     if (optionsWithThankPage.includes(option.id)) {
       this.setState({ showThanksBlock: true })
       return
@@ -94,11 +96,10 @@ class CardOptionsModalInner extends React.Component {
           : OPTIONS.map(option =>
             <IconWithText
               {...option}
-              onClick={() => this.handleOptionClick(option)}
+              onClick={this.handleOptionClick(option)}
               key={option.id}
-              itemOffsetTop="22px"
               iconOffset="16px"
-              textStyles="font-size: 16px; font-weight: 400; line-height: 1.2;"
+              textStyles="font-size: 16px; font-weight: 400; line-height: 1.25;"
             />
           )
         }

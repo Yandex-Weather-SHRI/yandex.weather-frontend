@@ -10,17 +10,6 @@ export const Container = styled.div`
   border-radius: 4px;
   background-color: #fff;
   box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.12), 0 0 16px 0 rgba(0, 0, 0, 0.2);
-  border-style: solid;
-  border-width: 1px;
-  border-image-source:
-    linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.8),
-      rgba(255, 255, 255, 0.4) 5%,
-      rgba(255, 255, 255, 0) 20%,
-      rgba(255, 255, 255, 0)
-    );
-  border-image-slice: 1;
 `
 
 class SimpleModalContainer extends Component {
