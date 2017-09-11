@@ -13,6 +13,6 @@ export function alertsAdapter(alertsList, schema) {
   return alertsList.map((item) => {
     const [category, status,, day] = item.code.split(/_/)
     const categoryGroup = getCategoryGroup(category, schema)
-    return { ...item, category, categoryGroup, status, day }
+    return { ...item, category, categoryGroup, status, day, type: 'alert' }
   })
 }
