@@ -156,7 +156,7 @@ export const FeedCard = ({
           {isOnBoarding
             ? <Icon name={`categoryGroups/${categoryGroup}`} />
             : <div>
-              <Button icon="share" onClick={onShareClick} />
+              <Button icon="share" onClick={onShareClick} data-hint="share" />
               <Button icon="more" onClick={onOptionsClick} />
             </div>
           }

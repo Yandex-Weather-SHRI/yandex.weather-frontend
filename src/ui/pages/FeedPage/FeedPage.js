@@ -18,6 +18,8 @@ import { IconButton, HintCard } from 'ui/molecules'
 import { getFeedByFilters, getGroupedFeedListByCateogry, sortByStatus } from 'redux/feed/selectors'
 import { setFeedFilter, getAvailableFilters } from 'redux/filters/actions'
 import { routeNames } from 'utils/routeNames'
+import { openModal } from 'redux/modal/actions'
+import { modals } from 'constants/modals'
 
 
 const PageContent = PageContentBase.extend`
@@ -45,6 +47,7 @@ class FeedPageContainer extends Component {
     getFeed: PropTypes.func.isRequired,
     setFeedFilter: PropTypes.func.isRequired,
     getAvailableFilters: PropTypes.func.isRequired,
+    openModal: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -56,8 +59,24 @@ class FeedPageContainer extends Component {
     this.props.getFeed()
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.fetching && nextProps.feedList.length) {
+      this.showShareHint()
+    }
+  }
+
   setFeedFilter = (name, active) => () => {
     this.props.setFeedFilter({ name, active })
+  }
+
+  showShareHint() {
+    requestAnimationFrame(() => {
+      const shareButton = document.querySelector('[data-hint="share"]')
+      if (shareButton) {
+        const { top } = shareButton.getBoundingClientRect()
+        this.props.openModal(modals.shareHint, { top })
+      }
+    })
   }
 
   render() {
@@ -122,6 +141,7 @@ const mapDispatchToProps = {
   getFeed,
   setFeedFilter,
   getAvailableFilters,
+  openModal,
 }
 
 export const FeedPage = connect(
