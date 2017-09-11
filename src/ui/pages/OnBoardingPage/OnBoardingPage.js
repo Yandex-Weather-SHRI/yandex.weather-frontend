@@ -48,12 +48,17 @@ const Text = styled.span`
 
 const SkipButon = styled.button`
   margin-right: 8px;
+  font: inherit;
   font-size: 1.2rem;
   font-weight: 500;
   letter-spacing: 0.5px;
   color: rgba(0, 0, 0, 0.87);
   background: none;
   border: none;
+
+  &:focus {
+    outline: none;
+  }
 `
 
 const PaginationText = styled.span`
