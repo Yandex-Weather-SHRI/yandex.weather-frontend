@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 
 import { FeedCard } from 'ui/organisms'
-import { TabBar } from 'ui/molecules'
+import { TabBar, QuestionCard } from 'ui/molecules'
 import { openModal } from 'redux/modal/actions'
 import { modals } from 'constants/modals'
 import { getNameOfSomeNextDay } from '../../../utils/days'
@@ -88,6 +88,12 @@ export class FeedCardContainerInner extends Component {
 
     return (
       <Container {...{ categoryGroup }}>
+        <QuestionCard
+          title="Интересны ли вам советы про сердце?"
+          category={category}
+          onButtonYesClick={() => {}}
+          onButtonNoClick={() => {}}
+        />
         <FeedCard
           {...card}
           {...{ groupTitle, categoryTitle, status }}

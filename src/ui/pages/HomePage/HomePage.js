@@ -16,6 +16,7 @@ class HomePageContainer extends Component {
   static propTypes = {
     fetching: PropTypes.bool.isRequired,
     fetchWeather: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
   }
 
   componentDidMount() {
