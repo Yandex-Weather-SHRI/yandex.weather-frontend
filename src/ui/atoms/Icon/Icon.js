@@ -5,6 +5,7 @@ import styled, { css } from 'styled-components'
 
 export const IconWrapper = styled.i`
   display: flex;
+  flex: 0 0 ${p => p.size}px;
   align-items: center;
   justify-content: center;
   width: ${p => p.size}px;
@@ -12,8 +13,8 @@ export const IconWrapper = styled.i`
 
   svg {
     transition: fill 150ms ease-in-out;
-    max-width: ${p => p.size}px;
-    max-height: ${p => p.size}px;
+    width: 100%;
+    height: 100%;
     ${p => p.fill && css`
       fill: ${p.fill};
     `}
