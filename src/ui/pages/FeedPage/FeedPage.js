@@ -71,6 +71,9 @@ class FeedPageContainer extends Component {
       case feedItemType.alert:
         return <FeedCardContainer cardsList={item} />
 
+      case feedItemType.suggestedAlert:
+        return <FeedCardContainer isQuestionCard cardsList={item} />
+
       case feedItemType.notice:
         return <HintCard
           title='Хотите больше советов?'
@@ -128,7 +131,7 @@ function mapStateToProps(state) {
   return {
     fetching: state.feed.fetching,
     feedList: R.compose(
-      addHint,
+      // addHint,
       sortByStatus,
       getGroupedFeedListByCateogry,
       getFeedByFilters

@@ -1,8 +1,6 @@
 import { createAction } from 'redux-act'
 
 import { request } from 'utils/fetchHelper'
-
-import { alertsAdapter } from './adapters'
 import { hintUtil } from '../../utils/hintUtil'
 
 
@@ -18,7 +16,7 @@ export function getFeed() {
 
     try {
       const list = await request.get(`/v1/alerts?login=${login}`)
-      dispatch(feedGetSuccess(alertsAdapter(list, schema)))
+      dispatch(feedGetSuccess(list, schema))
     }
     catch (error) {
       dispatch(feedGetFailure(error))
