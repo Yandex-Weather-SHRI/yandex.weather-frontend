@@ -1,4 +1,4 @@
-function getNameOfSomeNextDay(n) {
+export function getNameOfSomeNextDay(n) {
   const days = ['ПН', 'ВТ', ' СР', 'ЧТ', 'ПТ', 'СБ', 'ВС']
 
   const dayNumber = new Date().getDay() - 1
