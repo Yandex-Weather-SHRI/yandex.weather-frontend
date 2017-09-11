@@ -129,7 +129,6 @@ const IconWrapper = styled.div`
 
   ${p => p.selected && css`
     &:after {
-      color: rgba(0, 0, 0, 0.87);
       content: '';
       position: absolute;
       z-index: -1;
