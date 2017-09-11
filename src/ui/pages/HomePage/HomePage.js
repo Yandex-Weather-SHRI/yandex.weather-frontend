@@ -23,7 +23,7 @@ class HomePageContainer extends Component {
   }
 
   render() {
-    const { fetching } = this.props
+    const { fetching, isAuthenticated } = this.props
 
     if (fetching) {
       return (
@@ -50,7 +50,7 @@ class HomePageContainer extends Component {
           <SliderCard
             linkTo={routeNames.onboarding}
             bg="#fff"
-            buttonText="БОЛЬШЕ СОВЕТОВ"
+            buttonText={isAuthenticated ? 'ДРУГИЕ СОВЕТЫ' : 'БОЛЬШЕ СОВЕТОВ'}
           >
             Будьте осторожны!<br />
             Сегодня <strong>сильная</strong> геомагнитная буря
@@ -64,6 +64,7 @@ class HomePageContainer extends Component {
 function mapStateToProps(state) {
   return {
     fetching: state.forecast.fetching,
+    isAuthenticated: Boolean(state.user.oAuthToken),
   }
 }
 
