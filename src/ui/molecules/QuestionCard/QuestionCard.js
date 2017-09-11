@@ -9,6 +9,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   padding: 18px 16px;
+  border-radius: 4px 4px 0 0;
   background-image: linear-gradient(137deg, #09a4ff, #005bea);
 `
 
