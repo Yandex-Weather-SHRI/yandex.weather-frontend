@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 
 import { routeNames } from 'utils/routeNames'
 import { request } from 'utils/fetchHelper'
-import { RoundedButton as Button } from 'ui/atoms'
+import { Icon, RoundedButton as Button } from 'ui/atoms'
 import { PageTitle, PageLoader, FeedCardBoard, PageContent, AppBar } from 'ui/organisms'
 import { IconButton } from 'ui/molecules'
 import { requestLogin } from 'redux/user/actions'
@@ -18,9 +18,9 @@ const Content = PageContent.extend`
   padding: 24px 16px 0px 16px;
 `
 
-const CenteredContent = Content.extend`
-  justify-content: center;
+const FinalContent = Content.extend`
   padding: 32px;
+  padding-top: 70px;
 `
 
 const Header = styled.h1`
@@ -39,7 +39,7 @@ const AdviceContainer = styled.div`
 `
 
 const Text = styled.span`
-  margin-bottom: 40px;
+  margin-bottom: 24px;
   font-size: 1.8rem;
   text-align: center;
   line-height: 1.2;
@@ -108,6 +108,39 @@ const ButtonsRow = styled.div`
   left: 0;
   right: 0;
   bottom: 29px;
+`
+
+const Icons = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
+`
+
+const IconWrapper = styled.div`
+  position: relative;
+  padding: 8px;
+  border-radius: 6px;
+  background: ${p => p.selected ? 'linear-gradient(138deg, #ed515f, #ff6f33)' : '#fff'};
+  z-index: 1;
+
+  & + & {
+    margin-left: 16px;
+  }
+
+  ${p => p.selected && css`
+    &:after {
+      color: rgba(0, 0, 0, 0.87);
+      content: '';
+      position: absolute;
+      z-index: -1;
+      top: 2px;
+      left: 2px;
+      right: 2px;
+      bottom: 2px;
+      background-color: #fff;
+      border-radius: 2px;
+    }
+  `}
 `
 
 const mergeSettings = (defaultSettings, partialSettings) =>
@@ -261,12 +294,20 @@ class OnBoardingPageContainer extends Component {
             }
           />
           {completed ? (
-            <CenteredContent>
+            <FinalContent>
+              <Text>Выбранные категории</Text>
+              <Icons>
+                {partialSettings.map(item =>
+                  <IconWrapper selected={item.enabled}>
+                    <Icon size={32} name={`categoryGroups/${item.group}`} />
+                  </IconWrapper>
+                )}
+              </Icons>
               <Text>Для того, чтобы сохранить выбранные советы, войдите в аккаунт</Text>
               <RoundedButton onClick={this.handleSubmitOnboarding(defaultSettings, partialSettings)}>
                 <span>Войти</span>
               </RoundedButton>
-            </CenteredContent>
+            </FinalContent>
           ) : (
             <Content>
               <Header>Интересны ли вам такие советы?</Header>
