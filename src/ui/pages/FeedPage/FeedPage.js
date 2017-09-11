@@ -79,21 +79,20 @@ class FeedPageContainer extends Component {
               </Link>
             }
           />
-          {feedList.length > 0 && !fetching && (
+          {fetching && (
+            <PageLoader />
+          )}
+          {feedList.length > 0 && (
             <FeedFiltersList
               list={filtersList}
               setFeedFilter={this.setFeedFilter}
             />
           )}
-          {fetching ? (
-            <PageLoader />
-          ) : (
-            <FeedList>
-              {feedList.map((cardsList, key) => (
-                <FeedCardContainer {...{ cardsList, key }} />
-              ))}
-            </FeedList>
-          )}
+          <FeedList>
+            {feedList.map((cardsList, key) => (
+              <FeedCardContainer {...{ cardsList, key }} />
+            ))}
+          </FeedList>
         </PageContent>
       </PageTitle>
     )
