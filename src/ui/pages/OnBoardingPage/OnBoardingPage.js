@@ -119,7 +119,7 @@ const Icons = styled.div`
 const IconWrapper = styled.div`
   position: relative;
   padding: 8px;
-  border-radius: 6px;
+  border-radius: 4px;
   background: ${p => p.selected ? 'linear-gradient(138deg, #ed515f, #ff6f33)' : '#fff'};
   z-index: 1;
 
