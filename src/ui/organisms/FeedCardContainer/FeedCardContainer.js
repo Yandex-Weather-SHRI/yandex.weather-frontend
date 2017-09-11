@@ -4,26 +4,23 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 
 import { FeedCard } from 'ui/organisms'
-import { TabBar } from 'ui/molecules'
+import { TabBar, QuestionCard } from 'ui/molecules'
 import { openModal } from 'redux/modal/actions'
 import { modals } from 'constants/modals'
-import { getNameOfNextDay } from '../../../utils/days'
+import { getNameOfSomeNextDay } from '../../../utils/days'
 import { statuses } from '../../../constants/statuses'
 
 
-function getTabs([, tomorrowCard]) {
-  return [
-    {
-      id: 0,
-      title: 'Сегодня',
-      alert: false,
-    },
-    {
-      id: 1,
-      title: getNameOfNextDay(),
-      alert: tomorrowCard.status === statuses.bad,
-    },
-  ]
+function getTabs(cardsList) {
+  return cardsList.reduce((acc, item, index) => {
+    if (index === 0) return acc
+
+    return [...acc, {
+      id: index,
+      title: getNameOfSomeNextDay(index),
+      alert: item.status === statuses.bad,
+    }]
+  }, [{ id: 0, title: 'Сегодня', alert: false }])
 }
 
 const Container = styled.div`
@@ -91,6 +88,12 @@ export class FeedCardContainerInner extends Component {
 
     return (
       <Container {...{ categoryGroup }}>
+        <QuestionCard
+          title="Интересны ли вам советы про сердце?"
+          category={category}
+          onButtonYesClick={() => {}}
+          onButtonNoClick={() => {}}
+        />
         <FeedCard
           {...card}
           {...{ groupTitle, categoryTitle, status }}

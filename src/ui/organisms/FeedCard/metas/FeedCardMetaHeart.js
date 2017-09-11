@@ -8,8 +8,7 @@ export const FeedCardMetaHeart = () => (
   <FeedCardMeta>
     <FeedCardMetaSection>
       <FeedCardMetaIcon name="weather-conditions/geomagnetic" size={24} />
-      <FeedCardMetaText textSize={2.6}>6 / 8</FeedCardMetaText>
-      <FeedCardMetaText textSize={2}>баллов</FeedCardMetaText>
+      <FeedCardMetaText>6 баллов</FeedCardMetaText>
     </FeedCardMetaSection>
   </FeedCardMeta>
 )

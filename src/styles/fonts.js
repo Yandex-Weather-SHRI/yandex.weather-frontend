@@ -7,9 +7,9 @@ let MediumFont
 
 /* eslint-disable global-require, import/no-unresolved */
 try {
-  RegularFont = require('assets/fonts/YandexSansRegular.ttf')
-  MediumFont = require('assets/fonts/YandexSansMedium.ttf')
-  BoldFont = require('assets/fonts/YandexSansBold.ttf')
+  RegularFont = require('assets/fonts/WeatherFontRegular.ttf')
+  MediumFont = require('assets/fonts/WeatherFontMedium.ttf')
+  BoldFont = require('assets/fonts/WeatherFontBold.ttf')
 }
 catch (e) {
   RegularFont = require('assets/fonts/HelveticaRegular.ttf')

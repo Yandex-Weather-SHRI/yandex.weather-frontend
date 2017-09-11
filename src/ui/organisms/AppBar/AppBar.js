@@ -11,7 +11,7 @@ const Container = styled.div`
   justify-content: space-between;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.08);
   position: fixed;
-  z-index: 1000;
+  z-index: 2000;
   top: 0;
   left: 0;
   right: 0;
@@ -26,8 +26,8 @@ const ElementWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
 `
 
 const Title = styled.span`
@@ -55,12 +55,15 @@ export class AppBar extends PureComponent {
   }
 
   toggleFixHeader = () => {
-    if (Math.abs(this.lastScrollPosition - window.pageYOffset) > this.scrollDelta) {
+    const scrollTop = window.pageYOffset
+    const appBarHeight = this.appBar.offsetHeight
+
+    if (Math.abs(this.lastScrollPosition - scrollTop) > this.scrollDelta) {
       this.setState({
-        fixed: window.pageYOffset < this.lastScrollPosition,
+        fixed: scrollTop < this.lastScrollPosition || scrollTop <= appBarHeight,
       })
 
-      this.lastScrollPosition = window.pageYOffset
+      this.lastScrollPosition = scrollTop
     }
   }
 
@@ -69,7 +72,7 @@ export class AppBar extends PureComponent {
     const { title, elementLeft, elementRight } = this.props
 
     return (
-      <Container {...{ fixed }}>
+      <Container {...{ fixed }} innerRef={e => this.appBar = e}>
         <ElementWrapper>
           {elementLeft}
         </ElementWrapper>

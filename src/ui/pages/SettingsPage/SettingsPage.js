@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { PageTitle, PageContent, PageLoader, AppBar, SettingsSection } from 'ui/organisms'
+import { PageTitle, PageContent, AppBar, SettingsSection } from 'ui/organisms'
 import { IconButton, SettingsCard } from 'ui/molecules'
 import { routeNames } from 'utils/routeNames'
 import { updateOneUserSetting } from 'redux/user/actions'
@@ -14,7 +14,6 @@ class SettingsPageContainer extends Component {
   static propTypes = {
     title: PropTypes.string,
     settingsSchema: PropTypes.shape().isRequired,
-    fetching: PropTypes.bool.isRequired,
     settings: PropTypes.shape().isRequired,
     updateOneUserSetting: PropTypes.func.isRequired,
   }
@@ -28,7 +27,7 @@ class SettingsPageContainer extends Component {
   }
 
   render() {
-    const { title, settingsSchema, settings, fetching } = this.props
+    const { title, settingsSchema, settings } = this.props
 
     return (
       <PageTitle {...{ title }}>
@@ -41,9 +40,7 @@ class SettingsPageContainer extends Component {
               </Link>
             }
           />
-          {fetching ? (
-            <PageLoader />
-          ) : Object.keys(settingsSchema).map(groupName => (
+          {Object.keys(settingsSchema).map(groupName => (
             <SettingsSection
               key={groupName}
               groupName={groupName}
@@ -56,7 +53,6 @@ class SettingsPageContainer extends Component {
                   checked={settings[category].enabled}
                   categoryName={category}
                   categoryTitle={settingsSchema[groupName].categories[category]}
-                  advicesCount="3 совета"
                   onClick={this.handleToggleSettingsItem(settings[category])}
                 />
               ))}
@@ -70,7 +66,6 @@ class SettingsPageContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-    fetching: state.user.fetching,
     settingsSchema: state.user.settings.schema,
     settings: getNormalizedSettings(state),
   }
