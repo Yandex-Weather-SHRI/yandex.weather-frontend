@@ -2,13 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
+import { Icon } from 'ui/atoms'
 import { IconButton } from 'ui/molecules'
 import { healthCategory } from 'constants/categories'
 import { statusDisplayNames, getStatusDisplayMessage } from 'constants/statuses'
 import { getStatusStyles } from 'styles/utils'
 
 import { FeedCardMetaHeart, FeedCardMetaAsthma, FeedCardMetaJoint } from './metas'
-import { Icon } from '../../atoms/Icon/Icon'
 import { FeedCardMetaHead } from './metas/FeedCardMetaHead'
 
 
@@ -42,6 +42,7 @@ const Heading = styled.div`
   line-height: 1.2;
   letter-spacing: 0.2px;
   text-transform: uppercase;
+  white-space: nowrap;
   display: flex;
   align-items: center;
   ${p => p.textColor && css`
@@ -62,6 +63,23 @@ const Heading = styled.div`
   }
 `
 
+const HeaderWrapper = styled.div`
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  flex: 1 1 auto;
+
+  &:after {
+    content: '';
+    background-image: linear-gradient(to right, transparent, #fff);
+    position: absolute;
+    right: 0;
+    width: 24px;
+    height: 100%;
+    pointer-events: none;
+  }
+`
+
 const Content = styled.div`
   padding: 8px 16px 20px;
 `
@@ -69,6 +87,7 @@ const Content = styled.div`
 const Actions = styled.div`
   display: flex;
   margin-left: auto;
+  flex: 0 0 auto;
 `
 
 const Button = styled(IconButton)`
@@ -125,12 +144,14 @@ export const FeedCard = ({
   return (
     <Container>
       <Header isOnBoarding={isOnBoarding}>
-        <Heading textColor="#000">
-          {groupTitle}
-        </Heading>
-        <Heading textColor="#999">
-          {categoryTitle}
-        </Heading>
+        <HeaderWrapper>
+          <Heading textColor="#000">
+            {groupTitle}
+          </Heading>
+          <Heading textColor="#999">
+            {categoryTitle}
+          </Heading>
+        </HeaderWrapper>
         <Actions>
           {isOnBoarding
             ? <Icon name={`categoryGroups/${categoryGroup}`} />
