@@ -9,7 +9,7 @@ export function addHint(feedList) {
     return feedList
   }
 
-  if (feedList.find(item => item && !Array.isArray(item) && item.id === hints.moreAlertsFeedHint)) {
+  if (feedList.some(item => item && !Array.isArray(item) && item.id === hints.moreAlertsFeedHint)) {
     return feedList
   }
 
