@@ -18,9 +18,9 @@ import { IconButton, HintCard } from 'ui/molecules'
 import { getFeedByFilters, getGroupedFeedListByCateogry, sortByStatus } from 'redux/feed/selectors'
 import { setFeedFilter, getAvailableFilters } from 'redux/filters/actions'
 import { routeNames } from 'utils/routeNames'
-import { feedItemType } from '../../../constants/feedItemType'
-import { addHint } from '../../../redux/feed/enhancers'
-import { hints } from '../../../constants/hints'
+import { feedItemType } from 'constants/feedItemType'
+import { addHint } from 'redux/feed/enhancers'
+import { hints } from 'constants/hints'
 
 
 const PageContent = PageContentBase.extend`
@@ -130,7 +130,7 @@ class FeedPageContainer extends Component {
             />
           )}
           <FeedList>
-            {feedList.map(feedListItem => this.renderFeedItem(feedListItem))}
+            {feedList.map(this.renderFeedItem)}
           </FeedList>
         </PageContent>
       </PageTitle>
