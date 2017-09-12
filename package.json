@@ -55,7 +55,6 @@
     "stylelint-processor-styled-components": "^0.3.0",
     "webpack": "^3.5.5",
     "webpack-dev-server": "^2.7.1",
-    "cross-env": "^5.0.5",
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
