@@ -37,9 +37,3 @@ export function getStatusDisplayMessage(category, status) {
   const message = statusDisplayMessage[category] && statusDisplayMessage[category][status]
   return message || ''
 }
-
-export const statusWeight = {
-  [statuses.best]: 0,
-  [statuses.ok]: 1,
-  [statuses.bad]: 2,
-}

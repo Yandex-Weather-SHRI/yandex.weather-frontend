@@ -59,6 +59,11 @@ export class FeedCardContainerInner extends Component {
     ).isRequired,
     openModal: PropTypes.func.isRequired,
     settingsSchema: PropTypes.shape({}).isRequired,
+    isQuestionCard: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    isQuestionCard: false,
   }
 
   state = {
@@ -79,21 +84,22 @@ export class FeedCardContainerInner extends Component {
 
   render() {
     const { currentCard } = this.state
-    const { cardsList, settingsSchema } = this.props
+    const { cardsList, settingsSchema, isQuestionCard } = this.props
     const card = cardsList[currentCard]
-    const { categoryGroup, category, code } = card
+    const { categoryGroup, category, status } = card
     const { title: groupTitle, categories } = settingsSchema[categoryGroup]
     const categoryTitle = categories[category]
-    const status = code.split(/_/)[1]
 
     return (
       <Container {...{ categoryGroup }}>
-        <QuestionCard
-          title="Интересны ли вам советы про сердце?"
-          category={category}
-          onButtonYesClick={() => {}}
-          onButtonNoClick={() => {}}
-        />
+        {isQuestionCard && (
+          <QuestionCard
+            title="Интересны ли вам советы про сердце?"
+            category={category}
+            onButtonYesClick={() => {}}
+            onButtonNoClick={() => {}}
+          />
+        )}
         <FeedCard
           {...card}
           {...{ groupTitle, categoryTitle, status }}
