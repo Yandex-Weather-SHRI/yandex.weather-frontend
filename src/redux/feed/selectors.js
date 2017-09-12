@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect'
 
 import { statusWeight } from 'constants/statuses'
+import { feedItemType } from 'constants/feedItemType'
 
 
 function getActiveFiltersList(filtersList) {
@@ -51,7 +52,11 @@ export const getGroupedFeedListByCateogry = createSelector(
 
 export const sortByStatus = createSelector(
   feedList => feedList,
-  feedList => feedList.sort((a, b) =>
-    statusWeight[b[0].status] - statusWeight[a[0].status]
-  )
+  feedList => feedList.sort((a, b) => {
+    if (a[0].type !== b[0].type) {
+      return a[0].type === feedItemType.suggestedAlert && a[0].type === feedItemType.alert
+    }
+
+    return statusWeight[b[0].status] - statusWeight[a[0].status]
+  })
 )
