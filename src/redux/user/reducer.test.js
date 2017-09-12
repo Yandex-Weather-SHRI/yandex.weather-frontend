@@ -21,7 +21,7 @@ describe('userReducer', () => {
   it('should put user info to state', () => {
     const userInfo = {
       login: 'alice',
-      avatarUrl: 'https://so.me/random/avatar.png'
+      avatarUrl: 'https://so.me/random/avatar.png',
     }
     expect(userReducer(defaultUsersState, setUserInfo(userInfo))).toEqual(expect.objectContaining(userInfo))
   })
