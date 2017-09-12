@@ -1,5 +1,6 @@
 import { localStorageUtil } from './localStorageUtil'
 
+
 export const hintUtil = {
   markSeen(hintId) {
     const key = this.getStorageKey(hintId)

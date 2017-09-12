@@ -3,8 +3,13 @@ import { getRandomInt } from '../../utils/arrays'
 import { hints } from '../../constants/hints'
 import { hintUtil } from '../../utils/hintUtil'
 
+
 export function addHint(feedList) {
   if (hintUtil.isSeen(hints.moreAlertsFeedHint)) {
+    return feedList
+  }
+
+  if (feedList.find(item => item && !Array.isArray(item) && item.id === hints.moreAlertsFeedHint)) {
     return feedList
   }
 
