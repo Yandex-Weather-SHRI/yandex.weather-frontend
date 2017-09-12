@@ -18,10 +18,9 @@ import { IconButton, HintCard } from 'ui/molecules'
 import { getFeedByFilters, getGroupedFeedListByCateogry, sortByStatus } from 'redux/feed/selectors'
 import { setFeedFilter, getAvailableFilters } from 'redux/filters/actions'
 import { routeNames } from 'utils/routeNames'
-import { feedItemType } from '../../../constants/feedItemType'
-import { addHint } from '../../../redux/feed/enhancers'
-import { hints } from '../../../constants/hints'
-import { hintUtil } from '../../../utils/hintUtil'
+import { feedItemType } from 'constants/feedItemType'
+import { addHint } from 'redux/feed/enhancers'
+import { hints } from 'constants/hints'
 
 
 const PageContent = PageContentBase.extend`
@@ -38,17 +37,27 @@ class FeedPageContainer extends Component {
     title: PropTypes.string,
     fetching: PropTypes.bool.isRequired,
     feedList: PropTypes.arrayOf(
-      PropTypes.arrayOf(
+      PropTypes.oneOfType([
         PropTypes.shape({
-          id: PropTypes.number.isRequired,
-          text: PropTypes.string.isRequired,
-        })
-      )
+          type: PropTypes.string.isRequired,
+          id: PropTypes.string.isRequired,
+        }),
+        PropTypes.arrayOf(
+          PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            text: PropTypes.string.isRequired,
+          })
+        ),
+      ])
     ).isRequired,
     filtersList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
     getFeed: PropTypes.func.isRequired,
     setFeedFilter: PropTypes.func.isRequired,
     getAvailableFilters: PropTypes.func.isRequired,
+    closeHint: PropTypes.func.isRequired,
+    history: PropTypes.shape({
+      replace: PropTypes.func,
+    }).isRequired,
   }
 
   static defaultProps = {
@@ -66,16 +75,18 @@ class FeedPageContainer extends Component {
 
   renderFeedItem(item) {
     const type = Array.isArray(item) ? item[0].type : item.type
+    const key = Array.isArray(item) ? item[0].category : item.id
 
     switch (type) {
       case feedItemType.alert:
-        return <FeedCardContainer cardsList={item} />
+        return <FeedCardContainer key={key} cardsList={item} />
 
       case feedItemType.suggestedAlert:
-        return <FeedCardContainer isQuestionCard cardsList={item} />
+        return <FeedCardContainer key={key} isQuestionCard cardsList={item} />
 
       case feedItemType.notice:
         return <HintCard
+          key={key}
           title='Хотите больше советов?'
           text='Вы можете выбрать в настройках другие тематики'
           buttonText='НАСТРОЙКИ'
@@ -119,7 +130,7 @@ class FeedPageContainer extends Component {
             />
           )}
           <FeedList>
-            {feedList.map(feedListItem => this.renderFeedItem(feedListItem))}
+            {feedList.map(this.renderFeedItem)}
           </FeedList>
         </PageContent>
       </PageTitle>
@@ -131,7 +142,7 @@ function mapStateToProps(state) {
   return {
     fetching: state.feed.fetching,
     feedList: R.compose(
-      // addHint,
+      addHint,
       sortByStatus,
       getGroupedFeedListByCateogry,
       getFeedByFilters
