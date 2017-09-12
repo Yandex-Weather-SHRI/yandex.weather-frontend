@@ -64,7 +64,7 @@ class FeedPageContainer extends Component {
     this.props.setFeedFilter({ name, active })
   }
 
-  renderFeedItem(item) {
+  renderFeedItem = (item) => {
     const type = Array.isArray(item) ? item[0].type : item.type
 
     switch (type) {
