@@ -22,6 +22,7 @@ const CardWrapper = styled(Link)`
 `
 
 const CardCaption = styled.p`
+  line-height: 1.24;
   font-size: 1.4rem;
   text-align: center;
 `
