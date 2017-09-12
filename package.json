@@ -10,11 +10,11 @@
     "lint:css": "stylelint \"src/**/*.js\"",
     "dev": "webpack-dev-server",
     "build": "webpack",
-    "build:prod": "cross-env NODE_ENV=production npm run build -- -p",
+    "build:prod": "NODE_ENV=production npm run build -- -p",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "prepush": "npm run lint",
     "test": "npm run lint && npm run test:jest",
-    "test:jest": "cross-env NODE_ENV=test NODE_PATH=src jest",
+    "test:jest": "NODE_ENV=test NODE_PATH=src jest",
     "test:jest-watch": "npm run test:jest -- --watch"
   },
   "devDependencies": {
@@ -58,7 +58,6 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
-    "cross-env": "^5.0.5",
     "babel-jest": "^21.0.2",
     "babel-polyfill": "^6.26.0",
     "jest": "^21.0.2",
