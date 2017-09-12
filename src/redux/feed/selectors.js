@@ -1,7 +1,5 @@
 import { createSelector } from 'reselect'
 
-import { statusWeight } from 'constants/statuses'
-
 
 function getActiveFiltersList(filtersList) {
   return filtersList.reduce((acc, filter) => {
@@ -51,7 +49,5 @@ export const getGroupedFeedListByCateogry = createSelector(
 
 export const sortByStatus = createSelector(
   feedList => feedList,
-  feedList => feedList.sort((a, b) =>
-    statusWeight[b[0].status] - statusWeight[a[0].status]
-  )
+  feedList => feedList.sort((a, b) => b[0].weight - a[0].weight)
 )
