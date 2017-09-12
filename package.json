@@ -58,6 +58,7 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
+    "cross-env": "^5.0.5",
     "babel-jest": "^21.0.2",
     "babel-polyfill": "^6.26.0",
     "jest": "^21.0.2",
