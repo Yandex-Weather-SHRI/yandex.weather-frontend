@@ -9,7 +9,7 @@ export const statuses = {
 
 export const statusDisplayNames = {
   [statuses.best]: 'Благоприятно',
-  [statuses.ok]: 'Нормально',
+  [statuses.ok]: 'Умеренно',
   [statuses.bad]: 'Неблагоприятно',
 }
 
