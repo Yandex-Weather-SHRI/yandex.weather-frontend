@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
@@ -59,7 +59,7 @@ const optionsWithThankPage = [
   optionIds.badFeedback,
 ]
 
-class CardOptionsModalContainer extends React.Component {
+class CardOptionsModalContainer extends Component {
   static propTypes = {
     updateOneUserSetting: PropTypes.func.isRequired,
     getAvailableFilters: PropTypes.func.isRequired,
