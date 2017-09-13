@@ -9,6 +9,7 @@ import { openModal } from 'redux/modal/actions'
 import { modals } from 'constants/modals'
 import { removeFeedItem, subscribeToCategory } from 'redux/feed/actions'
 import { getTabs } from 'utils/tabs'
+import { questionWords } from 'constants/questionWords'
 
 
 const Container = styled.div`
@@ -91,11 +92,13 @@ export class FeedCardContainerInner extends Component {
     const { title: groupTitle, categories } = settingsSchema[categoryGroup]
     const categoryTitle = categories[category]
 
+    const categoryWord = questionWords[category] || 'данную категорию'
+
     return (
       <Container>
         {isQuestionCard && (
           <QuestionCard
-            title="Интересны ли вам советы про сердце?"
+            title={`Интересны ли вам советы про ${categoryWord}?`}
             category={category}
             onDoneClick={this.onDoneClick(category)}
             onCancelClick={this.onCancelClick(id)}
