@@ -7,7 +7,6 @@ import { FeedFilter, ScrollContainer } from 'ui/atoms'
 
 const Container = styled.div`
   overflow: hidden;
-  width: 100vw;
 `
 
 const Wrapper = ScrollContainer.extend`
