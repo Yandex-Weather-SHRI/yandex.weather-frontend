@@ -13,6 +13,9 @@
         "transform-react-remove-prop-types"
       ]
     },
+    "test": {
+      "presets": ["es2015", "es2017", "react", "stage-2"]
+    },
     "development": {
       "plugins": [
         "react-hot-loader/babel",
