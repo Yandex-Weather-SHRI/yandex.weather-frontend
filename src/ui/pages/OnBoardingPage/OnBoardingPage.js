@@ -10,6 +10,7 @@ import { Icon, RoundedButton as Button } from 'ui/atoms'
 import { PageTitle, PageLoader, FeedCardBoard, PageContent, AppBar } from 'ui/organisms'
 import { IconButton } from 'ui/molecules'
 import { requestLogin } from 'redux/user/actions'
+import { localStorageUtil, ONBOARDING_SETTINGS_KEY } from '../../../utils/localStorageUtil';
 
 
 const Content = PageContent.extend`
@@ -212,10 +213,8 @@ class OnBoardingPageContainer extends Component {
   }
 
   handleSubmitOnboarding = (defaultSettings = [], partialSettings = []) => () => {
-    requestLogin({
-      categories: mergeSettings(defaultSettings, partialSettings),
-      nextRoute: routeNames.feed,
-    })
+    localStorageUtil.setItem(ONBOARDING_SETTINGS_KEY, mergeSettings(defaultSettings, partialSettings))
+    requestLogin({ nextRoute: routeNames.feed })
   }
 
   checkAuthentication() {

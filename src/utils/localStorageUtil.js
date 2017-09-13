@@ -11,4 +11,10 @@ export const localStorageUtil = {
   setItem(key, value) {
     window.localStorage.setItem(key, JSON.stringify(value))
   },
+
+  removeItem(key) {
+    window.localStorage.removeItem(key)
+  },
 }
+
+export const ONBOARDING_SETTINGS_KEY = 'ONBOARDING_SETTINGS_KEY'

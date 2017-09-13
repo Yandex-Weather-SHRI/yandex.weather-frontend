@@ -20,6 +20,7 @@ const CardWrapper = styled(Link)`
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  ${props => props.to ? '' : 'pointer-events: none;'}
 `
 
 const CardCaption = styled.p`
