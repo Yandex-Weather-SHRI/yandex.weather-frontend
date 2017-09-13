@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import { PageLoader, PageContent } from 'ui/organisms'
 import { setToken, fetchAndSetUserInfo, createOrUpdateUserWithCategorySettings } from 'redux/user/actions'
 import { getHashParam } from 'utils/location'
+import { localStorageUtil, ONBOARDING_SETTINGS_KEY } from '../../../utils/localStorageUtil'
 
 
 class PassportRedirectPageContainer extends React.Component {
@@ -20,7 +21,7 @@ class PassportRedirectPageContainer extends React.Component {
   componentDidMount() {
     const error = getHashParam('error')
     const token = getHashParam('access_token')
-    const { nextRoute, categories } = JSON.parse(decodeURIComponent(getHashParam('state')))
+    const { nextRoute } = JSON.parse(decodeURIComponent(getHashParam('state')))
 
     if (error || !token) {
       this.props.history.replace('/')
@@ -29,6 +30,8 @@ class PassportRedirectPageContainer extends React.Component {
       this.props.setToken(token)
       this.props.fetchAndSetUserInfo()
         .then(() => {
+          const categories = localStorageUtil.getItem(ONBOARDING_SETTINGS_KEY) || []
+          localStorageUtil.removeItem(ONBOARDING_SETTINGS_KEY)
           this.props.createOrUpdateUserWithCategorySettings(categories || [])
           this.props.history.replace(nextRoute)
         })

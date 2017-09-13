@@ -22,14 +22,18 @@ const Container = styled.div`
   box-shadow:
     0 2px 10px 0 rgba(0, 0, 0, 0.06),
     0 2px 6px 0 rgba(0, 0, 0, 0.03);
+  transition: opacity 150ms ease-in-out;
 
   &:last-of-type {
     margin-right: 0;
   }
+
+  &:active {
+    opacity: 0.75;
+  }
 `
 
 const StatusIcon = styled(Icon)`
-  margin-bottom: 8px;
   position: absolute;
   top: 8px;
   right: 8px;

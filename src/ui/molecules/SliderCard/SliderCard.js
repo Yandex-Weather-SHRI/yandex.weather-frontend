@@ -18,7 +18,9 @@ const CardWrapper = styled(Link)`
   flex-direction: column;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08);
   align-items: center;
+  justify-content: center;
   text-decoration: none;
+  ${props => props.to ? '' : 'pointer-events: none;'}
 `
 
 const CardCaption = styled.p`

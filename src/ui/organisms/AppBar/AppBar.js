@@ -16,7 +16,7 @@ const Container = styled.div`
   left: 0;
   right: 0;
   background-color: #fff;
-  transition: transform 150ms ease-in-out;
+  transition: transform 300ms ease-in-out;
   ${p => !p.fixed && css`
     transform: translateY(-101%);
   `}

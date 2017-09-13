@@ -8,9 +8,12 @@ import { Icon } from 'ui/atoms'
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-  padding: 18px 24px 6px 16px;
+  margin: -4px 1px 0 1px;
+  padding: 16px 24px 6px 16px;
   border-radius: 4px 4px 0 0;
   background-image: linear-gradient(137deg, #09a4ff, #005bea);
+  position: relative;
+  top: 4px;
 `
 
 const Title = styled.div`
@@ -29,11 +32,12 @@ const IconWrapper = styled.div`
 `
 
 const Content = styled.div`
-  padding-left: 8px;
+  margin-left: 8px;
 `
 
 const Button = styled.button`
-  padding: 10px 8px;
+  padding: 0 8px;
+  height: 36px;
   border-radius: 2px;
   font: inherit;
   font-size: 1.4rem;
@@ -42,6 +46,8 @@ const Button = styled.button`
   color: #fff;
   background: none;
   border: none;
+  user-select: none;
+  transition: opacity 150ms ease-in-out;
 
   & + & {
     margin-left: 16px;
@@ -50,19 +56,23 @@ const Button = styled.button`
   &:focus {
     outline: none;
   }
+
+  &:active {
+    opacity: 0.5;
+  }
 `
 
-const QuestionCard = ({ title, category, buttonYesText, buttonNoText, onButtonYesClick, onButtonNoClick }) => (
+export const QuestionCard = ({ title, category, buttonYesText, buttonNoText, onDoneClick, onCancelClick }) => (
   <Container>
     <IconWrapper>
       <Icon name={`categories/${category}/default`} fill="#fff" size={64} />
     </IconWrapper>
     <Content>
       <Title>{title}</Title>
-      <Button onClick={onButtonYesClick}>
+      <Button onClick={onDoneClick}>
         {buttonYesText}
       </Button>
-      <Button onClick={onButtonNoClick}>
+      <Button onClick={onCancelClick}>
         {buttonNoText}
       </Button>
     </Content>
@@ -74,8 +84,8 @@ QuestionCard.propTypes = {
   category: PropTypes.string.isRequired,
   buttonYesText: PropTypes.string,
   buttonNoText: PropTypes.string,
-  onButtonYesClick: PropTypes.func.isRequired,
-  onButtonNoClick: PropTypes.func.isRequired,
+  onDoneClick: PropTypes.func.isRequired,
+  onCancelClick: PropTypes.func.isRequired,
 }
 
 QuestionCard.defaultProps = {
@@ -83,6 +93,3 @@ QuestionCard.defaultProps = {
   buttonNoText: 'НЕТ',
 }
 
-export {
-  QuestionCard
-}

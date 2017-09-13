@@ -18,9 +18,12 @@ import { IconButton, HintCard } from 'ui/molecules'
 import { getFeedByFilters, getGroupedFeedListByCategory, sortByStatus } from 'redux/feed/selectors'
 import { setFeedFilter, getAvailableFilters } from 'redux/filters/actions'
 import { routeNames } from 'utils/routeNames'
+import { openModal } from 'redux/modal/actions'
+import { modals } from 'constants/modals'
 import { feedItemType } from 'constants/feedItemType'
 import { addHint } from 'redux/feed/enhancers'
 import { hints } from 'constants/hints'
+import { hintUtil } from 'utils/hintUtil'
 
 
 const PageContent = PageContentBase.extend`
@@ -29,7 +32,7 @@ const PageContent = PageContentBase.extend`
 
 const FeedList = styled.div`
   padding: 0 8px;
-  margin-bottom: 16px;
+  margin: 8px 0;
 `
 
 class FeedPageContainer extends Component {
@@ -54,6 +57,7 @@ class FeedPageContainer extends Component {
     getFeed: PropTypes.func.isRequired,
     setFeedFilter: PropTypes.func.isRequired,
     getAvailableFilters: PropTypes.func.isRequired,
+    openModal: PropTypes.func.isRequired,
     closeHint: PropTypes.func.isRequired,
     history: PropTypes.shape({
       replace: PropTypes.func,
@@ -69,11 +73,27 @@ class FeedPageContainer extends Component {
     this.props.getFeed()
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!hintUtil.isSeen('share') && !nextProps.fetching && nextProps.feedList.length) {
+      this.showShareHint()
+    }
+  }
+
   setFeedFilter = (name, active) => () => {
     this.props.setFeedFilter({ name, active })
   }
 
-  renderFeedItem(item) {
+  showShareHint() {
+    requestAnimationFrame(() => {
+      const shareButton = document.querySelector('[data-hint="share"]')
+      if (shareButton) {
+        const { top } = shareButton.getBoundingClientRect()
+        this.props.openModal(modals.shareHint, { top, hintId: 'share' })
+      }
+    })
+  }
+
+  renderFeedItem = (item) => {
     const type = Array.isArray(item) ? item[0].type : item.type
     const key = Array.isArray(item) ? item[0].category : item.id
 
@@ -87,9 +107,9 @@ class FeedPageContainer extends Component {
       case feedItemType.notice:
         return <HintCard
           key={key}
-          title='Хотите больше советов?'
-          text='Вы можете выбрать в настройках другие тематики'
-          buttonText='НАСТРОЙКИ'
+          title="Хотите больше советов?"
+          text="Вы можете выбрать в настройках другие тематики"
+          buttonText="Настройки"
           onCloseClick={() => this.props.closeHint(hints.moreAlertsFeedHint)}
           onButtonClick={() => this.props.history.replace('/settings')}
         />
@@ -101,7 +121,6 @@ class FeedPageContainer extends Component {
 
   render() {
     const { title, fetching, filtersList } = this.props
-
     const feedList = fetching ? [] : this.props.feedList
 
     return (
@@ -123,7 +142,7 @@ class FeedPageContainer extends Component {
           {fetching && (
             <PageLoader />
           )}
-          {feedList.length > 0 && (
+          {feedList.length > 0 && filtersList.length > 1 && (
             <FeedFiltersList
               list={filtersList}
               setFeedFilter={this.setFeedFilter}
@@ -155,6 +174,7 @@ const mapDispatchToProps = {
   getFeed,
   setFeedFilter,
   getAvailableFilters,
+  openModal,
   closeHint,
 }
 

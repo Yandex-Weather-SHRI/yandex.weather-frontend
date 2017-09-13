@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { modalNames, modals } from 'constants/modals'
 import { CardOptionsModal } from 'ui/modals/CardOptionsModal'
 import { ShareCardModal } from 'ui/modals/ShareCardModal'
+import { ShareHintModal } from 'ui/modals/ShareHintModal'
 
 
 const Container = styled.div`
@@ -30,6 +31,7 @@ const Container = styled.div`
 const modalComponents = {
   [modals.cardOptions]: CardOptionsModal,
   [modals.shareCard]: ShareCardModal,
+  [modals.shareHint]: ShareHintModal,
 }
 
 class RootModalInner extends React.Component {

@@ -7,23 +7,19 @@ import { FeedCard } from 'ui/organisms'
 import { TabBar, QuestionCard } from 'ui/molecules'
 import { openModal } from 'redux/modal/actions'
 import { modals } from 'constants/modals'
-import { getNameOfSomeNextDay } from '../../../utils/days'
-import { statuses } from '../../../constants/statuses'
+import { removeFeedItem, subscribeToCategory } from 'redux/feed/actions'
+import { getTabs } from 'utils/tabs'
 
-
-function getTabs(cardsList) {
-  return cardsList.reduce((acc, item, index) => {
-    if (index === 0) return acc
-
-    return [...acc, {
-      id: index,
-      title: getNameOfSomeNextDay(index),
-      alert: item.status === statuses.bad,
-    }]
-  }, [{ id: 0, title: 'Сегодня', alert: false }])
-}
 
 const Container = styled.div`
+  margin-bottom: 16px;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+`
+
+const CardContainer = styled.div`
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.02) 99%);
   box-shadow:
     0 2px 10px 0 rgba(0, 0, 0, 0.06),
@@ -32,7 +28,6 @@ const Container = styled.div`
   overflow: hidden;
   position: relative;
   z-index: 1;
-  margin-bottom: 16px;
   padding: 1px;
 
   &:after {
@@ -46,10 +41,6 @@ const Container = styled.div`
     background-color: #fff;
     border-radius: inherit;
   }
-
-  &:last-of-type {
-    margin-bottom: 0;
-  }
 `
 
 export class FeedCardContainerInner extends Component {
@@ -60,6 +51,8 @@ export class FeedCardContainerInner extends Component {
     openModal: PropTypes.func.isRequired,
     settingsSchema: PropTypes.shape({}).isRequired,
     isQuestionCard: PropTypes.bool,
+    removeFeedItem: PropTypes.func.isRequired,
+    subscribeToCategory: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -82,37 +75,48 @@ export class FeedCardContainerInner extends Component {
     this.props.openModal(modals.shareCard, { card })
   }
 
+  onDoneClick = category => () => {
+    this.props.subscribeToCategory(category)
+  }
+
+  onCancelClick = id => () => {
+    this.props.removeFeedItem(id)
+  }
+
   render() {
     const { currentCard } = this.state
     const { cardsList, settingsSchema, isQuestionCard } = this.props
     const card = cardsList[currentCard]
-    const { categoryGroup, category, status } = card
+    const { id, categoryGroup, category, status } = card
     const { title: groupTitle, categories } = settingsSchema[categoryGroup]
     const categoryTitle = categories[category]
 
     return (
-      <Container {...{ categoryGroup }}>
+      <Container>
         {isQuestionCard && (
           <QuestionCard
             title="Интересны ли вам советы про сердце?"
             category={category}
-            onButtonYesClick={() => {}}
-            onButtonNoClick={() => {}}
+            onDoneClick={this.onDoneClick(category)}
+            onCancelClick={this.onCancelClick(id)}
           />
         )}
-        <FeedCard
-          {...card}
-          {...{ groupTitle, categoryTitle, status }}
-          onOptionsClick={this.onOptionsClick(card)}
-          onShareClick={this.onShareClick(card)}
-        />
-        {cardsList.length > 1 && (
-          <TabBar
-            tabs={getTabs(cardsList)}
-            onTabSelect={this.onChangeCard}
-            currentTab={currentCard}
+        <CardContainer {...{ categoryGroup }}>
+          <FeedCard
+            {...card}
+            {...{ groupTitle, categoryTitle, status }}
+            onOptionsClick={this.onOptionsClick(card)}
+            onShareClick={this.onShareClick(card)}
+            isOnBoarding={isQuestionCard}
           />
-        )}
+          {cardsList.length > 1 && (
+            <TabBar
+              tabs={getTabs(cardsList)}
+              onTabSelect={this.onChangeCard}
+              currentTab={currentCard}
+            />
+          )}
+        </CardContainer>
       </Container>
     )
   }
@@ -126,6 +130,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   openModal,
+  removeFeedItem,
+  subscribeToCategory,
 }
 
 export const FeedCardContainer = connect(

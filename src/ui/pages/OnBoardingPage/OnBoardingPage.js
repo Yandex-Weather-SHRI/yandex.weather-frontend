@@ -10,6 +10,7 @@ import { Icon, RoundedButton as Button } from 'ui/atoms'
 import { PageTitle, PageLoader, FeedCardBoard, PageContent, AppBar } from 'ui/organisms'
 import { IconButton } from 'ui/molecules'
 import { requestLogin } from 'redux/user/actions'
+import { localStorageUtil, ONBOARDING_SETTINGS_KEY } from '../../../utils/localStorageUtil'
 
 
 const Content = PageContent.extend`
@@ -53,6 +54,8 @@ const SkipButon = styled.button`
   font-size: 1.2rem;
   font-weight: 500;
   letter-spacing: 0.5px;
+  text-transform: uppercase;
+  user-select: none;
   color: rgba(0, 0, 0, 0.87);
   background: none;
   border: none;
@@ -210,10 +213,8 @@ class OnBoardingPageContainer extends Component {
   }
 
   handleSubmitOnboarding = (defaultSettings = [], partialSettings = []) => () => {
-    requestLogin({
-      categories: mergeSettings(defaultSettings, partialSettings),
-      nextRoute: routeNames.feed,
-    })
+    localStorageUtil.setItem(ONBOARDING_SETTINGS_KEY, mergeSettings(defaultSettings, partialSettings))
+    requestLogin({ nextRoute: routeNames.feed })
   }
 
   checkAuthentication() {
@@ -295,7 +296,7 @@ class OnBoardingPageContainer extends Component {
               </Link>
             }
             elementRight={
-              <SkipButon onClick={this.handleSubmitOnboarding()}>УЖЕ ПРОХОДИЛ</SkipButon>
+              <SkipButon onClick={this.handleSubmitOnboarding()}>Уже проходил</SkipButon>
             }
           />
           {completed ? (
