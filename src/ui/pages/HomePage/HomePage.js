@@ -49,7 +49,7 @@ class HomePageContainer extends Component {
             Сегодня <strong>сильная</strong> геомагнитная буря
           </SliderCard>
           <SliderCard
-            linkTo={routeNames.index}
+            linkTo=""
             bg="#fff"
             buttonText="ПОКАЗАТЬ НА КАРТЕ"
           >
