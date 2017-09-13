@@ -12,6 +12,10 @@ const Container = styled.div`
   border-radius: 4px;
   background-image: linear-gradient(133deg, #09a4ff, #005bea);
   box-shadow: 0 2px 6px 0 rgba(50, 71, 136, 0.12);
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 `
 
 const Title = styled.div`

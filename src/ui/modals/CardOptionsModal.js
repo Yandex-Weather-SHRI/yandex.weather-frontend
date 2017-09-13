@@ -5,9 +5,8 @@ import { connect } from 'react-redux'
 
 import { ModalMessage, IconWithText as IconWithTextBase } from 'ui/atoms'
 import { getAvailableFilters } from 'redux/filters/actions'
-import { updateOneUserSetting } from 'redux/user/actions'
 import { closeModal } from 'redux/modal/actions'
-import { getFeed } from 'redux/feed/actions'
+import { unsubscribeFromCategory } from 'redux/feed/actions'
 
 import { SimpleModal as BaseSimpleModal } from './base/SimpleModal'
 
@@ -61,9 +60,7 @@ const optionsWithThankPage = [
 
 class CardOptionsModalContainer extends Component {
   static propTypes = {
-    updateOneUserSetting: PropTypes.func.isRequired,
-    getAvailableFilters: PropTypes.func.isRequired,
-    getFeed: PropTypes.func.isRequired,
+    unsubscribeFromCategory: PropTypes.func.isRequired,
     meta: PropTypes.shape({}).isRequired,
     closeModal: PropTypes.func.isRequired,
   }
@@ -92,11 +89,7 @@ class CardOptionsModalContainer extends Component {
 
     if (option.id === optionIds.dismiss) {
       const { meta: { card: { category } } } = this.props
-      this.props.updateOneUserSetting(category, false)
-        .then(() => {
-          this.props.getAvailableFilters()
-          this.props.getFeed()
-        })
+      this.props.unsubscribeFromCategory(category)
     }
 
     this.props.closeModal()
@@ -126,7 +119,6 @@ class CardOptionsModalContainer extends Component {
 
 export const CardOptionsModal = connect(null, {
   closeModal,
-  updateOneUserSetting,
-  getFeed,
   getAvailableFilters,
+  unsubscribeFromCategory,
 })(CardOptionsModalContainer)

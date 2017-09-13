@@ -10,7 +10,7 @@ const Container = styled.div`
 `
 
 const Wrapper = ScrollContainer.extend`
-  padding: 16px 8px;
+  padding: 16px 8px 8px;
 
   &:after {
     content: '';
