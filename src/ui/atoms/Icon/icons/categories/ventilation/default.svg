@@ -1,0 +1,30 @@
+<svg fill="#000" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+    <g fill-rule="evenodd" transform="translate(2 2.8)">
+        <g fill-rule="nonzero">
+            <path d="M14.2 22.4H9.4c-.36 0-.6.24-.6.6v3.6c0 .36.24.6.6.6h4.8c.36 0 .6-.24.6-.6V23c0-.3-.3-.6-.6-.6zm-.6 3.6H10v-2.4h3.6V26zM21 22.4h-4.8c-.36 0-.6.24-.6.6v3.6c0 .36.24.6.6.6H21c.36 0 .6-.24.6-.6V23c0-.3-.3-.6-.6-.6zm-.6 3.6h-3.6v-2.4h3.6V26zM27.4 22.4h-4.8c-.36 0-.6.24-.6.6v3.6c0 .36.24.6.6.6h4.8c.36 0 .6-.24.6-.6V23c0-.3-.3-.6-.6-.6zm-.6 3.6h-3.6v-2.4h3.6V26z"/>
+            <circle cx="31.6" cy="30.8" r="1"/>
+            <circle cx="16.6" cy="11" r="1" transform="rotate(-5.158 16.6 11)"/>
+            <circle cx="9.8" cy="2.2" r="1" transform="rotate(-5.158 9.8 2.2)"/>
+            <circle cx="28.2" cy="3" r="1" transform="rotate(-5.158 28.2 3)"/>
+            <circle cx="32.2" cy="6.2" r="1" transform="rotate(-5.157 32.2 6.2)"/>
+            <circle cx="32.2" cy="18.2" r="1" transform="rotate(-5.157 32.2 18.2)"/>
+            <circle cx="23" cy="12.6" r="1" transform="rotate(-5.157 23 12.6)"/>
+            <circle cx="23.452" cy="19.852" r="1" transform="rotate(-5.157 23.452 19.852)"/>
+            <circle cx="33.052" cy="23.052" r="1" transform="rotate(-5.159 33.052 23.052)"/>
+            <circle cx="3.8" cy="18.2" r="1" transform="rotate(-5.157 3.8 18.2)"/>
+            <circle cx="1" cy="23.8" r="1" transform="rotate(-5.159 1 23.8)"/>
+            <circle cx="22.2" cy="5" r="1" transform="rotate(-5.159 22.2 5)"/>
+            <circle cx="35.4" cy="11.4" r="1" transform="rotate(-5.159 35.4 11.4)"/>
+            <circle cx="5" cy="23.8" r="1" transform="rotate(-5.157 5 23.8)"/>
+            <circle cx="12.2" cy="31" r="1" transform="rotate(-5.159 12.2 31)"/>
+            <circle cx="9" cy="13" r="1" transform="rotate(-5.159 9 13)"/>
+            <circle cx="11" cy="10.6" r="1" transform="rotate(-5.157 11 10.6)"/>
+            <circle cx="3" cy="9.4" r="1" transform="rotate(-5.159 3 9.4)"/>
+            <circle cx="3" cy="3.4" r="1" transform="rotate(-5.159 3 3.4)"/>
+            <circle cx="27.8" cy="11.8" r="1" transform="rotate(-5.158 27.8 11.8)"/>
+            <path d="M30.16 15.795h1.046c.174 0 .348-.058.406-.173.116-.116.174-.29.116-.463l-.87-7.29c-.059-.29-.29-.521-.581-.521h-12.62V.578c0-.347-.232-.578-.58-.578H12.78c-.348 0-.58.231-.58.579V7.29H6.396c-.29 0-.523.232-.58.52l-.871 7.291c0 .174.058.347.116.463.116.116.29.173.406.173h1.045v1.62l.058 16.464c0 .348.232.579.58.579h22.372c.349 0 .58-.231.58-.579l.059-18.026zM13.363 3.587h3.134v1.215h-3.134V3.587zm3.134-2.43V2.43h-3.134V1.157h3.134zm-3.134 4.745h3.134V7.29h-3.134V5.902zM6.976 8.447h22.778l.755 6.133H6.164l.812-6.133zM28.8 15.795v1.042H7.73v-1.042H28.8zM7.73 17.994H28.8V33.2H7.73V17.994z"/>
+        </g>
+        <circle cx="7.4" cy="29.8" r="1.8" fill="#FFF"/>
+        <path fill="#000" fill-rule="nonzero" d="M7.2 31.8a2.2 2.2 0 1 1 0-4.4 2.2 2.2 0 0 1 0 4.4zm0-1.2a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+    </g>
+</svg>
