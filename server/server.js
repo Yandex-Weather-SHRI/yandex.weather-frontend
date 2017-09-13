@@ -6,12 +6,12 @@ const app = express()
 const config = {
   host: process.env.HOST || '0.0.0.0',
   port: process.env.PORT || 8080,
+  url: process.env.URL,
 }
 
 app.get('*', (req, res, next) => {
-  if (req.headers['x-forwarded-proto'] !== 'https') {
-    console.log(`${config.host}${req.url}`)
-    res.redirect(`https://${config.host}${req.url}`)
+  if (req.headers['x-forwarded-proto'] !== 'https' && config.url) {
+    res.redirect(`https://${config.url}${req.url}`)
   }
   else {
     next()
