@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-import { getFeed } from 'redux/feed/actions'
+import { getFeed, closeHint } from 'redux/feed/actions'
 import {
   PageTitle,
   PageContent as PageContentBase,
@@ -20,6 +20,10 @@ import { setFeedFilter, getAvailableFilters } from 'redux/filters/actions'
 import { routeNames } from 'utils/routeNames'
 import { openModal } from 'redux/modal/actions'
 import { modals } from 'constants/modals'
+import { feedItemType } from 'constants/feedItemType'
+import { addHint } from 'redux/feed/enhancers'
+import { hints } from 'constants/hints'
+import { hintUtil } from 'utils/hintUtil'
 
 
 const PageContent = PageContentBase.extend`
@@ -28,7 +32,7 @@ const PageContent = PageContentBase.extend`
 
 const FeedList = styled.div`
   padding: 0 8px;
-  margin-bottom: 16px;
+  margin: 8px 0;
 `
 
 class FeedPageContainer extends Component {
@@ -36,18 +40,28 @@ class FeedPageContainer extends Component {
     title: PropTypes.string,
     fetching: PropTypes.bool.isRequired,
     feedList: PropTypes.arrayOf(
-      PropTypes.arrayOf(
+      PropTypes.oneOfType([
         PropTypes.shape({
-          id: PropTypes.number.isRequired,
-          text: PropTypes.string.isRequired,
-        })
-      )
+          type: PropTypes.string.isRequired,
+          id: PropTypes.string.isRequired,
+        }),
+        PropTypes.arrayOf(
+          PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            text: PropTypes.string.isRequired,
+          })
+        ),
+      ])
     ).isRequired,
     filtersList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
     getFeed: PropTypes.func.isRequired,
     setFeedFilter: PropTypes.func.isRequired,
     getAvailableFilters: PropTypes.func.isRequired,
     openModal: PropTypes.func.isRequired,
+    closeHint: PropTypes.func.isRequired,
+    history: PropTypes.shape({
+      replace: PropTypes.func,
+    }).isRequired,
   }
 
   static defaultProps = {
@@ -72,15 +86,42 @@ class FeedPageContainer extends Component {
   showShareHint() {
     requestAnimationFrame(() => {
       const shareButton = document.querySelector('[data-hint="share"]')
-      if (shareButton) {
+      if (!hintUtil.isSeen('share') && shareButton) {
         const { top } = shareButton.getBoundingClientRect()
-        this.props.openModal(modals.shareHint, { top })
+        this.props.openModal(modals.shareHint, { top, hintId: 'share' })
       }
     })
   }
 
+  renderFeedItem = (item) => {
+    const type = Array.isArray(item) ? item[0].type : item.type
+    const key = Array.isArray(item) ? item[0].category : item.id
+
+    switch (type) {
+      case feedItemType.alert:
+        return <FeedCardContainer key={key} cardsList={item} />
+
+      case feedItemType.suggestedAlert:
+        return <FeedCardContainer key={key} isQuestionCard cardsList={item} />
+
+      case feedItemType.notice:
+        return <HintCard
+          key={key}
+          title="Хотите больше советов?"
+          text="Вы можете выбрать в настройках другие тематики"
+          buttonText="Настройки"
+          onCloseClick={() => this.props.closeHint(hints.moreAlertsFeedHint)}
+          onButtonClick={() => this.props.history.replace('/settings')}
+        />
+
+      default:
+        throw new Error(`Unexpected feedItemType=${type}`)
+    }
+  }
+
   render() {
-    const { title, fetching, feedList, filtersList } = this.props
+    const { title, fetching, filtersList } = this.props
+    const feedList = fetching ? [] : this.props.feedList
 
     return (
       <PageTitle {...{ title }}>
@@ -101,23 +142,14 @@ class FeedPageContainer extends Component {
           {fetching && (
             <PageLoader />
           )}
-          {feedList.length > 0 && (
+          {feedList.length > 0 && filtersList.length > 1 && (
             <FeedFiltersList
               list={filtersList}
               setFeedFilter={this.setFeedFilter}
             />
           )}
           <FeedList>
-            <HintCard
-              title='Хотите больше советов?'
-              text='Вы можете выбрать в настройках другие тематики'
-              buttonText='НАСТРОЙКИ'
-              onCloseClick={() => {}}
-              onButtonClick={() => this.props.history.replace('/settings')}
-            />
-            {feedList.map((cardsList, key) => (
-              <FeedCardContainer {...{ cardsList, key }} />
-            ))}
+            {feedList.map(this.renderFeedItem)}
           </FeedList>
         </PageContent>
       </PageTitle>
@@ -129,6 +161,7 @@ function mapStateToProps(state) {
   return {
     fetching: state.feed.fetching,
     feedList: R.compose(
+      addHint,
       sortByStatus,
       getGroupedFeedListByCateogry,
       getFeedByFilters
@@ -142,6 +175,7 @@ const mapDispatchToProps = {
   setFeedFilter,
   getAvailableFilters,
   openModal,
+  closeHint,
 }
 
 export const FeedPage = connect(

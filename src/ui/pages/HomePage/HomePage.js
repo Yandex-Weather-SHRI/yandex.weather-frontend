@@ -16,6 +16,7 @@ class HomePageContainer extends Component {
   static propTypes = {
     fetching: PropTypes.bool.isRequired,
     fetchWeather: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
   }
 
   componentDidMount() {
@@ -40,20 +41,19 @@ class HomePageContainer extends Component {
         <WeatherConditions />
         <Slider>
           <SliderCard
-            linkTo={routeNames.index}
-            bg="linear-gradient(to bottom,#366ca7,#4077b2)"
-            color="#fff"
-            buttonText="Показать на карте"
-          >
-            В центре дождь в ближайшие два часа не прекратится
-          </SliderCard>
-          <SliderCard
             linkTo={routeNames.onboarding}
             bg="#fff"
             buttonText={isAuthenticated ? 'ДРУГИЕ СОВЕТЫ' : 'БОЛЬШЕ СОВЕТОВ'}
           >
             Будьте осторожны!<br />
             Сегодня <strong>сильная</strong> геомагнитная буря
+          </SliderCard>
+          <SliderCard
+            linkTo={routeNames.index}
+            bg="#fff"
+            buttonText="ПОКАЗАТЬ НА КАРТЕ"
+          >
+            В течение двух часов дождя не ожидается
           </SliderCard>
         </Slider>
       </Container>

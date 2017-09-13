@@ -1,13 +1,12 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
 import { ModalMessage, IconWithText as IconWithTextBase } from 'ui/atoms'
 import { getAvailableFilters } from 'redux/filters/actions'
-import { updateOneUserSetting } from 'redux/user/actions'
 import { closeModal } from 'redux/modal/actions'
-import { getFeed } from 'redux/feed/actions'
+import { unsubscribeFromCategory } from 'redux/feed/actions'
 
 import { SimpleModal as BaseSimpleModal } from './base/SimpleModal'
 
@@ -20,9 +19,14 @@ const SimpleModal = styled(BaseSimpleModal)`
 `
 
 const IconWithText = styled(IconWithTextBase)`
-  cursor: pointer;
   height: 48px;
   padding: 0 24px;
+  transition: opacity 150ms ease-in-out;
+  user-select: none;
+
+  &:active {
+    opacity: 0.5;
+  }
 `
 
 const optionIds = {
@@ -54,17 +58,27 @@ const optionsWithThankPage = [
   optionIds.badFeedback,
 ]
 
-class CardOptionsModalInner extends React.Component {
+class CardOptionsModalContainer extends Component {
   static propTypes = {
-    updateOneUserSetting: PropTypes.func.isRequired,
-    getAvailableFilters: PropTypes.func.isRequired,
-    getFeed: PropTypes.func.isRequired,
+    unsubscribeFromCategory: PropTypes.func.isRequired,
     meta: PropTypes.shape({}).isRequired,
     closeModal: PropTypes.func.isRequired,
   }
 
   state = {
     showThanksBlock: false,
+  }
+
+  componentDidUpdate() {
+    if (this.state.showThanksBlock) {
+      this.closeTimer = setTimeout(this.props.closeModal, 2000)
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.closeTimer) {
+      clearTimeout(this.closeTimer)
+    }
   }
 
   handleOptionClick = option => () => {
@@ -75,11 +89,7 @@ class CardOptionsModalInner extends React.Component {
 
     if (option.id === optionIds.dismiss) {
       const { meta: { card: { category } } } = this.props
-      this.props.updateOneUserSetting(category, false)
-        .then(() => {
-          this.props.getAvailableFilters()
-          this.props.getFeed()
-        })
+      this.props.unsubscribeFromCategory(category)
     }
 
     this.props.closeModal()
@@ -88,21 +98,20 @@ class CardOptionsModalInner extends React.Component {
   render() {
     return (
       <SimpleModal>
-        {this.state.showThanksBlock
-          ? <ModalMessage
+        {this.state.showThanksBlock ? (
+          <ModalMessage
             title="Спасибо"
             content="Ваш отзыв передан в Яндекс. Благодаря им мы делаем советы лучше"
           />
-          : OPTIONS.map(option =>
-            <IconWithText
-              {...option}
-              onClick={this.handleOptionClick(option)}
-              key={option.id}
-              iconOffset="16px"
-              textStyles="font-size: 16px; font-weight: 400; line-height: 1.25;"
-            />
-          )
-        }
+        ) : OPTIONS.map(option =>
+          <IconWithText
+            {...option}
+            onClick={this.handleOptionClick(option)}
+            key={option.id}
+            iconOffset="16px"
+            textStyles="font-size: 1.6rem; font-weight: 400; line-height: 1.25;"
+          />
+        )}
       </SimpleModal>
     )
   }
@@ -110,7 +119,6 @@ class CardOptionsModalInner extends React.Component {
 
 export const CardOptionsModal = connect(null, {
   closeModal,
-  updateOneUserSetting,
-  getFeed,
   getAvailableFilters,
-})(CardOptionsModalInner)
+  unsubscribeFromCategory,
+})(CardOptionsModalContainer)

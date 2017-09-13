@@ -36,6 +36,7 @@ const AdviceContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 `
 
 const Text = styled.span`
@@ -52,6 +53,8 @@ const SkipButon = styled.button`
   font-size: 1.2rem;
   font-weight: 500;
   letter-spacing: 0.5px;
+  text-transform: uppercase;
+  user-select: none;
   color: rgba(0, 0, 0, 0.87);
   background: none;
   border: none;
@@ -294,7 +297,7 @@ class OnBoardingPageContainer extends Component {
               </Link>
             }
             elementRight={
-              <SkipButon onClick={this.handleSubmitOnboarding()}>УЖЕ ПРОХОДИЛ</SkipButon>
+              <SkipButon onClick={this.handleSubmitOnboarding()}>Уже проходил</SkipButon>
             }
           />
           {completed ? (

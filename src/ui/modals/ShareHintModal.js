@@ -15,8 +15,7 @@ const fadeInTop = keyframes`
 `
 
 const ModalContent = styled(SimpleModal)`
-  padding: 0 16px 0 8px;
-  height: 70px;
+  padding: 8px 16px 8px 8px;
   display: flex;
   align-items: center;
   position: absolute;
@@ -48,7 +47,7 @@ const ModalContent = styled(SimpleModal)`
     transform: rotate(45deg);
     position: absolute;
     bottom: -9px;
-    right: 54px;
+    right: 52px;
     z-index: -1;
   }
 `

@@ -23,9 +23,9 @@ const Icon = styled(IconBase)`
 `
 
 const Text = styled.span`
+  font-size: 1.2rem;
   font-weight: 500;
-  font-size: 12px;
-  color: #494848;
+  color: rgba(0, 0, 0, 0.87);
   ${({ textStyles }) => textStyles}
 `
 

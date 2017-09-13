@@ -9,7 +9,7 @@ export const statuses = {
 
 export const statusDisplayNames = {
   [statuses.best]: 'Благоприятно',
-  [statuses.ok]: 'Нормально',
+  [statuses.ok]: 'Умеренно',
   [statuses.bad]: 'Неблагоприятно',
 }
 
@@ -36,10 +36,4 @@ export const statusDisplayMessage = {
 export function getStatusDisplayMessage(category, status) {
   const message = statusDisplayMessage[category] && statusDisplayMessage[category][status]
   return message || ''
-}
-
-export const statusWeight = {
-  [statuses.best]: 0,
-  [statuses.ok]: 1,
-  [statuses.bad]: 2,
 }

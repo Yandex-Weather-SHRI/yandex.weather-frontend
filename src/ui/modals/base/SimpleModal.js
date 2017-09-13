@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 
 import { closeModal } from 'redux/modal/actions'
+import { hintUtil } from 'utils/hintUtil'
 
 
 export const Container = styled.div`
@@ -17,6 +18,14 @@ class SimpleModalContainer extends Component {
     className: PropTypes.string.isRequired,
     children: PropTypes.node.isRequired,
     closeModal: PropTypes.func.isRequired,
+    hintId: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
+  }
+
+  static defaultProps = {
+    hintId: null,
   }
 
   componentDidMount() {
@@ -32,6 +41,9 @@ class SimpleModalContainer extends Component {
       const clickOutsideModal = !this.containerEl.contains(event.target)
 
       if (clickOutsideModal) {
+        if (this.props.hintId) {
+          hintUtil.markSeen(this.props.hintId)
+        }
         this.props.closeModal()
       }
     }

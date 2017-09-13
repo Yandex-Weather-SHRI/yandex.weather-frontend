@@ -2,7 +2,7 @@ import { createAction } from 'redux-act'
 
 
 export const setFeedFilter = createAction('feed.filter.set')
-export const getAvailableFiltersSuccess = createAction('available.filters.get.success')
+export const getAvailableFiltersSuccess = createAction('available.filters.get')
 
 function findFilter(title, list) {
   return list.find(item => item.title === title)

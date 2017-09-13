@@ -9,7 +9,9 @@ export const FeedFilter = RoundedButton.extend`
   box-shadow: ${p => p.active ? '0 0 0 1px rgba(0, 0, 0, 0.04)' : '0 0 0 1px #ebebeb'};
   position: relative;
   z-index: 1;
-  transition: color 150ms ease-in-out;
+  transition:
+    opacity 150ms ease-in-out,
+    color 150ms ease-in-out;
 
   &:last-of-type {
     margin-right: 0;
@@ -27,5 +29,9 @@ export const FeedFilter = RoundedButton.extend`
     border-radius: inherit;
     transition: opacity 150ms ease-in-out;
     opacity: ${p => p.active ? 1 : 0};
+  }
+
+  &:active {
+    opacity: 0.5;
   }
 `
