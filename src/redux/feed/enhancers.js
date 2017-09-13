@@ -13,7 +13,7 @@ export function addHint(feedList) {
     return feedList
   }
 
-  const hintPosition = getRandomInt(1, feedList.length - 2)
+  const hintPosition = feedList.length > 0 ? 1 : 0
   feedList.splice(hintPosition, 0, {
     type: feedItemType.notice,
     id: hints.moreAlertsFeedHint,
