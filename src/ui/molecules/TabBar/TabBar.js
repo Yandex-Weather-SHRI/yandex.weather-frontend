@@ -83,12 +83,6 @@ const TabButton = RoundedButton.extend`
 `
 
 export class TabBar extends PureComponent {
-  onTabSelect = id => () => {
-    // TODO: Добавить анимацию скрола
-    this.wrapper.scrollLeft = this.getScrollPositionBySelectedIndex(id)
-    this.props.onTabSelect(id)()
-  }
-
   getScrollPositionBySelectedIndex(index) {
     return this.buttons.reduce((acc, item, idx) => {
       if (idx < index) {
@@ -104,6 +98,12 @@ export class TabBar extends PureComponent {
     }
   }
 
+  createOnTabSelect = id => () => {
+    // TODO: Добавить анимацию скрола
+    this.wrapper.scrollLeft = this.getScrollPositionBySelectedIndex(id)
+    this.props.onTabSelect(id)()
+  }
+
   buttons = []
 
   render() {
@@ -115,7 +115,7 @@ export class TabBar extends PureComponent {
           {tabs.map(({ id, title, alert }) => (
             <TabButton
               innerRef={this.setButtonsRef}
-              onClick={this.onTabSelect(id)}
+              onClick={this.createOnTabSelect(id)}
               active={id === currentTab}
               alert={alert}
               key={id}
