@@ -29,7 +29,7 @@ const PageContent = PageContentBase.extend`
 
 const FeedList = styled.div`
   padding: 0 8px;
-  margin-bottom: 16px;
+  margin: 8px 0;
 `
 
 class FeedPageContainer extends Component {
@@ -101,7 +101,6 @@ class FeedPageContainer extends Component {
 
   render() {
     const { title, fetching, filtersList } = this.props
-
     const feedList = fetching ? [] : this.props.feedList
 
     return (
@@ -123,7 +122,7 @@ class FeedPageContainer extends Component {
           {fetching && (
             <PageLoader />
           )}
-          {feedList.length > 0 && (
+          {feedList.length > 0 && filtersList.length > 1 && (
             <FeedFiltersList
               list={filtersList}
               setFeedFilter={this.setFeedFilter}

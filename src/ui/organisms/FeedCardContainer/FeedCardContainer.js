@@ -7,7 +7,7 @@ import { FeedCard } from 'ui/organisms'
 import { TabBar, QuestionCard } from 'ui/molecules'
 import { openModal } from 'redux/modal/actions'
 import { modals } from 'constants/modals'
-import { removeFeedItem, addSuggestionFeedCard } from 'redux/feed/actions'
+import { removeFeedItem, subscribeToCategory } from 'redux/feed/actions'
 import { getTabs } from 'utils/tabs'
 
 
@@ -52,7 +52,7 @@ export class FeedCardContainerInner extends Component {
     settingsSchema: PropTypes.shape({}).isRequired,
     isQuestionCard: PropTypes.bool,
     removeFeedItem: PropTypes.func.isRequired,
-    addSuggestionFeedCard: PropTypes.func.isRequired,
+    subscribeToCategory: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -75,8 +75,8 @@ export class FeedCardContainerInner extends Component {
     this.props.openModal(modals.shareCard, { card })
   }
 
-  onDoneClick = (id, category) => () => {
-    this.props.addSuggestionFeedCard(id, category)
+  onDoneClick = category => () => {
+    this.props.subscribeToCategory(category)
   }
 
   onCancelClick = id => () => {
@@ -97,7 +97,7 @@ export class FeedCardContainerInner extends Component {
           <QuestionCard
             title="Интересны ли вам советы про сердце?"
             category={category}
-            onDoneClick={this.onDoneClick(id, category)}
+            onDoneClick={this.onDoneClick(category)}
             onCancelClick={this.onCancelClick(id)}
           />
         )}
@@ -131,7 +131,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   openModal,
   removeFeedItem,
-  addSuggestionFeedCard,
+  subscribeToCategory,
 }
 
 export const FeedCardContainer = connect(
