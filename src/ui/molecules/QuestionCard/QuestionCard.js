@@ -52,17 +52,17 @@ const Button = styled.button`
   }
 `
 
-const QuestionCard = ({ title, category, buttonYesText, buttonNoText, onButtonYesClick, onButtonNoClick }) => (
+export const QuestionCard = ({ title, category, buttonYesText, buttonNoText, onDoneClick, onCancelClick }) => (
   <Container>
     <IconWrapper>
       <Icon name={`categories/${category}/default`} fill="#fff" size={64} />
     </IconWrapper>
     <Content>
       <Title>{title}</Title>
-      <Button onClick={onButtonYesClick}>
+      <Button onClick={onDoneClick}>
         {buttonYesText}
       </Button>
-      <Button onClick={onButtonNoClick}>
+      <Button onClick={onCancelClick}>
         {buttonNoText}
       </Button>
     </Content>
@@ -74,8 +74,8 @@ QuestionCard.propTypes = {
   category: PropTypes.string.isRequired,
   buttonYesText: PropTypes.string,
   buttonNoText: PropTypes.string,
-  onButtonYesClick: PropTypes.func.isRequired,
-  onButtonNoClick: PropTypes.func.isRequired,
+  onDoneClick: PropTypes.func.isRequired,
+  onCancelClick: PropTypes.func.isRequired,
 }
 
 QuestionCard.defaultProps = {
@@ -83,6 +83,3 @@ QuestionCard.defaultProps = {
   buttonNoText: 'НЕТ',
 }
 
-export {
-  QuestionCard
-}
