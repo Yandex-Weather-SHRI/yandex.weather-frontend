@@ -18,9 +18,12 @@ import { IconButton, HintCard } from 'ui/molecules'
 import { getFeedByFilters, getGroupedFeedListByCateogry, sortByStatus } from 'redux/feed/selectors'
 import { setFeedFilter, getAvailableFilters } from 'redux/filters/actions'
 import { routeNames } from 'utils/routeNames'
+import { openModal } from 'redux/modal/actions'
+import { modals } from 'constants/modals'
 import { feedItemType } from 'constants/feedItemType'
 import { addHint } from 'redux/feed/enhancers'
 import { hints } from 'constants/hints'
+import { hintUtil } from 'utils/hintUtil'
 
 
 const PageContent = PageContentBase.extend`
@@ -54,6 +57,7 @@ class FeedPageContainer extends Component {
     getFeed: PropTypes.func.isRequired,
     setFeedFilter: PropTypes.func.isRequired,
     getAvailableFilters: PropTypes.func.isRequired,
+    openModal: PropTypes.func.isRequired,
     closeHint: PropTypes.func.isRequired,
     history: PropTypes.shape({
       replace: PropTypes.func,
@@ -69,8 +73,24 @@ class FeedPageContainer extends Component {
     this.props.getFeed()
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!hintUtil.isSeen('share') && !nextProps.fetching && nextProps.feedList.length) {
+      this.showShareHint()
+    }
+  }
+
   setFeedFilter = (name, active) => () => {
     this.props.setFeedFilter({ name, active })
+  }
+
+  showShareHint() {
+    requestAnimationFrame(() => {
+      const shareButton = document.querySelector('[data-hint="share"]')
+      if (shareButton) {
+        const { top } = shareButton.getBoundingClientRect()
+        this.props.openModal(modals.shareHint, { top, hintId: 'share' })
+      }
+    })
   }
 
   renderFeedItem = (item) => {
@@ -154,6 +174,7 @@ const mapDispatchToProps = {
   getFeed,
   setFeedFilter,
   getAvailableFilters,
+  openModal,
   closeHint,
 }
 
