@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+    <g fill="none" fill-rule="evenodd" transform="translate(5 7)">
+        <path fill="#62DEC7" d="M17.274 42.33l3.195-21.342 59.661-.623 3.045 21.964z"/>
+        <g fill="#000" fill-rule="nonzero">
+            <path d="M35.5 56h-12c-.9 0-1.5.6-1.5 1.5v9c0 .9.6 1.5 1.5 1.5h12c.9 0 1.5-.6 1.5-1.5v-9c0-.75-.75-1.5-1.5-1.5zM34 65h-9v-6h9v6zM52.5 56h-12c-.9 0-1.5.6-1.5 1.5v9c0 .9.6 1.5 1.5 1.5h12c.9 0 1.5-.6 1.5-1.5v-9c0-.75-.75-1.5-1.5-1.5zM51 65h-9v-6h9v6zM68.5 56h-12c-.9 0-1.5.6-1.5 1.5v9c0 .9.6 1.5 1.5 1.5h12c.9 0 1.5-.6 1.5-1.5v-9c0-.75-.75-1.5-1.5-1.5zM67 65h-9v-6h9v6z"/>
+            <circle cx="79" cy="77" r="1"/>
+            <circle cx="41.5" cy="27.5" r="2.5" transform="rotate(-5.158 41.5 27.5)"/>
+            <circle cx="24.5" cy="5.5" r="2.5" transform="rotate(-5.158 24.5 5.5)"/>
+            <circle cx="70.5" cy="7.5" r="2.5" transform="rotate(-5.158 70.5 7.5)"/>
+            <circle cx="80.5" cy="15.5" r="1.5" transform="rotate(-5.157 80.5 15.5)"/>
+            <circle cx="80.5" cy="45.5" r="1.5" transform="rotate(-5.157 80.5 45.5)"/>
+            <circle cx="57.5" cy="31.5" r="1.5" transform="rotate(-5.157 57.5 31.5)"/>
+            <circle cx="58.629" cy="49.629" r="1.5" transform="rotate(-5.157 58.629 49.629)"/>
+            <circle cx="82.629" cy="57.629" r="1.5" transform="rotate(-5.159 82.629 57.629)"/>
+            <circle cx="9.5" cy="45.5" r="1.5" transform="rotate(-5.157 9.5 45.5)"/>
+            <circle cx="2.5" cy="59.5" r="1.5" transform="rotate(-5.159 2.5 59.5)"/>
+            <circle cx="55.5" cy="12.5" r="1.5" transform="rotate(-5.159 55.5 12.5)"/>
+            <circle cx="88.5" cy="28.5" r="1.5" transform="rotate(-5.159 88.5 28.5)"/>
+            <circle cx="12.5" cy="59.5" r="1.5" transform="rotate(-5.157 12.5 59.5)"/>
+            <circle cx="30.5" cy="77.5" r="1.5" transform="rotate(-5.159 30.5 77.5)"/>
+            <circle cx="22.5" cy="32.5" r="1.5" transform="rotate(-5.159 22.5 32.5)"/>
+            <circle cx="27.5" cy="26.5" r="1.5" transform="rotate(-5.157 27.5 26.5)"/>
+            <circle cx="7.5" cy="23.5" r="2.5" transform="rotate(-5.159 7.5 23.5)"/>
+            <circle cx="7.5" cy="8.5" r="2.5" transform="rotate(-5.159 7.5 8.5)"/>
+            <circle cx="69.5" cy="29.5" r="2.5" transform="rotate(-5.158 69.5 29.5)"/>
+            <path d="M75.402 39.488h2.612c.435 0 .87-.144 1.016-.434.29-.289.435-.723.29-1.157l-2.177-18.225c-.145-.723-.725-1.302-1.45-1.302h-31.55V1.446C44.143.58 43.563 0 42.692 0h-10.74c-.87 0-1.45.579-1.45 1.446v16.78H15.988c-.725 0-1.306.578-1.45 1.301L12.36 37.752c0 .434.146.868.29 1.158.291.289.726.434 1.017.434h2.612v4.05l.145 41.16c0 .867.58 1.446 1.451 1.446h55.93c.87 0 1.45-.579 1.45-1.446l.146-45.066zM33.404 8.968h7.836v3.038h-7.836V8.968zm7.836-6.075v3.182h-7.836V2.893h7.836zm-7.836 11.86h7.836v3.472h-7.836v-3.471zM17.44 21.119h56.945l1.887 15.333H15.409l2.032-15.333zM72 39.488v2.604H19.327v-2.604H72zm-52.673 5.497H72V83H19.327V44.985z"/>
+        </g>
+        <circle cx="18" cy="74" r="4" fill="#FFF" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    </g>
+</svg>
