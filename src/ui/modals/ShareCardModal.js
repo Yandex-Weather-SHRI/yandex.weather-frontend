@@ -49,11 +49,6 @@ const SOCIAL_BUTTONS = [
   },
 ]
 
-const COMMON_ICON_PROPS = {
-  size: 24,
-  round: true,
-}
-
 const SHARE_URL = 'https://yandex-weather.herokuapp.com/'
 
 const SimpleModal = styled(BaseSimpleModal)`
@@ -105,7 +100,7 @@ export const ShareCardModal = (props) => {
         image="https://raw.githubusercontent.com/Yandex-Weather-SHRI/yandex.weather-frontend/master/src/assets/images/share-images/img-share%403x.png"
       >
         <ButtonContent>
-          <button.icon {...COMMON_ICON_PROPS} />
+          <button.icon size={24} round />
           <Text>{button.title}</Text>
         </ButtonContent>
       </button.component>
