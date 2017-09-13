@@ -12,6 +12,14 @@ import { getTabs } from 'utils/tabs'
 
 
 const Container = styled.div`
+  margin-bottom: 16px;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+`
+
+const CardContainer = styled.div`
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.02) 99%);
   box-shadow:
     0 2px 10px 0 rgba(0, 0, 0, 0.06),
@@ -20,7 +28,6 @@ const Container = styled.div`
   overflow: hidden;
   position: relative;
   z-index: 1;
-  margin-bottom: 16px;
   padding: 1px;
 
   &:after {
@@ -33,10 +40,6 @@ const Container = styled.div`
     right: 1px;
     background-color: #fff;
     border-radius: inherit;
-  }
-
-  &:last-of-type {
-    margin-bottom: 0;
   }
 `
 
@@ -89,7 +92,7 @@ export class FeedCardContainerInner extends Component {
     const categoryTitle = categories[category]
 
     return (
-      <Container {...{ categoryGroup }}>
+      <Container>
         {isQuestionCard && (
           <QuestionCard
             title="Интересны ли вам советы про сердце?"
@@ -98,20 +101,22 @@ export class FeedCardContainerInner extends Component {
             onCancelClick={this.onCancelClick(id)}
           />
         )}
-        <FeedCard
-          {...card}
-          {...{ groupTitle, categoryTitle, status }}
-          onOptionsClick={this.onOptionsClick(card)}
-          onShareClick={this.onShareClick(card)}
-          isOnBoarding={isQuestionCard}
-        />
-        {cardsList.length > 1 && (
-          <TabBar
-            tabs={getTabs(cardsList)}
-            onTabSelect={this.onChangeCard}
-            currentTab={currentCard}
+        <CardContainer {...{ categoryGroup }}>
+          <FeedCard
+            {...card}
+            {...{ groupTitle, categoryTitle, status }}
+            onOptionsClick={this.onOptionsClick(card)}
+            onShareClick={this.onShareClick(card)}
+            isOnBoarding={isQuestionCard}
           />
-        )}
+          {cardsList.length > 1 && (
+            <TabBar
+              tabs={getTabs(cardsList)}
+              onTabSelect={this.onChangeCard}
+              currentTab={currentCard}
+            />
+          )}
+        </CardContainer>
       </Container>
     )
   }

@@ -68,6 +68,7 @@ const HeaderWrapper = styled.div`
   overflow: hidden;
   position: relative;
   flex: 1 1 auto;
+  margin-right: 8px;
 
   &:after {
     content: '';
@@ -86,13 +87,21 @@ const Content = styled.div`
 
 const Actions = styled.div`
   display: flex;
-  margin-left: 8px;
   flex: 0 0 auto;
 `
 
 const Button = styled(IconButton)`
-  & + & {
-    margin-left: 8px;
+  transition: opacity 150ms ease-in-out;
+  width: 40px;
+  height: 48px;
+  padding: 0;
+
+  span {
+    justify-content: flex-end;
+  }
+
+  &:active {
+    opacity: 0.5;
   }
 `
 
@@ -116,7 +125,7 @@ const Status = styled.span`
   ${p => getStatusStyles(p.status)}
 `
 
-const Row = styled.div`
+const ContentWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -124,6 +133,7 @@ const Row = styled.div`
 
 const MetaText = styled.div`
   font-size: 1.2rem;
+  line-height: 1.2;
   color: rgba(102, 102, 102, 0.7);
   margin-left: 32px;
 `
@@ -152,18 +162,17 @@ export const FeedCard = ({
             {categoryTitle}
           </Heading>
         </HeaderWrapper>
-        <Actions>
-          {isOnBoarding
-            ? <Icon name={`categoryGroups/${categoryGroup}`} />
-            : <div>
-              <Button icon="share" onClick={onShareClick} />
-              <Button icon="more" onClick={onOptionsClick} />
-            </div>
-          }
-        </Actions>
+        {isOnBoarding ? (
+          <Icon name={`categoryGroups/${categoryGroup}`} />
+        ) : (
+          <Actions>
+            <Button icon="share" onClick={onShareClick} />
+            <Button icon="more" onClick={onOptionsClick} />
+          </Actions>
+        )}
       </Header>
       <Content>
-        <Row>
+        <ContentWrapper>
           <div>
             <Text>
               {text}
@@ -172,11 +181,8 @@ export const FeedCard = ({
               {statusDisplayNames[status]}
             </Status>
           </div>
-          <Icon
-            name={`categories/${category}/${status}`}
-            size={100}
-          />
-        </Row>
+          <Icon name={`categories/${category}/${status}`} size={100} />
+        </ContentWrapper>
         {Meta && <Meta />}
         <MetaText>
           {getStatusDisplayMessage(category, status)}

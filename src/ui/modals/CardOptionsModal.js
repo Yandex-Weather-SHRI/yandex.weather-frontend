@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
@@ -20,9 +20,14 @@ const SimpleModal = styled(BaseSimpleModal)`
 `
 
 const IconWithText = styled(IconWithTextBase)`
-  cursor: pointer;
   height: 48px;
   padding: 0 24px;
+  transition: opacity 150ms ease-in-out;
+  user-select: none;
+
+  &:active {
+    opacity: 0.5;
+  }
 `
 
 const optionIds = {
@@ -54,7 +59,7 @@ const optionsWithThankPage = [
   optionIds.badFeedback,
 ]
 
-class CardOptionsModalInner extends React.Component {
+class CardOptionsModalContainer extends Component {
   static propTypes = {
     updateOneUserSetting: PropTypes.func.isRequired,
     getAvailableFilters: PropTypes.func.isRequired,
@@ -65,6 +70,18 @@ class CardOptionsModalInner extends React.Component {
 
   state = {
     showThanksBlock: false,
+  }
+
+  componentDidUpdate() {
+    if (this.state.showThanksBlock) {
+      this.closeTimer = setTimeout(this.props.closeModal, 2000)
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.closeTimer) {
+      clearTimeout(this.closeTimer)
+    }
   }
 
   handleOptionClick = option => () => {
@@ -88,21 +105,20 @@ class CardOptionsModalInner extends React.Component {
   render() {
     return (
       <SimpleModal>
-        {this.state.showThanksBlock
-          ? <ModalMessage
+        {this.state.showThanksBlock ? (
+          <ModalMessage
             title="Спасибо"
             content="Ваш отзыв передан в Яндекс. Благодаря им мы делаем советы лучше"
           />
-          : OPTIONS.map(option =>
-            <IconWithText
-              {...option}
-              onClick={this.handleOptionClick(option)}
-              key={option.id}
-              iconOffset="16px"
-              textStyles="font-size: 16px; font-weight: 400; line-height: 1.25;"
-            />
-          )
-        }
+        ) : OPTIONS.map(option =>
+          <IconWithText
+            {...option}
+            onClick={this.handleOptionClick(option)}
+            key={option.id}
+            iconOffset="16px"
+            textStyles="font-size: 1.6rem; font-weight: 400; line-height: 1.25;"
+          />
+        )}
       </SimpleModal>
     )
   }
@@ -113,4 +129,4 @@ export const CardOptionsModal = connect(null, {
   updateOneUserSetting,
   getFeed,
   getAvailableFilters,
-})(CardOptionsModalInner)
+})(CardOptionsModalContainer)

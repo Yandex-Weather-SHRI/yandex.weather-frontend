@@ -8,6 +8,7 @@ import createReduxStore from 'redux/createReduxStore'
 
 import { Application } from './Application'
 import './styles/global'
+import './utils/touch'
 
 
 const theme = {}
