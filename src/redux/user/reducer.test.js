@@ -1,19 +1,23 @@
 import { userReducer } from './reducer'
-
 import { setTokenPure, setUserInfo, getCategoriesSettingsSuccess, getSettingsSchemaSuccess } from './actions'
 
-const defaultUsersState = {
-  fetching: true,
-  oAuthToken: null,
-  avatarUrl: '',
-  login: '',
-  settings: {
-    schema: {},
-    categories: [],
-  },
-}
 
 describe('userReducer', () => {
+  let defaultUsersState
+
+  beforeEach(() => {
+    defaultUsersState = {
+      fetching: true,
+      oAuthToken: null,
+      avatarUrl: '',
+      login: '',
+      settings: {
+        schema: {},
+        categories: [],
+      },
+    }
+  })
+
   it('should save user token to state', () => {
     expect(userReducer(defaultUsersState, setTokenPure('user_token')).oAuthToken).toEqual('user_token')
   })

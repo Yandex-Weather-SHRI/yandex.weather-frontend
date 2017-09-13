@@ -1,16 +1,19 @@
 import { filtersReducer } from './reducer'
-import { setFeedFilter, getAvailableFiltersSuccess } from './actions'
+import { getAvailableFiltersSuccess } from './actions'
 
-
-const state = [
-  {
-    name: 'all',
-    title: 'Все',
-    active: true,
-  },
-]
 
 describe('filtersReducer', () => {
+  let state
+  beforeEach(() => {
+    state = [
+      {
+        name: 'all',
+        title: 'Все',
+        active: true,
+      },
+    ]
+  })
+
   it('should put filter to state', () => {
     const action = getAvailableFiltersSuccess([{
       name: 'health',

@@ -6,7 +6,7 @@ describe('feedReducer', () => {
   let state
   let list
 
-  beforeAll(() => {
+  beforeEach(() => {
     state = {
       fetching: false,
       list: [],

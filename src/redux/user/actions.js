@@ -87,7 +87,6 @@ export function getCategoriesSettings() {
           request.get('/v1/settings/schema'),
           request.get(`/v1/settings/categories?login=${login}`),
         ])
-        console.log(schema, categories)
         dispatch(getSettingsSchemaSuccess(schema))
         dispatch(getCategoriesSettingsSuccess(categories))
       }
