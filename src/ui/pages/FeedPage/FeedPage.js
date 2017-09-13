@@ -74,7 +74,7 @@ class FeedPageContainer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!nextProps.fetching && nextProps.feedList.length) {
+    if (!hintUtil.isSeen('share') && !nextProps.fetching && nextProps.feedList.length) {
       this.showShareHint()
     }
   }
@@ -86,7 +86,7 @@ class FeedPageContainer extends Component {
   showShareHint() {
     requestAnimationFrame(() => {
       const shareButton = document.querySelector('[data-hint="share"]')
-      if (!hintUtil.isSeen('share') && shareButton) {
+      if (shareButton) {
         const { top } = shareButton.getBoundingClientRect()
         this.props.openModal(modals.shareHint, { top, hintId: 'share' })
       }
