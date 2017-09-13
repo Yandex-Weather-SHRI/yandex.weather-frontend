@@ -15,25 +15,28 @@ const Container = styled.div`
 `
 
 const Title = styled.div`
-  padding-left: 8px;
+  color: #fff;
   font-size: 1.8rem;
   font-weight: 500;
   letter-spacing: 0.2px;
-  color: #fff;
+  line-height: 1.24;
+  padding-left: 8px;
   margin-bottom: 16px;
 `
 
 const Text = styled.div`
-  padding-left: 8px;
+  color: #fff;
   font-size: 1.4rem;
   letter-spacing: 0.2px;
-  color: #fff;
+  line-height: 1.24;
+  padding-left: 8px;
+  margin-bottom: 16px;
 `
 
 const Button = styled.button`
   min-width: 108px;
   height: 36px;
-  padding: 10px 8px;
+  padding: 0 8px;
   border-radius: 2px;
   font: inherit;
   font-size: 1.4rem;
@@ -43,26 +46,44 @@ const Button = styled.button`
   color: #fff;
   background: none;
   border: none;
+  user-select: none;
+  transition: opacity 150ms ease-in-out;
 
   &:focus {
     outline: none;
   }
+
+  &:active {
+    opacity: 0.5;
+  }
 `
 
-const Close = styled.div`
+const CloseButton = styled.div`
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 0;
+  right: 0;
+  height: 48px;
+  width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 150ms ease-in-out;
+
+  &:active {
+    opacity: 0.5;
+  }
 `
 
-const HintCard = ({ title, text, buttonText, onButtonClick, onCloseClick }) => (
+export const HintCard = ({ title, text, buttonText, onButtonClick, onCloseClick }) => (
   <Container>
-    <Close onClick={onCloseClick}>
+    <CloseButton onClick={onCloseClick}>
       <Icon name="cancel" fill="#fff" size={24} />
-    </Close>
+    </CloseButton>
     <Title>{title}</Title>
     <Text>{text}</Text>
-    <Button onClick={onButtonClick}>{buttonText}</Button>
+    <Button onClick={onButtonClick}>
+      {buttonText}
+    </Button>
   </Container>
 )
 
@@ -72,8 +93,4 @@ HintCard.propTypes = {
   buttonText: PropTypes.string.isRequired,
   onButtonClick: PropTypes.func.isRequired,
   onCloseClick: PropTypes.func.isRequired,
-}
-
-export {
-  HintCard
 }
