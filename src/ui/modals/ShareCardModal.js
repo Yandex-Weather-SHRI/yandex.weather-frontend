@@ -118,7 +118,6 @@ export const ShareCardModal = (props) => {
       <ModalMessage
         title="Поделиться"
         content={modalMessageContent}
-        contentStyle=""
       />
     </SimpleModal>
   )
