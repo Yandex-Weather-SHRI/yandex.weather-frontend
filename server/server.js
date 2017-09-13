@@ -8,6 +8,16 @@ const config = {
   port: process.env.PORT || 8080,
 }
 
+app.get('*', (req, res, next) => {
+  if (req.headers['x-forwarded-proto'] !== 'https') {
+    console.log(`${config.host}${req.url}`)
+    res.redirect(`https://${config.host}${req.url}`)
+  }
+  else {
+    next()
+  }
+})
+
 app.use('/assets', express.static(path.resolve(__dirname, '..', 'build', 'assets')))
 
 app.get('*', (req, res) => {
