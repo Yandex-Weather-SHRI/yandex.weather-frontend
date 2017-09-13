@@ -87,9 +87,9 @@ class FeedPageContainer extends Component {
       case feedItemType.notice:
         return <HintCard
           key={key}
-          title='Хотите больше советов?'
-          text='Вы можете выбрать в настройках другие тематики'
-          buttonText='НАСТРОЙКИ'
+          title="Хотите больше советов?"
+          text="Вы можете выбрать в настройках другие тематики"
+          buttonText="Настройки"
           onCloseClick={() => this.props.closeHint(hints.moreAlertsFeedHint)}
           onButtonClick={() => this.props.history.replace('/settings')}
         />

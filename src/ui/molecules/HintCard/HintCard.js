@@ -39,6 +39,7 @@ const Button = styled.button`
   font-size: 1.4rem;
   font-weight: 500;
   letter-spacing: 0.5px;
+  text-transform: uppercase;
   color: #fff;
   background: none;
   border: none;

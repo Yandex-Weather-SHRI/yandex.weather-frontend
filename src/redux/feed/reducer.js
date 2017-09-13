@@ -1,7 +1,7 @@
 import R from 'ramda'
 import { createReducer } from 'redux-act'
 
-import { feedGetRequest, feedGetSuccess, removeFeedItem } from './actions'
+import { feedGetRequest, feedGetSuccess, removeFeedItem, addSuggestionFeedCardRequest } from './actions'
 
 
 const feedDefaultState = {
@@ -21,8 +21,13 @@ export const feedReducer = createReducer({
     )(state)
   },
 
-  [removeFeedItem](state, hintId) {
-    const list = state.list.filter(item => item.id !== hintId)
+  [removeFeedItem](state, id) {
+    const list = state.list.filter(item => item.id !== id)
+    return R.assoc('list', list)(state)
+  },
+
+  [addSuggestionFeedCardRequest](state, id) {
+    const list = state.list.map(item => item.id === id ? { ...item, type: 'alert' } : item)
     return R.assoc('list', list)(state)
   },
 }, feedDefaultState)
