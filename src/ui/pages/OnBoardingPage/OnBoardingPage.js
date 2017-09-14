@@ -10,7 +10,7 @@ import { Icon, RoundedButton as Button } from 'ui/atoms'
 import { PageTitle, PageLoader, FeedCardBoard, PageContent, AppBar } from 'ui/organisms'
 import { IconButton } from 'ui/molecules'
 import { requestLogin } from 'redux/user/actions'
-import { localStorageUtil, ONBOARDING_SETTINGS_KEY } from '../../../utils/localStorageUtil'
+import { localStorageUtil, ONBOARDING_SETTINGS_KEY } from 'utils/localStorageUtil'
 
 
 const Content = PageContent.extend`
@@ -296,7 +296,7 @@ class OnBoardingPageContainer extends Component {
               </Link>
             }
             elementRight={
-              <SkipButon onClick={this.handleSubmitOnboarding()}>Уже проходил</SkipButon>
+              <SkipButon onClick={this.handleSubmitOnboarding()}>войти</SkipButon>
             }
           />
           {completed ? (
@@ -316,7 +316,7 @@ class OnBoardingPageContainer extends Component {
             </FinalContent>
           ) : (
             <Content>
-              <Header>Интересны ли вам такие советы?</Header>
+              <Header>Интересны ли вам советы из категории {categoryTitle.toLowerCase()}?</Header>
               <AdviceContainer>
                 <FeedCardBoard
                   categoryGroup={group}

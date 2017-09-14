@@ -1,7 +1,6 @@
-import { feedItemType } from '../../constants/feedItemType'
-import { getRandomInt } from '../../utils/arrays'
-import { hints } from '../../constants/hints'
-import { hintUtil } from '../../utils/hintUtil'
+import { feedItemType } from 'constants/feedItemType'
+import { hints } from 'constants/hints'
+import { hintUtil } from 'utils/hintUtil'
 
 
 export function addHint(feedList) {
