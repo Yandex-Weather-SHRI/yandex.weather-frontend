@@ -3,3 +3,4 @@ export { PassportRedirectPage } from './PassportRedirectPage/PassportRedirectPag
 export { SettingsPage } from './SettingsPage/SettingsPage'
 export { OnBoardingPage } from './OnBoardingPage/OnBoardingPage'
 export { FeedPage } from './FeedPage/FeedPage'
+export { NotFoundPage } from './NotFoundPage/NotFoundPage'
