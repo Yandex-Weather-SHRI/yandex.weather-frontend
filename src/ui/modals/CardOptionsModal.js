@@ -9,11 +9,10 @@ import { closeModal } from 'redux/modal/actions'
 import { unsubscribeFromCategory } from 'redux/feed/actions'
 
 import { SimpleModal as BaseSimpleModal } from './base/SimpleModal'
+import { MODAL_AUTO_CLOSE_DELAY } from '../../constants/modals';
 
 
 const SimpleModal = styled(BaseSimpleModal)`
-  padding: 12px 0;
-  width: 280px;
   display: flex;
   flex-direction: column;
 `
@@ -71,7 +70,7 @@ class CardOptionsModalContainer extends Component {
 
   componentDidUpdate() {
     if (this.state.showThanksBlock) {
-      this.closeTimer = setTimeout(this.props.closeModal, 2000)
+      this.closeTimer = setTimeout(this.props.closeModal, MODAL_AUTO_CLOSE_DELAY)
     }
   }
 

@@ -11,6 +11,7 @@ const Container = styled.div`
   padding: 12px 24px;
 `
 const Title = styled.div`
+  display: ${({ title }) => title ? 'block' : 'none'}; 
   font-size: 20px;
   font-weight: 500;
   margin-bottom: 16px;
@@ -19,6 +20,7 @@ const Content = styled.div`
   font-size: 16px;
   font-weight: 400;
   display: flex;
+  line-height: normal;
   ${props => props.contentStyle}
 `
 
@@ -34,11 +36,12 @@ export const ModalMessage = ({ title, content, contentStyle }) => (
 )
 
 ModalMessage.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   content: PropTypes.node.isRequired,
   contentStyle: PropTypes.string,
 }
 
 ModalMessage.defaultProps = {
+  title: '',
   contentStyle: '',
 }
