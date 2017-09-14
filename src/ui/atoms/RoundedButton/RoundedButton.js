@@ -19,4 +19,8 @@ export const RoundedButton = styled.button`
   &:focus {
     outline: 0;
   }
+
+  &:active {
+    opacity: 0.5;
+  }
 `
