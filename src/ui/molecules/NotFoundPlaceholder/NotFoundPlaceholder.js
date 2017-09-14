@@ -53,7 +53,7 @@ const Button = styled.button`
 export const NotFoundPlaceholder = ({ title, text, buttonText, onButtonClick }) => (
   <Container>
     <IconWrapper>
-      <Icon name='placeholders/emptyFeedSun' size={113} />
+      <Icon name="placeholders/emptyFeedSun" size={113} />
     </IconWrapper>
     {title && (
       <Title>{title}</Title>
