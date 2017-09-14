@@ -15,9 +15,9 @@ const Container = PageContent.extend`
 export const NotFoundPage = ({ history }) => (
   <Container>
     <NotFoundPlaceholder
-      title='404'
-      buttonText='На главную'
-      text='Такой страницы не существует'
+      title="404"
+      buttonText="На главную"
+      text="Такой страницы не существует"
       onButtonClick={() => history.replace('/')}
     />
   </Container>
