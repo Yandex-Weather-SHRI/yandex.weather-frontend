@@ -15,6 +15,7 @@ const fadeInTop = keyframes`
 `
 
 const ModalContent = styled(SimpleModal)`
+  width: auto;
   padding: 8px 16px 8px 8px;
   display: flex;
   align-items: center;
