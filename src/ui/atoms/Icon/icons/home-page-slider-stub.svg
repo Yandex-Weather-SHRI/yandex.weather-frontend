@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="244" height="88" viewBox="0 0 244 88">
+    <defs>
+        <radialGradient id="a" cx="38.236%" cy="10.579%" r="93.609%" fx="38.236%" fy="10.579%">
+            <stop offset="0%" stop-color="#F03C00" stop-opacity="0"/>
+            <stop offset="72.663%" stop-color="#F03C00" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#F03C00"/>
+        </radialGradient>
+        <radialGradient id="b" cx="88.2%" cy="11.315%" fx="88.2%" fy="11.315%" gradientTransform="matrix(0 -1 .96866 0 .772 .995)">
+            <stop offset="0%" stop-color="#9699C7"/>
+            <stop offset="100%" stop-color="#9499C9" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="c" cx="8.171%" cy="-6.535%" r="63.588%" fx="8.171%" fy="-6.535%" gradientTransform="matrix(0 -1 .96866 0 .145 .016)">
+            <stop offset="0%" stop-color="#9699C7"/>
+            <stop offset="100%" stop-color="#9499C9" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="d" x1="50%" x2="50%" y1="5.529%" y2="95.681%">
+            <stop offset="0%" stop-color="#C7DDF2"/>
+            <stop offset="100%" stop-color="#C0D7ED"/>
+        </linearGradient>
+        <radialGradient id="e" cx="88.2%" cy="11.315%" fx="88.2%" fy="11.315%" gradientTransform="matrix(0 -1 .96866 0 .772 .995)">
+            <stop offset="0%" stop-color="#839DC7"/>
+            <stop offset="100%" stop-color="#6D93C9" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="f" cx="16.215%" cy=".134%" fx="16.215%" fy=".134%" gradientTransform="matrix(0 -1 .96866 0 .16 .163)">
+            <stop offset="0%" stop-color="#839DC7"/>
+            <stop offset="100%" stop-color="#6D93C9" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="g" x1="50%" x2="50%" y1="5.529%" y2="121.322%">
+            <stop offset="0%" stop-color="#C7DDF2"/>
+            <stop offset="100%" stop-color="#C0D7ED"/>
+        </linearGradient>
+        <radialGradient id="h" r="48.667%" fx="50%" fy="50%">
+            <stop offset="0%" stop-color="#FFC400"/>
+            <stop offset="84.792%" stop-color="#FFC400"/>
+            <stop offset="100%" stop-color="#FFB700"/>
+        </radialGradient>
+        <radialGradient id="i" cx="10.956%" cy="64.355%" r="56.514%" fx="10.956%" fy="64.355%">
+            <stop offset="0%" stop-color="#E85423"/>
+            <stop offset="100%" stop-color="#E85423" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="k" cx="56.956%" cy="106.356%" r="39.878%" fx="56.956%" fy="106.356%">
+            <stop offset="0%" stop-color="#E85423"/>
+            <stop offset="100%" stop-color="#E85423" stop-opacity="0"/>
+        </radialGradient>
+        <circle id="j" cx="5.5" cy="5.5" r="5.5"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#E8E7E6" d="M121.971 12h1v48h-1z"/>
+        <text fill="#000" font-family="YandexSansText-Regular, Yandex Sans Text" font-size="14" opacity=".5" transform="translate(6 2)">
+            <tspan x="22.312" y="76">К выходным будет солнечно</tspan>
+        </text>
+        <path fill="#FFC400" d="M165.794 27.81a6.095 6.095 0 0 1-2.367 11.71 6.095 6.095 0 0 1-5.617-3.726 6.094 6.094 0 0 0 7.984-7.984z"/>
+        <circle cx="6.094" cy="6.094" r="6.094" fill="url(#a)" opacity=".3" transform="translate(157.333 27.333)"/>
+        <path fill="#84C5DB" fill-rule="nonzero" d="M172.028 53.48v-1.307a.805.805 0 0 1 1.61 0v1.259l1.09-.627a.805.805 0 0 1 .803 1.396l-1.124.646 1.124.646a.805.805 0 1 1-.803 1.396l-1.09-.626v1.3a.805.805 0 0 1-1.61 0v-1.349l-1.173.675a.805.805 0 0 1-.803-1.396l1.124-.646-1.124-.646a.805.805 0 0 1 .803-1.396l1.173.675zM180.028 52.147V50.84a.805.805 0 0 1 1.61 0v1.259l1.09-.627a.805.805 0 0 1 .803 1.396l-1.124.646 1.124.646a.805.805 0 1 1-.803 1.396l-1.09-.627v1.301a.805.805 0 0 1-1.61 0v-1.349l-1.173.675a.805.805 0 0 1-.803-1.396l1.124-.646-1.124-.646a.805.805 0 0 1 .803-1.396l1.173.675zM164.028 52.147V50.84a.805.805 0 0 1 1.61 0v1.259l1.09-.627a.805.805 0 0 1 .803 1.396l-1.124.646 1.124.646a.805.805 0 1 1-.803 1.396l-1.09-.627v1.301a.805.805 0 0 1-1.61 0v-1.349l-1.173.675a.805.805 0 0 1-.803-1.396l1.124-.646-1.124-.646a.805.805 0 0 1 .803-1.396l1.173.675z"/>
+        <g transform="translate(160 32.667)">
+            <ellipse cx="6.75" cy="10.462" fill="url(#b)" opacity=".2" rx="5.4" ry="5.231"/>
+            <ellipse cx="20.925" cy="12.423" fill="url(#c)" opacity=".2" rx="3.375" ry="3.269"/>
+            <path fill="url(#d)" d="M6.75 15.692c-2.982 0-5.4-2.342-5.4-5.23 0-2.89 2.418-5.231 5.4-5.231.562 0 1.105.083 1.615.238.76-2.41 3.074-4.161 5.81-4.161 3.355 0 6.075 2.634 6.075 5.884 0 .307-.024.608-.07.902.441-.16.92-.248 1.42-.248 2.237 0 4.05 1.757 4.05 3.923 0 2.167-1.813 3.923-4.05 3.923H6.75z"/>
+            <ellipse cx="6.75" cy="10.462" fill="url(#e)" opacity=".2" rx="5.4" ry="5.231"/>
+            <ellipse cx="21.6" cy="11.769" fill="url(#f)" opacity=".2" rx="4.05" ry="3.923"/>
+            <ellipse cx="14.175" cy="7.192" fill="url(#g)" rx="6.075" ry="5.885"/>
+        </g>
+        <g fill="#000" font-family="YandexSansText-Medium, Yandex Sans Text" font-size="16" font-weight="400">
+            <text transform="translate(193.74 30)">
+                <tspan x="0" y="15">+15°</tspan>
+            </text>
+        </g>
+        <text fill="#000" font-family="YandexSansText-Regular, Yandex Sans Text" font-size="14" transform="translate(6 2)">
+            <tspan x="152.188" y="13">Вечером</tspan>
+        </text>
+        <g>
+            <g transform="translate(35.667 28.667)">
+                <circle cx="10.5" cy="10.5" r="5.25" fill="url(#h)"/>
+                <path fill="#F7BD00" fill-rule="nonzero" d="M7.086 1.563l.51 1.902a.984.984 0 0 0 1.902-.51l-.51-1.901a.984.984 0 0 0-1.902.51zM11.502 18.044l.51 1.902a.984.984 0 0 0 1.902-.51l-.51-1.901a.984.984 0 1 0-1.902.51zM14.405 1.767l-.984 1.705a.984.984 0 0 0 1.705.984l.984-1.705a.984.984 0 0 0-1.705-.984zM5.874 16.544l-.984 1.705a.984.984 0 1 0 1.705.984l.984-1.705a.984.984 0 0 0-1.705-.984zM1.767 6.595l1.705.984a.984.984 0 0 0 .984-1.705L2.751 4.89a.984.984 0 0 0-.984 1.705zM16.544 15.126l1.705.984a.984.984 0 0 0 .984-1.705l-1.705-.984a.984.984 0 0 0-.984 1.705zM19.437 7.086l-1.902.51a.984.984 0 0 0 .51 1.902l1.901-.51a.984.984 0 0 0-.51-1.902zM2.956 11.502l-1.902.51a.984.984 0 0 0 .51 1.902l1.901-.51a.984.984 0 1 0-.51-1.902z"/>
+            </g>
+            <g opacity=".5" transform="translate(41 34)">
+                <use fill="url(#i)" xlink:href="#j"/>
+                <use fill="url(#k)" xlink:href="#j"/>
+            </g>
+            <g transform="translate(26.333 35.333)">
+                <ellipse cx="6.75" cy="10.462" fill="url(#b)" opacity=".2" rx="5.4" ry="5.231"/>
+                <ellipse cx="20.925" cy="12.423" fill="url(#c)" opacity=".2" rx="3.375" ry="3.269"/>
+                <path fill="url(#d)" d="M6.75 15.692c-2.982 0-5.4-2.342-5.4-5.23 0-2.89 2.418-5.231 5.4-5.231.562 0 1.105.083 1.615.238.76-2.41 3.074-4.161 5.81-4.161 3.355 0 6.075 2.634 6.075 5.884 0 .307-.024.608-.07.902.441-.16.92-.248 1.42-.248 2.237 0 4.05 1.757 4.05 3.923 0 2.167-1.813 3.923-4.05 3.923H6.75z"/>
+                <ellipse cx="6.75" cy="10.462" fill="url(#e)" opacity=".2" rx="5.4" ry="5.231"/>
+                <ellipse cx="21.6" cy="11.769" fill="url(#f)" opacity=".2" rx="4.05" ry="3.923"/>
+                <ellipse cx="14.175" cy="7.192" fill="url(#g)" rx="6.075" ry="5.885"/>
+            </g>
+            <g fill="#000" font-family="YandexSansText-Medium, Yandex Sans Text" font-size="16" font-weight="400">
+                <text transform="translate(63.185 30)">
+                    <tspan x="0" y="15">+11°</tspan>
+                </text>
+            </g>
+        </g>
+        <text fill="#000" font-family="YandexSansText-Regular, Yandex Sans Text" font-size="14" transform="translate(6 2)">
+            <tspan x="32.188" y="13">Днём</tspan>
+        </text>
+    </g>
+</svg>
