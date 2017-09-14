@@ -33,7 +33,9 @@ class PassportRedirectPageContainer extends React.Component {
           const categories = localStorageUtil.getItem(ONBOARDING_SETTINGS_KEY) || []
           localStorageUtil.removeItem(ONBOARDING_SETTINGS_KEY)
           this.props.createOrUpdateUserWithCategorySettings(categories || [])
-          this.props.history.replace(nextRoute)
+            .then(() => {
+              this.props.history.replace(nextRoute)
+            })
         })
     }
   }
