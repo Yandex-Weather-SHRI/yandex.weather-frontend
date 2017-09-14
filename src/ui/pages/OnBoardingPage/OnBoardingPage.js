@@ -304,7 +304,7 @@ class OnBoardingPageContainer extends Component {
               <Text>Выбранные категории</Text>
               <Icons>
                 {partialSettings.map(item =>
-                  <IconWrapper selected={item.enabled}>
+                  <IconWrapper key={item.name} selected={item.enabled}>
                     <Icon size={32} name={`categoryGroups/${item.group}`} />
                   </IconWrapper>
                 )}
