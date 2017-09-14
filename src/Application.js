@@ -7,7 +7,6 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect,
 } from 'react-router-dom'
 
 import {
@@ -16,6 +15,7 @@ import {
   OnBoardingPage,
   FeedPage,
   PassportRedirectPage,
+  NotFoundPage,
 } from 'ui/pages'
 import { routeNames } from 'utils/routeNames'
 import { withAuthentication, withSettings } from 'hocs'
@@ -76,7 +76,9 @@ class ApplicationContainer extends Component {
               path={routeNames.passportRedirect}
               component={PassportRedirectPage}
             />
-            <Route render={() => <Redirect to="/" />} />
+            <Route
+              component={NotFoundPage}
+            />
           </Switch>
         </Router>
         <RootModal />

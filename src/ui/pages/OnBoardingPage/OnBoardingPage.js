@@ -10,13 +10,14 @@ import { Icon, RoundedButton as Button } from 'ui/atoms'
 import { PageTitle, PageLoader, FeedCardBoard, PageContent, AppBar } from 'ui/organisms'
 import { IconButton } from 'ui/molecules'
 import { requestLogin } from 'redux/user/actions'
-import { localStorageUtil, ONBOARDING_SETTINGS_KEY } from '../../../utils/localStorageUtil'
+import { localStorageUtil, ONBOARDING_SETTINGS_KEY } from 'utils/localStorageUtil'
 
 
 const Content = PageContent.extend`
   align-items: center;
-  justify-content: flex-start;
   padding: 24px 16px 0px 16px;
+  padding-bottom: 32px;
+  justify-content: space-between;
 `
 
 const FinalContent = Content.extend`
@@ -24,7 +25,7 @@ const FinalContent = Content.extend`
   padding-top: 70px;
 `
 
-const Header = styled.h1`
+const Header = styled.div`
   font-size: 2rem;
   font-weight: 500;
   line-height: 1.2;
@@ -111,12 +112,7 @@ const RoundedButton = Button.extend`
 `
 
 const ButtonsRow = styled.div`
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  left: 0;
-  right: 0;
-  bottom: 29px;
+  margin-top: 24px;
 `
 
 const Icons = styled.div`
@@ -296,7 +292,7 @@ class OnBoardingPageContainer extends Component {
               </Link>
             }
             elementRight={
-              <SkipButon onClick={this.handleSubmitOnboarding()}>Уже проходил</SkipButon>
+              <SkipButon onClick={this.handleSubmitOnboarding()}>войти</SkipButon>
             }
           />
           {completed ? (
@@ -304,7 +300,7 @@ class OnBoardingPageContainer extends Component {
               <Text>Выбранные категории</Text>
               <Icons>
                 {partialSettings.map(item =>
-                  <IconWrapper selected={item.enabled}>
+                  <IconWrapper key={item.name} selected={item.enabled}>
                     <Icon size={32} name={`categoryGroups/${item.group}`} />
                   </IconWrapper>
                 )}
@@ -316,7 +312,7 @@ class OnBoardingPageContainer extends Component {
             </FinalContent>
           ) : (
             <Content>
-              <Header>Интересны ли вам такие советы?</Header>
+              <Header>Интересны ли вам советы из категории {categoryTitle.toLowerCase()}?</Header>
               <AdviceContainer>
                 <FeedCardBoard
                   categoryGroup={group}

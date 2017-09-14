@@ -8,6 +8,8 @@ import { hintUtil } from 'utils/hintUtil'
 
 
 export const Container = styled.div`
+  padding: 12px 0;
+  width: 280px;
   border-radius: 4px;
   background-color: #fff;
   box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.12), 0 0 16px 0 rgba(0, 0, 0, 0.2);
@@ -15,7 +17,7 @@ export const Container = styled.div`
 
 class SimpleModalContainer extends Component {
   static propTypes = {
-    className: PropTypes.string.isRequired,
+    className: PropTypes.string,
     children: PropTypes.node.isRequired,
     closeModal: PropTypes.func.isRequired,
     hintId: PropTypes.oneOfType([
@@ -25,6 +27,7 @@ class SimpleModalContainer extends Component {
   }
 
   static defaultProps = {
+    className: null,
     hintId: null,
   }
 

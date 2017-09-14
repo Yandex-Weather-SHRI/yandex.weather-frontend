@@ -2,7 +2,7 @@ import R from 'ramda'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Link } from 'react-router-dom'
 
 import { getFeed, closeHint } from 'redux/feed/actions'
@@ -14,7 +14,7 @@ import {
   FeedFiltersList,
   FeedCardContainer,
 } from 'ui/organisms'
-import { IconButton, HintCard } from 'ui/molecules'
+import { IconButton, HintCard, NotFoundPlaceholder } from 'ui/molecules'
 import { getFeedByFilters, getGroupedFeedListByCategory, sortByStatus } from 'redux/feed/selectors'
 import { setFeedFilter, getAvailableFilters } from 'redux/filters/actions'
 import { routeNames } from 'utils/routeNames'
@@ -24,6 +24,7 @@ import { feedItemType } from 'constants/feedItemType'
 import { addHint } from 'redux/feed/enhancers'
 import { hints } from 'constants/hints'
 import { hintUtil } from 'utils/hintUtil'
+import { FIRST_FEED_KEY, SHARE_KEY } from '../../../utils/localStorageUtil'
 
 
 const PageContent = PageContentBase.extend`
@@ -33,6 +34,12 @@ const PageContent = PageContentBase.extend`
 const FeedList = styled.div`
   padding: 0 8px;
   margin: 8px 0;
+  ${p => p.centered && css`
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+  `}
 `
 
 class FeedPageContainer extends Component {
@@ -71,10 +78,11 @@ class FeedPageContainer extends Component {
   componentDidMount() {
     this.props.getAvailableFilters()
     this.props.getFeed()
+    this.checkFirstFeedSeen()
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!hintUtil.isSeen('share') && !nextProps.fetching && nextProps.feedList.length) {
+  componentDidUpdate() {
+    if (this.shouldShowShareHint && !this.props.fetching && this.props.feedList.length) {
       this.showShareHint()
     }
   }
@@ -84,13 +92,20 @@ class FeedPageContainer extends Component {
   }
 
   showShareHint() {
-    requestAnimationFrame(() => {
-      const shareButton = document.querySelector('[data-hint="share"]')
-      if (shareButton) {
-        const { top } = shareButton.getBoundingClientRect()
-        this.props.openModal(modals.shareHint, { top, hintId: 'share' })
-      }
-    })
+    const shareButton = document.querySelector('[data-hint="share"]')
+    if (shareButton) {
+      const { top } = shareButton.getBoundingClientRect()
+      this.props.openModal(modals.shareHint, { top, hintId: SHARE_KEY })
+    }
+  }
+
+  checkFirstFeedSeen() {
+    if (hintUtil.isSeen(FIRST_FEED_KEY)) {
+      this.shouldShowShareHint = !hintUtil.isSeen(SHARE_KEY)
+    }
+    else {
+      hintUtil.markSeen(FIRST_FEED_KEY)
+    }
   }
 
   renderFeedItem = (item) => {
@@ -122,6 +137,7 @@ class FeedPageContainer extends Component {
   render() {
     const { title, fetching, filtersList } = this.props
     const feedList = fetching ? [] : this.props.feedList
+    const isEmptyList = feedList.length === 0
 
     return (
       <PageTitle {...{ title }}>
@@ -148,8 +164,18 @@ class FeedPageContainer extends Component {
               setFeedFilter={this.setFeedFilter}
             />
           )}
-          <FeedList>
-            {feedList.map(this.renderFeedItem)}
+          <FeedList centered={isEmptyList}>
+            {!isEmptyList && (
+              feedList.map(this.renderFeedItem)
+            )}
+
+            {isEmptyList && !fetching && (
+              <NotFoundPlaceholder
+                buttonText="Настройки"
+                text="Не выбрано ни одного совета. Для того, чтобы добавить совет выберите его в настройках"
+                onButtonClick={() => this.props.history.replace('/settings')}
+              />
+            )}
           </FeedList>
         </PageContent>
       </PageTitle>

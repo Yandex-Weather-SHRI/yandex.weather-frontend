@@ -9,6 +9,7 @@ import { openModal } from 'redux/modal/actions'
 import { modals } from 'constants/modals'
 import { removeFeedItem, subscribeToCategory } from 'redux/feed/actions'
 import { getTabs } from 'utils/tabs'
+import { questionWords } from 'constants/questionWords'
 
 
 const Container = styled.div`
@@ -63,6 +64,10 @@ export class FeedCardContainerInner extends Component {
     currentCard: 0,
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.checkAddCategoryResponseModalWillClose(nextProps)
+  }
+
   onChangeCard = currentCard => () => {
     this.setState({ currentCard })
   }
@@ -76,11 +81,23 @@ export class FeedCardContainerInner extends Component {
   }
 
   onDoneClick = category => () => {
-    this.props.subscribeToCategory(category)
+    this.props.openModal(modals.categoryAddResponse, { category })
+    this.categoryToSubscribe = category
   }
 
   onCancelClick = id => () => {
     this.props.removeFeedItem(id)
+  }
+
+  checkAddCategoryResponseModalWillClose(nextProps) {
+    if (
+      this.props.openedModal === modals.categoryAddResponse
+      && !nextProps.openedModal
+      && this.categoryToSubscribe
+    ) {
+      this.props.subscribeToCategory(this.categoryToSubscribe)
+      this.categoryToSubscribe = null
+    }
   }
 
   render() {
@@ -91,11 +108,13 @@ export class FeedCardContainerInner extends Component {
     const { title: groupTitle, categories } = settingsSchema[categoryGroup]
     const categoryTitle = categories[category]
 
+    const categoryWord = questionWords[category] || 'данную категорию'
+
     return (
       <Container>
         {isQuestionCard && (
           <QuestionCard
-            title="Интересны ли вам советы про сердце?"
+            title={`Интересны ли вам советы про ${categoryWord}?`}
             category={category}
             onDoneClick={this.onDoneClick(category)}
             onCancelClick={this.onCancelClick(id)}
@@ -123,8 +142,14 @@ export class FeedCardContainerInner extends Component {
 }
 
 function mapStateToProps(state) {
+  const {
+    user: { settings: { schema: settingsSchema } },
+    modal: { openedModal },
+  } = state
+
   return {
-    settingsSchema: state.user.settings.schema,
+    settingsSchema,
+    openedModal,
   }
 }
 

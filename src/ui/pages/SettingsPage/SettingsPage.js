@@ -10,6 +10,16 @@ import { updateOneUserSetting } from 'redux/user/actions'
 import { getNormalizedSettings } from 'redux/user/selectors'
 
 
+function getEnabledSettingsLength(settingsSchema, groupName, settings) {
+  return Object.keys(settingsSchema[groupName].categories).filter(category =>
+    settings[category].enabled
+  ).length
+}
+
+function getTotalSettingsLength(settingsSchema, groupName) {
+  return Object.keys(settingsSchema[groupName].categories).length
+}
+
 class SettingsPageContainer extends Component {
   static propTypes = {
     title: PropTypes.string,
@@ -45,6 +55,8 @@ class SettingsPageContainer extends Component {
               key={groupName}
               groupName={groupName}
               groupTitle={settingsSchema[groupName].title}
+              enabledSettingsLength={getEnabledSettingsLength(settingsSchema, groupName, settings)}
+              totalSettingsLength={getTotalSettingsLength(settingsSchema, groupName)}
             >
               {Object.keys(settingsSchema[groupName].categories).map(category => (
                 <SettingsCard

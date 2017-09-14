@@ -67,10 +67,12 @@ export const SliderCard = ({
   icon,
   borderColor,
   linkTo,
+  isStaticImageCard,
 }) => (
   <CardWrapper {...{ bg, color, to: linkTo }}>
-    <CardCaption>{children}</CardCaption>
-    {buttonText && (
+    {isStaticImageCard && children}
+    {!isStaticImageCard && <CardCaption>{children}</CardCaption>}
+    {buttonText && !isStaticImageCard && (
       <CardButton {...{ color, borderColor }}>
         <CardButtonWrapper>
           {icon && <CardButtonIcon name={icon} size={12} />}
@@ -89,6 +91,7 @@ SliderCard.propTypes = {
   buttonText: PropTypes.string,
   icon: PropTypes.string,
   borderColor: PropTypes.string,
+  isStaticImageCard: PropTypes.bool,
 }
 
 SliderCard.defaultProps = {
@@ -97,4 +100,5 @@ SliderCard.defaultProps = {
   icon: null,
   borderColor: '#e8e7e6',
   buttonText: null,
+  isStaticImageCard: false,
 }

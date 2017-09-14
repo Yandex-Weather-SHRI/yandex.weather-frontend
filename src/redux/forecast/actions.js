@@ -1,4 +1,5 @@
 import { createAction } from 'redux-act'
+import { request } from 'utils/fetchHelper'
 
 
 export const weatherGetRequest = createAction('weather.get.request')
@@ -10,12 +11,12 @@ export function fetchWeather() {
 
     if (!fetched) {
       try {
-        const response = await fetch('https://weather-forecast-api.herokuapp.com/v1/forecast')
-        const json = await response.json()
-        dispatch(weatherGetSuccess(json))
+        const response = await request.get('/v1/forecast')
+        dispatch(weatherGetSuccess(response))
       }
       catch (error) {
         // TODO
+        throw error
       }
     }
   }
