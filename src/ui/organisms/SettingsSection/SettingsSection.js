@@ -23,7 +23,16 @@ const Heading = styled.div`
 const Title = styled.div`
   font-size: 1.6rem;
   font-weight: 500;
+  line-height: 1.5;
   margin-left: 16px;
+  color: rgba(0, 0, 0, 0.87);
+`
+
+const Counter = styled.div`
+  font-size: 1.4rem;
+  line-height: 1.75;
+  color: rgba(0, 0, 0, 0.87);
+  margin-left: auto;
 `
 
 const Content = styled(ScrollContainer) `
@@ -36,11 +45,18 @@ const Content = styled(ScrollContainer) `
   }
 `
 
-export const SettingsSection = ({ groupName, groupTitle, children }) => (
+export const SettingsSection = ({
+  groupName,
+  groupTitle,
+  enabledSettingsLength,
+  totalSettingsLength,
+  children,
+}) => (
   <Container>
     <Heading>
       <Icon name={`categoryGroups/${groupName}`} size={24} />
       <Title>{groupTitle}</Title>
+      <Counter>{enabledSettingsLength} из {totalSettingsLength}</Counter>
     </Heading>
     <Content>
       {children}
@@ -52,4 +68,6 @@ SettingsSection.propTypes = {
   groupName: PropTypes.string.isRequired,
   groupTitle: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+  enabledSettingsLength: PropTypes.number.isRequired,
+  totalSettingsLength: PropTypes.number.isRequired,
 }

@@ -17,7 +17,7 @@ export const Container = styled.div`
 
 class SimpleModalContainer extends Component {
   static propTypes = {
-    className: PropTypes.string.isRequired,
+    className: PropTypes.string,
     children: PropTypes.node.isRequired,
     closeModal: PropTypes.func.isRequired,
     hintId: PropTypes.oneOfType([
@@ -27,6 +27,7 @@ class SimpleModalContainer extends Component {
   }
 
   static defaultProps = {
+    className: null,
     hintId: null,
   }
 

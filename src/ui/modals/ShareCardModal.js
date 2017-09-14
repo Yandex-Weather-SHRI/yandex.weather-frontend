@@ -90,12 +90,12 @@ export const ShareCardModal = (props) => {
   const { card } = props.meta
 
   const buttons = SOCIAL_BUTTONS.map(button =>
-    <ButtonWrapper>
+    <ButtonWrapper key={button.id}>
       <button.component
-        key={button.id}
         url={SHARE_URL}
         title={card.text}
         description={card.text}
+        quote={card.text}
         // eslint-disable-next-line max-len
         image="https://raw.githubusercontent.com/Yandex-Weather-SHRI/yandex.weather-frontend/master/src/assets/images/share-images/img-share%403x.png"
       >
