@@ -18,3 +18,5 @@ export const localStorageUtil = {
 }
 
 export const ONBOARDING_SETTINGS_KEY = 'ONBOARDING_SETTINGS_KEY'
+export const FIRST_FEED_KEY = 'FIRST_FEED'
+export const SHARE_KEY = 'SHARE_KEY'
