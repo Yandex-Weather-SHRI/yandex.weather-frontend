@@ -15,8 +15,9 @@ import { localStorageUtil, ONBOARDING_SETTINGS_KEY } from 'utils/localStorageUti
 
 const Content = PageContent.extend`
   align-items: center;
-  justify-content: flex-start;
   padding: 24px 16px 0px 16px;
+  padding-bottom: 32px;
+  justify-content: space-between;
 `
 
 const FinalContent = Content.extend`
@@ -24,7 +25,7 @@ const FinalContent = Content.extend`
   padding-top: 70px;
 `
 
-const Header = styled.h1`
+const Header = styled.div`
   font-size: 2rem;
   font-weight: 500;
   line-height: 1.2;
@@ -111,12 +112,7 @@ const RoundedButton = Button.extend`
 `
 
 const ButtonsRow = styled.div`
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  left: 0;
-  right: 0;
-  bottom: 29px;
+  margin-top: 24px;
 `
 
 const Icons = styled.div`
