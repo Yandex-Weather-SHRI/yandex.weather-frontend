@@ -79,8 +79,8 @@ class FeedPageContainer extends Component {
     this.props.getFeed()
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!hintUtil.isSeen('share') && !nextProps.fetching && nextProps.feedList.length) {
+  componentDidUpdate() {
+    if (!hintUtil.isSeen('share') && !this.props.fetching && this.props.feedList.length) {
       this.showShareHint()
     }
   }
@@ -90,13 +90,11 @@ class FeedPageContainer extends Component {
   }
 
   showShareHint() {
-    requestAnimationFrame(() => {
-      const shareButton = document.querySelector('[data-hint="share"]')
-      if (shareButton) {
-        const { top } = shareButton.getBoundingClientRect()
-        this.props.openModal(modals.shareHint, { top, hintId: 'share' })
-      }
-    })
+    const shareButton = document.querySelector('[data-hint="share"]')
+    if (shareButton) {
+      const { top } = shareButton.getBoundingClientRect()
+      this.props.openModal(modals.shareHint, { top, hintId: 'share' })
+    }
   }
 
   renderFeedItem = (item) => {
