@@ -24,6 +24,7 @@ import { feedItemType } from 'constants/feedItemType'
 import { addHint } from 'redux/feed/enhancers'
 import { hints } from 'constants/hints'
 import { hintUtil } from 'utils/hintUtil'
+import { FIRST_FEED_KEY, SHARE_KEY } from '../../../utils/localStorageUtil'
 
 
 const PageContent = PageContentBase.extend`
@@ -77,10 +78,11 @@ class FeedPageContainer extends Component {
   componentDidMount() {
     this.props.getAvailableFilters()
     this.props.getFeed()
+    this.checkFirstFeedSeen()
   }
 
   componentDidUpdate() {
-    if (!hintUtil.isSeen('share') && !this.props.fetching && this.props.feedList.length) {
+    if (this.shouldShowShareHint && !this.props.fetching && this.props.feedList.length) {
       this.showShareHint()
     }
   }
@@ -93,7 +95,16 @@ class FeedPageContainer extends Component {
     const shareButton = document.querySelector('[data-hint="share"]')
     if (shareButton) {
       const { top } = shareButton.getBoundingClientRect()
-      this.props.openModal(modals.shareHint, { top, hintId: 'share' })
+      this.props.openModal(modals.shareHint, { top, hintId: SHARE_KEY })
+    }
+  }
+
+  checkFirstFeedSeen() {
+    if (hintUtil.isSeen(FIRST_FEED_KEY)) {
+      this.shouldShowShareHint = !hintUtil.isSeen(SHARE_KEY)
+    }
+    else {
+      hintUtil.markSeen(FIRST_FEED_KEY)
     }
   }
 
