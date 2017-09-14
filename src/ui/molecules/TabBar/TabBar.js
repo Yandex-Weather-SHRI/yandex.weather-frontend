@@ -57,10 +57,10 @@ const TabButton = RoundedButton.extend`
 
   ${p => p.active && css`
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.08);
-  `}
-  
-  ${p => p.active && css`
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.08);
+
+    &:active {
+      opacity: 1;
+    }
   `}
   
   ${p => p.alert && css`
