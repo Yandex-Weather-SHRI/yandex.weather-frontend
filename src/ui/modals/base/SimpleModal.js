@@ -8,6 +8,8 @@ import { hintUtil } from 'utils/hintUtil'
 
 
 export const Container = styled.div`
+  padding: 12px 0;
+  width: 280px;
   border-radius: 4px;
   background-color: #fff;
   box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.12), 0 0 16px 0 rgba(0, 0, 0, 0.2);

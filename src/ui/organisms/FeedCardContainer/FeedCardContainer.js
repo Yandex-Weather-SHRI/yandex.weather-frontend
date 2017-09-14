@@ -64,6 +64,10 @@ export class FeedCardContainerInner extends Component {
     currentCard: 0,
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.checkAddCategoryResponseModalWillClose(nextProps)
+  }
+
   onChangeCard = currentCard => () => {
     this.setState({ currentCard })
   }
@@ -77,11 +81,23 @@ export class FeedCardContainerInner extends Component {
   }
 
   onDoneClick = category => () => {
-    this.props.subscribeToCategory(category)
+    this.props.openModal(modals.categoryAddResponse, { category })
+    this.categoryToSubscribe = category
   }
 
   onCancelClick = id => () => {
     this.props.removeFeedItem(id)
+  }
+
+  checkAddCategoryResponseModalWillClose(nextProps) {
+    if (
+      this.props.openedModal === modals.categoryAddResponse
+      && !nextProps.openedModal
+      && this.categoryToSubscribe
+    ) {
+      this.props.subscribeToCategory(this.categoryToSubscribe)
+      this.categoryToSubscribe = null
+    }
   }
 
   render() {
@@ -126,8 +142,14 @@ export class FeedCardContainerInner extends Component {
 }
 
 function mapStateToProps(state) {
+  const {
+    user: { settings: { schema: settingsSchema } },
+    modal: { openedModal },
+  } = state
+
   return {
-    settingsSchema: state.user.settings.schema,
+    settingsSchema,
+    openedModal,
   }
 }
 
