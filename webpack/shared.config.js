@@ -2,7 +2,7 @@ const { resolve } = require('path')
 const { DefinePlugin } = require('webpack')
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 const SOURCES = resolve(__dirname, '..', 'src')
 const DIST = resolve(__dirname, '..', 'build')
@@ -93,6 +93,7 @@ const config = {
     new HtmlWebpackHarddiskPlugin({
       outputPath: DIST,
     }),
+    new FaviconsWebpackPlugin(`${SOURCES}/assets/images/favicon.png`),
   ],
 }
 

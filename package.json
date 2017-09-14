@@ -57,6 +57,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "favicons-webpack-plugin": "0.0.7",
     "ramda": "^0.24.1",
     "react": "^15.6.1",
     "react-document-title": "^2.0.3",
