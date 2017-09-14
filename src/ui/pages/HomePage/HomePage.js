@@ -7,7 +7,7 @@ import { PageContent, PageLoader, WeatherBackground, WeatherBlock, Slider } from
 import { WeatherConditions, NavigationBar, SliderCard } from 'ui/molecules'
 import { fetchWeather } from 'redux/forecast/actions'
 import { routeNames } from 'utils/routeNames'
-import { ScrollContainer } from '../../atoms/ScrollContainer/ScrollContainer';
+import { ScrollContainer } from '../../atoms/ScrollContainer/ScrollContainer'
 
 
 const Container = PageContent.extend`
@@ -16,7 +16,7 @@ const Container = PageContent.extend`
 
 /* eslint-disable global-require, import/no-unresolved */
 const SliderStubImage = styled.div`
-  background-image:url(${require('assets/images/mock/days.png')}); 
+  background-image: url(${require('assets/images/mock/days.png')});
   min-height: 88px;
   height: auto;
   width: 100%;
@@ -25,12 +25,13 @@ const SliderStubImage = styled.div`
 `
 
 const GraphStubImage = styled.div`
-  background-image:url(${require('assets/images/mock/graph.png')}); 
+  background-image: url(${require('assets/images/mock/graph.png')});
   height: 166px;
   width: 632px;
   background-size: cover;
   background-repeat: no-repeat;
 `
+
 
 const GraphStubImageWrapper = ScrollContainer.extend`
   display: block;
