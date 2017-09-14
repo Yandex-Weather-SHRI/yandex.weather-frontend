@@ -5,7 +5,7 @@ import { ModalMessage } from 'ui/atoms'
 import { questionWords } from '../../constants/questionWords'
 
 import { SimpleModal } from './base/SimpleModal'
-import { withModalAutoClose } from '../../hocs/withModalAutoClose';
+import { withModalAutoClose } from '../../hocs/withModalAutoClose'
 
 
 const CategoryAddResponseModalInner = ({ meta: { category } }) =>

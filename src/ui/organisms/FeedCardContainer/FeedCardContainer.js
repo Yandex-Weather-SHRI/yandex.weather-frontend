@@ -64,6 +64,10 @@ export class FeedCardContainerInner extends Component {
     currentCard: 0,
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.checkAddCategoryResponseModalWillClose(nextProps)
+  }
+
   onChangeCard = currentCard => () => {
     this.setState({ currentCard })
   }
@@ -76,8 +80,13 @@ export class FeedCardContainerInner extends Component {
     this.props.openModal(modals.shareCard, { card })
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.checkAddCategoryResponseModalWillClose(nextProps)
+  onDoneClick = category => () => {
+    this.props.openModal(modals.categoryAddResponse, { category })
+    this.categoryToSubscribe = category
+  }
+
+  onCancelClick = id => () => {
+    this.props.removeFeedItem(id)
   }
 
   checkAddCategoryResponseModalWillClose(nextProps) {
@@ -89,15 +98,6 @@ export class FeedCardContainerInner extends Component {
       this.props.subscribeToCategory(this.categoryToSubscribe)
       this.categoryToSubscribe = null
     }
-  }
-
-  onDoneClick = category => () => {
-    this.props.openModal(modals.categoryAddResponse, { category })
-    this.categoryToSubscribe = category
-  }
-
-  onCancelClick = id => () => {
-    this.props.removeFeedItem(id)
   }
 
   render() {

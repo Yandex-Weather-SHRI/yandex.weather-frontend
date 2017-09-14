@@ -9,7 +9,7 @@ import { closeModal } from 'redux/modal/actions'
 import { unsubscribeFromCategory } from 'redux/feed/actions'
 
 import { SimpleModal as BaseSimpleModal } from './base/SimpleModal'
-import { MODAL_AUTO_CLOSE_DELAY } from '../../constants/modals';
+import { MODAL_AUTO_CLOSE_DELAY } from '../../constants/modals'
 
 
 const SimpleModal = styled(BaseSimpleModal)`

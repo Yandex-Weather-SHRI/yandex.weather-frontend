@@ -7,7 +7,7 @@ import { modalNames, modals } from 'constants/modals'
 import { CardOptionsModal } from 'ui/modals/CardOptionsModal'
 import { ShareCardModal } from 'ui/modals/ShareCardModal'
 import { ShareHintModal } from 'ui/modals/ShareHintModal'
-import { CategoryAddResponseModal } from '../../modals/CategoryAddResponseModal';
+import { CategoryAddResponseModal } from '../../modals/CategoryAddResponseModal'
 
 
 const Container = styled.div`

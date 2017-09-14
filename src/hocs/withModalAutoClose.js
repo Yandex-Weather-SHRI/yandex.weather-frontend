@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { closeModal } from '../redux/modal/actions';
-import { MODAL_AUTO_CLOSE_DELAY } from '../constants/modals';
+import { closeModal } from '../redux/modal/actions'
+import { MODAL_AUTO_CLOSE_DELAY } from '../constants/modals'
 
 
 export const withModalAutoClose = (WrappedComponent) => {

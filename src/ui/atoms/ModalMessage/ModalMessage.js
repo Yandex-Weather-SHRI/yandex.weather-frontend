@@ -11,7 +11,7 @@ const Container = styled.div`
   padding: 12px 24px;
 `
 const Title = styled.div`
-  display: ${({ title }) => title ? 'block' : 'none'}; 
+  display: ${({ title }) => title ? 'block' : 'none'};
   font-size: 20px;
   font-weight: 500;
   margin-bottom: 16px;
