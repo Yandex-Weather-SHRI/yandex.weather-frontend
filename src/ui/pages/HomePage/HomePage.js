@@ -7,7 +7,7 @@ import { PageContent, PageLoader, WeatherBackground, WeatherBlock, Slider } from
 import { WeatherConditions, NavigationBar, SliderCard } from 'ui/molecules'
 import { fetchWeather } from 'redux/forecast/actions'
 import { routeNames } from 'utils/routeNames'
-import { ScrollContainer } from '../../atoms/ScrollContainer/ScrollContainer'
+import { ScrollContainer } from 'ui/atoms'
 
 
 const Container = PageContent.extend`
@@ -15,6 +15,7 @@ const Container = PageContent.extend`
 `
 
 /* eslint-disable global-require, import/no-unresolved */
+/* eslint-disable import/order */
 const SliderStubImage = styled.div`
   background-image: url(${require('assets/images/mock/days.png')});
   min-height: 88px;
@@ -31,13 +32,12 @@ const GraphStubImage = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
 `
-
+/* eslint-enable import/order */
+/* eslint-enable global-require */
 
 const GraphStubImageWrapper = ScrollContainer.extend`
   display: block;
 `
-
-/* eslint-enable global-require */
 
 class HomePageContainer extends Component {
   static propTypes = {
