@@ -83,6 +83,7 @@ class FeedPageContainer extends Component {
 
   componentDidUpdate() {
     if (this.shouldShowShareHint && !this.props.fetching && this.props.feedList.length) {
+      this.shouldShowShareHint = false
       this.showShareHint()
     }
   }
