@@ -18,6 +18,7 @@ const Container = PageContent.extend`
 /* eslint-disable import/order */
 const SliderStubImage = styled.div`
   background-image: url(${require('assets/images/mock/days.png')});
+  background-position: center;
   min-height: 88px;
   height: auto;
   width: 100%;
