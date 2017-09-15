@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { connect } from 'react-redux'
@@ -8,7 +7,7 @@ import { routeNames } from 'utils/routeNames'
 import { request } from 'utils/fetchHelper'
 import { Icon, RoundedButton as Button } from 'ui/atoms'
 import { PageTitle, PageLoader, FeedCardBoard, PageContent, AppBar } from 'ui/organisms'
-import { IconButton } from 'ui/molecules'
+import { AppBarButton } from 'ui/molecules'
 import { requestLogin } from 'redux/user/actions'
 import { localStorageUtil, ONBOARDING_SETTINGS_KEY } from 'utils/localStorageUtil'
 
@@ -49,23 +48,6 @@ const Text = styled.span`
   color: rgba(0, 0, 0, 0.87);
 `
 
-const SkipButon = styled.button`
-  margin-right: 8px;
-  font: inherit;
-  font-size: 1.2rem;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  user-select: none;
-  color: rgba(0, 0, 0, 0.87);
-  background: none;
-  border: none;
-
-  &:focus {
-    outline: none;
-  }
-`
-
 const PaginationText = styled.span`
   margin-top: 22px;
   font-size: 1.4rem;
@@ -85,18 +67,18 @@ const RoundedButton = Button.extend`
   background-image: linear-gradient(296deg, #ed515f, #ff6f33);
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04);
   margin-right: 56px;
-  
+
   & > span {
     width: 100%
   }
-  
+
   &:last-of-type {
     margin-right: 0;
   }
- 
+
   ${p => p.inverse && css`
     color: rgba(0, 0, 0, 0.87);
- 
+
     &:after {
       content: '';
       position: absolute;
@@ -111,7 +93,7 @@ const RoundedButton = Button.extend`
   `}
 `
 
-const ButtonsRow = styled.div`
+const Actions = styled.div`
   margin-top: 24px;
 `
 
@@ -285,14 +267,17 @@ class OnBoardingPageContainer extends Component {
       <PageTitle {...{ title }}>
         <PageContent withFixedBar>
           <AppBar
-            title=""
             elementLeft={
-              <Link to={routeNames.index}>
-                <IconButton icon="arrow-left" size="24" />
-              </Link>
+              <AppBarButton
+                icon="arrow-left"
+                iconSize={24}
+                to={routeNames.index}
+              />
             }
             elementRight={
-              <SkipButon onClick={this.handleSubmitOnboarding()}>войти</SkipButon>
+              <AppBarButton onClick={this.handleSubmitOnboarding()}>
+                Войти
+              </AppBarButton>
             }
           />
           {completed ? (
@@ -325,19 +310,14 @@ class OnBoardingPageContainer extends Component {
                 />
                 <PaginationText>{currentCardIndex + 1} / {partialSettings.length}</PaginationText>
               </AdviceContainer>
-              <ButtonsRow>
-                <RoundedButton
-                  inverse
-                  onClick={this.onChoiceHandler(false)}
-                >
+              <Actions>
+                <RoundedButton inverse onClick={this.onChoiceHandler(false)}>
                   <span>Нет</span>
                 </RoundedButton>
-                <RoundedButton
-                  onClick={this.onChoiceHandler(true)}
-                >
+                <RoundedButton onClick={this.onChoiceHandler(true)}>
                   <span>Да</span>
                 </RoundedButton>
-              </ButtonsRow>
+              </Actions>
             </Content>
           )}
         </PageContent>
