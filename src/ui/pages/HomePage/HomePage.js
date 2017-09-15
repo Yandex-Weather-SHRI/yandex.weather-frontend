@@ -37,6 +37,7 @@ const GraphStubImage = styled.div`
 
 const GraphStubImageWrapper = ScrollContainer.extend`
   display: block;
+  height: auto;
 `
 
 class HomePageContainer extends Component {
