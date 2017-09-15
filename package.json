@@ -10,7 +10,8 @@
     "lint:css": "stylelint \"src/**/*.js\"",
     "dev": "webpack-dev-server",
     "build": "webpack",
-    "build:prod": "NODE_ENV=production npm run build -- -p",
+    "copy-manifest": "cp ./src/manifest.json ./build",
+    "build:prod": "NODE_ENV=production npm run build -- -p && npm run copy-manifest",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "prepush": "npm run lint",
     "test": "npm run lint"
@@ -53,11 +54,11 @@
     "stylelint-processor-styled-components": "^0.3.0",
     "webpack": "^3.5.5",
     "webpack-dev-server": "^2.7.1",
-    "webpack-merge": "^4.1.0"
+    "webpack-merge": "^4.1.0",
+    "favicons-webpack-plugin": "0.0.7"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
-    "favicons-webpack-plugin": "0.0.7",
     "ramda": "^0.24.1",
     "react": "^15.6.1",
     "react-document-title": "^2.0.3",
