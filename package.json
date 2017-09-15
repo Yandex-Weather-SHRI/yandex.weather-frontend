@@ -24,6 +24,7 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-minify-dead-code-elimination": "^0.2.0",
+    "babel-plugin-ramda": "^1.4.3",
     "babel-plugin-styled-name": "^1.0.0",
     "babel-plugin-transform-inline-consecutive-adds": "^0.2.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.8",
