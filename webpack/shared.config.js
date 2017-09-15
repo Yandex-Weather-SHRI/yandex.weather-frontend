@@ -93,7 +93,24 @@ const config = {
     new HtmlWebpackHarddiskPlugin({
       outputPath: DIST,
     }),
-    new FaviconsWebpackPlugin(`${SOURCES}/assets/images/favicon.png`),
+    new FaviconsWebpackPlugin({
+      logo: resolve(SOURCES, 'assets', 'images', 'favicon.png'),
+      persistentCache: false,
+      prefix: 'assets/icons/',
+      inject: true,
+      icons: {
+        android: true,
+        appleIcon: true,
+        appleStartup: false,
+        coast: false,
+        favicons: false,
+        firefox: false,
+        opengraph: false,
+        twitter: false,
+        yandex: false,
+        windows: false,
+      }
+    })
   ],
 }
 
