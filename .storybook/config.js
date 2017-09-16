@@ -2,6 +2,7 @@ import { configure, setAddon } from '@storybook/react'
 import { setOptions } from '@storybook/addon-options'
 import infoAddon, { setDefaults } from '@storybook/addon-info'
 
+import ('../src/styles/global')
 
 setOptions({
   name: 'Яндекс.Погода',

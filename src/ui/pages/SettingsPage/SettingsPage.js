@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { PageTitle, PageContent, AppBar, SettingsSection } from 'ui/organisms'
-import { IconButton, SettingsCard } from 'ui/molecules'
+import { AppBarButton, SettingsCard } from 'ui/molecules'
 import { routeNames } from 'utils/routeNames'
 import { updateOneUserSetting } from 'redux/user/actions'
 import { getNormalizedSettings } from 'redux/user/selectors'
@@ -45,9 +44,11 @@ class SettingsPageContainer extends Component {
           <AppBar
             {...{ title }}
             elementLeft={
-              <Link to={routeNames.feed}>
-                <IconButton icon="arrow-left" size="24" />
-              </Link>
+              <AppBarButton
+                icon="arrow-left"
+                iconSize={24}
+                to={routeNames.feed}
+              />
             }
           />
           {Object.keys(settingsSchema).map(groupName => (

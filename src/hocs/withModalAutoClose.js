@@ -8,7 +8,7 @@ import { MODAL_AUTO_CLOSE_DELAY } from '../constants/modals'
 
 export const withModalAutoClose = (WrappedComponent) => {
   class Wrapper extends Component {
-    static PropTypes = {
+    static propTypes = {
       closeModal: PropTypes.func.isRequired,
     }
 
