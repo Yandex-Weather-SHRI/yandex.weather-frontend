@@ -3,11 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import R from 'ramda'
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import {
   HomePage,

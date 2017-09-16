@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import styled, { css } from 'styled-components'
-import { Link } from 'react-router-dom'
 
 import { getFeed, closeHint } from 'redux/feed/actions'
 import {
@@ -14,7 +13,7 @@ import {
   FeedFiltersList,
   FeedCardContainer,
 } from 'ui/organisms'
-import { IconButton, HintCard, NotFoundPlaceholder } from 'ui/molecules'
+import { HintCard, AppBarButton, NotFoundPlaceholder } from 'ui/molecules'
 import { getFeedByFilters, getGroupedFeedListByCateogry, sortByStatus } from 'redux/feed/selectors'
 import { setFeedFilter, getAvailableFilters } from 'redux/filters/actions'
 import { routeNames } from 'utils/routeNames'
@@ -83,6 +82,7 @@ class FeedPageContainer extends Component {
 
   componentDidUpdate() {
     if (this.shouldShowShareHint && !this.props.fetching && this.props.feedList.length) {
+      this.shouldShowShareHint = false
       this.showShareHint()
     }
   }
@@ -145,14 +145,18 @@ class FeedPageContainer extends Component {
           <AppBar
             {...{ title }}
             elementLeft={
-              <Link to={routeNames.index}>
-                <IconButton icon="arrow-left" size="24" />
-              </Link>
+              <AppBarButton
+                icon="arrow-left"
+                iconSize={24}
+                to={routeNames.index}
+              />
             }
             elementRight={
-              <Link to={routeNames.settings}>
-                <IconButton icon="settings" size="24" />
-              </Link>
+              <AppBarButton
+                icon="settings"
+                iconSize={24}
+                to={routeNames.settings}
+              />
             }
           />
           {fetching && (
@@ -168,7 +172,6 @@ class FeedPageContainer extends Component {
             {!isEmptyList && (
               feedList.map(this.renderFeedItem)
             )}
-
             {isEmptyList && !fetching && (
               <NotFoundPlaceholder
                 buttonText="Настройки"

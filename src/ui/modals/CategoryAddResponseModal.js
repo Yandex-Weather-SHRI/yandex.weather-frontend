@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { withModalAutoClose } from 'hocs'
 import { ModalMessage } from 'ui/atoms'
-import { questionWords } from '../../constants/questionWords'
+import { questionWords } from 'constants/questionWords'
 
 import { SimpleModal } from './base/SimpleModal'
-import { withModalAutoClose } from '../../hocs/withModalAutoClose'
 
 
 const CategoryAddResponseModalInner = ({ meta: { category } }) =>

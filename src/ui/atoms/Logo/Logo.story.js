@@ -1,17 +1,18 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { withInfo } from '@storybook/addon-info'
+import styled from 'styled-components'
 
 import { backgroundDecorator, borderDecorator } from 'utils/storyBookDecorators'
 
-import { Avatar } from './Avatar'
+import { Logo } from './Logo'
 
 
-storiesOf('atoms/Avatar', module)
+storiesOf('atoms/Logo', module)
   .addDecorator(borderDecorator)
   .addDecorator(backgroundDecorator('blue'))
-  .add('Avatar',
-    withInfo()(() =>
-      <Avatar src="https://avatars.mds.yandex.net/get-yapic/0/0-0/islands-retina-small?rnd=1503592717547" />
-    )
+  .add('logo',
+    withInfo()(() => (
+      <Logo />
+    ))
   )

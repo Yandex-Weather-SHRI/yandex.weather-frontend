@@ -34,19 +34,26 @@ const Text = styled.div`
 `
 
 const Button = styled.button`
-  padding: 10px 8px;
-  font-size: 14px;
+  padding: 0 8px;
+  height: 36px;
+  font: inherit;
+  font-size: 1.4rem;
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: 0.5px;
   text-align: center;
-  color: #000;
+  color: rgba(0, 0, 0, 0.87);
   background: none;
   border: none;
   user-select: none;
+  transition: opacity 150ms ease-in-out;
 
   &:focus {
     outline: none;
+  }
+
+  &:active {
+    opacity: 0.5;
   }
 `
 
@@ -75,5 +82,5 @@ NotFoundPlaceholder.propTypes = {
 NotFoundPlaceholder.defaultProps = {
   title: '',
   buttonText: '',
-  onButtonClick: () => {},
+  onButtonClick: null,
 }

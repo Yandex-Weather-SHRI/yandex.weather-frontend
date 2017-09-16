@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 
 const Container = styled.div`
   height: 48px;
-  padding: 0 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -34,6 +33,7 @@ const Title = styled.span`
   font-size: 1.6rem;
   text-align: center;
   font-weight: 500;
+  user-select: none;
 `
 
 export class AppBar extends PureComponent {
@@ -76,9 +76,11 @@ export class AppBar extends PureComponent {
         <ElementWrapper>
           {elementLeft}
         </ElementWrapper>
-        <Title>
-          {title}
-        </Title>
+        {title && (
+          <Title>
+            {title}
+          </Title>
+        )}
         <ElementWrapper>
           {elementRight}
         </ElementWrapper>
@@ -88,12 +90,13 @@ export class AppBar extends PureComponent {
 }
 
 AppBar.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   elementLeft: PropTypes.node,
   elementRight: PropTypes.node,
 }
 
 AppBar.defaultProps = {
+  title: null,
   elementLeft: null,
   elementRight: null,
 }

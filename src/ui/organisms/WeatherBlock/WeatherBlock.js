@@ -68,7 +68,7 @@ const Condition = styled.span`
   }
 `
 
-const PureWeatherBlock = ({ locality, weatherIcon, temperature, condition, feel }) => (
+export const PureWeatherBlock = ({ locality, weatherIcon, temperature, condition, feel }) => (
   <div>
     <LocationRow>
       <IconButton fill="#fff" icon="geolocation" onClick={() => null} />

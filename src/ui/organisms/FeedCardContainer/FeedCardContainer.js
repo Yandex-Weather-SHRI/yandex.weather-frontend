@@ -54,6 +54,7 @@ export class FeedCardContainerInner extends Component {
     isQuestionCard: PropTypes.bool,
     removeFeedItem: PropTypes.func.isRequired,
     subscribeToCategory: PropTypes.func.isRequired,
+    openedModal: PropTypes.string.isRequired,
   }
 
   static defaultProps = {
