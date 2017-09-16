@@ -1,8 +1,7 @@
 const { resolve } = require('path')
 const { DefinePlugin } = require('webpack')
-const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const SOURCES = resolve(__dirname, '..', 'src')
 const DIST = resolve(__dirname, '..', 'build')
@@ -90,27 +89,17 @@ const config = {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),
-    new HtmlWebpackHarddiskPlugin({
-      outputPath: DIST,
-    }),
-    new FaviconsWebpackPlugin({
-      logo: resolve(SOURCES, 'assets', 'images', 'favicon.png'),
-      persistentCache: false,
-      prefix: 'assets/icons/',
-      inject: true,
-      icons: {
-        android: true,
-        appleIcon: true,
-        appleStartup: false,
-        coast: false,
-        favicons: false,
-        firefox: false,
-        opengraph: false,
-        twitter: false,
-        yandex: false,
-        windows: false,
-      }
-    })
+    new CopyWebpackPlugin([
+      {
+        context: resolve(SOURCES, 'assets', 'images', 'icons'),
+        from: '**/*',
+        to: resolve(DIST, 'assets', 'images', 'icons'),
+      },
+      {
+        from: resolve(SOURCES, 'assets', 'manifest.json'),
+        to: DIST,
+      },
+    ])
   ],
 }
 
