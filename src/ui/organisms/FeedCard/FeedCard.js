@@ -121,6 +121,7 @@ const Status = styled.span`
   border-radius: 4px;
   padding: 0 12px;
   font-size: 1.2rem;
+  line-height: 24px;
   color: #fff;
   user-select: none;
   ${p => getStatusStyles(p.status)}

@@ -22,6 +22,7 @@ const Content = PageContent.extend`
 const FinalContent = Content.extend`
   padding: 32px;
   padding-top: 70px;
+  justify-content: flex-start;
 `
 
 const Header = styled.div`
