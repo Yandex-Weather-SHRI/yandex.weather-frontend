@@ -14,7 +14,7 @@ import {
   FeedCardContainer,
 } from 'ui/organisms'
 import { HintCard, AppBarButton, NotFoundPlaceholder } from 'ui/molecules'
-import { getFeedByFilters, getGroupedFeedListByCateogry, sortByStatus } from 'redux/feed/selectors'
+import { getFeedByFilters, getGroupedFeedListByCategory, sortByStatus } from 'redux/feed/selectors'
 import { setFeedFilter, getAvailableFilters } from 'redux/filters/actions'
 import { routeNames } from 'utils/routeNames'
 import { openModal } from 'redux/modal/actions'
@@ -192,7 +192,7 @@ function mapStateToProps(state) {
     feedList: R.compose(
       addHint,
       sortByStatus,
-      getGroupedFeedListByCateogry,
+      getGroupedFeedListByCategory,
       getFeedByFilters
     )(state.feed.list, state.filters),
     filtersList: state.filters,
