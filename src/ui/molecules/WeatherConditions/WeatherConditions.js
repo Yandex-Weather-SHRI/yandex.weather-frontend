@@ -13,7 +13,8 @@ const Container = styled.div`
   height: 48px;
 `
 
-const PureWeatherConditions = ({ humidity, pressure, wind }) => {
+
+export const PureWeatherConditions = ({ humidity, pressure, waterTemp, wind }) => {
   const icons = [
     {
       iconName: 'weather-conditions/main-page/wind',

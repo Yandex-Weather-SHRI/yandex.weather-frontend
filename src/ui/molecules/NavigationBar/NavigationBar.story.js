@@ -4,14 +4,16 @@ import { withInfo } from '@storybook/addon-info'
 
 import { backgroundDecorator, borderDecorator } from 'utils/storyBookDecorators'
 
-import { Avatar } from './Avatar'
+import { PureNavigationBar as NavigationBar } from './NavigationBar'
 
 
-storiesOf('atoms/Avatar', module)
+storiesOf('molecules/NaviagationBar', module)
   .addDecorator(borderDecorator)
   .addDecorator(backgroundDecorator('blue'))
-  .add('Avatar',
+  .add('navigation bar',
     withInfo()(() =>
-      <Avatar src="https://avatars.mds.yandex.net/get-yapic/0/0-0/islands-retina-small?rnd=1503592717547" />
+      <NavigationBar
+        avatarUrl="https://avatars.mds.yandex.net/get-yapic/0/0-0/islands-retina-small?rnd=1503592717547"
+      />
     )
   )
