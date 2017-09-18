@@ -14,7 +14,7 @@ const Container = styled.div`
 `
 
 
-export const PureWeatherConditions = ({ humidity, pressure, waterTemp, wind }) => {
+export const PureWeatherConditions = ({ humidity, pressure, wind }) => {
   const icons = [
     {
       iconName: 'weather-conditions/main-page/wind',

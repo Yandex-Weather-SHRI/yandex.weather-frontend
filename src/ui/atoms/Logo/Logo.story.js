@@ -1,7 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { withInfo } from '@storybook/addon-info'
-import styled from 'styled-components'
 
 import { backgroundDecorator, borderDecorator } from 'utils/storyBookDecorators'
 
