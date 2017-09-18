@@ -58,7 +58,8 @@
     "stylelint-processor-styled-components": "^0.3.0",
     "webpack": "^3.5.5",
     "webpack-dev-server": "^2.7.1",
-    "webpack-merge": "^4.1.0"
+    "webpack-merge": "^4.1.0",
+    "webpack-weather-sw-plugin": "git+https://github.com/Yandex-Weather-SHRI/webpack-weather-sw-plugin.git"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
