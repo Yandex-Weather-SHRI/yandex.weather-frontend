@@ -3,6 +3,8 @@ const { DefinePlugin } = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
+const { WebpackWeatherSWPlugin } = require('webpack-weather-sw-plugin')
+
 const SOURCES = resolve(__dirname, '..', 'src')
 const DIST = resolve(__dirname, '..', 'build')
 
@@ -99,7 +101,14 @@ const config = {
         from: resolve(SOURCES, 'assets', 'manifest.json'),
         to: DIST,
       },
-    ])
+    ]),
+    new WebpackWeatherSWPlugin({
+      name: 'service-worker.js',
+      patternsAssets: [
+        '/',
+        '/**/*.+(js|png|css|ttf)',
+      ],
+    }),
   ],
 }
 
