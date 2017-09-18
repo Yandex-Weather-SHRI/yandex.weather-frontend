@@ -5,7 +5,7 @@ import { ShareButtons, generateShareIcon } from 'react-share'
 
 import { ModalMessage } from 'ui/atoms/'
 
-import { SimpleModal as BaseSimpleModal } from './base/SimpleModal'
+import { SimpleModal } from './base/SimpleModal'
 
 
 const {
@@ -51,13 +51,6 @@ const SOCIAL_BUTTONS = [
 
 const SHARE_URL = 'https://yandex-weather.herokuapp.com/'
 
-const SimpleModal = styled(BaseSimpleModal)`
-  width: 280px;
-  display: flex;
-  padding-top: 10px;
-  padding-bottom: 2px;
-`
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -75,7 +68,14 @@ const Text = styled.div`
 
 const ButtonContent = styled.div`
   display: flex;
-  padding: 12px 0;
+  align-items: center;
+  height: 48px;
+  transition: opacity 150ms ease-in-out;
+  user-select: none;
+
+  &:active {
+    opacity: 0.5;
+  }
 `
 
 const ButtonWrapper = styled.div`

@@ -10,12 +10,13 @@ const Container = styled.div`
   flex: 1;
   padding: 12px 24px;
 `
+
 const Title = styled.div`
-  display: ${({ title }) => title ? 'block' : 'none'};
   font-size: 20px;
   font-weight: 500;
   margin-bottom: 16px;
 `
+
 const Content = styled.div`
   font-size: 16px;
   font-weight: 400;
@@ -26,9 +27,11 @@ const Content = styled.div`
 
 export const ModalMessage = ({ title, content, contentStyle }) => (
   <Container>
-    <Title>
-      {title}
-    </Title>
+    {title && (
+      <Title>
+        {title}
+      </Title>
+    )}
     <Content {...{ contentStyle }}>
       {content}
     </Content>
