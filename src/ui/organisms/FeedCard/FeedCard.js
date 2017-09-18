@@ -4,20 +4,9 @@ import styled, { css } from 'styled-components'
 
 import { Icon } from 'ui/atoms'
 import { IconButton } from 'ui/molecules'
-import { healthCategory } from 'constants/categories'
-import { statusDisplayNames, getStatusDisplayMessage } from 'constants/statuses'
+import { statusDisplayNames, metasCollection } from 'constants/statuses'
 import { getStatusStyles } from 'styles/utils'
 
-import { FeedCardMetaHeart, FeedCardMetaAsthma, FeedCardMetaJoint } from './metas'
-import { FeedCardMetaHead } from './metas/FeedCardMetaHead'
-
-
-const feedMetaComponents = {
-  [healthCategory.heart]: FeedCardMetaHeart,
-  [healthCategory.joint]: FeedCardMetaJoint,
-  [healthCategory.asthma]: FeedCardMetaAsthma,
-  [healthCategory.head]: FeedCardMetaHead,
-}
 
 const Container = styled.div`
   color: #fff;
@@ -133,7 +122,41 @@ const ContentWrapper = styled.div`
   justify-content: space-between;
 `
 
-const MetaText = styled.div`
+const Meta = styled.div`
+  margin-top: 24px;
+`
+
+const MetaWrapper = styled.div`
+  display: flex;
+`
+
+const MetaSection = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 40px;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+`
+
+const MetaIcon = styled(Icon)`
+  margin-right: 8px;
+`
+
+export const MetaText = styled.span`
+  font-size: ${p => p.textSize || 2.8}rem;
+  line-height: 1.24;
+  letter-spacing: 0.8px;
+  margin-right: 8px;
+  color: #000;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+`
+
+const MetaMessage = styled.div`
   font-size: 1.2rem;
   line-height: 1.2;
   color: rgba(102, 102, 102, 0.7);
@@ -151,7 +174,7 @@ export const FeedCard = ({
   isOnBoarding,
   categoryGroup,
 }) => {
-  const Meta = feedMetaComponents[category]
+  const meta = metasCollection[category]
 
   return (
     <Container>
@@ -185,10 +208,19 @@ export const FeedCard = ({
           </div>
           <Icon name={`categories/${category}/${status}`} size={100} />
         </ContentWrapper>
-        {Meta && <Meta />}
-        <MetaText>
-          {getStatusDisplayMessage(category, status)}
-        </MetaText>
+        {meta && (
+          <Meta>
+            <MetaWrapper>
+              {meta.sections.map(section => (
+                <MetaSection key={section.icon}>
+                  <MetaIcon name={`weather-conditions/${section.icon}`} size={24} />
+                  <MetaText>{section.values[status]}</MetaText>
+                </MetaSection>
+              ))}
+            </MetaWrapper>
+            <MetaMessage>{meta.messages[status]}</MetaMessage>
+          </Meta>
+        )}
       </Content>
     </Container>
   )

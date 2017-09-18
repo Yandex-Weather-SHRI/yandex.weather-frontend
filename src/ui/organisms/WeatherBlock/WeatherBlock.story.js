@@ -1,6 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { withInfo } from '@storybook/addon-info'
+
 import { backgroundDecorator, borderDecorator } from 'utils/storyBookDecorators'
 
 import { PureWeatherBlock as WeatherBlock } from './WeatherBlock'

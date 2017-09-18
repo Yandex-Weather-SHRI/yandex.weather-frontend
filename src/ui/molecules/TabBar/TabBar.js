@@ -52,6 +52,7 @@ const TabButton = RoundedButton.extend`
   margin-right: 24px;
   position: relative;
   transition:
+    opacity 150ms ease-in-out,
     background-color 150ms ease-in-out,
     box-shadow 150ms ease-in-out;
 

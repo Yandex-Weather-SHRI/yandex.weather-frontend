@@ -7,6 +7,7 @@ import { backgroundDecorator, borderDecorator } from 'utils/storyBookDecorators'
 
 import { FeedCard } from './FeedCard'
 
+
 storiesOf('organisms/FeedCard', module)
   .addDecorator(borderDecorator)
   .addDecorator(backgroundDecorator('blue'))

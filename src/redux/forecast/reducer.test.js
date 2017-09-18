@@ -1,6 +1,7 @@
 import { forecastReducer } from './reducer'
 import { weatherGetSuccess } from './actions'
 
+
 describe('forecastReducer', () => {
   const payload = {
     fact: {
