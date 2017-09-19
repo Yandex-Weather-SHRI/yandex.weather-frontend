@@ -156,8 +156,8 @@ export const metasCollection = {
       {
         icon: 'snowflake',
         values: {
-          best: '20 см',
-          bad: '5 см',
+          best: '5 см',
+          bad: '20 см',
         },
       },
     ],
@@ -265,8 +265,8 @@ export const metasCollection = {
       {
         icon: 'wash',
         values: {
-          best: '2% вероятность',
-          bad: '80% вероятность',
+          best: '80% вероятность',
+          bad: '2% вероятность',
         },
       },
     ],
