@@ -70,8 +70,8 @@ export const metasCollection = {
       {
         icon: 'humidity',
         values: {
-          best: '78%',
-          bad: '44%',
+          best: '44%',
+          bad: '78%',
         },
       },
       {
